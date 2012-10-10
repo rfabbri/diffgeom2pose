@@ -7,28 +7,11 @@ Science)
 This work was developed at Brown University, University of Liverpool and State University
 of Rio de Janeiro.
 
+PDF and bibtex available at: http://www.lems.brown.edu/~rfabbri
 
-@inproceedings{Fabbri:Giblin:Kimia:ECCV12,
-    Author         = {Ricardo Fabbri and Peter J. Giblin and Benjamin B. Kimia},
-    Booktitle      = {Proceedings of the IEEE European Conference in Computer
-    Vision},
-    Crossref       = {ECCV2012},
-    Title          = {Camera Pose Estimation Using First-Order Curve Differential Geometry},
-    Year           = {2012}
-}
+== Main Function ==
 
-@proceedings{ECCV2012,
-  title     = {Computer Vision - ECCV 2012, 12th European Conference on
-               Computer Vision, Firenze, Italy, October 7-13,
-               2012, Proceedings},
-  booktitle = {12th European Conference on
-               Computer Vision, Firenze, Italy, October 7-13,
-               2012},
-  publisher = {Springer},
-  series    = {Lecture Notes in Computer Science},
-  year      = {2012},
-}
-
+rf_pose_from_point_tangents_root_find_function_any.m
 
 == Disclaimer ==
 
