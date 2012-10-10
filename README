@@ -1,0 +1,49 @@
+This is the research code for the paper:
+
+R. Fabbri, P. J. Giblin, B. B. Kimia, "Camera Pose Estimation Using Curve
+Differential Geometry", ECCV 2012, Firenze, Italy (Lecture Notes in Computer
+Science)
+
+This work was developed at Brown University, University of Liverpool and State University
+of Rio de Janeiro.
+
+
+@inproceedings{Fabbri:Giblin:Kimia:ECCV12,
+    Author         = {Ricardo Fabbri and Peter J. Giblin and Benjamin B. Kimia},
+    Booktitle      = {Proceedings of the IEEE European Conference in Computer
+    Vision},
+    Crossref       = {ECCV2012},
+    Title          = {Camera Pose Estimation Using First-Order Curve Differential Geometry},
+    Year           = {2012}
+}
+
+@proceedings{ECCV2012,
+  title     = {Computer Vision - ECCV 2012, 12th European Conference on
+               Computer Vision, Firenze, Italy, October 7-13,
+               2012, Proceedings},
+  booktitle = {12th European Conference on
+               Computer Vision, Firenze, Italy, October 7-13,
+               2012},
+  publisher = {Springer},
+  series    = {Lecture Notes in Computer Science},
+  year      = {2012},
+}
+
+
+== Disclaimer ==
+
+This is reseach code writen in a "lab" language (Matlab) and, as such, one
+shouldn't expect it to be ready for production. The implementation produces the
+results in the paper, and may well be very useful, but it may be *hugely*
+improved. We're working on better algorithms, but this one works OK. Feel free
+to develop and publish better algorithms yourself. But, above all, don't blame
+us if you see any imperfections in this research code. Oh, and don't forget:
+please cite this paper ;^)
+
+
+== Contact ==
+
+Please contact Ricardo Fabbri <rfabbri@iprj.uerj.br> or any of the other authors for requests.
+
+This work was developed at Brown University, University of Liverpool and State University
+of Rio de Janeiro.
