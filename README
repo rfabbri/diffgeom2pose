@@ -1,17 +1,18 @@
 This code estimates where a picture was taken, giving a single pair of 3D local geometry
 structure (differential geometry) and its projection in the 2D image.
 
-This is the research code for the paper:
+This is an improvement over the research code originally written for the paper:
 
 R. Fabbri, P. J. Giblin, B. B. Kimia, "Camera Pose Estimation Using Curve
 Differential Geometry", ECCV 2012, Firenze, Italy (Lecture Notes in Computer
 Science)
 
+A journal version is under review.
+
 This work was developed at Brown University, University of Liverpool and State University
 of Rio de Janeiro.
 
 PDF and bibtex available at: http://www.lems.brown.edu/~rfabbri
-
 
 
 == Main Function ==
