@@ -12,18 +12,18 @@ A journal version is under review.
 This work was developed at Brown University, University of Liverpool and State University
 of Rio de Janeiro.
 
-PDF and bibtex available at: http://www.lems.brown.edu/~rfabbri
+PDF and bibtex available at: http://multiview-3d-drawing.sourceforge.net
 
 
-== Main Function ==
+## Main Function
 
-rf_pose_from_point_tangents_root_find_function_any.m
+ rf_pose_from_point_tangents_root_find_function_any.m
 
 This function will return all possible (Rotation, Translation) solutions for a
 given pair of 3D-2D point-tangents (oriented points). These can then be tested
 within standard RANSAC by you to keep only the one with the most inliers.
 
-== Disclaimer ==
+## Disclaimer
 
 This is reseach code writen in a "lab" language (Matlab) and, as such, one
 shouldn't expect it to be ready for production. The implementation produces the
@@ -34,7 +34,7 @@ us if you see any imperfections in this research code. Oh, and don't forget:
 please cite this paper ;^)
 
 
-== Contact ==
+## Contact
 
 Please contact Ricardo Fabbri <rfabbri@iprj.uerj.br> or any of the other authors for requests.
 
