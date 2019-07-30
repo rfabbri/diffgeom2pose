@@ -39,7 +39,9 @@ tgt2 =[(gama(4,:)-gama(2,:))'];
 tgt1 = tgt1/norm(tgt1)
 tgt2 = tgt2/norm(tgt2)
 %% call P2P
+tic
 [Rots,Transls,degen] = rf_pose_from_point_tangents_root_find_function_any(gama1,tgt1,gama2,tgt2,Gama1,Tgt1,Gama2,Tgt2);
+toc
 %% check rotation and translation
 N = length(Rots);
 number_of_solutions=N
