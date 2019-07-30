@@ -17,11 +17,18 @@ PDF and bibtex available at: http://multiview-3d-drawing.sourceforge.net
 
 ## Main Function
 
- rf_pose_from_point_tangents_root_find_function_any.m
+```
+rf_pose_from_point_tangents_root_find_function_any.m
+```
 
 This function will return all possible (Rotation, Translation) solutions for a
 given pair of 3D-2D point-tangents (oriented points). These can then be tested
 within standard RANSAC by you to keep only the one with the most inliers.
+
+A simple demo with random data can be found in 
+```
+ demo.m
+```
 
 ## Disclaimer
 
