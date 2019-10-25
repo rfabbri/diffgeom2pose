@@ -1,7 +1,7 @@
 This code estimates where a picture was taken, giving a single pair of 3D local geometry
 structure (differential geometry) and its projection in the 2D image. Two particular cases are common
-# A pair of 3D-2D of SIFT features (the 3D is just the SIFT center with reconstructed 3D SIFT orientation from two other images)
-# A pair of 3D-2D point correspondences, where the points belong to curves (e.g., 2D-3D edgels, corners, or junctions)
+1. A pair of 3D-2D of SIFT features (the 3D is just the SIFT center with reconstructed 3D SIFT orientation from two other images)
+2. A pair of 3D-2D point correspondences, where the points belong to curves (e.g., 2D-3D edgels, corners, or junctions)
 
 This solver only solves a local problem, but can be integrated along curves to provide a more global estimate
 
