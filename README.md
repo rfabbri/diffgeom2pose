@@ -11,7 +11,7 @@ R. Fabbri, P. J. Giblin, B. B. Kimia, "Camera Pose Estimation Using Curve
 Differential Geometry", ECCV 2012, Firenze, Italy (Lecture Notes in Computer
 Science)
 
-A journal version is under review.
+A journal version is available at: https://ieeexplore.ieee.org/document/9057738
 
 This work was developed at Brown University, University of Liverpool and State University
 of Rio de Janeiro.
@@ -22,7 +22,7 @@ PDF and bibtex available at: http://multiview-3d-drawing.sourceforge.net
 ## Main Function
 
 ```
-rf_pose_from_point_tangents_root_find_function_any.m
+matlab/rf_pose_from_point_tangents_root_find_function_any.m
 ```
 
 This function will return all possible (Rotation, Translation) solutions for a
@@ -31,7 +31,7 @@ within standard RANSAC by you to keep only the one with the most inliers.
 
 A simple demo with random data can be found in 
 ```
- demo.m
+matlab/demo.m
 ```
 
 ## Disclaimer
