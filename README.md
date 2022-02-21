@@ -1,9 +1,17 @@
 This code estimates where a picture was taken, giving a single pair of 3D local geometry
-structure (differential geometry) and its projection in the 2D image. Two particular cases are common
+structure (differential geometry) and its projection in a 2D image. Two particular cases are common
 1. A pair of 3D-2D of SIFT features (the 3D is just the SIFT center with reconstructed 3D SIFT orientation from two other images)
 2. A pair of 3D-2D point correspondences, where the points belong to curves (e.g., 2D-3D edgels, corners, or junctions)
 
+The algorithm, P2PT is like P3P but uses only two features (each with a direction).
 This solves a local pose problem which can be integrated along curves to provide a more global estimate or a matching algorithm.
+
+
+A journal version is available at: https://ieeexplore.ieee.org/document/9057738
+
+Camera Pose Estimation Using Curve Differential Geometry, IEEE Transactions on
+Pattern Analysis and Machine Intelligence - PAMI, 2020, Ricardo Fabbri, Peter J.
+Giblin and Benjamin Kimia.
 
 This is an improvement over the research code originally written for the paper:
 
@@ -11,7 +19,6 @@ R. Fabbri, P. J. Giblin, B. B. Kimia, "Camera Pose Estimation Using Curve
 Differential Geometry", ECCV 2012, Firenze, Italy (Lecture Notes in Computer
 Science)
 
-A journal version is available at: https://ieeexplore.ieee.org/document/9057738
 
 This work was developed at Brown University, University of Liverpool and State University
 of Rio de Janeiro.
