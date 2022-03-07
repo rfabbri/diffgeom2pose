@@ -1,0 +1,45 @@
+﻿{
+    "version": 3,
+    "configurePresets": [
+        {
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+              "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "condition": {
+              "type": "equals",
+              "lhs": "${hostSystemName}",
+              "rhs": "Linux"
+            },
+            "displayName": "Linux Debug",
+            "generator": "Ninja",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "name": "linux-debug",
+            "vendor": {
+              "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+                "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+              }
+            }
+        },
+        {
+            "name": "macos-debug",
+            "displayName": "macOS Debug",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+                    "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+                }
+            }
+        }
+    ]
+}
