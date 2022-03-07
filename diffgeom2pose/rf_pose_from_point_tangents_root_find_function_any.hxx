@@ -24,11 +24,11 @@ T** rf_pose_from_point_tangents_root_find_function_any(
 
 	// TODO: get length of DGama vector
 	T DGama = Gama1 - Gama2;
-	DGama = Dgama / norm(DGama, DGama_len);
+	DGama = Dgama / common::norm(DGama, DGama_len);
 
 	// Array for degeneracy calculation
 	T degen_array[] = { DGama, Tgt1, Tgt2 };
-	degen = det(degen_array);
+	degen = common::det(degen_array);
 
 	if (abs(degen) < 1.0e-3) {
 		puts("data point not reliable");
@@ -40,7 +40,7 @@ T** rf_pose_from_point_tangents_root_find_function_any(
 
 	// % compute roots -------------------------------
 
-	T* t_vector = colon(-1, 0.001, 1);
+	T* t_vector = common::colon(-1, 0.001, 1);
 	#include rf_pose_from_point_tangents_2
 
 	T** root_ids = rf_find_bounded_root_intervals(t_vector);
