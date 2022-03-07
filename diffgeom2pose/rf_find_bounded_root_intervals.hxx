@@ -1,13 +1,15 @@
 #include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 
-template <typename T>
-void rf_find_bounded_root_intervals(T* t_vector, T** output, int output_size)
+template<typename T>
+T** rf_find_bounded_root_intervals(T* t_vector)
 {
 	// Output array MUST have size 2
 	assert(output_size == 2);
 
-	T root_ids[sizeof(t_vector)] = { 0 };
-	T sampled_poly[11] = rf_sample_pose_poly(t_vector); // TODO: implement `rf_sample_pose_poly()`
+	T* root_ids = (T*)malloc(sizeof(t_vector));      // TODO: check if calloc is needed in place of malloc
+	T* sampled_poly = rf_sample_pose_poly(t_vector);
 
 	T curr_val = sampled_poly[0];
 	for (int i = 0; i < sizeof(root_ids); i++) {
@@ -16,7 +18,9 @@ void rf_find_bounded_root_intervals(T* t_vector, T** output, int output_size)
 		curr_val = nxt_val;
 	}
 
-	// TODO: FIX ME!!! Local variable gets out-of-scope on return
-	output[0] = &root_ids;
-	output[1] = &sampled_poly;
+	// [root_ids, sampled_poly]
+	T** output = (T**)malloc(sizeof(2 * T*));
+	output[0] = root_ids;
+	output[1] = sampled_poly;
+	return output;
 }
