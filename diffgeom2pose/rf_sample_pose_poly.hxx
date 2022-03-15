@@ -2,7 +2,12 @@
 
 // TODO: implement `rf_sample_pose_poly()`
 template<typename T>
-T *rf_sample_pose_poly(T t)
+void rf_sample_pose_poly(
+	const T t, 
+	const T A[2001], const T B[2001], const T C[2001], const T D[2001],
+	const T E[2001], const T F[2001], const T G[2001], const T H[2001], 
+	const T K[2001], const T L[2001], const T M[2001], const T fvalue[2001]
+)
 {
 	extern A0 A1 A2;
 	extern B0 B1 B2 B3;
