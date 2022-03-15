@@ -2,7 +2,7 @@
 
 // TODO: implement `rf_sample_pose_poly()`
 template<typename T>
-T* rf_sample_pose_poly(T t)
+T *rf_sample_pose_poly(T t)
 {
 	extern A0 A1 A2;
 	extern B0 B1 B2 B3;
