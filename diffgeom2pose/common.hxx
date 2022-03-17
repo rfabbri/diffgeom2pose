@@ -56,12 +56,47 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec_subtract(T vec1[3], T vec2[3], T output[3])
+	void vec_sub(T vec1[3], T vec2[3], T output[3])
 	{
 		// For vectors of 3 elements
 		for (int i = 0; i < 3; i++) {
 			output[i] = vec1[i] - vec2[i];
 		}
 	}
+
+	template<typename T>
+	void vec_el_wise_pow(T vec[2001], T exp, T output[2001])
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = pow(vec[i], exp);
+		}
+	}
+
+	template<typename T>
+	void vec_el_wise_mult(T vec1[3], T vec2[3], T output[3])
+	{
+		for (int i = 0; i < 3; i++) {
+			output[i] = vec1[i] * vec2[i];
+		}
+	}
+
+	template<typename T>
+	void vec_mult_by_scalar(T vec[2001], T scalar, T output[2001])
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec[i] * scalar;
+		}
+	}
+
+	template<typename T>
+	T vec_sum(T vec[3])
+	{
+		T output = 0;
+		for (int i = 0; i < 3; i++) {
+			output += vec[i];
+		}
+		return output;
+	}
+
 }
 
