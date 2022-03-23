@@ -7,8 +7,10 @@
 #include <cstring>
 #include <iostream>
 #include <p2pt/p2pt.h>
+#include <testlib/testlib_test.h>
 
-using namespace p2pt;
+
+using namespace P2Pt;
 
 static void
 test_hello()
