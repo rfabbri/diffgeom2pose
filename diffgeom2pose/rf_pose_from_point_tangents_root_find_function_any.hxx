@@ -1,54 +1,50 @@
-template <typename T>
+#include "common.hxx"
+
+template<typename T>
 void rf_pose_from_point_tangents_root_find_function_any(
-	T gama1, T tgt1,
-	T gama2, T tgt2,
-	T Gama1, T Tgt1,
-	T Gama2, T Tgt2
-	T** output,
-	int output_size
+	const T gama1[3], const T tgt1[3],
+	const T gama2[3], const T tgt2[3],
+	const T Gama1[3], const T Tgt1[3],
+	const T Gama2[3], const T Tgt2[3],
+	T output[3]
 )
 {
 	// % This is the main routine to find roots. Can be used with any input.
 
-	// Output array MUST have size 3
-	assert(output_size == 3);
-
-	// INFO: `Rots[]` and `Transls[]` should be initialized to null
-	// INFO: FIX ME!!!
-	T Rots[]    = {};
-	T Transls[] = {};
-	T degen;
+	T *Rots    = &result[0];
+	T *Transls = &result[1];
+	T *degen   = &result[2];
 
 	// % test for geometric degeneracy -------------------------------
 
-	T DGama = Gama1 - Gama2;
-	DGama = Dgama / norm(DGama); // TODO: implement `norm()`
+	static T DGama[3];
+	common::vec_sub(Gama1, Gama2, DGama);
+	DGama = Dgama / common::norm(DGama, DGama_len);
 
-	// Array for degeneracy calculation
-	T degen_array[] = { DGama, Tgt1, Tgt2 };
+	// Matrix for degeneracy calculation
+	static T degen_matrix[3] = { DGama, Tgt1, Tgt2 };
+	*degen = common::det3x3(degen_matrix);
 
-	degen = det(degen_array); // TODO: implement `det()`
-
-	// TODO: FIX ME!!! Local variable gets out-of-scope on return
-	output[0] = &Rots;
-	output[1] = &Transls;
-	//output[2] = 
-
-	if (abs(degen) < 1.0e-3) { // TODO: implement `abs()`
-		puts("data point not reliable");
+	if (abs(*degen) < 1.0e-3) {
+		std::cout << "data point not reliable" << std::endl;
+		output[0] = nullptr;
+		output[1] = nullptr;
+		output[2] = nullptr;
+		return;
 	}
 
 	// % compute roots -------------------------------
 
-	T* t_vector = linspace(-1, 0.001, 1); // TODO: implment `linspace()`
-	#include rf_pose_from_point_tangents_2
+	T t_vector[2001];
+	common::colon(-1, 0.001, 1, t_vector);
+	#include "rf_pose_from_point_tangents_2.hxx"
 
-	root_ids = (T**)malloc(2 * sizeof(T*));
+	static T root_ids[2001];
 	rf_find_bounded_root_intervals(t_vector, root_ids);
 
 	// % compute rhos, r, t --------------------------
 	rf_rhos_from_root_ids(t_vector, root_ids); // TODO: implement `rf_rhos_from_root_ids()`
 
-	#include rf_get_sigmas.hxx
-	#include rf_get_r_t_from_rhos.hxx
+	#include "rf_get_sigmas.hxx"
+	#include "rf_get_r_t_from_rhos.hxx"
 }
