@@ -59,22 +59,22 @@ common::vec_sub(Gama1, Gama2, V);
 
 static double buff[3];
 
-vec_el_wise_mult(V, V, buff));
+vec1vec2_el_wise_mult(V, V, buff));
 double a1 = vec_sum(buff);
 
-vec_el_wise_mult(Tgt1, Tgt1, buff));
+vec1vec2_el_wise_mult(Tgt1, Tgt1, buff));
 double a2 = vec_sum(buff);
 
-vec_el_wise_mult(Tgt2, Tgt2, buff));
+vec1vec2_el_wise_mult(Tgt2, Tgt2, buff));
 double a3 = vec_sum(buff);
 
-vec_el_wise_mult(V, Tgt1, buff));
+vec1vec2_el_wise_mult(V, Tgt1, buff));
 double a4 = vec_sum(buff);
 
-vec_el_wise_mult(Tgt1, Tgt2, buff));
+vec1vec2_el_wise_mult(Tgt1, Tgt2, buff));
 double a5 = vec_sum(buff);
 
-vec_el_wise_mult(V, Tgt2, buff));
+vec1vec2_el_wise_mult(V, Tgt2, buff));
 double a6 = vec_sum(buff);
 
 

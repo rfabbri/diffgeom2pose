@@ -23,6 +23,44 @@ void rf_sample_pose_poly(
 
 	extern L0 L1 L2;
 
+
+	const double t_pow2[2001];
+	const double t_pow3[2001];
+	const double t_pow4[2001];
+	const double t_pow5[2001];
+	const double t_pow6[2001];
+	const double t_pow7[2001];
+	const double t_pow8[2001];
+	common::vec_el_wise_pow(t, 2, t_pow2);
+	common::vec_el_wise_pow(t, 3, t_pow3);
+	common::vec_el_wise_pow(t, 4, t_pow4);
+	common::vec_el_wise_pow(t, 5, t_pow5);
+	common::vec_el_wise_pow(t, 6, t_pow6);
+	common::vec_el_wise_pow(t, 7, t_pow7);
+	common::vec_el_wise_pow(t, 8, t_pow8);
+
+	const double t_pow2_plus1[2001]; 
+	common::vec_add_scalar(t_pow2, 1, t_pow2_plus1);
+
+	const double t_pow2_plus1_pow2[2001];
+	const double t_pow2_plus1_pow3[2001];
+	const double t_pow2_plus1_pow4[2001];
+	common::vec_el_wise_pow(t_pow2_plus1, 2, t_pow2_plus1_pow2);
+	common::vec_el_wise_pow(t_pow2_plus1, 3, t_pow2_plus1_pow3);
+	common::vec_el_wise_pow(t_pow2_plus1, 4, t_pow2_plus1_pow4);
+
+	// A
+	for (int i = 0; i < 2001; i++) {
+		A[i] = (A0 + A1 * t[i] + A2 * t_pow2[i] - A1 * t_pow3[i] + A0 * t_pow4[i]);
+	}
+	common::vec1vec2_el_wise_right_div(A, t_pow2_plus1_pow2, A);
+
+	// B
+	for (int i = 0; i < 2001; i++) {
+		B[i] = (B0 + B1 * t[i] + B2 * t_pow2[i] + B3 * t_pow3[i] - B2 * t_pow4[i] + B1 * t_pow5[i] - B0 * t_pow6[i]);
+	}
+	common::vec1vec2_el_wise_right_div(B, t_pow2_plus1_pow3, B);
+
 	// TODO: Modify MATLAB operators `.^` and `.*`
 	A = (A0 + A1*t + A2*t.^2 - A1*t.^3 + A0*t.^4) ./ (1+t.^2).^2;
 	B = (B0 + B1 *t + B2 *t.^2 + B3 *t.^3 - B2 *t.^4 + B1 *t.^5 - B0 *t.^6) ./ (1+t.^2).^3;

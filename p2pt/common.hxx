@@ -65,6 +65,14 @@ namespace common {
 	}
 
 	template<typename T>
+	void vec_add_scalar(T vec1[2001], T scalar, T output[2001])
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] + scalar;
+		}
+	}
+
+	template<typename T>
 	void vec_el_wise_pow(T vec[2001], T exp, T output[2001])
 	{
 		for (int i = 0; i < 2001; i++) {
@@ -73,7 +81,15 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec_el_wise_mult(T vec1[3], T vec2[3], T output[3])
+	void vec1vec2_el_wise_right_div(T vec1[2001], T vec2[2001], T output[2001])
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] / vec2[i];
+		}
+	}
+
+	template<typename T>
+	void vec1vec2_el_wise_mult(T vec1[3], T vec2[3], T output[3])
 	{
 		for (int i = 0; i < 3; i++) {
 			output[i] = vec1[i] * vec2[i];
