@@ -54,28 +54,28 @@ double h21 = tgt2[0];
 double h22 = tgt2[1];
 
 double V[3];
-common::vec_sub(Gama1, Gama2, V);
+common::vec1vec2_sub(Gama1, Gama2, V);
 
 
-static double buff[3];
+static double buf[3];
 
-vec1vec2_el_wise_mult(V, V, buff));
-double a1 = vec_sum(buff);
+vec1vec2_el_wise_mult(V, V, buf));
+double a1 = vec_el_sum(buf);
 
-vec1vec2_el_wise_mult(Tgt1, Tgt1, buff));
-double a2 = vec_sum(buff);
+vec1vec2_el_wise_mult(Tgt1, Tgt1, buf));
+double a2 = vec_el_sum(buf);
 
-vec1vec2_el_wise_mult(Tgt2, Tgt2, buff));
-double a3 = vec_sum(buff);
+vec1vec2_el_wise_mult(Tgt2, Tgt2, buf));
+double a3 = vec_el_sum(buf);
 
-vec1vec2_el_wise_mult(V, Tgt1, buff));
-double a4 = vec_sum(buff);
+vec1vec2_el_wise_mult(V, Tgt1, buf));
+double a4 = vec_el_sum(buf);
 
-vec1vec2_el_wise_mult(Tgt1, Tgt2, buff));
-double a5 = vec_sum(buff);
+vec1vec2_el_wise_mult(Tgt1, Tgt2, buf));
+double a5 = vec_el_sum(buf);
 
-vec1vec2_el_wise_mult(V, Tgt2, buff));
-double a6 = vec_sum(buff);
+vec1vec2_el_wise_mult(V, Tgt2, buf));
+double a6 = vec_el_sum(buf);
 
 
 double t4 = g11 * g11;

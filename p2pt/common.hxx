@@ -56,7 +56,15 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec_sub(T vec1[3], T vec2[3], T output[3])
+	void vec1vec2_add(T vec1[2001], T vec2[2001], T output[2001])
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] + vec2[i];
+		}
+	}
+
+	template<typename T>
+	void vec1vec2_sub(T vec1[3], T vec2[3], T output[3])
 	{
 		// For vectors of 3 elements
 		for (int i = 0; i < 3; i++) {
@@ -88,12 +96,15 @@ namespace common {
 		}
 	}
 
+	// Return pointer for simplicity of calculations in `rf_sample_pose_poly`
+	// TODO: Check for other uses of this function with different array sizes
 	template<typename T>
-	void vec1vec2_el_wise_mult(T vec1[3], T vec2[3], T output[3])
+	T *vec1vec2_el_wise_mult(T vec1[2001], T vec2[2001], T output[2001])
 	{
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 2001; i++) {
 			output[i] = vec1[i] * vec2[i];
 		}
+		return output;
 	}
 
 	template<typename T>
@@ -105,7 +116,7 @@ namespace common {
 	}
 
 	template<typename T>
-	T vec_sum(T vec[3])
+	T vec_el_sum(T vec[3])
 	{
 		T output = 0;
 		for (int i = 0; i < 3; i++) {
