@@ -98,17 +98,19 @@ namespace common {
 
 	// Return pointer for simplicity of calculations in `rf_sample_pose_poly`
 	// TODO: Check for other uses of this function with different array sizes
-	template<typename T>
-	T *vec1vec2_el_wise_mult(T vec1[2001], T vec2[2001], T output[2001])
+	// TODO: Check if variadic function template is correct
+	// TODO: `output[]` should be initialized to all ones (1)
+	template<typename T, typename Ts...>
+	void *vec_el_wise_mult(T vec[2001], Ts... vecs[2001], T output[2001])
 	{
 		for (int i = 0; i < 2001; i++) {
-			output[i] = vec1[i] * vec2[i];
+			output[i] *= vec[i];
 		}
-		return output;
+		vec_el_wise_mult(vecs..., output);
 	}
 
 	template<typename T>
-	void vec_mult_by_scalar(T vec[2001], T scalar, T output[2001])
+	void vec_mult_by_scalar(T scalar, T vec[2001], T output[2001])
 	{
 		for (int i = 0; i < 2001; i++) {
 			output[i] = vec[i] * scalar;
