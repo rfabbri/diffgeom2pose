@@ -17,7 +17,7 @@ T **rf_find_bounded_root_intervals(T t_vector[2001], T root_ids[2001])
 	static T fvalue[2001] = {0};
 
 	// TODO: check if array is actually filled due to pointers in the next function call
-	static T *sampled_poly[11] = {A, B, C, D, F, G, H, J, K, L, fvalue};
+	static T *sampled_poly[11] = {A, B, C, E, F, G, H, J, K, L, fvalue};
 
 	// TODO: use this separation of arguments in more functions instead of an aggregate array
 	rf_sample_pose_poly(t_vector, A, B, C, E, F, G, H, J, K, L, fvalue);
