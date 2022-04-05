@@ -1,7 +1,8 @@
-using namespace P2Pt;
+namespace P2Pt {
 
 template<typename T>
-void p2pt<T>::
+void 
+pose_poly<T>::
 rf_find_bounded_root_intervals(const T t_vector[2001], T root_ids[2001])
 {
 	static T A[2001];
@@ -29,4 +30,6 @@ rf_find_bounded_root_intervals(const T t_vector[2001], T root_ids[2001])
 		root_ids[i] = (curr_val * nxt_val) < 0;
 		curr_val = nxt_val;
 	}
+}
+
 }

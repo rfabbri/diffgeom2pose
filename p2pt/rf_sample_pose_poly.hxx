@@ -1,6 +1,6 @@
 #include "common.hxx"
 
-using namespace P2Pt;
+namespace P2Pt {
 
 //% samples/evaluates pose polynomial; 
 template<typename T>
@@ -12,6 +12,7 @@ rf_sample_pose_poly(
 )
 {
 	// TODO: Check if `extern` is needed or another approach should be used
+	// TODO: Use struct or class members for these global variables
 	//% function of t part:
 	extern double A0, A1, A2;
 	extern double B0, B1, B2, B3;
@@ -35,6 +36,7 @@ rf_sample_pose_poly(
 	// WITH A SINGLE `for` LOOP!
 
 	// Element-wise power t.^2, t.^3, t.^4, ...
+	// TODO: Use integer pow
 	static T t_pow2[2001]; vec_el_wise_pow(t, 2, t_pow2);
 	static T t_pow3[2001]; vec_el_wise_pow(t, 3, t_pow3);
 	static T t_pow4[2001]; vec_el_wise_pow(t, 4, t_pow4);
@@ -242,4 +244,5 @@ rf_sample_pose_poly(
 	}
 
 
+}
 }

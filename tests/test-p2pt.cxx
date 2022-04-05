@@ -2025,6 +2025,15 @@ static double t_vector[2001] = {
 };
 static double root_ids[2001];
 
+void
+test_poly()
+{
+	double constexpr eps = 1e-4;
+	pose_poly p;
+	p.A0;
+	// TODO: get A0_matlab
+	TEST_NEAR("A0", p.A0, A0_matlab, eps);
+}
 
 static void
 test_rf_find_bounded_root_intervals()
