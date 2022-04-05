@@ -1,10 +1,12 @@
-#include <common.hxx>
+#include "common.hxx"
+
+using namespace P2Pt;
 
 //% samples/evaluates pose polynomial; 
 template<typename T>
-void 
+void p2pt<T>::
 rf_sample_pose_poly(
-	const T t, 
+	T const t[2001],
 	T A[2001], T B[2001], T C[2001], T E[2001], T F[2001], 
 	T G[2001], T H[2001], T J[2001], T K[2001], T L[2001], T fvalue[2001]
 )
@@ -50,16 +52,16 @@ rf_sample_pose_poly(
 	static T t_pow2_plus1_pow4[2001]; vec_el_wise_pow(t_pow2_plus1, 4, t_pow2_plus1_pow4);
 
 	// Denominators
-	static T const *A_den = t_pow2_plus1_pow2;
-	static T const *B_den = t_pow2_plus1_pow3;
-	static T const *C_den = t_pow2_plus1_pow4;
-	static T const *E_den = t_pow2_plus1_pow2;
-	static T const *F_den = t_pow2_plus1_pow3;
-	static T const *G_den = t_pow2_plus1_pow4;
-	static T const *H_den = t_pow2_plus1_pow4;
-	static T const *J_den = t_pow2_plus1_pow3;
-	static T const *K_den = t_pow2_plus1_pow3;
-	static T const *L_den = t_pow2_plus1_pow2;
+	static T /*const*/ *A_den = t_pow2_plus1_pow2;
+	static T /*const*/ *B_den = t_pow2_plus1_pow3;
+	static T /*const*/ *C_den = t_pow2_plus1_pow4;
+	static T /*const*/ *E_den = t_pow2_plus1_pow2;
+	static T /*const*/ *F_den = t_pow2_plus1_pow3;
+	static T /*const*/ *G_den = t_pow2_plus1_pow4;
+	static T /*const*/ *H_den = t_pow2_plus1_pow4;
+	static T /*const*/ *J_den = t_pow2_plus1_pow3;
+	static T /*const*/ *K_den = t_pow2_plus1_pow3;
+	static T /*const*/ *L_den = t_pow2_plus1_pow2;
 
 	// Calculations
 	for (int i = 0; i < 2001; i++) {

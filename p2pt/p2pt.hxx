@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "p2pt.h"
+#include "rf_find_bounded_root_intervals.hxx"
+#include "rf_sample_pose_poly.hxx"
 
 namespace P2Pt {
   

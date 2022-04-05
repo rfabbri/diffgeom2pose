@@ -1,6 +1,8 @@
+using namespace P2Pt;
 
 template<typename T>
-T **rf_find_bounded_root_intervals(T t_vector[2001], T root_ids[2001])
+void p2pt<T>::
+rf_find_bounded_root_intervals(const T t_vector[2001], T root_ids[2001])
 {
 	static T A[2001];
 	static T B[2001];
@@ -16,14 +18,13 @@ T **rf_find_bounded_root_intervals(T t_vector[2001], T root_ids[2001])
 	static T L[2001];
 	static T fvalue[2001] = {0};
 
-	// TODO: check if array is actually filled due to pointers in the next function call
-	static T *sampled_poly[11] = {A, B, C, E, F, G, H, J, K, L, fvalue};
+	static T *sampled_poly = fvalue;
 
 	// TODO: use this separation of arguments in more functions instead of an aggregate array
 	rf_sample_pose_poly(t_vector, A, B, C, E, F, G, H, J, K, L, fvalue);
 
 	T curr_val = sampled_poly[0];
-	for (int i = 0; i < sizeof(root_ids); i++) {
+	for (int i = 0; i < 2001 /* sizeof(root_ids) does not work; returns pointer size */; i++) {
 		T nxt_val = sampled_poly[i + 1];
 		root_ids[i] = (curr_val * nxt_val) < 0;
 		curr_val = nxt_val;
