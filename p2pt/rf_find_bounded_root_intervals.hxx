@@ -1,4 +1,5 @@
 #include "poly.h"  // TODO: Check if this include is really needed
+#include "rf_sample_pose_poly.hxx"
 
 namespace P2Pt {
 

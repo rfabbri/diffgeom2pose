@@ -1,28 +1,18 @@
-#include "common.hxx"
+//#include "common.hxx"
 
+namespace P2Pt {
 
 //% samples/evaluates pose polynomial; 
 template<typename T>
-void rf_sample_pose_poly(
-	T const t[2001],
+void 
+pose_poly<T>::
+rf_sample_pose_poly(
+	const T t[2001],
 	T A[2001], T B[2001], T C[2001], T E[2001], T F[2001], 
 	T G[2001], T H[2001], T J[2001], T K[2001], T L[2001], T fvalue[2001]
 )
 {
-	// TODO: Check if `extern` is needed or another approach should be used
-	// TODO: Use struct or class members for these global variables
 	//% function of t part:
-	extern double A0, A1, A2;
-	extern double B0, B1, B2, B3;
-	extern double C0, C1, C2, C3, C4;
-	extern double E0, E1, E2;
-	extern double F0, F1, F2, F3;
-	extern double G0, G1, G2, G3, G4;
-	extern double H0, H1, H2, H3, H4;
-	extern double J0, J1, J2, J3;
-	extern double K0, K1, K2, K3;
-	extern double L0, L1, L2;
-
 	using namespace common;
 
 	// TODO: POSSIBLY OPTIMIZE ALL THESE FUNCION CALLS FOR 
@@ -225,7 +215,7 @@ void rf_sample_pose_poly(
 	/* 32 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F,      E,      B_pow2, K,      J_pow3, H,                 fvalue_terms[32]), fvalue_terms[32]);
 	/* 33 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F,      B_pow2, K_pow2, J,      G,      L,                 fvalue_terms[33]), fvalue_terms[33]);
 	/* 34 */ vec_mult_by_scalar( 3, vec_el_wise_mult7(F,      B,      K,      J,      G,      C,      L_pow2,    fvalue_terms[34]), fvalue_terms[34]);
-	/* 36 */ vec_mult_by_scalar(-2, vec_el_wise_mult8(F,      E,      C,      J,      L,      A,      H_pow2,    fvalue_terms[36]), fvalue_terms[36]);
+	/* 36 */ vec_mult_by_scalar(-2, vec_el_wise_mult7(F,      E,      C,      J,      L,      A,      H_pow2,    fvalue_terms[36]), fvalue_terms[36]);
 	/* 37 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(F,      E,      C_pow2, J_pow3, L,                         fvalue_terms[37]), fvalue_terms[37]);
 	/* 38 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(F,      C_pow2, J,      L_pow3, G,                         fvalue_terms[38]), fvalue_terms[38]);
 	/* 39 */ vec_mult_by_scalar(-2, vec_el_wise_mult7(F,      C,      J,      L,      G,      A,      K_pow2,    fvalue_terms[39]), fvalue_terms[39]);
@@ -243,3 +233,7 @@ void rf_sample_pose_poly(
 
 
 }
+
+}
+
+

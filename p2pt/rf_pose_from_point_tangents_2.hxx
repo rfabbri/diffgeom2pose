@@ -26,7 +26,8 @@
 //
 //
 //% Precomputed, t-independent terms:
-#include "common.hxx"
+
+//#include "common.hxx"
 
 namespace P2Pt {
 
@@ -146,7 +147,7 @@ rf_pose_from_point_tangents_2(
 	beta * pow(cos(theta), 2.0) + 2.0 * a2 * g22 * g12 * beta * beta * 
 	sin(theta) * cos(theta);
 
-	double A1 = 0.4e1 * a2 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * beta * 
+	A1 = 0.4e1 * a2 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * beta * 
 	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * g21 * g11 * g11 * alpha * 
 	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * g12 * alpha * 
 	pow(cos(theta), 0.2e1) * beta + 0.8e1 * a2 * g21 * g11 * alpha * sin(theta) * 
@@ -173,7 +174,7 @@ rf_pose_from_point_tangents_2(
 	0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * g22 * g12 * beta * pow(sin(theta), 
 	0.2e1) * alpha;
 
-	double A2 =  (2 * a4 * a4 * g12 * g12) +  (2 * a4 * a4 * g11 * g11) + 
+	A2 =  (2 * a4 * a4 * g12 * g12) +  (2 * a4 * a4 * g11 * g11) + 
 	 (2 * a4 * a4) + 0.2e1 * a2 *   pow( g12,  
 	4) * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 *   
 	pow( g11,  4) * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * 
@@ -2244,6 +2245,4 @@ rf_pose_from_point_tangents_2(
 }
 
 }
-
-
 

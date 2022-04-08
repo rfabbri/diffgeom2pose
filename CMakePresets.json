@@ -1,24 +1,24 @@
-﻿{
+{
     "version": 3,
     "configurePresets": [
         {
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "cacheVariables": {
-              "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Debug"
             },
             "condition": {
-              "type": "equals",
-              "lhs": "${hostSystemName}",
-              "rhs": "Linux"
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
             },
             "displayName": "Linux Debug",
             "generator": "Ninja",
             "installDir": "${sourceDir}/out/install/${presetName}",
             "name": "linux-debug",
             "vendor": {
-              "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
-                "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
-              }
+                "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+                    "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+                }
             }
         },
         {

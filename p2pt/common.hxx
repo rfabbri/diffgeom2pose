@@ -73,7 +73,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec_add_scalar(T vec1[2001], T scalar, T output[2001])
+	void vec_add_scalar(T vec1[2001], int scalar, T output[2001])
 	{
 		for (int i = 0; i < 2001; i++) {
 			output[i] = vec1[i] + scalar;
@@ -81,7 +81,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec_el_wise_pow(T vec[2001], T exp, T output[2001])
+	void vec_el_wise_pow(const T vec[2001], int exp, T output[2001])
 	{
 		for (int i = 0; i < 2001; i++) {
 			output[i] = pow(vec[i], exp);
@@ -203,7 +203,7 @@ namespace common {
 	#pragma endregion
 
 	template<typename T>
-	void vec_mult_by_scalar(T scalar, T vec[2001], T output[2001])
+	void vec_mult_by_scalar(int scalar, T vec[2001], T output[2001])
 	{
 		for (int i = 0; i < 2001; i++) {
 			output[i] = vec[i] * scalar;

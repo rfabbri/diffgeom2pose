@@ -40,15 +40,12 @@ void rf_pose_from_point_tangents_root_find_function_any(
 
 	// % compute roots -------------------------------
 
-	T t_vector[2001];
-	common::colon(-1, 0.001, 1, t_vector);
+	T t_vector[2001]; common::colon(-1, 0.001, 1, t_vector);
 
-	// TODO: Improve later
-	// TODO: Think if it needs to be static or not
 	pose_poly poly;
 	poly.rf_pose_from_point_tangents_2(gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
-	static T root_ids[2001];
+	static T root_ids[2000] = {0};
 	poly.rf_find_bounded_root_intervals(t_vector, root_ids);
 
 	// % compute rhos, r, t --------------------------
