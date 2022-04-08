@@ -8,7 +8,8 @@
 #include <iostream>
 #include <p2pt/p2pt.h>
 #include <testlib/testlib_test.h>
-
+#include <p2pt/poly.h>
+#include <p2pt/rf_pose_from_point_tangents_2.hxx>
 
 using namespace P2Pt;
 
@@ -2026,20 +2027,129 @@ static double t_vector[2001] = {
 static double root_ids[2001];
 
 void
-test_poly()
+test_rf_pose_from_point_tangents_2()
 {
 	double constexpr eps = 1e-4;
-	pose_poly p;
-	p.A0;
-	// TODO: get A0_matlab
-	TEST_NEAR("A0", p.A0, A0_matlab, eps);
-}
+	pose_poly<double> p;
 
-static void
-test_rf_find_bounded_root_intervals()
-{
-	p2pt<double>::rf_find_bounded_root_intervals(t_vector, root_ids);
-	TEST("Rodou `rf_find_bounded_root_intervals`?", true, true);
+	double constexpr matlab_A0 = -2.3095904952377593;
+	double constexpr matlab_A1 = -31.939500854426829;
+	double constexpr matlab_A2 = -88.568910902301752;
+
+	double constexpr matlab_B0 = -90.052119552662859;
+	double constexpr matlab_B1 = -611.085178694996;
+	double constexpr matlab_B2 = -139.32991309441729;
+	double constexpr matlab_B3 = 1200.9073822391131;
+
+	double constexpr matlab_C0 = -766.278025790318;
+	double constexpr matlab_C1 = -1162.1800664506065;
+	double constexpr matlab_C2 = 2597.33514375204;
+	double constexpr matlab_C3 = 3494.1514681855506;
+	double constexpr matlab_C4 = -3642.2473082214833;
+
+	double constexpr matlab_E0 = 21.929206601196839;
+	double constexpr matlab_E1 = 31.939500854426864;
+	double constexpr matlab_E2 = -37.736249410202817;
+
+	double constexpr matlab_F0 = 12.543033562564725;
+	double constexpr matlab_F1 = 533.54680485357767;
+	double constexpr matlab_F2 = -58.31744441661656;
+	double constexpr matlab_F3 = -1299.6540749455735;
+
+	double constexpr matlab_G0 = 2.4886694072700406;
+	double constexpr matlab_G1 = 199.07296541766118;
+	double constexpr matlab_G2 = 2745.4605237631949;
+	double constexpr matlab_G3 = -4588.4015844445466;
+	double constexpr matlab_G4 = -4119.0258856884575;
+
+	double constexpr matlab_H0 = -98.337533008613448;
+	double constexpr matlab_H1 = 10.866996302082395;
+	double constexpr matlab_H2 = 797.65769177012237;
+	double constexpr matlab_H3 = -32.853052872054342;
+	double constexpr matlab_H4 = -1565.3470789795238;
+
+	double constexpr matlab_J0 = -6.7733191518272626;
+	double constexpr matlab_J1 = -59.400734534802126;
+	double constexpr matlab_J2 = 89.24326646151232;
+	double constexpr matlab_J3 = 101.41352215694144;
+
+	double constexpr matlab_K0 = -6.3944322018577724;
+	double constexpr matlab_K1 = 60.378704037683612;
+	double constexpr matlab_K2 = 87.940182250739056;
+	double constexpr matlab_K3 = -104.15648460116779;
+
+	double constexpr matlab_L0 = -3.0988661181325328;
+	double constexpr matlab_L1 = -0.087873618366435841;
+	double constexpr matlab_L2 = 19.341789232030056;
+
+	double constexpr test_gama1[] = {0.51515532818894982, 0.1487011661471217, 1};
+	double constexpr test_tgt1[] = {0.527886693031222, 0.84931480578202578, 0};
+
+	double constexpr test_gama2[] = {0.16081537437895527, -0.48875444114985156, 1};
+	double constexpr test_tgt2[] = {-0.27224516854045233, -0.96222791905368288, 0};
+
+	double constexpr test_Gama1[] = {-0.43359202230568356, 3.5783969397257605, -1.3498869401565212};
+	double constexpr test_Tgt1[] = {0.70708731473372055, 0.69669519863759266, -0.12100962580713076};
+
+	double constexpr test_Gama2[] = {0.34262446653864992, 2.7694370298848772, 3.0349234663318545};
+	double constexpr test_Tgt2[] = {-0.041895437077508819, -0.13618523302227314, 0.98979712803117059};
+
+	p.rf_pose_from_point_tangents_2(
+		test_gama1, test_tgt1,
+		test_gama2, test_tgt2,
+		test_Gama1, test_Tgt1,
+		test_Gama2, test_Tgt2
+	);
+
+	TEST_NEAR("A0", p.A0, matlab_A0, eps);
+	TEST_NEAR("A1", p.A1, matlab_A1, eps);
+	TEST_NEAR("A2", p.A2, matlab_A2, eps);
+
+	TEST_NEAR("B0", p.B0, matlab_B0, eps);
+	TEST_NEAR("B1", p.B1, matlab_B1, eps);
+	TEST_NEAR("B2", p.B2, matlab_B2, eps);
+	TEST_NEAR("B3", p.B3, matlab_B3, eps);
+
+	TEST_NEAR("C0", p.C0, matlab_C0, eps);
+	TEST_NEAR("C1", p.C1, matlab_C1, eps);
+	TEST_NEAR("C2", p.C2, matlab_C2, eps);
+	TEST_NEAR("C3", p.C3, matlab_C3, eps);
+	TEST_NEAR("C4", p.C4, matlab_C4, eps);
+
+	TEST_NEAR("E0", p.E0, matlab_E0, eps);
+	TEST_NEAR("E1", p.E1, matlab_E1, eps);
+	TEST_NEAR("E2", p.E2, matlab_E2, eps);
+
+	TEST_NEAR("F0", p.F0, matlab_F0, eps);
+	TEST_NEAR("F1", p.F1, matlab_F1, eps);
+	TEST_NEAR("F2", p.F2, matlab_F2, eps);
+	TEST_NEAR("F3", p.F3, matlab_F3, eps);
+
+	TEST_NEAR("G0", p.G0, matlab_G0, eps);
+	TEST_NEAR("G1", p.G1, matlab_G1, eps);
+	TEST_NEAR("G2", p.G2, matlab_G2, eps);
+	TEST_NEAR("G3", p.G3, matlab_G3, eps);
+	TEST_NEAR("G4", p.G4, matlab_G4, eps);
+
+	TEST_NEAR("H0", p.H0, matlab_H0, eps);
+	TEST_NEAR("H1", p.H1, matlab_H1, eps);
+	TEST_NEAR("H2", p.H2, matlab_H2, eps);
+	TEST_NEAR("H3", p.H3, matlab_H3, eps);
+	TEST_NEAR("H4", p.H4, matlab_H4, eps);
+
+	TEST_NEAR("J0", p.J0, matlab_J0, eps);
+	TEST_NEAR("J1", p.J1, matlab_J1, eps);
+	TEST_NEAR("J2", p.J2, matlab_J2, eps);
+	TEST_NEAR("J3", p.J3, matlab_J3, eps);
+
+	TEST_NEAR("K0", p.K0, matlab_K0, eps);
+	TEST_NEAR("K1", p.K1, matlab_K1, eps);
+	TEST_NEAR("K2", p.K2, matlab_K2, eps);
+	TEST_NEAR("K3", p.K3, matlab_K3, eps);
+
+	TEST_NEAR("L0", p.L0, matlab_L0, eps);
+	TEST_NEAR("L1", p.L1, matlab_L1, eps);
+	TEST_NEAR("L2", p.L2, matlab_L2, eps);
 }
 
 // main test function - place all the tests to be run here
@@ -2047,7 +2157,7 @@ void
 test_p2pt()
 {
   test_hello();
-  test_rf_find_bounded_root_intervals();
+  test_rf_pose_from_point_tangents_2();
 }
 
 TESTMAIN(test_p2pt);

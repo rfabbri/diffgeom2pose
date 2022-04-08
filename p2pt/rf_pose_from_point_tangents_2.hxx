@@ -26,6 +26,11 @@
 //
 //
 //% Precomputed, t-independent terms:
+#include "common.hxx"
+
+namespace P2Pt {
+
+using namespace common;
 
 template<typename T>
 void 
@@ -34,7 +39,7 @@ rf_pose_from_point_tangents_2(
 	const T gama1[3], const T tgt1[3],
 	const T gama2[3], const T tgt2[3],
 	const T Gama1[3], const T Tgt1[3],
-	const T Gama2[3], const T Tgt2[3],
+	const T Gama2[3], const T Tgt2[3]
 )
 {
 	constexpr double PI = 3.141592653589793;
@@ -49,27 +54,27 @@ rf_pose_from_point_tangents_2(
 	double h22 = tgt2[1];
 
 	double V[3];
-	common::vec1vec2_sub(Gama1, Gama2, V);
+	vec1vec2_sub(Gama1, Gama2, V);
 
 
 	static double buf[3];
 
-	vec_el_wise_mult(V, V, buf));
+	vec_3el_wise_mult2(V, V, buf);
 	double a1 = vec_el_sum(buf);
 
-	vec_el_wise_mult(Tgt1, Tgt1, buf));
+	vec_3el_wise_mult2(Tgt1, Tgt1, buf);
 	double a2 = vec_el_sum(buf);
 
-	vec_el_wise_mult(Tgt2, Tgt2, buf));
+	vec_3el_wise_mult2(Tgt2, Tgt2, buf);
 	double a3 = vec_el_sum(buf);
 
-	vec_el_wise_mult(V, Tgt1, buf));
+	vec_3el_wise_mult2(V, Tgt1, buf);
 	double a4 = vec_el_sum(buf);
 
-	vec_el_wise_mult(Tgt1, Tgt2, buf));
+	vec_3el_wise_mult2(Tgt1, Tgt2, buf);
 	double a5 = vec_el_sum(buf);
 
-	vec_el_wise_mult(V, Tgt2, buf));
+	vec_3el_wise_mult2(V, Tgt2, buf);
 	double a6 = vec_el_sum(buf);
 
 
@@ -97,8 +102,10 @@ rf_pose_from_point_tangents_2(
 
 	double t1 = sin(2*theta);
 	double t2 = cos(2*theta);
-	double t5 = g22 * g22;
-	double t6 = t2 * t2;
+
+	t5 = g22 * g22;
+	t6 = t2 * t2;
+
 	double t8 = g21 * g21;
 	double t14 = g12 * g12;
 	double t15 = t1 * t1;
@@ -2235,5 +2242,8 @@ rf_pose_from_point_tangents_2(
 	//common::norm(int_coef);
 
 }
+
+}
+
 
 

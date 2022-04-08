@@ -10,5 +10,5 @@ aux_source_directory(Templates p2pt_sources)
 # but header-only will also work, see README.md
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-add_library( p2pt ${p2pt_sources} )
+add_library( p2pt ${p2pt_sources}  "poly.h")
 set_target_properties(p2pt PROPERTIES LINKER_LANGUAGE CXX)

@@ -17,11 +17,11 @@ namespace common {
 
 	// TODO: optimize! (make inline or use #define)
 	template<typename T>
-	T norm(T *input_vector, int length)
+	T norm(T *input_vec, int length)
 	{
-		T output;
+		T output = 0;
 		for (int i = 0; i < length; i++) {
-			output += abs(input[i] * input[i]);
+			output += abs(input_vec[i] * input_vec[i]);
 		}
 		return output;
 	}
@@ -64,7 +64,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec1vec2_sub(T vec1[3], T vec2[3], T output[3])
+	void vec1vec2_sub(const T vec1[3], const T vec2[3], T output[3])
 	{
 		// For vectors of 3 elements
 		for (int i = 0; i < 3; i++) {
@@ -96,18 +96,111 @@ namespace common {
 		}
 	}
 
-	// Return pointer for simplicity of calculations in `rf_sample_pose_poly`
-	// TODO: Check for other uses of this function with different array sizes
-	// TODO: Check if variadic function template is correct
-	// TODO: `output[]` should be initialized to all ones (1)
-	template<typename T, typename Ts...>
-	void *vec_el_wise_mult(T vec[2001], Ts... vecs[2001], T output[2001])
+
+	// Returns pointer for simplicity of calculations in `rf_sample_pose_poly`
+	// TODO: Check if there is a better way to do this (variadic function perhaps?)
+	#pragma region vec_el_wise_mult
+
+	// Special case for 2 vectors of 3 elements each
+	// TODO: Check if there is a batter way to do this
+	template<typename T>
+	T* vec_3el_wise_mult2(
+		const T vec1[2001], const T vec2[2001], 
+		T output[2001]
+	)
+	{
+		for (int i = 0; i < 3; i++) {
+			output[i] = vec1[i] * vec2[i];
+		}
+		return output;
+	}
+
+	// For 3 vectors
+	template<typename T>
+	T *vec_el_wise_mult3(
+		const T vec1[2001], const T vec2[2001], const T vec3[2001],
+		T output[2001]
+	)
 	{
 		for (int i = 0; i < 2001; i++) {
-			output[i] *= vec[i];
+			output[i] = vec1[i] * vec2[i] * vec3[i];
 		}
-		vec_el_wise_mult(vecs..., output);
+		return output;
 	}
+
+	// For 4 vectors
+	template<typename T>
+	T *vec_el_wise_mult4(
+		const T vec1[2001], const T vec2[2001], const T vec3[2001], const T vec4[2001], 
+		T output[2001]
+	)
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i];
+		}
+		return output;
+	}
+
+	// For 5 vectors
+	template<typename T>
+	T *vec_el_wise_mult5(
+		const T vec1[2001], const T vec2[2001], const T vec3[2001], const T vec4[2001], 
+		const T vec5[2001], 
+		T output[2001]
+	)
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i] 
+				* vec5[i];
+		}
+		return output;
+	}
+
+	// For 6 vectors
+	template<typename T>
+	T *vec_el_wise_mult6(
+		const T vec1[2001], const T vec2[2001], const T vec3[2001], const T vec4[2001], 
+		const T vec5[2001], const T vec6[2001], 
+		T output[2001]
+	)
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i] 
+				* vec5[i] * vec6[i];
+		}
+		return output;
+	}
+
+	// For 7 vectors
+	template<typename T>
+	T *vec_el_wise_mult7(
+		const T vec1[2001], const T vec2[2001], const T vec3[2001], const T vec4[2001], 
+		const T vec5[2001], const T vec6[2001], const T vec7[2001], 
+		T output[2001]
+	)
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i] 
+				* vec5[i] * vec6[i] * vec7[i];
+		}
+		return output;
+	}
+
+	// For 8 vectors
+	template<typename T>
+	T *vec_el_wise_mult8(
+		const T vec1[2001], const T vec2[2001], const T vec3[2001], const T vec4[2001], 
+		const T vec5[2001], const T vec6[2001], const T vec7[2001], const T vec8[2001], 
+		T output[2001]
+	)
+	{
+		for (int i = 0; i < 2001; i++) {
+			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i] 
+				* vec5[i] * vec6[i] * vec7[i] * vec8[i];
+		}
+		return output;
+	}
+	#pragma endregion
 
 	template<typename T>
 	void vec_mult_by_scalar(T scalar, T vec[2001], T output[2001])

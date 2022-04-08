@@ -1,32 +1,8 @@
 #include "common.hxx"
-
-template<typename T>
-struct pose_poly {
-	T A0, A1, A2;
-	T B0, B1, B2, B3;
-	T C0, C1, C2, C3, C4;
-	T E0, E1, E2;
-	T F0, F1, F2, F3;
-	T G0, G1, G2, G3, G4;
-	T H0, H1, H2, H3, H4;
-	T J0, J1, J2, J3;
-	T K0, K1, K2, K3;
-	T L0, L1, L2;
-	T alpha, beta, theta;
-	void rf_pose_from_point_tangents_2(
-		const T gama1[3], const T tgt1[3],
-		const T gama2[3], const T tgt2[3],
-		const T Gama1[3], const T Tgt1[3],
-		const T Gama2[3], const T Tgt2[3],
-	);
-	void rf_find_bounded_root_intervals(const T t_vector[2001], T root_ids[2001]);
-};
+#include "poly.h"
 
 #include "rf_pose_from_point_tangents_2.hxx"
 #include "rf_find_bounded_root_intervals.hxx"
-
-
-
 
 template<typename T>
 void rf_pose_from_point_tangents_root_find_function_any(
@@ -70,7 +46,7 @@ void rf_pose_from_point_tangents_root_find_function_any(
 	// TODO: Improve later
 	// TODO: Think if it needs to be static or not
 	pose_poly poly;
-	poly.rf_pose_from_point_tangents_2( gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2 );
+	poly.rf_pose_from_point_tangents_2(gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
 	static T root_ids[2001];
 	poly.rf_find_bounded_root_intervals(t_vector, root_ids);

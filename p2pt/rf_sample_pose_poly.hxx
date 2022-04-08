@@ -1,11 +1,9 @@
 #include "common.hxx"
 
-namespace P2Pt {
 
 //% samples/evaluates pose polynomial; 
 template<typename T>
-void p2pt<T>::
-rf_sample_pose_poly(
+void rf_sample_pose_poly(
 	T const t[2001],
 	T A[2001], T B[2001], T C[2001], T E[2001], T F[2001], 
 	T G[2001], T H[2001], T J[2001], T K[2001], T L[2001], T fvalue[2001]
@@ -183,59 +181,59 @@ rf_sample_pose_poly(
 	static T fvalue_terms[52][2001];
 
 	// fvalue_terms[X] 
-	/*  0 ...................... */ vec_el_wise_mult(E_pow2, B_pow2, H_pow2, J_pow2,                            fvalue_terms[0]);
-	/*  1 ...................... */ vec_el_wise_mult(G_pow2, C_pow2, L_pow4,                                    fvalue_terms[1]);
-	/*  2 ...................... */ vec_el_wise_mult(G_pow2, A_pow2, K_pow4,                                    fvalue_terms[2]);
-	/*  3 ...................... */ vec_el_wise_mult(E_pow2, A_pow2, H_pow4,                                    fvalue_terms[3]);
-	/*  4 ...................... */ vec_el_wise_mult(E_pow2, C_pow2, J_pow4,                                    fvalue_terms[4]);
-	/* 16 ...................... */ vec_el_wise_mult(G_pow2, B_pow2, K_pow2, L_pow2,                            fvalue_terms[16]);
-	/* 26 ...................... */ vec_el_wise_mult(F,      E,      B,      H_pow3, L,      A,                 fvalue_terms[26]);
-	/* 30 ...................... */ vec_el_wise_mult(F,      B,      H,      L_pow3, G,      C,                 fvalue_terms[30]);
-	/* 31 ...................... */ vec_el_wise_mult(F,      E,      B,      K,      J_pow3, C,                 fvalue_terms[31]);
-	/* 35 ...................... */ vec_el_wise_mult(F,      B,      K_pow3, J,      G,      A,                 fvalue_terms[35]);
-	/* 40 ...................... */ vec_el_wise_mult(F_pow2, A_pow2, K_pow2, H_pow2,                            fvalue_terms[40]);
-	/* 41 ...................... */ vec_el_wise_mult(F_pow2, A,      K_pow2, C,      J_pow2,                    fvalue_terms[41]);
-	/* 45 ...................... */ vec_el_wise_mult(F_pow2, B_pow2, K,      L,      H,      J,                 fvalue_terms[45]);
-	/* 46 ...................... */ vec_el_wise_mult(F_pow2, C,      L_pow2, A,      H_pow2,                    fvalue_terms[46]);
-	/* 47 ...................... */ vec_el_wise_mult(F_pow2, C_pow2, L_pow2, J_pow2,                            fvalue_terms[47]);
-	/* 49 ...................... */ vec_el_wise_mult(G,      E,      B_pow2, H_pow2, L_pow2,                    fvalue_terms[49]);
-	/* 50 ...................... */ vec_el_wise_mult(G,      E,      B_pow2, K_pow2, J_pow2,                    fvalue_terms[50]);
+	/*  0 ...................... */ vec_el_wise_mult4(E_pow2, B_pow2, H_pow2, J_pow2,                            fvalue_terms[0]);
+	/*  1 ...................... */ vec_el_wise_mult3(G_pow2, C_pow2, L_pow4,                                    fvalue_terms[1]);
+	/*  2 ...................... */ vec_el_wise_mult3(G_pow2, A_pow2, K_pow4,                                    fvalue_terms[2]);
+	/*  3 ...................... */ vec_el_wise_mult3(E_pow2, A_pow2, H_pow4,                                    fvalue_terms[3]);
+	/*  4 ...................... */ vec_el_wise_mult3(E_pow2, C_pow2, J_pow4,                                    fvalue_terms[4]);
+	/* 16 ...................... */ vec_el_wise_mult4(G_pow2, B_pow2, K_pow2, L_pow2,                            fvalue_terms[16]);
+	/* 26 ...................... */ vec_el_wise_mult6(F,      E,      B,      H_pow3, L,      A,                 fvalue_terms[26]);
+	/* 30 ...................... */ vec_el_wise_mult6(F,      B,      H,      L_pow3, G,      C,                 fvalue_terms[30]);
+	/* 31 ...................... */ vec_el_wise_mult6(F,      E,      B,      K,      J_pow3, C,                 fvalue_terms[31]);
+	/* 35 ...................... */ vec_el_wise_mult6(F,      B,      K_pow3, J,      G,      A,                 fvalue_terms[35]);
+	/* 40 ...................... */ vec_el_wise_mult4(F_pow2, A_pow2, K_pow2, H_pow2,                            fvalue_terms[40]);
+	/* 41 ...................... */ vec_el_wise_mult5(F_pow2, A,      K_pow2, C,      J_pow2,                    fvalue_terms[41]);
+	/* 45 ...................... */ vec_el_wise_mult6(F_pow2, B_pow2, K,      L,      H,      J,                 fvalue_terms[45]);
+	/* 46 ...................... */ vec_el_wise_mult5(F_pow2, C,      L_pow2, A,      H_pow2,                    fvalue_terms[46]);
+	/* 47 ...................... */ vec_el_wise_mult4(F_pow2, C_pow2, L_pow2, J_pow2,                            fvalue_terms[47]);
+	/* 49 ...................... */ vec_el_wise_mult5(G,      E,      B_pow2, H_pow2, L_pow2,                    fvalue_terms[49]);
+	/* 50 ...................... */ vec_el_wise_mult5(G,      E,      B_pow2, K_pow2, J_pow2,                    fvalue_terms[50]);
 
-	/*  5 */ vec_mult_by_scalar(-2, vec_el_wise_mult(E,      A,      H_pow2, G,      C,      L_pow2,            fvalue_terms[5]),  fvalue_terms[5]);
-	/*  6 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E_pow2, A,      H_pow2, C,      J_pow2,                    fvalue_terms[6]),  fvalue_terms[6]);
-	/*  7 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E_pow2, C,      J_pow4, B,      H,                         fvalue_terms[7]),  fvalue_terms[7]);
-	/*  8 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E,      C_pow2, J_pow2, G,      L_pow2,                    fvalue_terms[8]),  fvalue_terms[8]);
-	/*  9 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E,      A_pow2, H_pow2, G,      K_pow2,                    fvalue_terms[9]),  fvalue_terms[9]);
-	/* 10 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E_pow2, A,      H_pow3, B,      J,                         fvalue_terms[10]), fvalue_terms[10]);
-	/* 11 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E,      A,      H_pow2, G,      B,      K,      L,         fvalue_terms[11]), fvalue_terms[11]);
-	/* 12 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E,      C,      J_pow2, G,      B,      K,      L,         fvalue_terms[12]), fvalue_terms[12]);
-	/* 13 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E,      C,      J_pow2, G,      A,      K_pow2,            fvalue_terms[13]), fvalue_terms[13]);
-	/* 14 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E,      B,      H,      J,      G,      C,      L_pow2,    fvalue_terms[14]), fvalue_terms[14]);
-	/* 15 */ vec_mult_by_scalar( 2, vec_el_wise_mult(E,      B,      H,      J,      G,      A,      K_pow2,    fvalue_terms[15]), fvalue_terms[15]);
-	/* 17 */ vec_mult_by_scalar(-2, vec_el_wise_mult(G_pow2, B,      K,      L_pow3, C,                         fvalue_terms[17]), fvalue_terms[17]);
-	/* 18 */ vec_mult_by_scalar(-2, vec_el_wise_mult(G_pow2, B,      K_pow3, L,      A,                         fvalue_terms[18]), fvalue_terms[18]);
-	/* 19 */ vec_mult_by_scalar( 2, vec_el_wise_mult(G_pow2, C,      L_pow2, A,      K_pow2,                    fvalue_terms[19]), fvalue_terms[19]);
-	/* 20 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      E,      A_pow2, H_pow3, K,                         fvalue_terms[20]), fvalue_terms[20]);
-	/* 21 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      E,      A,      H,      K,      C,      J_pow2,    fvalue_terms[21]), fvalue_terms[21]);
-	/* 22 */ vec_mult_by_scalar( 3, vec_el_wise_mult(F,      E,      A,      H_pow2, K,      B,      J,         fvalue_terms[22]), fvalue_terms[22]);
-	/* 23 */ vec_mult_by_scalar( 3, vec_el_wise_mult(F,      A,      H,      K_pow2, G,      B,      L,         fvalue_terms[23]), fvalue_terms[23]);
-	/* 24 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      A,      H,      K,      G,      C,      L_pow2,    fvalue_terms[24]), fvalue_terms[24]);
-	/* 25 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      A_pow2, H,      K_pow3, G,                         fvalue_terms[25]), fvalue_terms[25]);
-	/* 27 */ vec_mult_by_scalar( 3, vec_el_wise_mult(F,      E,      B,      H,      L,      C,      J_pow2,    fvalue_terms[27]), fvalue_terms[27]);
-	/* 28 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F,      E,      B_pow2, H_pow2, L,      J,                 fvalue_terms[28]), fvalue_terms[28]);
-	/* 29 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F,      B_pow2, H,      L_pow2, G,      K,                 fvalue_terms[29]), fvalue_terms[29]);
-	/* 32 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F,      E,      B_pow2, K,      J_pow3, H,                 fvalue_terms[32]), fvalue_terms[32]);
-	/* 33 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F,      B_pow2, K_pow2, J,      G,      L,                 fvalue_terms[33]), fvalue_terms[33]);
-	/* 34 */ vec_mult_by_scalar( 3, vec_el_wise_mult(F,      B,      K,      J,      G,      C,      L_pow2,    fvalue_terms[34]), fvalue_terms[34]);
-	/* 36 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      E,      C,      J,      L,      A,      H_pow2,    fvalue_terms[36]), fvalue_terms[36]);
-	/* 37 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      E,      C_pow2, J_pow3, L,                         fvalue_terms[37]), fvalue_terms[37]);
-	/* 38 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      C_pow2, J,      L_pow3, G,                         fvalue_terms[38]), fvalue_terms[38]);
-	/* 39 */ vec_mult_by_scalar(-2, vec_el_wise_mult(F,      C,      J,      L,      G,      A,      K_pow2,    fvalue_terms[39]), fvalue_terms[39]);
-	/* 42 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F_pow2, A,      K_pow2, B,      H,      J,                 fvalue_terms[42]), fvalue_terms[42]);
-	/* 43 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F_pow2, B,      K,      L,      A,      H_pow2,            fvalue_terms[43]), fvalue_terms[43]);
-	/* 44 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F_pow2, B,      K,      L,      C,      J_pow2,            fvalue_terms[44]), fvalue_terms[44]);
-	/* 48 */ vec_mult_by_scalar(-1, vec_el_wise_mult(F_pow2, C,      L_pow2, B,      H,      J,                 fvalue_terms[48]), fvalue_terms[48]);
-	/* 51 */ vec_mult_by_scalar( 8, vec_el_wise_mult(G,      E,      A,      H,      K,      C,      J,      L, fvalue_terms[51]), fvalue_terms[51]);
+	/*  5 */ vec_mult_by_scalar(-2, vec_el_wise_mult6(E,      A,      H_pow2, G,      C,      L_pow2,            fvalue_terms[5]),  fvalue_terms[5]);
+	/*  6 */ vec_mult_by_scalar( 2, vec_el_wise_mult5(E_pow2, A,      H_pow2, C,      J_pow2,                    fvalue_terms[6]),  fvalue_terms[6]);
+	/*  7 */ vec_mult_by_scalar( 2, vec_el_wise_mult5(E_pow2, C,      J_pow4, B,      H,                         fvalue_terms[7]),  fvalue_terms[7]);
+	/*  8 */ vec_mult_by_scalar( 2, vec_el_wise_mult5(E,      C_pow2, J_pow2, G,      L_pow2,                    fvalue_terms[8]),  fvalue_terms[8]);
+	/*  9 */ vec_mult_by_scalar( 2, vec_el_wise_mult5(E,      A_pow2, H_pow2, G,      K_pow2,                    fvalue_terms[9]),  fvalue_terms[9]);
+	/* 10 */ vec_mult_by_scalar( 2, vec_el_wise_mult5(E_pow2, A,      H_pow3, B,      J,                         fvalue_terms[10]), fvalue_terms[10]);
+	/* 11 */ vec_mult_by_scalar( 2, vec_el_wise_mult7(E,      A,      H_pow2, G,      B,      K,      L,         fvalue_terms[11]), fvalue_terms[11]);
+	/* 12 */ vec_mult_by_scalar( 2, vec_el_wise_mult7(E,      C,      J_pow2, G,      B,      K,      L,         fvalue_terms[12]), fvalue_terms[12]);
+	/* 13 */ vec_mult_by_scalar( 2, vec_el_wise_mult6(E,      C,      J_pow2, G,      A,      K_pow2,            fvalue_terms[13]), fvalue_terms[13]);
+	/* 14 */ vec_mult_by_scalar( 2, vec_el_wise_mult7(E,      B,      H,      J,      G,      C,      L_pow2,    fvalue_terms[14]), fvalue_terms[14]);
+	/* 15 */ vec_mult_by_scalar( 2, vec_el_wise_mult7(E,      B,      H,      J,      G,      A,      K_pow2,    fvalue_terms[15]), fvalue_terms[15]);
+	/* 17 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(G_pow2, B,      K,      L_pow3, C,                         fvalue_terms[17]), fvalue_terms[17]);
+	/* 18 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(G_pow2, B,      K_pow3, L,      A,                         fvalue_terms[18]), fvalue_terms[18]);
+	/* 19 */ vec_mult_by_scalar( 2, vec_el_wise_mult5(G_pow2, C,      L_pow2, A,      K_pow2,                    fvalue_terms[19]), fvalue_terms[19]);
+	/* 20 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(F,      E,      A_pow2, H_pow3, K,                         fvalue_terms[20]), fvalue_terms[20]);
+	/* 21 */ vec_mult_by_scalar(-2, vec_el_wise_mult7(F,      E,      A,      H,      K,      C,      J_pow2,    fvalue_terms[21]), fvalue_terms[21]);
+	/* 22 */ vec_mult_by_scalar( 3, vec_el_wise_mult7(F,      E,      A,      H_pow2, K,      B,      J,         fvalue_terms[22]), fvalue_terms[22]);
+	/* 23 */ vec_mult_by_scalar( 3, vec_el_wise_mult7(F,      A,      H,      K_pow2, G,      B,      L,         fvalue_terms[23]), fvalue_terms[23]);
+	/* 24 */ vec_mult_by_scalar(-2, vec_el_wise_mult7(F,      A,      H,      K,      G,      C,      L_pow2,    fvalue_terms[24]), fvalue_terms[24]);
+	/* 25 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(F,      A_pow2, H,      K_pow3, G,                         fvalue_terms[25]), fvalue_terms[25]);
+	/* 27 */ vec_mult_by_scalar( 3, vec_el_wise_mult7(F,      E,      B,      H,      L,      C,      J_pow2,    fvalue_terms[27]), fvalue_terms[27]);
+	/* 28 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F,      E,      B_pow2, H_pow2, L,      J,                 fvalue_terms[28]), fvalue_terms[28]);
+	/* 29 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F,      B_pow2, H,      L_pow2, G,      K,                 fvalue_terms[29]), fvalue_terms[29]);
+	/* 32 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F,      E,      B_pow2, K,      J_pow3, H,                 fvalue_terms[32]), fvalue_terms[32]);
+	/* 33 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F,      B_pow2, K_pow2, J,      G,      L,                 fvalue_terms[33]), fvalue_terms[33]);
+	/* 34 */ vec_mult_by_scalar( 3, vec_el_wise_mult7(F,      B,      K,      J,      G,      C,      L_pow2,    fvalue_terms[34]), fvalue_terms[34]);
+	/* 36 */ vec_mult_by_scalar(-2, vec_el_wise_mult8(F,      E,      C,      J,      L,      A,      H_pow2,    fvalue_terms[36]), fvalue_terms[36]);
+	/* 37 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(F,      E,      C_pow2, J_pow3, L,                         fvalue_terms[37]), fvalue_terms[37]);
+	/* 38 */ vec_mult_by_scalar(-2, vec_el_wise_mult5(F,      C_pow2, J,      L_pow3, G,                         fvalue_terms[38]), fvalue_terms[38]);
+	/* 39 */ vec_mult_by_scalar(-2, vec_el_wise_mult7(F,      C,      J,      L,      G,      A,      K_pow2,    fvalue_terms[39]), fvalue_terms[39]);
+	/* 42 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F_pow2, A,      K_pow2, B,      H,      J,                 fvalue_terms[42]), fvalue_terms[42]);
+	/* 43 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F_pow2, B,      K,      L,      A,      H_pow2,            fvalue_terms[43]), fvalue_terms[43]);
+	/* 44 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F_pow2, B,      K,      L,      C,      J_pow2,            fvalue_terms[44]), fvalue_terms[44]);
+	/* 48 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F_pow2, C,      L_pow2, B,      H,      J,                 fvalue_terms[48]), fvalue_terms[48]);
+	/* 51 */ vec_mult_by_scalar( 8, vec_el_wise_mult8(G,      E,      A,      H,      K,      C,      J,      L, fvalue_terms[51]), fvalue_terms[51]);
 
 	for (int i = 0; i < 52; i++) {
 		for (int j = 0; j < 2001; j++) {
@@ -244,5 +242,4 @@ rf_sample_pose_poly(
 	}
 
 
-}
 }

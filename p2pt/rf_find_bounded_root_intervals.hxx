@@ -1,3 +1,5 @@
+#include "poly.h"  // TODO: Check if this include is really needed
+
 namespace P2Pt {
 
 template<typename T>
