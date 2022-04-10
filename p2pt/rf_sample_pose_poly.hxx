@@ -225,9 +225,16 @@ rf_sample_pose_poly(
 	/* 48 */ vec_mult_by_scalar(-1, vec_el_wise_mult6(F_pow2, C,      L_pow2, B,      H,      J,                 fvalue_terms[48]), fvalue_terms[48]);
 	/* 51 */ vec_mult_by_scalar( 8, vec_el_wise_mult8(G,      E,      A,      H,      K,      C,      J,      L, fvalue_terms[51]), fvalue_terms[51]);
 
-	for (int i = 0; i < 52; i++) {
-		for (int j = 0; j < 2001; j++) {
-			fvalue[j] += fvalue_terms[i][j];
+	//for (int i = 0; i < 52; i++) {
+	//	for (int j = 0; j < 2001; j++) {
+	//		fvalue[j] += fvalue_terms[i][j];
+	//	}
+	//}
+
+	// TODO: FIX!! Something is going wrong in this sum...
+	for (int i = 0; i < 2001; i++) {
+		for (int j = 0; j < 52; j++) {
+			fvalue[i] += fvalue_terms[j][i];
 		}
 	}
 
