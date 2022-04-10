@@ -22,7 +22,7 @@ struct pose_poly {
 		const T Gama1[3], const T Tgt1[3],
 		const T Gama2[3], const T Tgt2[3]
 	);
-	void rf_find_bounded_root_intervals(const T t_vector[2001], T root_ids[2001]);
+	void rf_find_bounded_root_intervals(const T t_vector[2001], T root_ids[2000]);
 	void rf_sample_pose_poly(
 		const T t[2001],
 		T A[2001], T B[2001], T C[2001], T E[2001], T F[2001],

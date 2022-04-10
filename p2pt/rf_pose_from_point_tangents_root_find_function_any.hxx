@@ -45,6 +45,7 @@ void rf_pose_from_point_tangents_root_find_function_any(
 	pose_poly poly;
 	poly.rf_pose_from_point_tangents_2(gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
+	// root_ids[length(t_vector) - 1]
 	static T root_ids[2000] = {0};
 	poly.rf_find_bounded_root_intervals(t_vector, root_ids);
 
