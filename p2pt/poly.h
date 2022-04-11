@@ -1,6 +1,10 @@
 #ifndef poly_h_
 #define poly_h_
 
+// TODO: Make this global across files
+constexpr int t_vector_len = 2001;
+constexpr int root_ids_len = t_vector_len - 1;
+
 namespace P2Pt {
 
 template<typename T>
@@ -22,12 +26,9 @@ struct pose_poly {
 		const T Gama1[3], const T Tgt1[3],
 		const T Gama2[3], const T Tgt2[3]
 	);
-	void rf_find_bounded_root_intervals(const T t_vector[2001], T root_ids[2000]);
-	void rf_sample_pose_poly(
-		const T t[2001],
-		T A[2001], T B[2001], T C[2001], T E[2001], T F[2001],
-		T G[2001], T H[2001], T J[2001], T K[2001], T L[2001], T fvalue[2001]
-	);
+	void rf_find_bounded_root_intervals(const T t_vector[t_vector_len], T root_ids[root_ids_len]);
+	void rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len]);
+	void rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11]);
 };
 
 }

@@ -65,7 +65,7 @@ constexpr double sample_Tgt1[] = {0.70708731473372055, 0.69669519863759266, -0.1
 constexpr double sample_Gama2[] = {0.34262446653864992, 2.7694370298848772, 3.0349234663318545};
 constexpr double sample_Tgt2[] = {-0.041895437077508819, -0.13618523302227314, 0.98979712803117059};
 
-constexpr double sample_root_ids[2001] = {
+constexpr double sample_root_ids[t_vector_len] = {
 	0,
 	0,
 	0,
@@ -2067,7 +2067,7 @@ constexpr double sample_root_ids[2001] = {
 	0,
 	0
 };
-constexpr double sample_t_vector[2001] = {
+constexpr double sample_t_vector[t_vector_len] = {
 	-1,
 	-0.999000000000000,
 	-0.998000000000000,
@@ -4070,7 +4070,7 @@ constexpr double sample_t_vector[2001] = {
 	0.999000000000000,
 	1
 };
-constexpr double sample_fvalue[2001] = {
+constexpr double sample_fvalue[t_vector_len] = {
 	1599787.71374669,
 	1605360.45517041,
 	1610811.19942987,

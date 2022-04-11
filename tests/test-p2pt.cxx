@@ -16,6 +16,10 @@
 
 #include <tests/test-p2pt-constants.hxx>
 
+// TODO: Make this global across files
+//constexpr int t_vector_len = 2001;
+//constexpr int root_ids_len = t_vector_len - 1;
+
 using namespace P2Pt;
 
 static void
@@ -91,7 +95,7 @@ test_rf_pose_from_point_tangents_2()
 static void
 test_rf_find_bounded_root_intervals()
 {
-	static double test_root_ids[2000];
+	static double test_root_ids[root_ids_len];
 
 	pose_poly<double> p = {
 		sample_A0, sample_A1, sample_A2,
@@ -108,7 +112,7 @@ test_rf_find_bounded_root_intervals()
 
 	p.rf_find_bounded_root_intervals(sample_t_vector, test_root_ids);
 
-	for (int i = 0; i < 2000; i++) {
+	for (int i = 0; i < root_ids_len; i++) {
 		char indexstr[20];
 		snprintf(indexstr, 20, "root_ids[%d]", i);
 		TEST_NEAR(indexstr, test_root_ids[i], sample_root_ids[i], eps);
@@ -131,17 +135,17 @@ test_rf_sample_pose_poly()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	double test_A[2001];
-	double test_B[2001];
-	double test_C[2001];
-	double test_E[2001];
-	double test_F[2001];
-	double test_G[2001];
-	double test_H[2001];
-	double test_J[2001];
-	double test_K[2001];
-	double test_L[2001];
-	double test_fvalue[2001] = {0};
+	double test_A[t_vector_len];
+	double test_B[t_vector_len];
+	double test_C[t_vector_len];
+	double test_E[t_vector_len];
+	double test_F[t_vector_len];
+	double test_G[t_vector_len];
+	double test_H[t_vector_len];
+	double test_J[t_vector_len];
+	double test_K[t_vector_len];
+	double test_L[t_vector_len];
+	double test_fvalue[t_vector_len] = {0};
 
 	p.rf_sample_pose_poly(
 		sample_t_vector,
@@ -150,7 +154,7 @@ test_rf_sample_pose_poly()
 		test_fvalue
 	);
 
-	for (int i = 0; i < 2000; i++) {
+	for (int i = 0; i < root_ids_len; i++) {
 		char indexstr[20];
 		snprintf(indexstr, 20, "fvalue[%d]", i);
 		TEST_NEAR(indexstr, test_fvalue[i], sample_fvalue[i], eps);

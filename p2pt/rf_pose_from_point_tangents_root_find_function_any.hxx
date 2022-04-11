@@ -4,6 +4,10 @@
 #include "rf_pose_from_point_tangents_2.hxx"
 #include "rf_find_bounded_root_intervals.hxx"
 
+// TODO: Make this global across files
+constexpr int t_vector_len = 2001;
+constexpr int root_ids_len = t_vector_len - 1;
+
 template<typename T>
 void rf_pose_from_point_tangents_root_find_function_any(
 	const T gama1[3], const T tgt1[3],
@@ -40,17 +44,18 @@ void rf_pose_from_point_tangents_root_find_function_any(
 
 	// % compute roots -------------------------------
 
-	T t_vector[2001]; common::colon(-1, 0.001, 1, t_vector);
+	T t_vector[t_vector_len]; common::colon(-1, 0.001, 1, t_vector);
 
 	pose_poly poly;
 	poly.rf_pose_from_point_tangents_2(gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
 	// root_ids[length(t_vector) - 1]
-	static T root_ids[2000] = {0};
+	static T root_ids[root_ids_len] = {0};
 	poly.rf_find_bounded_root_intervals(t_vector, root_ids);
 
 	// % compute rhos, r, t --------------------------
-	//rf_rhos_from_root_ids(t_vector, root_ids); // TODO: implement `rf_rhos_from_root_ids()`
+	static T rf_rhos[7][t_vector_len];
+	//rf_rhos_from_root_ids(t_vector, root_ids, rf_rhos); // TODO: implement `rf_rhos_from_root_ids()`
 
 	//#include "rf_get_sigmas.hxx"
 	//#include "rf_get_r_t_from_rhos.hxx"

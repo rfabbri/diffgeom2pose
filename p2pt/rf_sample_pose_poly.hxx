@@ -1,3 +1,4 @@
+#include "poly.h"
 //#include "common.hxx"
 
 namespace P2Pt {
@@ -6,14 +7,24 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-rf_sample_pose_poly(
-	const T t[2001],
-	T A[2001], T B[2001], T C[2001], T E[2001], T F[2001],
-	T G[2001], T H[2001], T J[2001], T K[2001], T L[2001], T fvalue[2001]
-)
+rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len])
 {
 	//% function of t part:
 	using namespace common;
+
+	static T *fvalue = output[0];
+	static T *A      = output[1];
+	static T *B      = output[2];
+	static T *C      = output[3];
+	// TODO: check why `D` is missing
+	static T *E      = output[4];
+	static T *F      = output[5];
+	static T *G      = output[6];
+	static T *H      = output[7];
+	// TODO: check why `I` is missing
+	static T *J      = output[8];
+	static T *K      = output[9];
+	static T *L      = output[10];
 
 	// TODO: POSSIBLY OPTIMIZE ALL THESE FUNCION CALLS FOR
 	// `t_powN[]`,
@@ -25,36 +36,36 @@ rf_sample_pose_poly(
 
 	// Element-wise power t.^2, t.^3, t.^4, ...
 	// TODO: Use integer pow
-	static T t_pow2[2001]; vec_el_wise_pow(t, 2, t_pow2);
-	static T t_pow3[2001]; vec_el_wise_pow(t, 3, t_pow3);
-	static T t_pow4[2001]; vec_el_wise_pow(t, 4, t_pow4);
-	static T t_pow5[2001]; vec_el_wise_pow(t, 5, t_pow5);
-	static T t_pow6[2001]; vec_el_wise_pow(t, 6, t_pow6);
-	static T t_pow7[2001]; vec_el_wise_pow(t, 7, t_pow7);
-	static T t_pow8[2001]; vec_el_wise_pow(t, 8, t_pow8);
+	static T t_pow2[t_vector_len]; vec_el_wise_pow(t, 2, t_pow2);
+	static T t_pow3[t_vector_len]; vec_el_wise_pow(t, 3, t_pow3);
+	static T t_pow4[t_vector_len]; vec_el_wise_pow(t, 4, t_pow4);
+	static T t_pow5[t_vector_len]; vec_el_wise_pow(t, 5, t_pow5);
+	static T t_pow6[t_vector_len]; vec_el_wise_pow(t, 6, t_pow6);
+	static T t_pow7[t_vector_len]; vec_el_wise_pow(t, 7, t_pow7);
+	static T t_pow8[t_vector_len]; vec_el_wise_pow(t, 8, t_pow8);
 
 	// Element-wise scalar addition (1 + t.^2)
-	static T t_pow2_plus1[2001]; vec_add_scalar(t_pow2, 1, t_pow2_plus1);
+	static T t_pow2_plus1[t_vector_len]; vec_add_scalar(t_pow2, 1, t_pow2_plus1);
 
 	// Element-wise power (1 + t.^2)^2, (1 + t.^2)^3, (1 + t.^2)^4, ...
-	static T t_pow2_plus1_pow2[2001]; vec_el_wise_pow(t_pow2_plus1, 2, t_pow2_plus1_pow2);
-	static T t_pow2_plus1_pow3[2001]; vec_el_wise_pow(t_pow2_plus1, 3, t_pow2_plus1_pow3);
-	static T t_pow2_plus1_pow4[2001]; vec_el_wise_pow(t_pow2_plus1, 4, t_pow2_plus1_pow4);
+	static T t_pow2_plus1_pow2[t_vector_len]; vec_el_wise_pow(t_pow2_plus1, 2, t_pow2_plus1_pow2);
+	static T t_pow2_plus1_pow3[t_vector_len]; vec_el_wise_pow(t_pow2_plus1, 3, t_pow2_plus1_pow3);
+	static T t_pow2_plus1_pow4[t_vector_len]; vec_el_wise_pow(t_pow2_plus1, 4, t_pow2_plus1_pow4);
 
 	// Denominators
-	static T /*const*/ *A_den = t_pow2_plus1_pow2;
-	static T /*const*/ *B_den = t_pow2_plus1_pow3;
-	static T /*const*/ *C_den = t_pow2_plus1_pow4;
-	static T /*const*/ *E_den = t_pow2_plus1_pow2;
-	static T /*const*/ *F_den = t_pow2_plus1_pow3;
-	static T /*const*/ *G_den = t_pow2_plus1_pow4;
-	static T /*const*/ *H_den = t_pow2_plus1_pow4;
-	static T /*const*/ *J_den = t_pow2_plus1_pow3;
-	static T /*const*/ *K_den = t_pow2_plus1_pow3;
-	static T /*const*/ *L_den = t_pow2_plus1_pow2;
+	static T *A_den = t_pow2_plus1_pow2;
+	static T *B_den = t_pow2_plus1_pow3;
+	static T *C_den = t_pow2_plus1_pow4;
+	static T *E_den = t_pow2_plus1_pow2;
+	static T *F_den = t_pow2_plus1_pow3;
+	static T *G_den = t_pow2_plus1_pow4;
+	static T *H_den = t_pow2_plus1_pow4;
+	static T *J_den = t_pow2_plus1_pow3;
+	static T *K_den = t_pow2_plus1_pow3;
+	static T *L_den = t_pow2_plus1_pow2;
 
 	// Calculations
-	for (int i = 0; i < 2001; i++) {
+	for (int i = 0; i < t_vector_len; i++) {
 		A[i] = (A0 + A1 * t[i] + A2 * t_pow2[i] - A1 * t_pow3[i] + A0 * t_pow4[i]);
 		B[i] = (B0 + B1 * t[i] + B2 * t_pow2[i] + B3 * t_pow3[i] - B2 * t_pow4[i] + B1 * t_pow5[i] - B0 * t_pow6[i]);
 		C[i] = (C0 + C1 * t[i] + C2 * t_pow2[i] + C3 * t_pow3[i] + C4 * t_pow4[i] - C3 * t_pow5[i] + C2 * t_pow6[i] - C1 * t_pow7[i] + C0 * t_pow8[i]);
@@ -78,28 +89,28 @@ rf_sample_pose_poly(
 	vec1vec2_el_wise_right_div(L, L_den, L);
 
 	// Element-wise 2nd power A.^2, B.^2, C.^2, ...
-	static T A_pow2[2001]; vec_el_wise_pow(A, 2, A_pow2);
-	static T B_pow2[2001]; vec_el_wise_pow(B, 2, B_pow2);
-	static T C_pow2[2001]; vec_el_wise_pow(C, 2, C_pow2);
-	static T E_pow2[2001]; vec_el_wise_pow(E, 2, E_pow2);
-	static T F_pow2[2001]; vec_el_wise_pow(F, 2, F_pow2);
-	static T G_pow2[2001]; vec_el_wise_pow(G, 2, G_pow2);
-	static T H_pow2[2001]; vec_el_wise_pow(H, 2, H_pow2);
-	static T J_pow2[2001]; vec_el_wise_pow(J, 2, J_pow2);
-	static T K_pow2[2001]; vec_el_wise_pow(K, 2, K_pow2);
-	static T L_pow2[2001]; vec_el_wise_pow(L, 2, L_pow2);
+	static T A_pow2[t_vector_len]; vec_el_wise_pow(A, 2, A_pow2);
+	static T B_pow2[t_vector_len]; vec_el_wise_pow(B, 2, B_pow2);
+	static T C_pow2[t_vector_len]; vec_el_wise_pow(C, 2, C_pow2);
+	static T E_pow2[t_vector_len]; vec_el_wise_pow(E, 2, E_pow2);
+	static T F_pow2[t_vector_len]; vec_el_wise_pow(F, 2, F_pow2);
+	static T G_pow2[t_vector_len]; vec_el_wise_pow(G, 2, G_pow2);
+	static T H_pow2[t_vector_len]; vec_el_wise_pow(H, 2, H_pow2);
+	static T J_pow2[t_vector_len]; vec_el_wise_pow(J, 2, J_pow2);
+	static T K_pow2[t_vector_len]; vec_el_wise_pow(K, 2, K_pow2);
+	static T L_pow2[t_vector_len]; vec_el_wise_pow(L, 2, L_pow2);
 
-	// Element-wise 3rd power H.^3, J.^3, K.^3, L.^4
-	static T H_pow3[2001]; vec_el_wise_pow(H, 3, H_pow3);
-	static T J_pow3[2001]; vec_el_wise_pow(J, 3, J_pow3);
-	static T K_pow3[2001]; vec_el_wise_pow(K, 3, K_pow3);
-	static T L_pow3[2001]; vec_el_wise_pow(L, 3, L_pow3);
+	// Element-wise 3rd power H.^3, J.^3, K.^3, L.^3
+	static T H_pow3[t_vector_len]; vec_el_wise_pow(H, 3, H_pow3);
+	static T J_pow3[t_vector_len]; vec_el_wise_pow(J, 3, J_pow3);
+	static T K_pow3[t_vector_len]; vec_el_wise_pow(K, 3, K_pow3);
+	static T L_pow3[t_vector_len]; vec_el_wise_pow(L, 3, L_pow3);
 
 	// Element-wise 4th power H.^4, J.^4, K.^4, L.^4
-	static T H_pow4[2001]; vec_el_wise_pow(H, 4, H_pow4);
-	static T J_pow4[2001]; vec_el_wise_pow(J, 4, J_pow4);
-	static T K_pow4[2001]; vec_el_wise_pow(K, 4, K_pow4);
-	static T L_pow4[2001]; vec_el_wise_pow(L, 4, L_pow4);
+	static T H_pow4[t_vector_len]; vec_el_wise_pow(H, 4, H_pow4);
+	static T J_pow4[t_vector_len]; vec_el_wise_pow(J, 4, J_pow4);
+	static T K_pow4[t_vector_len]; vec_el_wise_pow(K, 4, K_pow4);
+	static T L_pow4[t_vector_len]; vec_el_wise_pow(L, 4, L_pow4);
 
 	// `fvalue` is composed of the sum of these terms
 	// as present in MATLAB
@@ -168,8 +179,10 @@ rf_sample_pose_poly(
 
 	//	/* 51 */ + 8 .* G .* E .* A .* H .* K .* C .* J .* L;
 
-	static T fvalue_terms[52][2001];
+	static T fvalue_terms[52][t_vector_len];
 
+	// TODO: Analyze the need of extra/lower precison for the calculation of these terms.
+	// Report about it in the thesis
 	// fvalue_terms[X]
 	/*  0 ...................... */ vec_el_wise_mult4(E_pow2, B_pow2, H_pow2, J_pow2,                            fvalue_terms[0]);
 	/*  1 ...................... */ vec_el_wise_mult3(G_pow2, C_pow2, L_pow4,                                    fvalue_terms[1]);
@@ -224,15 +237,10 @@ rf_sample_pose_poly(
 	/* 50 ...................... */ vec_el_wise_mult5(G,      E,      B_pow2, K_pow2, J_pow2,                    fvalue_terms[50]);
 	/* 51 */ vec_mult_by_scalar( 8, vec_el_wise_mult8(G,      E,      A,      H,      K,      C,      J,      L, fvalue_terms[51]), fvalue_terms[51]);
 
-	for (int i = 0; i < 2001; i++) {
+	for (int i = 0; i < t_vector_len; i++) {
 		for (int j = 0; j < 52; j++) {
 			fvalue[i] += fvalue_terms[j][i];
 		}
 	}
-
-
 }
-
-}
-
 
