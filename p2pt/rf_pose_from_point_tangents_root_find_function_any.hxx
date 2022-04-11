@@ -55,7 +55,7 @@ void rf_pose_from_point_tangents_root_find_function_any(
 
 	// % compute rhos, r, t --------------------------
 	static T rf_rhos[7][t_vector_len];
-	//rf_rhos_from_root_ids(t_vector, root_ids, rf_rhos); // TODO: implement `rf_rhos_from_root_ids()`
+	rf_rhos_from_root_ids(t_vector, root_ids, rf_rhos); // TODO: implement `rf_rhos_from_root_ids()`
 
 	//#include "rf_get_sigmas.hxx"
 	//#include "rf_get_r_t_from_rhos.hxx"

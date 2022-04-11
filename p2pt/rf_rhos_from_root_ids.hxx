@@ -4,7 +4,7 @@ template <typename T>
 void
 rf_rhos_from_root_ids(
 	T t_vector[t_vector_len], T root_ids[t_vector_len],
-	T* output[7] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+	T output[7][t_vector_len] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
 )
 {
 	T* rhos1       = output[0];
@@ -16,20 +16,21 @@ rf_rhos_from_root_ids(
 	T* ts          = output[6];
 
 	// TODO: Make member of poly? Needs access to `alpha`, `beta`, and `theta`
-	//extern double alpha, beta, theta;
+	extern T alpha, beta, theta;
 
-	//static T ts[t_vector_len];
-	// TODO: Check for out-of-bounds access on `i+1`
 	for (int i = 0; i < root_ids_len; i++) {
 		if (root_ids[i] == 1) {
-			// TODO: Check what these expressions mean in MATLAB. No output?
+			// TODO: Check what these expressions do in MATLAB. No output?
 			rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i]);
 			rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i + 1]);
 
 			// TODO: check implementation of `fzero()`
 			T t_ref = fzero(@rf_pose_from_point_tangents_2_fn_t_for_root, [t_vector(i) t_vector(i + 1)]);;
 			rf_pose_from_point_tangents_2_fn_t_for_root(t_ref);
+
 			// TODO: Check total size/appending of elements for `ts[]` as in MATLAB
+			// TODO: Possibly optimize the size of `ts[]`.
+			// What is the max number of 1s than can appear in `root_ids[]`?
 			ts[i] = t_ref;
 		}
 	}
