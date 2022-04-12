@@ -141,7 +141,7 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	fvalue_terms[51] =  8 * G      * E      * A      * H      * K      * C      * J      * L;
 
 	for (int i = 0; i < 52; i++)
-		fvalue += fvalue_terms[i];
+		fvalue += fvalue_terms[i] + perturb;
 }
 
 }

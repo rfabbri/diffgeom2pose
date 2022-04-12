@@ -2,7 +2,7 @@ namespace P2Pt {
 
 template<typename T>
 void
-rf_get_sigmas()
+rf_get_sigmas(T ts[t_vector_len], T output[11]) // TODO: Fix size of output
 {
 	T my_eps = 1;
 
@@ -15,29 +15,30 @@ rf_get_sigmas()
 	static T sigmas1[max_array_len][max_array_len];
 	static T sigmas2[max_array_len][max_array_len];
 
-	static T output[11];
+	static T rf_pose_output[11];
 	static int end1 = 0;
 	static int end2 = 0;
 
 	for (int i = 0; i < t_vector_len; i++) {
-		rf_pose_from_point_tangents_2_fn_t(ts[i], output);
+		rf_pose_from_point_tangents_2_fn_t(ts[i], rf_pose_output);
 
 		// Getting value instead of pointer to avoid confusion between
 		// dereference `*` and multiplication `*` in the formulas below
-		static T fvalue = output[0];
-		static T A      = output[1];
-		static T B      = output[2];
-		static T C      = output[3];
-		static T E      = output[4];
-		static T F      = output[5];
-		static T G      = output[6];
-		static T H      = output[7];
-		static T J      = output[8];
-		static T K      = output[9];
-		static T L      = output[10];
+		static T fvalue = rf_pose_output[0];
+		static T A      = rf_pose_output[1];
+		static T B      = rf_pose_output[2];
+		static T C      = rf_pose_output[3];
+		static T E      = rf_pose_output[4];
+		static T F      = rf_pose_output[5];
+		static T G      = rf_pose_output[6];
+		static T H      = rf_pose_output[7];
+		static T J      = rf_pose_output[8];
+		static T K      = rf_pose_output[9];
+		static T L      = rf_pose_output[10];
 
 		// TODO: Optimize quadratic function algorithm
 		// TODO: Deal with complex results
+		// TODO: use std::complex; maybe use another approach later
 		T delta1 = sqrt(B*B - 4*A*C);
 		T sigma1_m = (-B - delta1)/(2*A);
 		T sigma2_p = (-B + delta1)/(2*A);
@@ -73,7 +74,7 @@ rf_get_sigmas()
 		}
 
 		if (abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
-			// TODO: Mark `sigmas1` and `sigmas2` indexes as empty or not. Nullptr?
+			// TODO: Mark `sigmas1` and `sigmas2` indexes as empty or not. Nullptr? Or check end1 == 0
 			if (!isempty(sigmas1[i]))
 				std::cout << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][end1++] = sigma1_p;

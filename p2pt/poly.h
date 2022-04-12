@@ -20,6 +20,7 @@ struct pose_poly {
 	T K0, K1, K2, K3;
 	T L0, L1, L2;
 	T alpha, beta, theta;
+	// TODO: Add cos(theta) and sin(theta) as members
 	void rf_pose_from_point_tangents_2(
 		const T gama1[3], const T tgt1[3],
 		const T gama2[3], const T tgt2[3],
@@ -29,6 +30,7 @@ struct pose_poly {
 	void rf_find_bounded_root_intervals(const T t_vector[t_vector_len], T root_ids[root_ids_len]);
 	void rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len]);
 	void rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11]);
+	void rf_pose_from_point_tangents_2_fn_t(const T t, T output[11]);
 };
 
 }

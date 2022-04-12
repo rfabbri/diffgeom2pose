@@ -14,6 +14,7 @@ rf_rhos_from_root_ids(
 	T* rhos2_minus = output[4];
 	T* rhos2_plus  = output[5];
 	T* ts          = output[6];
+	// TODO: Create element counter for ts
 
 	// TODO: Make member of poly? Needs access to `alpha`, `beta`, and `theta`
 	extern T alpha, beta, theta;
@@ -21,12 +22,13 @@ rf_rhos_from_root_ids(
 	for (int i = 0; i < root_ids_len; i++) {
 		if (root_ids[i] == 1) {
 			// TODO: Check what these expressions do in MATLAB. No output?
-			rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i]);
-			rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i + 1]);
+			//rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i]);
+			//rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i + 1]);
 
 			// TODO: check implementation of `fzero()`
+			// TODO: implement fzero using (t_vector(i) + t_vector(i+1))/2; maybe use Newton's method later
 			T t_ref = fzero(@rf_pose_from_point_tangents_2_fn_t_for_root, [t_vector(i) t_vector(i + 1)]);;
-			rf_pose_from_point_tangents_2_fn_t_for_root(t_ref);
+			//rf_pose_from_point_tangents_2_fn_t_for_root(t_ref);
 
 			// TODO: Check total size/appending of elements for `ts[]` as in MATLAB
 			// TODO: Possibly optimize the size of `ts[]`.
@@ -38,11 +40,16 @@ rf_rhos_from_root_ids(
 	T t_stddev = t_vector[1] - t_vector[0];
 
 	// TODO: Check if inline functions are a better fit
-	#define ALPHA_TS_COS(x) (2 * alpha * (x) * cos(theta))
-	#define ALPHA_TS_SIN(x) (-2 * alpha * (x) * sin(theta))
-	#define BETA_TS_SIN(x)  (beta * (1 - (x) * (x)) * sin(theta))
-	#define BETA_TS_COS(x)  (beta * (1 - (x) * (x)) * cos(theta))
-	#define TS_DEN(x)       (1 + (x) * (x))
+	template<typename T>
+	constexpr auto ALPHA_TS_COS(T x) { return (2 * alpha * (x) * cos(theta)); }
+	template<typename T>
+	constexpr auto ALPHA_TS_SIN(T x) { return (-2 * alpha * (x) * sin(theta)); }
+	template<typename T>
+	constexpr auto BETA_TS_SIN(T x) { return (beta * (1 - (x) * (x)) * sin(theta)); }
+	template<typename T>
+	constexpr auto BETA_TS_COS(T x) { return (beta * (1 - (x) * (x)) * cos(theta)); }
+	template<typename T>
+	constexpr auto TS_DEN(T x) { return (1 + (x) * (x)); }
 
 	//% Each root is now ts(i), plus minus t_stddev.
 	//% Now get rho1(t):
@@ -53,13 +60,15 @@ rf_rhos_from_root_ids(
 		rhos1[i] /= TS_DEN(ts_new);
 		rhos2[i] = ALPHA_TS_SIN(ts_new) + BETA_TS_COS(ts_new);
 		rhos2[i] /= TS_DEN(ts_new);
-
+	}
+	for (int i = 0; i < t_vector_len; i++) {
 		T ts_new = ts[i] - t_stddev;
 		rhos1_minus[i] = ALPHA_TS_COS(ts_new) + BETA_TS_SIN(ts_new);
 		rhos1_minus[i] /= TS_DEN(ts_new);
 		rhos2_minus[i] = ALPHA_TS_SIN(ts_new) + BETA_TS_COS(ts_new);
 		rhos2_minus[i] /= TS_DEN(ts_new);
-
+	}
+	for (int i = 0; i < t_vector_len; i++) {
 		T ts_new = ts[i] + 2 * t_stddev;
 		rhos1_plus[i] = ALPHA_TS_COS(ts_new) + BETA_TS_SIN(ts_new);
 		rhos1_plus[i] /= TS_DEN(ts_new);
