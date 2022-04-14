@@ -56,7 +56,17 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec1vec2_add(T vec1[t_vector_len], T vec2[t_vector_len], T output[t_vector_len])
+	T vec1vec2_dot(T vec1[3], T vec2[3])
+	{
+		T output = 0;
+		for (int i = 0; i < 3; i++) {
+			output += vec1[i] * vec2[i];
+		}
+		return output;
+	}
+
+	template<typename T>
+	void vec1vec2_sum(T vec1[t_vector_len], T vec2[t_vector_len], T output[t_vector_len])
 	{
 		for (int i = 0; i < t_vector_len; i++) {
 			output[i] = vec1[i] + vec2[i];

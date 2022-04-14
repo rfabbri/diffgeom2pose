@@ -2,24 +2,25 @@ namespace P2Pt {
 
 template<typename T>
 void
-rf_get_sigmas(T ts[t_vector_len], T output[11]) // TODO: Fix size of output
+rf_get_sigmas(T ts[t_vector_len], static int ts_len, T output[11]) // TODO: Fix size of output
 {
 	T my_eps = 1;
 
-	// TODO: Check what the maximum number of elements can be for a cell array
-	// TODO: Check if this can be implemented as a vector for pushback
-	static constexpr int max_array_len = t_vector_len;
-
 	// TODO: The size of this array can possibly be reduced.
 	// Figure out the maximum number of 1s in `root_ids[]`
-	static T sigmas1[max_array_len][max_array_len];
-	static T sigmas2[max_array_len][max_array_len];
+	static T sigmas1[ts_len][ts_len];
+	static T sigmas2[ts_len][ts_len];
+
+	// Stores the number of elements for each row of `sigmasX`
+	static int end_sigmas1[ts_len];
+	static int end_sigmas2[ts_len];
 
 	static T rf_pose_output[11];
-	static int end1 = 0;
-	static int end2 = 0;
 
-	for (int i = 0; i < t_vector_len; i++) {
+	for (int i = 0; i < ts_len; i++) {
+		end_sigmas1[i] = 0;
+		end_sigmas2[i] = 0;
+
 		rf_pose_from_point_tangents_2_fn_t(ts[i], rf_pose_output);
 
 		// Getting value instead of pointer to avoid confusion between
@@ -69,33 +70,33 @@ rf_get_sigmas(T ts[t_vector_len], T output[11]) // TODO: Fix size of output
 		//% If not, issue a warning.
 
 		if (abs(H + J*sigma1_m + K*sigma2_m + L*sigma1_m*sigma2_m) < my_eps) {
-			sigmas1[i][end1++] = sigma1_m;
-			sigmas2[i][end2++] = sigma2_m;
+			sigmas1[i][end_sigmas1[i]++] = sigma1_m;
+			sigmas2[i][end_sigmas2[i]++] = sigma2_m;
 		}
 
 		if (abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
 			// TODO: Mark `sigmas1` and `sigmas2` indexes as empty or not. Nullptr? Or check end1 == 0
-			if (!isempty(sigmas1[i]))
+			if (end_sigmas1 != 0) // !isempty(sigmas1[i])
 				std::cout << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][end1++] = sigma1_p;
-			sigmas2[i][end2++] = sigma2_m;
+			sigmas1[i][end_sigmas1[i]++] = sigma1_p;
+			sigmas2[i][end_sigmas2[i]++] = sigma2_m;
 		}
 
 		if (abs(H + J*sigma1_p + K*sigma2_p + L*sigma1_p*sigma2_p) < my_eps) {
-			if (!isempty(sigmas1[i]))
+			if (end_sigmas1 != 0)
 				std::cout << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][end1++] = sigma1_p;
-			sigmas2[i][end2++] = sigma2_p;
+			sigmas1[i][end_sigmas1[i]++] = sigma1_p;
+			sigmas2[i][end_sigmas2[i]++] = sigma2_p;
 		}
 
 		if (abs(H + J*sigma1_m + K*sigma2_p + L*sigma1_m*sigma2_p) < my_eps) {
-			if (!isempty(sigmas1[i]))
+			if (end_sigmas1 != 0)
 				std::cout << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][end1++] = sigma1_m;
-			sigmas2[i][end2++] = sigma2_p;
+			sigmas1[i][end_sigmas1[i]++] = sigma1_m;
+			sigmas2[i][end_sigmas2[i]++] = sigma2_p;
 		}
 
-		if (isempty(sigmas1[i]))
+		if (end_sigmas1 == 0) // isempty(sigmas1[i])
 			std::cout << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 
 	}
