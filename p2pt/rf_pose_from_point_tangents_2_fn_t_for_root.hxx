@@ -20,19 +20,19 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	//%
 
 	//%function of t part :
-	static T& fvalue = output[0];
-	static T& A      = output[1];
-	static T& B      = output[2];
-	static T& C      = output[3];
+	T& fvalue = output[0];
+	T& A      = output[1];
+	T& B      = output[2];
+	T& C      = output[3];
 
-	static T& E      = output[4];
-	static T& F      = output[5];
-	static T& G      = output[6];
-	static T& H      = output[7];
+	T& E      = output[4];
+	T& F      = output[5];
+	T& G      = output[6];
+	T& H      = output[7];
 
-	static T& J      = output[8];
-	static T& K      = output[9];
-	static T& L      = output[10];
+	T& J      = output[8];
+	T& K      = output[9];
+	T& L      = output[10];
 
 	// `t` integer powers
 	static T t_pow2 = t * t;

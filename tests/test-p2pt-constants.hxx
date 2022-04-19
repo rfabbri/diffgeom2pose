@@ -4074,7 +4074,8 @@ constexpr double sample_t_vector[t_vector_len] = {
 	0.999000000000000,
 	1
 };
-constexpr double sample_fvalue[t_vector_len]   = {
+
+constexpr double sample_fvalue_pose_poly[t_vector_len] = {
 	1599787.71374669,
 	1605360.45517041,
 	1610811.19942987,
@@ -6077,6 +6078,8 @@ constexpr double sample_fvalue[t_vector_len]   = {
 	1594088.93631408,
 	1599787.71374685
 };
+constexpr double sample_fvalue_tan_2_fn_t_for_root = 5949387.61663628;
+constexpr double sample_fvalue_tan_2_fn_t          = 8.392333984375e-05;
 
 constexpr double sample_rhos1[]       = {4.20582991999997, 5.38744796313994, 5.51209006581205, 4.03587398491222};
 constexpr double sample_rhos1_minus[] = {4.19654670944222, 5.38019708944851, 5.51776326765562, 4.04268855289702};

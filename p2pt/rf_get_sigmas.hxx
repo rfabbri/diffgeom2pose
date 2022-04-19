@@ -1,8 +1,10 @@
+#include "rf_pose_from_point_tangents_2_fn_t.hxx"
+
 namespace P2Pt {
 
 template<typename T>
 void
-rf_get_sigmas(T ts[t_vector_len], static int ts_len, T output[11]) // TODO: Fix size of output
+rf_get_sigmas(const T ts[t_vector_len], const int ts_len, T output[11]) // TODO: Fix size of output
 {
 	T my_eps = 1;
 
@@ -42,11 +44,11 @@ rf_get_sigmas(T ts[t_vector_len], static int ts_len, T output[11]) // TODO: Fix 
 		// TODO: use std::complex; maybe use another approach later
 		T delta1 = sqrt(B*B - 4*A*C);
 		T sigma1_m = (-B - delta1)/(2*A);
-		T sigma2_p = (-B + delta1)/(2*A);
+		T sigma1_p = (-B + delta1)/(2*A);
 
 		T delta2 = sqrt(F*F - 4*E*G);
-		T sigma1_m = (-F - delta2)/(2*E);
-		T sigma2_p = (-F + delta22/(2*E);
+		T sigma2_m = (-F - delta2)/(2*E);
+		T sigma2_p = (-F + delta2)/(2*E);
 
 		//% handle case of negative delta
 		// TODO: Get real/imaginary part of answer using some std library function

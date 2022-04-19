@@ -27,7 +27,7 @@ rf_rhos_from_root_ids(
 			static T t_ref;
 
 			// First round
-			rf_pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i])/2, t_ref_arr);
+			rf_pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, t_ref_arr);
 			t_ref = t_ref_arr[0];
 
 			// Second round

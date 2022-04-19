@@ -6,14 +6,15 @@
 //
 #include <cstring>
 #include <iostream>
-#include <p2pt/p2pt.h>
 #include <testlib/testlib_test.h>
+#include <p2pt/p2pt.h>
 #include <p2pt/poly.h>
 
 #include <p2pt/common.hxx>
 #include <p2pt/rf_pose_from_point_tangents_2.hxx>
 #include <p2pt/rf_find_bounded_root_intervals.hxx>
 #include <p2pt/rf_rhos_from_root_ids.hxx>
+#include <p2pt/rf_get_sigmas.hxx>
 
 #include <tests/test-p2pt-constants.hxx>
 
@@ -145,9 +146,8 @@ test_rf_sample_pose_poly()
 	for (int i = 0; i < t_vector_len; i++) {
 		char indexstr[128];
 		snprintf(indexstr, 128, "fvalue[%d]", i);
-		TEST_NEAR(indexstr, test_fvalue[i], sample_fvalue[i], eps);
+		TEST_NEAR(indexstr, test_fvalue[i], sample_fvalue_pose_poly[i], eps);
 	}
-
 }
 
 static void
@@ -207,6 +207,78 @@ test_rf_rhos_from_root_ids()
 	}
 }
 
+static void
+test_rf_pose_from_point_tangents_2_fn_t_for_root()
+{
+	pose_poly<double> p = {
+		sample_A0, sample_A1, sample_A2,
+		sample_B0, sample_B1, sample_B2, sample_B3,
+		sample_C0, sample_C1, sample_C2, sample_C3, sample_C4,
+		sample_E0, sample_E1, sample_E2,
+		sample_F0, sample_F1, sample_F2, sample_F3,
+		sample_G0, sample_G1, sample_G2, sample_G3, sample_G4,
+		sample_H0, sample_H1, sample_H2, sample_H3, sample_H4,
+		sample_J0, sample_J1, sample_J2, sample_J3,
+		sample_K0, sample_K1, sample_K2, sample_K3,
+		sample_L0, sample_L1, sample_L2
+	};
+
+	double output[t_vector_len][11];
+	for (int i = 0; i < root_ids_len; i++) {
+		p.rf_pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i], output[i]);
+	}
+
+	for (int i = 0; i < t_vector_len; i++) {
+		double test_fvalue = output[i][0];
+		char indexstr[128];
+		snprintf(indexstr, 128, "fvalue[%d]", i);
+		TEST_NEAR(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
+	}
+
+
+}
+
+static void
+test_rf_get_sigmas()
+{
+
+}
+
+static void
+test_rf_pose_from_point_tangents_2_fn_t()
+{
+	pose_poly<double> p = {
+		sample_A0, sample_A1, sample_A2,
+		sample_B0, sample_B1, sample_B2, sample_B3,
+		sample_C0, sample_C1, sample_C2, sample_C3, sample_C4,
+		sample_E0, sample_E1, sample_E2,
+		sample_F0, sample_F1, sample_F2, sample_F3,
+		sample_G0, sample_G1, sample_G2, sample_G3, sample_G4,
+		sample_H0, sample_H1, sample_H2, sample_H3, sample_H4,
+		sample_J0, sample_J1, sample_J2, sample_J3,
+		sample_K0, sample_K1, sample_K2, sample_K3,
+		sample_L0, sample_L1, sample_L2
+	};
+
+	double output[t_vector_len][11];
+	for (int i = 0; i < root_ids_len; i++) {
+		p.rf_pose_from_point_tangents_2_fn_t(sample_t_vector[i], output[i]);
+	}
+
+	for (int i = 0; i < t_vector_len; i++) {
+		double test_fvalue = output[i][0];
+		char indexstr[128];
+		snprintf(indexstr, 128, "fvalue[%d]", i);
+		TEST_NEAR(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
+	}
+}
+
+static void
+test_rf_get_r_t_from_rhos()
+{
+
+}
+
 // main test function - place all the tests to be run here
 void
 test_p2pt()
@@ -227,6 +299,18 @@ test_p2pt()
 
 	std::cout << "\nTEST #5 - test_rf_rhos_from_root_ids" << std::endl;
 	test_rf_rhos_from_root_ids();
+
+	std::cout << "\nTEST #6 - test_rf_pose_from_point_tangents_2_fn_t_for_root" << std::endl;
+	test_rf_pose_from_point_tangents_2_fn_t_for_root();
+
+	std::cout << "\nTEST #7 - test_rf_get_sigmas" << std::endl;
+	test_rf_get_sigmas();
+
+	std::cout << "\nTEST #8 - test_rf_pose_from_point_tangents_2_fn_t" << std::endl;
+	test_rf_pose_from_point_tangents_2_fn_t();
+
+	std::cout << "\nTEST #9 - test_rf_get_r_t_from_rhos" << std::endl;
+	test_rf_get_r_t_from_rhos();
 }
 
 TESTMAIN(test_p2pt);
