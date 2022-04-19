@@ -10,12 +10,12 @@ rf_get_sigmas(const T ts[t_vector_len], const int ts_len, T output[11]) // TODO:
 
 	// TODO: The size of this array can possibly be reduced.
 	// Figure out the maximum number of 1s in `root_ids[]`
-	static T sigmas1[ts_len][ts_len];
-	static T sigmas2[ts_len][ts_len];
+	T sigmas1[ts_len][ts_len];
+	T sigmas2[ts_len][ts_len];
 
 	// Stores the number of elements for each row of `sigmasX`
-	static int end_sigmas1[ts_len];
-	static int end_sigmas2[ts_len];
+	int end_sigmas1[ts_len];
+	int end_sigmas2[ts_len];
 
 	static T rf_pose_output[11];
 
@@ -78,27 +78,27 @@ rf_get_sigmas(const T ts[t_vector_len], const int ts_len, T output[11]) // TODO:
 
 		if (abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
 			// TODO: Mark `sigmas1` and `sigmas2` indexes as empty or not. Nullptr? Or check end1 == 0
-			if (end_sigmas1 != 0) // !isempty(sigmas1[i])
+			if (end_sigmas1[i] != 0) // !isempty(sigmas1[i])
 				std::cout << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][end_sigmas1[i]++] = sigma1_p;
 			sigmas2[i][end_sigmas2[i]++] = sigma2_m;
 		}
 
 		if (abs(H + J*sigma1_p + K*sigma2_p + L*sigma1_p*sigma2_p) < my_eps) {
-			if (end_sigmas1 != 0)
+			if (end_sigmas1[i] != 0)
 				std::cout << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][end_sigmas1[i]++] = sigma1_p;
 			sigmas2[i][end_sigmas2[i]++] = sigma2_p;
 		}
 
 		if (abs(H + J*sigma1_m + K*sigma2_p + L*sigma1_m*sigma2_p) < my_eps) {
-			if (end_sigmas1 != 0)
+			if (end_sigmas1[i] != 0)
 				std::cout << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][end_sigmas1[i]++] = sigma1_m;
 			sigmas2[i][end_sigmas2[i]++] = sigma2_p;
 		}
 
-		if (end_sigmas1 == 0) // isempty(sigmas1[i])
+		if (end_sigmas1[i] == 0) // isempty(sigmas1[i])
 			std::cout << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 
 	}
