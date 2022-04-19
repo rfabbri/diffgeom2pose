@@ -21,13 +21,20 @@ rf_rhos_from_root_ids(
 
 	for (int i = 0; i < root_ids_len; i++) {
 		if (root_ids[i] == 1) {
-			// TODO: Check what these expressions do in MATLAB. No output?
-			//rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i]);
-			//rf_pose_from_point_tangents_2_fn_t_for_root(t_vector[i + 1]);
-
-			// TODO: check implementation of `fzero()`
 			// TODO: implement fzero using (t_vector(i) + t_vector(i+1))/2; maybe use Newton's method later
-			T t_ref = fzero(@rf_pose_from_point_tangents_2_fn_t_for_root, [t_vector(i) t_vector(i + 1)]);;
+			static T t_ref_arr[11];
+			static T t_ref;
+
+			// First round
+			rf_pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i])/2, t_ref_arr); 
+			t_ref = t_ref_arr[0];
+
+			// Second round
+			rf_pose_from_point_tangents_2_fn_t_for_root(t_ref/2, t_ref_arr); 
+			t_ref = t_ref_arr[0];
+
+
+
 			//rf_pose_from_point_tangents_2_fn_t_for_root(t_ref);
 
 			// TODO: Check total size/appending of elements for `ts[]` as in MATLAB

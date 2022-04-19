@@ -31,7 +31,6 @@ rf_get_r_from_rhos(
 		static T den1[3], den2[3], den3[3];
 
 		// TODO: Check if separate loops are better for vectorization
-
 		for (int j = 0; end_sigmas1[i]; j++) {
 			common::vec1vec2_sub(Gama1, Gama2, DGama);               // DGama = Gama1 - Gama2
 
@@ -77,15 +76,48 @@ rf_get_r_from_rhos(
 	};
 	T B[3][3];
 
-	#define TEMP 100;
-	T Rots[TEMP][TEMP];
-	T Transls[TEMP][TEMP];
+	T inv_A[3][3]; common::invm3x3(A, inv_A);
+
+	#define TEMP 10;
+
+	// MATRIX OF MATRICES
+	// [ [a b c]      ]
+	// [ [d e f], ... ],
+	// [ [g h i]      ]
+	//     .
+	//     .
+	//     .
+	// [ [m n o]      ]
+    // [ [p q r], ... ]
+    // [ [s t u]      ]
+
+	T Rots[TEMP][TEMP][3][3];
+	T Transls[TEMP][TEMP][3][3];
+	int Rots_end    = 0;
+	int Transls_end = 0;
 
 	for (int i = 0; i < ts_len; i++) {
 		for (int j = 0; j < end_sigmas1[0]; j++) {
 
+			#define B_row(r) \
+				rhos[i]*gama1[r] - rhos[i]*gama2[r], \
+				lambdas1[i][j]*(rhos1[i]*tgt1[r] + sigmas1[i][j]*gama1[r]), \
+				lambdas2[i][j]*(rhos2[i]*tgt2[r] + sigmas2[i][j]*gama2[r]) \
+
+			T B[3][3] = {
+				B_row(0),
+				B_row(1),
+				B_row(2)
+			};
+
+			// TODO: Check if `A` and `B` are always 3x3
+			Rots[Rots_end++] = common::
+
+
+
 		}
 	}
+
 
 }
 
