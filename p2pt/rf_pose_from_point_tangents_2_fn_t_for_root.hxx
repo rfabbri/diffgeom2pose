@@ -13,7 +13,7 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	//% perturb = -4.9e6;
 	//% perturb = -1.7e8;
 	//% perturb = -2.55e7;
-	T perturb = 0;
+	static T perturb = 0;
 	//% same as  rf_pose_from_point_tangents_2_fn_t, but polynomial value might be
 	//% perturbed by max of(perturb) so that roots appear for noisy data.This wasn't
 	//% used in the end.
@@ -35,30 +35,34 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	T& L      = output[10];
 
 	// `t` integer powers
-	static T t_pow2 = t * t;
-	static T t_pow3 = t_pow2 * t;
-	static T t_pow4 = t_pow3 * t;
-	static T t_pow5 = t_pow4 * t;
-	static T t_pow6 = t_pow5 * t;
-	static T t_pow7 = t_pow6 * t;
-	static T t_pow8 = t_pow7 * t;
+	static T t_pow2, t_pow3, t_pow4, t_pow5, t_pow6, t_pow7, t_pow8;
+
+	t_pow2 = t * t;
+	t_pow3 = t_pow2 * t;
+	t_pow4 = t_pow3 * t;
+	t_pow5 = t_pow4 * t;
+	t_pow6 = t_pow5 * t;
+	t_pow7 = t_pow6 * t;
+	t_pow8 = t_pow7 * t;
 
 	// `(t^2 + 1)` integer powers
-	static T t_pow2_plus1_pow2 = (t_pow2 + 1) * (t_pow2 + 1);
-	static T t_pow2_plus1_pow3 = t_pow2_plus1_pow2 * (t_pow2 + 1);
-	static T t_pow2_plus1_pow4 = t_pow2_plus1_pow3 * (t_pow2 + 1);
+	static T t_pow2_plus1_pow2, t_pow2_plus1_pow3, t_pow2_plus1_pow4;
+
+	t_pow2_plus1_pow2 = (t_pow2 + 1) * (t_pow2 + 1);
+	t_pow2_plus1_pow3 = t_pow2_plus1_pow2 * (t_pow2 + 1);
+	t_pow2_plus1_pow4 = t_pow2_plus1_pow3 * (t_pow2 + 1);
 
 	// Denominators
-	static T& A_den = t_pow2_plus1_pow2;
-	static T& B_den = t_pow2_plus1_pow3;
-	static T& C_den = t_pow2_plus1_pow4;
-	static T& E_den = t_pow2_plus1_pow2;
-	static T& F_den = t_pow2_plus1_pow3;
-	static T& G_den = t_pow2_plus1_pow4;
-	static T& H_den = t_pow2_plus1_pow4;
-	static T& J_den = t_pow2_plus1_pow3;
-	static T& K_den = t_pow2_plus1_pow3;
-	static T& L_den = t_pow2_plus1_pow2;
+	T &A_den = t_pow2_plus1_pow2;
+	T &B_den = t_pow2_plus1_pow3;
+	T &C_den = t_pow2_plus1_pow4;
+	T &E_den = t_pow2_plus1_pow2;
+	T &F_den = t_pow2_plus1_pow3;
+	T &G_den = t_pow2_plus1_pow4;
+	T &H_den = t_pow2_plus1_pow4;
+	T &J_den = t_pow2_plus1_pow3;
+	T &K_den = t_pow2_plus1_pow3;
+	T &L_den = t_pow2_plus1_pow2;
 
 	// Calculations
 	A = (A0 + A1 * t + A2 * t_pow2 - A1 * t_pow3 + A0 * t_pow4) / A_den;
@@ -73,17 +77,21 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	L = (L0 + L1 * t + L2 * t_pow2 - L1 * t_pow3 + L0 * t_pow4) / L_den;
 
 	// `output`
-	//       2nd power          3rd power               4th power
-	static T A_pow2 = A * A;
-	static T B_pow2 = B * B;
-	static T C_pow2 = C * C;
-	static T E_pow2 = E * E;
-	static T F_pow2 = F * F;
-	static T G_pow2 = G * G;
-	static T H_pow2 = H * H,    H_pow3 = H_pow2 * H,    H_pow4 = H_pow3 * H;
-	static T J_pow2 = J * J,    J_pow3 = J_pow2 * J,    J_pow4 = J_pow3 * J;
-	static T K_pow2 = K * K,    K_pow3 = K_pow2 * K,    K_pow4 = K_pow3 * K;
-	static T L_pow2 = L * L,    L_pow3 = L_pow2 * L,    L_pow4 = L_pow3 * L;
+	static T A_pow2, B_pow2, C_pow2, E_pow2, F_pow2, G_pow2, H_pow2, J_pow2, K_pow2, L_pow2;
+	static T H_pow3, J_pow3, K_pow3, L_pow3;
+	static T H_pow4, J_pow4, K_pow4, L_pow4;
+
+	// 2nd power          3rd power               4th power
+	A_pow2 = A * A;
+	B_pow2 = B * B;
+	C_pow2 = C * C;
+	E_pow2 = E * E;
+	F_pow2 = F * F;
+	G_pow2 = G * G;
+	H_pow2 = H * H;    H_pow3 = H_pow2 * H;    H_pow4 = H_pow3 * H;
+	J_pow2 = J * J;    J_pow3 = J_pow2 * J;    J_pow4 = J_pow3 * J;
+	K_pow2 = K * K;    K_pow3 = K_pow2 * K;    K_pow4 = K_pow3 * K;
+	L_pow2 = L * L;    L_pow3 = L_pow2 * L;    L_pow4 = L_pow3 * L;
 
 	static T fvalue_terms[52];
 
@@ -140,6 +148,7 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	fvalue_terms[50] =      G      * E      * B_pow2 * K_pow2 * J_pow2;
 	fvalue_terms[51] =  8 * G      * E      * A      * H      * K      * C      * J      * L;
 
+	fvalue = 0;
 	for (int i = 0; i < 52; i++)
 		fvalue += fvalue_terms[i] + perturb;
 }

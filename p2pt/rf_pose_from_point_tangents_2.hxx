@@ -34,7 +34,7 @@ namespace P2Pt {
 using namespace common;
 
 template<typename T>
-void 
+void
 pose_poly<T>::
 rf_pose_from_point_tangents_2(
 	const T gama1[3], const T tgt1[3],
@@ -83,7 +83,7 @@ rf_pose_from_point_tangents_2(
 	double t5 = g12 * g12;
 	double t6 = g21 * g21;
 	double t7 = g22 * g22;
-	double t11 = 2 * (1 + g11 * g21 + g12 * g22) / (t4 + t5 - t6 - t7); 
+	double t11 = 2 * (1 + g11 * g21 + g12 * g22) / (t4 + t5 - t6 - t7);
 
 	double theta = 0.5*atan(t11);
 	if (theta < 0) {
@@ -96,7 +96,7 @@ rf_pose_from_point_tangents_2(
 	//% 240-1100
 	//%theta = .7887953040;
 	//
-	//% 101-406: 
+	//% 101-406:
 	//%theta = .7852237735
 	//
 	//% the above theta has similar sin(2theta), cos(2theta) as the maple spreadsheet.
@@ -109,7 +109,7 @@ rf_pose_from_point_tangents_2(
 
 	double t8 = g21 * g21;
 	double t14 = g12 * g12;
-	double t15 = t1 * t1;
+	// double t15 = t1 * t1; -- Unused in MATLAB
 	double t21 = g11 * g11;
 
 	double den1 = 2*t1*(g11*g21 +g12*g22 + 1) + t2*(t21 + t14 - t8 - t5);
@@ -127,2113 +127,2113 @@ rf_pose_from_point_tangents_2(
 
 	//% Coefficient code adapted from Maple ::: can be further cleaned up but works
 
-	A0 = a4 * a4 * g12 * g12 + a4 * a4 * g11 * g11 + a4 * a4 + 2.0 * a2 * pow(g11, 
-	3.0) * g21 * beta * beta * sin(theta) * cos(theta) + 2.0 * a2 * g21 * g11 * 
-	g12 * g12 * beta * beta * sin(theta) * cos(theta) - 2.0 * a2 * g11 * g11 * g12 
-	* g12 * beta * beta * pow(sin(theta), 2.0) - a2 * pow(g12, 4.0) * beta * 
-	beta * pow(sin(theta), 2.0) - a2 * g21 * g21 * g11 * g11 * beta * beta * 
-	pow(cos(theta), 2.0) + 2.0 * a2 * g12 * g12 * beta * beta * sin(theta) * 
-	cos(theta) + 2.0 * a2 * g11 * g11 * beta * beta * sin(theta) * cos(theta) + 
-	2.0 * a2 * g11 * g11 * g22 * g12 * beta * beta * sin(theta) * cos(theta) - a2 
-	* beta * beta * pow(cos(theta), 2.0) + 2.0 * a2 * pow(g12, 3.0) * g22 * 
-	beta * beta * sin(theta) * cos(theta) - a2 * pow(g11, 4.0) * beta * beta * 
-	pow(sin(theta), 2.0) - 2.0 * a2 * g11 * g11 * beta * beta * pow(sin(theta), 
-	2.0) - 2.0 * a2 * g12 * g12 * beta * beta * pow(sin(theta), 2.0) + 2.0 * 
-	a2 * beta * beta * sin(theta) * cos(theta) - 2.0 * a2 * g21 * g11 * g22 * g12 
-	* beta * beta * pow(cos(theta), 2.0) - a2 * beta * beta * pow(sin(theta), 
-	2.0) + 2.0 * a2 * g21 * g11 * beta * beta * sin(theta) * cos(theta) - a2 * 
-	g22 * g22 * g12 * g12 * beta * beta * pow(cos(theta), 2.0) - 2.0 * a2 * g22 
-	* g12 * beta * beta * pow(cos(theta), 2.0) - 2.0 * a2 * g21 * g11 * beta * 
-	beta * pow(cos(theta), 2.0) + 2.0 * a2 * g22 * g12 * beta * beta * 
+	A0 = a4 * a4 * g12 * g12 + a4 * a4 * g11 * g11 + a4 * a4 + 2.0 * a2 * pow(g11,
+	3.0) * g21 * beta * beta * sin(theta) * cos(theta) + 2.0 * a2 * g21 * g11 *
+	g12 * g12 * beta * beta * sin(theta) * cos(theta) - 2.0 * a2 * g11 * g11 * g12
+	* g12 * beta * beta * pow(sin(theta), 2.0) - a2 * pow(g12, 4.0) * beta *
+	beta * pow(sin(theta), 2.0) - a2 * g21 * g21 * g11 * g11 * beta * beta *
+	pow(cos(theta), 2.0) + 2.0 * a2 * g12 * g12 * beta * beta * sin(theta) *
+	cos(theta) + 2.0 * a2 * g11 * g11 * beta * beta * sin(theta) * cos(theta) +
+	2.0 * a2 * g11 * g11 * g22 * g12 * beta * beta * sin(theta) * cos(theta) - a2
+	* beta * beta * pow(cos(theta), 2.0) + 2.0 * a2 * pow(g12, 3.0) * g22 *
+	beta * beta * sin(theta) * cos(theta) - a2 * pow(g11, 4.0) * beta * beta *
+	pow(sin(theta), 2.0) - 2.0 * a2 * g11 * g11 * beta * beta * pow(sin(theta),
+	2.0) - 2.0 * a2 * g12 * g12 * beta * beta * pow(sin(theta), 2.0) + 2.0 *
+	a2 * beta * beta * sin(theta) * cos(theta) - 2.0 * a2 * g21 * g11 * g22 * g12
+	* beta * beta * pow(cos(theta), 2.0) - a2 * beta * beta * pow(sin(theta),
+	2.0) + 2.0 * a2 * g21 * g11 * beta * beta * sin(theta) * cos(theta) - a2 *
+	g22 * g22 * g12 * g12 * beta * beta * pow(cos(theta), 2.0) - 2.0 * a2 * g22
+	* g12 * beta * beta * pow(cos(theta), 2.0) - 2.0 * a2 * g21 * g11 * beta *
+	beta * pow(cos(theta), 2.0) + 2.0 * a2 * g22 * g12 * beta * beta *
 	sin(theta) * cos(theta);
 
-	A1 = 0.4e1 * a2 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * g21 * g11 * g11 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * g12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.8e1 * a2 * g21 * g11 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.4e1 * a2 * g12 * g12 * beta * pow(sin(theta), 0.2e1) * 
-	alpha + 0.4e1 * a2 * g22 * g12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * 
-	a2 * g22 * g12 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g22 * g22 
-	* g12 * g12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g11 * 
-	g12 * g12 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * g11 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a2 * g21 * g11 * g12 * g12 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.4e1 * a2 * g21 * g11 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.8e1 * a2 * g11 * g11 * g12 * g12 * alpha * sin(theta) * beta * cos(theta) - 
-	0.4e1 * a2 * pow(g11, 0.4e1) * alpha * sin(theta) * beta * cos(theta) - 0.8e1 * 
-	a2 * g11 * g11 * alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a2 * g21 * g11 
-	* g22 * g12 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * pow(g12, 
-	0.3e1) * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * pow(g12, 
-	0.3e1) * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * pow(g12, 
-	0.4e1) * alpha * sin(theta) * beta * cos(theta) - 0.8e1 * a2 * g12 * g12 * alpha 
-	* sin(theta) * beta * cos(theta) + 0.8e1 * a2 * g22 * g12 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * g21 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.4e1 * a2 * pow(g11, 0.3e1) * g21 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a2 * g11 * g11 * g22 * g12 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * g22 * g12 * beta * pow(sin(theta), 
+	A1 = 0.4e1 * a2 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * g21 * g11 * g11 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * g12 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.8e1 * a2 * g21 * g11 * alpha * sin(theta) *
+	beta * cos(theta) - 0.4e1 * a2 * g12 * g12 * beta * pow(sin(theta), 0.2e1) *
+	alpha + 0.4e1 * a2 * g22 * g12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 *
+	a2 * g22 * g12 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g22 * g22
+	* g12 * g12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g11 *
+	g12 * g12 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * g11 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a2 * g21 * g11 * g12 * g12 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.4e1 * a2 * g21 * g11 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.8e1 * a2 * g11 * g11 * g12 * g12 * alpha * sin(theta) * beta * cos(theta) -
+	0.4e1 * a2 * pow(g11, 0.4e1) * alpha * sin(theta) * beta * cos(theta) - 0.8e1 *
+	a2 * g11 * g11 * alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a2 * g21 * g11
+	* g22 * g12 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * pow(g12,
+	0.3e1) * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * pow(g12,
+	0.3e1) * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * pow(g12,
+	0.4e1) * alpha * sin(theta) * beta * cos(theta) - 0.8e1 * a2 * g12 * g12 * alpha
+	* sin(theta) * beta * cos(theta) + 0.8e1 * a2 * g22 * g12 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * g21 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.4e1 * a2 * pow(g11, 0.3e1) * g21 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a2 * g11 * g11 * g22 * g12 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * g22 * g12 * beta * pow(sin(theta),
 	0.2e1) * alpha;
 
-	A2 =  (2 * a4 * a4 * g12 * g12) +  (2 * a4 * a4 * g11 * g11) + 
-	 (2 * a4 * a4) + 0.2e1 * a2 *   pow( g12,  
-	4) * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 *   
-	pow( g11,  4) * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * 
-	a2 *  (g11 * g11) * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * 
-	 (g12 * g12) * beta * beta * pow(sin(theta), 0.2e1) - 0.4e1 * a2 * beta 
-	* beta * sin(theta) * cos(theta) + 0.2e1 * a2 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a2 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21 * 
-	 g11 *  (g12 * g12) * beta * beta * sin(theta) * cos(theta) + 
-	0.2e1 * a2 * g21 * g21 *  (g11 * g11) * beta * beta * pow(cos(theta), 
-	0.2e1) - 0.4e1 * a2 *  (g12 * g12) * beta * beta * sin(theta) * 
-	cos(theta) + 0.4e1 * a2 * g21 *  g11 * beta * beta * pow(cos(theta), 
-	0.2e1) + 0.2e1 * a2 * g22 * g22 *  (g12 * g12) * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g22 *  g12 * beta * beta * 
-	sin(theta) * cos(theta) - 0.4e1 * a2 *  (g11 * g11) * beta * beta * 
-	sin(theta) * cos(theta) - 0.4e1 * a2 * g21 *  g11 * beta * beta * 
-	sin(theta) * cos(theta) + 0.4e1 * a2 *  (g11 * g11) *  (g12 * 
-	g12) * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g22 *  g12 * 
-	beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 *   pow( 
-	g11,  3) * g21 * beta * beta * sin(theta) * cos(theta) - 0.4e1 * a2 * 
-	 (g11 * g11) * g22 *  g12 * beta * beta * sin(theta) * 
-	cos(theta) + 0.4e1 * a2 * g21 *  g11 * g22 *  g12 * beta * beta 
-	* pow(cos(theta), 0.2e1) - 0.4e1 * a2 *   pow( g12, 
-	 3) * g22 * beta * beta * sin(theta) * cos(theta) - 0.4e1 * a2 * 
-	  pow( g11,  4) * alpha * alpha * pow(cos(theta), 
-	0.2e1) - 0.8e1 * a2 *  (g11 * g11) * alpha * alpha * pow(cos(theta), 
-	0.2e1) - 0.4e1 * a2 *   pow( g12,  4) * alpha * 
-	alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a2 *  (g12 * g12) * alpha * 
-	alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a2 * alpha * alpha * cos(theta) * 
-	sin(theta) - 0.4e1 * a2 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 * g22 *  g12 * alpha 
-	* alpha * cos(theta) * sin(theta) - 0.4e1 * a2 * g21 * g21 *  (g11 * 
-	g11) * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 *  (g12 * 
-	g12) * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a2 * g21 *  g11 
-	* alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a2 * g22 * g22 *  
-	(g12 * g12) * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 * g21 * 
-	 g11 * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a2 *  
-	(g11 * g11) *  (g12 * g12) * alpha * alpha * pow(cos(theta), 0.2e1) - 
-	0.8e1 * a2 *  (g11 * g11) * alpha * alpha * cos(theta) * sin(theta) - 
-	0.8e1 * a2 * g21 *  g11 *  (g12 * g12) * alpha * alpha * 
-	cos(theta) * sin(theta) - 0.8e1 * a2 * g21 *  g11 * g22 *  g12 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 *   
-	pow( g12,  3) * g22 * alpha * alpha * cos(theta) * sin(theta) - 
-	0.8e1 * a2 * g22 *  g12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 
-	* a2 *   pow( g11,  3) * g21 * alpha * alpha * 
-	cos(theta) * sin(theta) - 0.8e1 * a2 *  (g11 * g11) * g22 *  g12 
+	A2 =  (2 * a4 * a4 * g12 * g12) +  (2 * a4 * a4 * g11 * g11) +
+	 (2 * a4 * a4) + 0.2e1 * a2 *   pow( g12,
+	4) * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 *
+	pow( g11,  4) * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 *
+	a2 *  (g11 * g11) * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 *
+	 (g12 * g12) * beta * beta * pow(sin(theta), 0.2e1) - 0.4e1 * a2 * beta
+	* beta * sin(theta) * cos(theta) + 0.2e1 * a2 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a2 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21 *
+	 g11 *  (g12 * g12) * beta * beta * sin(theta) * cos(theta) +
+	0.2e1 * a2 * g21 * g21 *  (g11 * g11) * beta * beta * pow(cos(theta),
+	0.2e1) - 0.4e1 * a2 *  (g12 * g12) * beta * beta * sin(theta) *
+	cos(theta) + 0.4e1 * a2 * g21 *  g11 * beta * beta * pow(cos(theta),
+	0.2e1) + 0.2e1 * a2 * g22 * g22 *  (g12 * g12) * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g22 *  g12 * beta * beta *
+	sin(theta) * cos(theta) - 0.4e1 * a2 *  (g11 * g11) * beta * beta *
+	sin(theta) * cos(theta) - 0.4e1 * a2 * g21 *  g11 * beta * beta *
+	sin(theta) * cos(theta) + 0.4e1 * a2 *  (g11 * g11) *  (g12 *
+	g12) * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g22 *  g12 *
+	beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 *   pow(
+	g11,  3) * g21 * beta * beta * sin(theta) * cos(theta) - 0.4e1 * a2 *
+	 (g11 * g11) * g22 *  g12 * beta * beta * sin(theta) *
+	cos(theta) + 0.4e1 * a2 * g21 *  g11 * g22 *  g12 * beta * beta
+	* pow(cos(theta), 0.2e1) - 0.4e1 * a2 *   pow( g12,
+	 3) * g22 * beta * beta * sin(theta) * cos(theta) - 0.4e1 * a2 *
+	  pow( g11,  4) * alpha * alpha * pow(cos(theta),
+	0.2e1) - 0.8e1 * a2 *  (g11 * g11) * alpha * alpha * pow(cos(theta),
+	0.2e1) - 0.4e1 * a2 *   pow( g12,  4) * alpha *
+	alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a2 *  (g12 * g12) * alpha *
+	alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a2 * alpha * alpha * cos(theta) *
+	sin(theta) - 0.4e1 * a2 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a2 *
+	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 * g22 *  g12 * alpha
+	* alpha * cos(theta) * sin(theta) - 0.4e1 * a2 * g21 * g21 *  (g11 *
+	g11) * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 *  (g12 *
+	g12) * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a2 * g21 *  g11
+	* alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a2 * g22 * g22 *
+	(g12 * g12) * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 * g21 *
+	 g11 * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a2 *
+	(g11 * g11) *  (g12 * g12) * alpha * alpha * pow(cos(theta), 0.2e1) -
+	0.8e1 * a2 *  (g11 * g11) * alpha * alpha * cos(theta) * sin(theta) -
+	0.8e1 * a2 * g21 *  g11 *  (g12 * g12) * alpha * alpha *
+	cos(theta) * sin(theta) - 0.8e1 * a2 * g21 *  g11 * g22 *  g12 *
+	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a2 *
+	pow( g12,  3) * g22 * alpha * alpha * cos(theta) * sin(theta) -
+	0.8e1 * a2 * g22 *  g12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1
+	* a2 *   pow( g11,  3) * g21 * alpha * alpha *
+	cos(theta) * sin(theta) - 0.8e1 * a2 *  (g11 * g11) * g22 *  g12
 	* alpha * alpha * cos(theta) * sin(theta);
 
-	B0 = -0.2e1 * beta * sin(theta) * (a2 * g21 * g11 * g22 * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a2 * pow(g12, 0.3e1) * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a2 * g21 * h11 * g22 * g12 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a2 * g11 * h11 * g12 * g12 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * beta * beta * sin(theta) * cos(theta) 
-	- a4 * a4 * h11 * g11 + a2 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + 
-	a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g22 * 
-	h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g12 * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * g22 * g12 * beta * beta * sin(theta) * 
-	cos(theta) - a2 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 * 
-	h11 * g12 * g12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 * h11 * beta 
-	* beta * sin(theta) * cos(theta) - a2 * g11 * g11 * g22 * h12 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - a2 * g22 * h12 * beta * beta * sin(theta) * cos(theta) 
-	+ a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 * 
-	g21 * h11 * g11 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g21 * h11 * beta * 
-	beta * pow(cos(theta), 0.2e1) - a2 * g21 * g11 * g12 * h12 * beta * beta * 
-	sin(theta) * cos(theta) + a2 * g11 * g11 * g12 * h12 * beta * beta * 
+	B0 = -0.2e1 * beta * sin(theta) * (a2 * g21 * g11 * g22 * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) + a2 * pow(g12, 0.3e1) * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) + a2 * g21 * h11 * g22 * g12 * beta * beta *
+	pow(cos(theta), 0.2e1) + a2 * g11 * h11 * g12 * g12 * beta * beta *
+	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * beta * beta * sin(theta) * cos(theta)
+	- a4 * a4 * h11 * g11 + a2 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) +
+	a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g22 *
+	h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g12 * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * g22 * g12 * beta * beta * sin(theta) *
+	cos(theta) - a2 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 *
+	h11 * g12 * g12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 * h11 * beta
+	* beta * sin(theta) * cos(theta) - a2 * g11 * g11 * g22 * h12 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * g12 * h12 * g22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * g11 * h11 * g21 * beta * beta *
+	sin(theta) * cos(theta) - a2 * g22 * h12 * beta * beta * sin(theta) * cos(theta)
+	+ a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 *
+	g21 * h11 * g11 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g21 * h11 * beta *
+	beta * pow(cos(theta), 0.2e1) - a2 * g21 * g11 * g12 * h12 * beta * beta *
+	sin(theta) * cos(theta) + a2 * g11 * g11 * g12 * h12 * beta * beta *
 	pow(sin(theta), 0.2e1) - a4 * a4 * h12 * g12);
 
-	B1 = -0.2e1 * beta * sin(theta) * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g22 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sin(theta) * beta 
-	* cos(theta) - 0.2e1 * a2 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.2e1 * a2 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * 
-	g22 * h12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g11 * h11 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * g22 * g12 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g21 * h11 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta) 
-	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sin(theta) * beta * cos(theta) + 
-	0.4e1 * a2 * g11 * h11 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * 
-	g21 * g11 * g22 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 * 
-	g11 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * g21 * h11 
-	* g11 * alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * alpha * cos(theta) * 
-	(a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * 
-	pow(g12, 0.3e1) * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 * h11 * 
-	g22 * g12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g11 * h11 * g12 * g12 * 
-	beta * beta * pow(sin(theta), 0.2e1) - a2 * g11 * h11 * beta * beta * sin(theta) 
-	* cos(theta) - a4 * a4 * h11 * g11 + a2 * g11 * h11 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * g12 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a2 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + 
-	a2 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - a2 * g11 * h11 * g22 * 
-	g12 * beta * beta * sin(theta) * cos(theta) - a2 * g12 * h12 * beta * beta * 
-	sin(theta) * cos(theta) - a2 * g21 * h11 * g12 * g12 * beta * beta * sin(theta) 
-	* cos(theta) - a2 * g21 * h11 * beta * beta * sin(theta) * cos(theta) - a2 * g11 
-	* g11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * 
-	g12 * h12 * g22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * g11 
-	* h11 * g21 * beta * beta * sin(theta) * cos(theta) - a2 * g22 * h12 * beta * 
-	beta * sin(theta) * cos(theta) + a2 * pow(g11, 0.3e1) * h11 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a2 * g21 * g21 * h11 * g11 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a2 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 
-	a2 * g21 * g11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g11 * 
+	B1 = -0.2e1 * beta * sin(theta) * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha *
+	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g22 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sin(theta) * beta
+	* cos(theta) - 0.2e1 * a2 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.2e1 * a2 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 *
+	g22 * h12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g11 * h11 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * g22 * g12 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha *
+	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g21 * h11 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta)
+	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sin(theta) * beta * cos(theta) +
+	0.4e1 * a2 * g11 * h11 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 *
+	g21 * g11 * g22 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 *
+	g11 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * g21 * h11
+	* g11 * alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * alpha * cos(theta) *
+	(a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 *
+	pow(g12, 0.3e1) * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 * h11 *
+	g22 * g12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g11 * h11 * g12 * g12 *
+	beta * beta * pow(sin(theta), 0.2e1) - a2 * g11 * h11 * beta * beta * sin(theta)
+	* cos(theta) - a4 * a4 * h11 * g11 + a2 * g11 * h11 * beta * beta *
+	pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * g12 * beta * beta *
+	pow(cos(theta), 0.2e1) + a2 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) +
+	a2 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - a2 * g11 * h11 * g22 *
+	g12 * beta * beta * sin(theta) * cos(theta) - a2 * g12 * h12 * beta * beta *
+	sin(theta) * cos(theta) - a2 * g21 * h11 * g12 * g12 * beta * beta * sin(theta)
+	* cos(theta) - a2 * g21 * h11 * beta * beta * sin(theta) * cos(theta) - a2 * g11
+	* g11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 *
+	g12 * h12 * g22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * g11
+	* h11 * g21 * beta * beta * sin(theta) * cos(theta) - a2 * g22 * h12 * beta *
+	beta * sin(theta) * cos(theta) + a2 * pow(g11, 0.3e1) * h11 * beta * beta *
+	pow(sin(theta), 0.2e1) + a2 * g21 * g21 * h11 * g11 * beta * beta *
+	pow(cos(theta), 0.2e1) + a2 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) -
+	a2 * g21 * g11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g11 *
 	g11 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a4 * h12 * g12);
 
-	B2 = -0.2e1 * beta * sin(theta) * (0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * 
-	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * 
-	alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g11 * h11 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * g22 * h12 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.8e1 * a2 * g11 * g11 * h11 * g21 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 * g12 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g12 * g12 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a2 * g22 * h12 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g22 * h12 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a2 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a2 * g21 * g11 * g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 
-	0.8e1 * a2 * g12 * g12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) - 
-	0.2e1 * a4 * a4 * h11 * g11 - 0.2e1 * a4 * a4 * h12 * g12 - 0.2e1 * a2 * g22 * 
-	g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g12 * h12 
-	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g22 * h12 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g22 * h12 * beta * beta * pow(cos(theta), 
-	0.2e1) - 0.2e1 * a2 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * 
-	a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * 
-	g11 * g11 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11 
-	* g11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g11 * 
-	h11 * g22 * g12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * h12 
-	* beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * h11 * beta * beta * pow(sin(theta), 
-	0.2e1) - 0.2e1 * a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cos(theta), 
-	0.2e1) + 0.2e1 * a2 * g21 * h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1 
-	* a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 
-	* g21 * h11 * g22 * g12 * beta * beta * pow(cos(theta), 0.2e1)) - 0.4e1 * alpha 
-	* cos(theta) * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sin(theta) * beta 
-	* cos(theta) - 0.2e1 * a2 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * 
-	g22 * g22 * h12 * g12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * 
-	g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g12 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g22 * h12 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g11 * h11 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.2e1 * a2 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) * 
-	beta + 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * 
-	a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g21 * g11 
-	* g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * 
-	g12 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g11 * g22 * h12 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g11 * h11 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * 
-	sin(theta) * beta * cos(theta)) + 0.2e1 * beta * sin(theta) * (a2 * g21 * g11 * 
-	g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * pow(g12, 0.3e1) * h12 * 
-	beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 * h11 * g22 * g12 * beta * beta 
-	* pow(cos(theta), 0.2e1) + a2 * g11 * h11 * g12 * g12 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * beta * beta * sin(theta) * cos(theta) 
-	- a4 * a4 * h11 * g11 + a2 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + 
-	a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g22 * 
-	h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g12 * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * g22 * g12 * beta * beta * sin(theta) * 
-	cos(theta) - a2 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 * 
-	h11 * g12 * g12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 * h11 * beta 
-	* beta * sin(theta) * cos(theta) - a2 * g11 * g11 * g22 * h12 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - a2 * g22 * h12 * beta * beta * sin(theta) * cos(theta) 
-	+ a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 * 
-	g21 * h11 * g11 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g21 * h11 * beta * 
-	beta * pow(cos(theta), 0.2e1) - a2 * g21 * g11 * g12 * h12 * beta * beta * 
-	sin(theta) * cos(theta) + a2 * g11 * g11 * g12 * h12 * beta * beta * 
+	B2 = -0.2e1 * beta * sin(theta) * (0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha *
+	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha *
+	alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g11 * h11 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * g22 * h12 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.8e1 * a2 * g11 * g11 * h11 * g21 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 * g12 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g12 * g12 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a2 * g22 * h12 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g22 * h12 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a2 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a2 * g21 * g11 * g12 * h12 * alpha * alpha * cos(theta) * sin(theta) +
+	0.8e1 * a2 * g12 * g12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) -
+	0.2e1 * a4 * a4 * h11 * g11 - 0.2e1 * a4 * a4 * h12 * g12 - 0.2e1 * a2 * g22 *
+	g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g12 * h12
+	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g22 * h12 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g22 * h12 * beta * beta * pow(cos(theta),
+	0.2e1) - 0.2e1 * a2 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 *
+	a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 *
+	g11 * g11 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11
+	* g11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g11 *
+	h11 * g22 * g12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * h12
+	* beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * h11 * beta * beta * pow(sin(theta),
+	0.2e1) - 0.2e1 * a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cos(theta),
+	0.2e1) + 0.2e1 * a2 * g21 * h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1
+	* a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2
+	* g21 * h11 * g22 * g12 * beta * beta * pow(cos(theta), 0.2e1)) - 0.4e1 * alpha
+	* cos(theta) * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sin(theta) * beta
+	* cos(theta) - 0.2e1 * a2 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 *
+	g22 * g22 * h12 * g12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 *
+	g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g12 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g22 * h12 * alpha *
+	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g11 * h11 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sin(theta) *
+	beta * cos(theta) - 0.2e1 * a2 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) *
+	beta + 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 *
+	a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g21 * g11
+	* g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 *
+	g12 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g11 * g22 * h12 *
+	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g11 * h11 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha *
+	sin(theta) * beta * cos(theta)) + 0.2e1 * beta * sin(theta) * (a2 * g21 * g11 *
+	g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * pow(g12, 0.3e1) * h12 *
+	beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 * h11 * g22 * g12 * beta * beta
+	* pow(cos(theta), 0.2e1) + a2 * g11 * h11 * g12 * g12 * beta * beta *
+	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * beta * beta * sin(theta) * cos(theta)
+	- a4 * a4 * h11 * g11 + a2 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) +
+	a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g22 *
+	h12 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g12 * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) - a2 * g11 * h11 * g22 * g12 * beta * beta * sin(theta) *
+	cos(theta) - a2 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 *
+	h11 * g12 * g12 * beta * beta * sin(theta) * cos(theta) - a2 * g21 * h11 * beta
+	* beta * sin(theta) * cos(theta) - a2 * g11 * g11 * g22 * h12 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * g12 * h12 * g22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * g11 * h11 * g21 * beta * beta *
+	sin(theta) * cos(theta) - a2 * g22 * h12 * beta * beta * sin(theta) * cos(theta)
+	+ a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g21 *
+	g21 * h11 * g11 * beta * beta * pow(cos(theta), 0.2e1) + a2 * g21 * h11 * beta *
+	beta * pow(cos(theta), 0.2e1) - a2 * g21 * g11 * g12 * h12 * beta * beta *
+	sin(theta) * cos(theta) + a2 * g11 * g11 * g12 * h12 * beta * beta *
 	pow(sin(theta), 0.2e1) - a4 * a4 * h12 * g12);
 
-	B3 = -0.2e1 * beta * sin(theta) * (-0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g22 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sin(theta) * beta 
-	* cos(theta) + 0.2e1 * a2 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 
-	0.2e1 * a2 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * 
-	g22 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g11 * h11 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * h11 * g22 * g12 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g12 * h12 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g21 * h11 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta) 
-	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 
-	0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sin(theta) * beta * cos(theta) - 
-	0.4e1 * a2 * g11 * h11 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * 
-	g21 * g11 * g22 * h12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * 
-	g11 * h11 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * g21 * h11 
-	* g11 * alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * alpha * cos(theta) * 
-	(0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a2 * g11 * h11 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * 
-	g11 * g11 * g22 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * 
-	g11 * h11 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a2 * g11 * g11 * 
-	h11 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * pow(g12, 
-	0.3e1) * h12 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g22 * g12 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * alpha * alpha 
-	* cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 * g12 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g12 * g12 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a2 * g22 * h12 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g22 * h12 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a2 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a2 * g21 * g11 * g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 
-	0.8e1 * a2 * g12 * g12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) - 
-	0.2e1 * a4 * a4 * h11 * g11 - 0.2e1 * a4 * a4 * h12 * g12 - 0.2e1 * a2 * g22 * 
-	g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g12 * h12 
-	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g22 * h12 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g22 * h12 * beta * beta * pow(cos(theta), 
-	0.2e1) - 0.2e1 * a2 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * 
-	a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * 
-	g11 * g11 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11 
-	* g11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g11 * 
-	h11 * g22 * g12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * h12 
-	* beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * h11 * beta * beta * pow(sin(theta), 
-	0.2e1) - 0.2e1 * a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cos(theta), 
-	0.2e1) + 0.2e1 * a2 * g21 * h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1 
-	* a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 
-	* g21 * h11 * g22 * g12 * beta * beta * pow(cos(theta), 0.2e1)) + 0.2e1 * beta * 
-	sin(theta) * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sin(theta), 0.2e1) 
-	* alpha - 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * 
-	beta - 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cos(theta), 0.2e1) * 
-	beta + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * 
-	alpha - 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cos(theta), 0.2e1) * 
-	beta + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sin(theta), 0.2e1) * 
-	alpha + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sin(theta), 0.2e1) * 
-	alpha - 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cos(theta), 0.2e1) * 
-	beta + 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sin(theta), 0.2e1) * 
-	alpha + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.2e1 * a2 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * 
-	g22 * g22 * h12 * g12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * 
-	g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g12 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g22 * h12 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g11 * h11 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.2e1 * a2 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) * 
-	beta + 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * 
-	a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g21 * g11 
-	* g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * 
-	g12 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g11 * g22 * h12 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g11 * h11 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * 
+	B3 = -0.2e1 * beta * sin(theta) * (-0.2e1 * a2 * g11 * g11 * g22 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha *
+	sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g22 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sin(theta) * beta
+	* cos(theta) + 0.2e1 * a2 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta -
+	0.2e1 * a2 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 *
+	g22 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g11 * h11 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * h11 * g22 * g12 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g12 * h12 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha *
+	sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g21 * h11 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta)
+	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta -
+	0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sin(theta) * beta * cos(theta) -
+	0.4e1 * a2 * g11 * h11 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 *
+	g21 * g11 * g22 * h12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 *
+	g11 * h11 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g21 * g21 * h11
+	* g11 * alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * alpha * cos(theta) *
+	(0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a2 * g11 * h11 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 *
+	g11 * g11 * g22 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 *
+	g11 * h11 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a2 * g11 * g11 *
+	h11 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * pow(g12,
+	0.3e1) * h12 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g22 * g12 *
+	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * alpha * alpha
+	* cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 * g12 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g21 * h11 * g12 * g12 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a2 * g22 * h12 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g22 * h12 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a2 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a2 * g21 * g11 * g12 * h12 * alpha * alpha * cos(theta) * sin(theta) +
+	0.8e1 * a2 * g12 * g12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) -
+	0.2e1 * a4 * a4 * h11 * g11 - 0.2e1 * a4 * a4 * h12 * g12 - 0.2e1 * a2 * g22 *
+	g22 * h12 * g12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g12 * h12
+	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g22 * h12 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g22 * h12 * beta * beta * pow(cos(theta),
+	0.2e1) - 0.2e1 * a2 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 *
+	a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 *
+	g11 * g11 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11
+	* g11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a2 * g11 *
+	h11 * g22 * g12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 * h12
+	* beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a2 * g11 * h11 * beta * beta * pow(sin(theta),
+	0.2e1) - 0.2e1 * a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cos(theta),
+	0.2e1) + 0.2e1 * a2 * g21 * h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1
+	* a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2
+	* g21 * h11 * g22 * g12 * beta * beta * pow(cos(theta), 0.2e1)) + 0.2e1 * beta *
+	sin(theta) * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sin(theta), 0.2e1)
+	* alpha - 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) *
+	beta - 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cos(theta), 0.2e1) *
+	beta + 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sin(theta), 0.2e1) *
+	alpha - 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cos(theta), 0.2e1) *
+	beta + 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sin(theta), 0.2e1) *
+	alpha + 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sin(theta), 0.2e1) *
+	alpha - 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cos(theta), 0.2e1) *
+	beta + 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sin(theta), 0.2e1) *
+	alpha + 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sin(theta) * beta *
+	cos(theta) - 0.2e1 * a2 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.2e1 * a2 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 *
+	g22 * g22 * h12 * g12 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 *
+	g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a2 * g12 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g22 * h12 * alpha *
+	sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g11 * h11 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sin(theta) *
+	beta * cos(theta) - 0.2e1 * a2 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) *
+	beta + 0.2e1 * a2 * g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 *
+	a2 * g21 * h11 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a2 * g21 * g11
+	* g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 *
+	g12 * h12 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g11 * g22 * h12 *
+	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a2 * g11 * h11 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha *
 	sin(theta) * beta * cos(theta));
 
-	C0 = -beta * beta * pow(sin(theta), 0.2e1) * (-a4 * a4 * h12 * h12 + 0.2e1 * a2 
-	* g21 * h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * 
-	g11 * h11 * h11 * g21 * beta * beta * sin(theta) * cos(theta) - a4 * a4 * h11 * 
-	h11 - 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sin(theta) * cos(theta) 
-	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 
-	* g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g12 * g12 
-	* h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12 
-	* beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 * 
-	beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta 
-	* beta * sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta * 
+	C0 = -beta * beta * pow(sin(theta), 0.2e1) * (-a4 * a4 * h12 * h12 + 0.2e1 * a2
+	* g21 * h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 *
+	g11 * h11 * h11 * g21 * beta * beta * sin(theta) * cos(theta) - a4 * a4 * h11 *
+	h11 - 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sin(theta) * cos(theta)
+	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2
+	* g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g12 * g12
+	* h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12
+	* beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 *
+	beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta
+	* beta * sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta *
 	pow(sin(theta), 0.2e1));
 
-	C1 = -beta * beta * pow(sin(theta), 0.2e1) * (0.8e1 * a2 * g11 * h11 * g12 * 
-	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g22 * g22 * h12 * 
-	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g21 * h11 * 
-	h11 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * h11 * g12 * 
-	h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * h12 * h12 * g22 
-	* alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * h11 * g12 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * h11 * g21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * h11 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * g22 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * h12 * h12 * g22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.8e1 * a2 * g21 * h11 * g22 * h12 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * h12 * 
-	alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * beta * sin(theta) * alpha * 
-	cos(theta) * (-a4 * a4 * h12 * h12 + 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * 
-	beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta 
-	* sin(theta) * cos(theta) - a4 * a4 * h11 * h11 - 0.2e1 * a2 * g12 * h12 * h12 * 
-	g22 * beta * beta * sin(theta) * cos(theta) + a2 * g21 * g21 * h11 * h11 * beta 
-	* beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * 
-	beta * sin(theta) * cos(theta) + a2 * g12 * g12 * h12 * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * 
-	sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta * 
+	C1 = -beta * beta * pow(sin(theta), 0.2e1) * (0.8e1 * a2 * g11 * h11 * g12 *
+	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g22 * g22 * h12 *
+	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g21 * h11 *
+	h11 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * h11 * g12 *
+	h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * h12 * h12 * g22
+	* alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * h11 * g12 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * h11 * g21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * h11 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * g22 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * h12 * h12 * g22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.8e1 * a2 * g21 * h11 * g22 * h12 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * h12 *
+	alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * beta * sin(theta) * alpha *
+	cos(theta) * (-a4 * a4 * h12 * h12 + 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta *
+	beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta
+	* sin(theta) * cos(theta) - a4 * a4 * h11 * h11 - 0.2e1 * a2 * g12 * h12 * h12 *
+	g22 * beta * beta * sin(theta) * cos(theta) + a2 * g21 * g21 * h11 * h11 * beta
+	* beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta *
+	beta * sin(theta) * cos(theta) + a2 * g12 * g12 * h12 * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta *
+	sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta *
 	pow(sin(theta), 0.2e1));
 
-	C2 = -beta * beta * pow(sin(theta), 0.2e1) * (-0.4e1 * a2 * g11 * h11 * g12 * 
-	h12 * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * h12 * g22 
-	* beta * beta * sin(theta) * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * 
-	beta * beta * sin(theta) * cos(theta) - 0.2e1 * a4 * a4 * h12 * h12 + 0.4e1 * a2 
-	* g21 * g21 * h11 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 * 
-	g21 * h11 * g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * 
-	g12 * g12 * h12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * 
-	g22 * g22 * h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21 
-	* h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g11 * 
-	h11 * g22 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * 
-	h11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.8e1 * a2 * g11 * h11 
-	* g12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 * 
-	g22 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * g11 * 
-	h11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 
-	* h11 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a4 * a4 * h11 * h11 + 
-	0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.8e1 * a2 * g12 * h12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 
-	0.8e1 * a2 * g11 * h11 * h11 * g21 * alpha * alpha * cos(theta) * sin(theta) + 
-	0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - 
-	0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1)) - 
-	0.4e1 * beta * sin(theta) * alpha * cos(theta) * (0.8e1 * a2 * g11 * h11 * g12 * 
-	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g22 * g22 * h12 * 
-	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g21 * h11 * 
-	h11 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * h11 * g12 * 
-	h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * h12 * h12 * g22 
-	* alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * h11 * g12 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * h11 * g21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * h11 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * g22 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * h12 * h12 * g22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.8e1 * a2 * g21 * h11 * g22 * h12 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * h12 * 
-	alpha * sin(theta) * beta * cos(theta)) - (-0.2e1 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * alpha * alpha * pow(cos(theta), 0.2e1)) * (-a4 
-	* a4 * h12 * h12 + 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - a4 * a4 * h11 * h11 - 0.2e1 * a2 * g12 * h12 * h12 * 
-	g22 * beta * beta * sin(theta) * cos(theta) + a2 * g21 * g21 * h11 * h11 * beta 
-	* beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * 
-	beta * sin(theta) * cos(theta) + a2 * g12 * g12 * h12 * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * 
-	sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta * 
+	C2 = -beta * beta * pow(sin(theta), 0.2e1) * (-0.4e1 * a2 * g11 * h11 * g12 *
+	h12 * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * h12 * g22
+	* beta * beta * sin(theta) * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 *
+	beta * beta * sin(theta) * cos(theta) - 0.2e1 * a4 * a4 * h12 * h12 + 0.4e1 * a2
+	* g21 * g21 * h11 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 *
+	g21 * h11 * g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 *
+	g12 * g12 * h12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a2 *
+	g22 * g22 * h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21
+	* h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g11 *
+	h11 * g22 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g11 *
+	h11 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.8e1 * a2 * g11 * h11
+	* g12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 *
+	g22 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * g11 *
+	h11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * h11
+	* h11 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a4 * a4 * h11 * h11 +
+	0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.8e1 * a2 * g12 * h12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) +
+	0.8e1 * a2 * g11 * h11 * h11 * g21 * alpha * alpha * cos(theta) * sin(theta) +
+	0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) -
+	0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1)) -
+	0.4e1 * beta * sin(theta) * alpha * cos(theta) * (0.8e1 * a2 * g11 * h11 * g12 *
+	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g22 * g22 * h12 *
+	h12 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g21 * h11 *
+	h11 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * h11 * g12 *
+	h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * h12 * h12 * g22
+	* alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * h11 * g12 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * h11 * g21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * h11 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * g22 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * h12 * h12 * g22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.8e1 * a2 * g21 * h11 * g22 * h12 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * h12 *
+	alpha * sin(theta) * beta * cos(theta)) - (-0.2e1 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * alpha * alpha * pow(cos(theta), 0.2e1)) * (-a4
+	* a4 * h12 * h12 + 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta *
+	sin(theta) * cos(theta) - a4 * a4 * h11 * h11 - 0.2e1 * a2 * g12 * h12 * h12 *
+	g22 * beta * beta * sin(theta) * cos(theta) + a2 * g21 * g21 * h11 * h11 * beta
+	* beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta *
+	beta * sin(theta) * cos(theta) + a2 * g12 * g12 * h12 * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta *
+	sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta *
 	pow(sin(theta), 0.2e1));
 
-	C3 = -beta * beta * pow(sin(theta), 0.2e1) * (0.4e1 * a2 * g21 * h11 * g12 * h12 
-	* alpha * pow(cos(theta), 0.2e1) * beta - 0.8e1 * a2 * g11 * h11 * g12 * h12 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a2 * g21 * h11 * g22 * h12 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g12 * h12 * h12 * g22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g12 * g12 * h12 * h12 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * h12 * g22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * g21 * h11 * h11 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g11 * h11 * h11 * g21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g11 * h11 * g22 * h12 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g21 * h11 * g12 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * g11 * h11 * h11 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g22 * g22 * h12 * h12 * 
-	alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * beta * sin(theta) * alpha * 
-	cos(theta) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * 
-	sin(theta) * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a4 * a4 * h12 * h12 + 0.4e1 * a2 * g21 * g21 * 
-	h11 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 * 
-	g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g12 * g12 * 
-	h12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g22 * g22 * 
-	h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21 * h11 * g22 
-	* h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g11 * h11 * g22 * 
-	h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 * 
-	h12 * beta * beta * sin(theta) * cos(theta) + 0.8e1 * a2 * g11 * h11 * g12 * h12 
-	* alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 * g22 * h12 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * g11 * h11 * h11 * 
-	beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * h11 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a4 * a4 * h11 * h11 + 0.4e1 * 
-	a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 
-	* g12 * h12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a2 * 
-	g11 * h11 * h11 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * 
-	g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 
-	* g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g21 * 
-	g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1)) - (-0.2e1 * beta * beta 
-	* pow(sin(theta), 0.2e1) + 0.4e1 * alpha * alpha * pow(cos(theta), 0.2e1)) * 
-	(0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sin(theta) * beta * cos(theta) - 
-	0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sin(theta) * beta * cos(theta) - 
-	0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sin(theta) * beta * cos(theta) - 
-	0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 
-	0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 
-	0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sin(theta) * beta * cos(theta) + 
-	0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha + 
-	0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sin(theta) * beta * cos(theta) + 
-	0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sin(theta), 0.2e1) * alpha + 
-	0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sin(theta) * beta * cos(theta)) + 
-	0.4e1 * beta * sin(theta) * alpha * cos(theta) * (-a4 * a4 * h12 * h12 + 0.2e1 * 
-	a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * 
-	g11 * h11 * h11 * g21 * beta * beta * sin(theta) * cos(theta) - a4 * a4 * h11 * 
-	h11 - 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sin(theta) * cos(theta) 
-	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 
-	* g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g12 * g12 
-	* h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12 
-	* beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 * 
-	beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta 
-	* beta * sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta * 
+	C3 = -beta * beta * pow(sin(theta), 0.2e1) * (0.4e1 * a2 * g21 * h11 * g12 * h12
+	* alpha * pow(cos(theta), 0.2e1) * beta - 0.8e1 * a2 * g11 * h11 * g12 * h12 *
+	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a2 * g21 * h11 * g22 * h12 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g12 * h12 * h12 * g22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g12 * g12 * h12 * h12 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g12 * h12 * h12 * g22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * g21 * h11 * h11 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g11 * h11 * h11 * g21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g11 * h11 * g22 * h12 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g21 * h11 * g12 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * g11 * h11 * h11 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g22 * g22 * h12 * h12 *
+	alpha * sin(theta) * beta * cos(theta)) - 0.4e1 * beta * sin(theta) * alpha *
+	cos(theta) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * beta *
+	sin(theta) * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a4 * a4 * h12 * h12 + 0.4e1 * a2 * g21 * g21 *
+	h11 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 *
+	g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g12 * g12 *
+	h12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g22 * g22 *
+	h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21 * h11 * g22
+	* h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g11 * h11 * g22 *
+	h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 *
+	h12 * beta * beta * sin(theta) * cos(theta) + 0.8e1 * a2 * g11 * h11 * g12 * h12
+	* alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 * g22 * h12 *
+	alpha * alpha * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * g11 * h11 * h11 *
+	beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * h11 *
+	alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a4 * a4 * h11 * h11 + 0.4e1 *
+	a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2
+	* g12 * h12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a2 *
+	g11 * h11 * h11 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 *
+	g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12
+	* g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g21 *
+	g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1)) - (-0.2e1 * beta * beta
+	* pow(sin(theta), 0.2e1) + 0.4e1 * alpha * alpha * pow(cos(theta), 0.2e1)) *
+	(0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sin(theta) * beta * cos(theta) -
+	0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sin(theta) * beta * cos(theta) -
+	0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sin(theta) * beta * cos(theta) -
+	0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta -
+	0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cos(theta), 0.2e1) * beta -
+	0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sin(theta) * beta * cos(theta) +
+	0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha +
+	0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sin(theta) * beta * cos(theta) +
+	0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sin(theta), 0.2e1) * alpha +
+	0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sin(theta) * beta * cos(theta)) +
+	0.4e1 * beta * sin(theta) * alpha * cos(theta) * (-a4 * a4 * h12 * h12 + 0.2e1 *
+	a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2 *
+	g11 * h11 * h11 * g21 * beta * beta * sin(theta) * cos(theta) - a4 * a4 * h11 *
+	h11 - 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sin(theta) * cos(theta)
+	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a2
+	* g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g12 * g12
+	* h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g22 * g22 * h12 * h12
+	* beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 * g12 * h12 *
+	beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta
+	* beta * sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * beta * beta *
 	pow(sin(theta), 0.2e1));
 
-	C4 = -0.2e1 * beta * beta * pow(sin(theta), 0.2e1) * (-a4 * a4 * h12 * h12 + 
-	0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 
-	0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sin(theta) * cos(theta) - a4 
-	* a4 * h11 * h11 - 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sin(theta) 
-	* cos(theta) + a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1) 
-	- 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) + 
-	a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g22 * 
-	g22 * h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11 
-	* g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 * 
-	g22 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 * 
-	beta * beta * pow(sin(theta), 0.2e1)) - 0.4e1 * beta * sin(theta) * alpha * 
-	cos(theta) * (0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sin(theta), 0.2e1) 
-	* alpha - 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cos(theta), 0.2e1) 
-	* beta + 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sin(theta), 0.2e1) 
-	* alpha + 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * 
-	beta - 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sin(theta), 0.2e1) * 
-	alpha - 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cos(theta), 0.2e1) 
-	* beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * 
-	alpha + 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sin(theta) * beta * 
-	cos(theta)) - (-0.2e1 * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * alpha * 
-	alpha * pow(cos(theta), 0.2e1)) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * 
-	beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * beta 
-	* sin(theta) * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a4 * a4 * h12 * h12 + 0.4e1 * a2 * g21 * g21 * 
-	h11 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 * 
-	g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g12 * g12 * 
-	h12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g22 * g22 * 
-	h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21 * h11 * g22 
-	* h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g11 * h11 * g22 * 
-	h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 * 
-	h12 * beta * beta * sin(theta) * cos(theta) + 0.8e1 * a2 * g11 * h11 * g12 * h12 
-	* alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 * g22 * h12 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * g11 * h11 * h11 * 
-	beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * h11 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a4 * a4 * h11 * h11 + 0.4e1 * 
-	a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 
-	* g12 * h12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a2 * 
-	g11 * h11 * h11 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * 
-	g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12 
-	* g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g21 * 
-	g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1)) + 0.4e1 * beta * 
-	sin(theta) * alpha * cos(theta) * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * 
+	C4 = -0.2e1 * beta * beta * pow(sin(theta), 0.2e1) * (-a4 * a4 * h12 * h12 +
+	0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) -
+	0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sin(theta) * cos(theta) - a4
+	* a4 * h11 * h11 - 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sin(theta)
+	* cos(theta) + a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1)
+	- 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) +
+	a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a2 * g22 *
+	g22 * h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a2 * g11 * h11
+	* g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * h11 *
+	g22 * h12 * beta * beta * sin(theta) * cos(theta) + a2 * g11 * g11 * h11 * h11 *
+	beta * beta * pow(sin(theta), 0.2e1)) - 0.4e1 * beta * sin(theta) * alpha *
+	cos(theta) * (0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sin(theta) * beta *
+	cos(theta) + 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sin(theta) * beta *
+	cos(theta) - 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sin(theta), 0.2e1)
+	* alpha - 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sin(theta) * beta *
+	cos(theta) + 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cos(theta), 0.2e1)
+	* beta + 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sin(theta) * beta *
+	cos(theta) - 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sin(theta), 0.2e1)
+	* alpha + 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) *
+	beta - 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sin(theta), 0.2e1) *
+	alpha - 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sin(theta) * beta *
+	cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cos(theta), 0.2e1)
+	* beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sin(theta), 0.2e1) *
+	alpha + 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sin(theta) * beta *
+	cos(theta)) - (-0.2e1 * beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * alpha *
+	alpha * pow(cos(theta), 0.2e1)) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta *
+	beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * beta
+	* sin(theta) * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a4 * a4 * h12 * h12 + 0.4e1 * a2 * g21 * g21 *
+	h11 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 *
+	g12 * h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g12 * g12 *
+	h12 * h12 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a2 * g22 * g22 *
+	h12 * h12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a2 * g21 * h11 * g22
+	* h12 * beta * beta * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g11 * h11 * g22 *
+	h12 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 * g11 * h11 * g22 *
+	h12 * beta * beta * sin(theta) * cos(theta) + 0.8e1 * a2 * g11 * h11 * g12 * h12
+	* alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a2 * g21 * h11 * g22 * h12 *
+	alpha * alpha * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g11 * g11 * h11 * h11 *
+	beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a2 * g11 * g11 * h11 * h11 *
+	alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a4 * a4 * h11 * h11 + 0.4e1 *
+	a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a2
+	* g12 * h12 * h12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a2 *
+	g11 * h11 * h11 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a2 *
+	g21 * h11 * g12 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a2 * g12
+	* g12 * h12 * h12 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a2 * g21 *
+	g21 * h11 * h11 * beta * beta * pow(cos(theta), 0.2e1)) + 0.4e1 * beta *
+	sin(theta) * alpha * cos(theta) * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha *
 	sin(theta) * beta * cos(theta));
 
-	E0 = 0.2e1 * a3 * g21 * g21 * g12 * g22 * beta * beta * cos(theta) * 
-	sin(theta) + 0.2e1 * a3 * g12 * g22 * beta * beta * cos(theta) * sin(theta) + 
-	0.2e1 * a3 * g12 * pow(g22, 0.3e1) * beta * beta * cos(theta) * sin(theta) - a3 
-	* beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g12 * g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * g21 * beta * beta * pow(sin(theta), 
-	0.2e1) - a3 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a3 * g11 * g21 * 
-	beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g22 * g22 * beta * beta * 
-	cos(theta) * sin(theta) - a3 * pow(g21, 0.4e1) * beta * beta * pow(cos(theta), 
-	0.2e1) + 0.2e1 * a3 * g21 * g21 * beta * beta * cos(theta) * sin(theta) - a3 * 
-	g12 * g12 * g22 * g22 * beta * beta * pow(sin(theta), 0.2e1) - a3 * g11 * g11 * 
-	g21 * g21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g21 * g21 * g22 
-	* g22 * beta * beta * pow(cos(theta), 0.2e1) + a6 * a6 * g21 * g21 + a6 * a6 * 
-	g22 * g22 + 0.2e1 * a3 * g11 * pow(g21, 0.3e1) * beta * beta * cos(theta) * 
-	sin(theta) + 0.2e1 * a3 * g11 * g21 * g22 * g22 * beta * beta * cos(theta) * 
-	sin(theta) - 0.2e1 * a3 * g11 * g21 * g12 * g22 * beta * beta * pow(sin(theta), 
-	0.2e1) + a6 * a6 - 0.2e1 * a3 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1) 
-	- 0.2e1 * a3 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a3 * pow(g22, 
-	0.4e1) * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a3 * beta * beta * 
+	E0 = 0.2e1 * a3 * g21 * g21 * g12 * g22 * beta * beta * cos(theta) *
+	sin(theta) + 0.2e1 * a3 * g12 * g22 * beta * beta * cos(theta) * sin(theta) +
+	0.2e1 * a3 * g12 * pow(g22, 0.3e1) * beta * beta * cos(theta) * sin(theta) - a3
+	* beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g12 * g22 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * g21 * beta * beta * pow(sin(theta),
+	0.2e1) - a3 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a3 * g11 * g21 *
+	beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g22 * g22 * beta * beta *
+	cos(theta) * sin(theta) - a3 * pow(g21, 0.4e1) * beta * beta * pow(cos(theta),
+	0.2e1) + 0.2e1 * a3 * g21 * g21 * beta * beta * cos(theta) * sin(theta) - a3 *
+	g12 * g12 * g22 * g22 * beta * beta * pow(sin(theta), 0.2e1) - a3 * g11 * g11 *
+	g21 * g21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g21 * g21 * g22
+	* g22 * beta * beta * pow(cos(theta), 0.2e1) + a6 * a6 * g21 * g21 + a6 * a6 *
+	g22 * g22 + 0.2e1 * a3 * g11 * pow(g21, 0.3e1) * beta * beta * cos(theta) *
+	sin(theta) + 0.2e1 * a3 * g11 * g21 * g22 * g22 * beta * beta * cos(theta) *
+	sin(theta) - 0.2e1 * a3 * g11 * g21 * g12 * g22 * beta * beta * pow(sin(theta),
+	0.2e1) + a6 * a6 - 0.2e1 * a3 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1)
+	- 0.2e1 * a3 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a3 * pow(g22,
+	0.4e1) * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a3 * beta * beta *
 	cos(theta) * sin(theta);
 
-	E1 = -0.4e1 * a3 * g11 * g11 * g21 * g21 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.8e1 * a3 * g21 * g21 * g22 * g22 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.4e1 * a3 * g12 * g12 * g22 * g22 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.4e1 * a3 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha - 
-	0.4e1 * a3 * g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.8e1 * a3 * 
-	g11 * g21 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g12 * g22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * g22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g21 * g21 * g12 * g22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g12 * pow(g22, 0.3e1) * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * pow(g22, 0.3e1) * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.8e1 * a3 * g21 * g21 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a3 * pow(g21, 0.4e1) * alpha * sin(theta) * beta * 
-	cos(theta) - 0.4e1 * a3 * g11 * g21 * alpha * pow(sin(theta), 0.2e1) * beta + 
-	0.4e1 * a3 * g11 * g21 * beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * 
-	g12 * g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * 
-	g12 * g22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * g21 * g22 
-	* g22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g11 * g21 * g12 * 
-	g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * pow(g21, 
-	0.3e1) * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * pow(g21, 
-	0.3e1) * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g21 * g21 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.8e1 * a3 * g22 * g22 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.4e1 * a3 * alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * 
-	a3 * g21 * g21 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * pow(g22, 
-	0.4e1) * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * g21 * g22 * 
-	g22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * beta * 
+	E1 = -0.4e1 * a3 * g11 * g11 * g21 * g21 * alpha * sin(theta) * beta *
+	cos(theta) + 0.8e1 * a3 * g21 * g21 * g22 * g22 * alpha * sin(theta) * beta *
+	cos(theta) - 0.4e1 * a3 * g12 * g12 * g22 * g22 * alpha * sin(theta) * beta *
+	cos(theta) + 0.4e1 * a3 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha -
+	0.4e1 * a3 * g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.8e1 * a3 *
+	g11 * g21 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g12 * g22 *
+	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * g22 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g21 * g21 * g12 * g22 * beta *
+	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g12 * pow(g22, 0.3e1) * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * pow(g22, 0.3e1) * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.8e1 * a3 * g21 * g21 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a3 * pow(g21, 0.4e1) * alpha * sin(theta) * beta *
+	cos(theta) - 0.4e1 * a3 * g11 * g21 * alpha * pow(sin(theta), 0.2e1) * beta +
+	0.4e1 * a3 * g11 * g21 * beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 *
+	g12 * g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 *
+	g12 * g22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * g21 * g22
+	* g22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g11 * g21 * g12 *
+	g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * pow(g21,
+	0.3e1) * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * pow(g21,
+	0.3e1) * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g21 * g21 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.8e1 * a3 * g22 * g22 * alpha * sin(theta) *
+	beta * cos(theta) - 0.4e1 * a3 * alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 *
+	a3 * g21 * g21 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * pow(g22,
+	0.4e1) * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * g21 * g22 *
+	g22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * beta *
 	pow(cos(theta), 0.2e1) * alpha;
 
-	E2 = -0.4e1 * a3 * g21 * g21 * g12 * g22 * beta * beta * cos(theta) * sin(theta) 
-	- 0.4e1 * a3 * g12 * g22 * beta * beta * cos(theta) * sin(theta) - 0.4e1 * a3 * 
-	g12 * pow(g22, 0.3e1) * beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * 
-	beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g12 * g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * g21 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a3 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a3 * g11 * 
-	g21 * beta * beta * cos(theta) * sin(theta) - 0.4e1 * a3 * g22 * g22 * beta * 
-	beta * cos(theta) * sin(theta) + 0.2e1 * a3 * pow(g21, 0.4e1) * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.4e1 * a3 * g21 * g21 * beta * beta * cos(theta) * 
-	sin(theta) + 0.2e1 * a3 * g12 * g12 * g22 * g22 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a3 * g11 * g11 * g21 * g21 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.4e1 * a3 * g21 * g21 * g22 * g22 * beta * beta * pow(cos(theta), 
-	0.2e1) + 0.2e1 * a6 * a6 * g21 * g21 + 0.2e1 * a6 * a6 * g22 * g22 - 0.4e1 * a3 
-	* g11 * pow(g21, 0.3e1) * beta * beta * cos(theta) * sin(theta) - 0.4e1 * a3 * 
-	g11 * g21 * g22 * g22 * beta * beta * cos(theta) * sin(theta) + 0.4e1 * a3 * g11 
-	* g21 * g12 * g22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a6 * a6 - 
-	0.4e1 * a3 * g11 * g11 * g21 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) - 
-	0.8e1 * a3 * g12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a3 * 
-	g11 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a3 * g12 * g22 * 
-	alpha * alpha * sin(theta) * cos(theta) - 0.8e1 * a3 * g12 * pow(g22, 0.3e1) * 
-	alpha * alpha * sin(theta) * cos(theta) - 0.8e1 * a3 * g21 * g21 * g22 * g22 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a3 * g22 * g22 * alpha * alpha 
-	* sin(theta) * cos(theta) - 0.8e1 * a3 * g21 * g21 * g12 * g22 * alpha * alpha * 
-	sin(theta) * cos(theta) - 0.8e1 * a3 * g11 * pow(g21, 0.3e1) * alpha * alpha * 
-	sin(theta) * cos(theta) - 0.4e1 * a3 * alpha * alpha * pow(sin(theta), 0.2e1) - 
-	0.8e1 * a3 * g11 * g21 * g12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) - 
-	0.4e1 * a3 * g12 * g12 * g22 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) - 
-	0.8e1 * a3 * g21 * g21 * alpha * alpha * sin(theta) * cos(theta) - 0.8e1 * a3 * 
-	g11 * g21 * alpha * alpha * sin(theta) * cos(theta) - 0.4e1 * a3 * alpha * alpha 
-	* pow(cos(theta), 0.2e1) - 0.8e1 * a3 * g11 * g21 * g22 * g22 * alpha * alpha * 
-	sin(theta) * cos(theta) + 0.4e1 * a3 * g21 * g21 * beta * beta * pow(cos(theta), 
-	0.2e1) + 0.4e1 * a3 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * 
-	a3 * pow(g22, 0.4e1) * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a3 * beta 
-	* beta * cos(theta) * sin(theta) - 0.4e1 * a3 * pow(g21, 0.4e1) * alpha * alpha 
-	* pow(sin(theta), 0.2e1) - 0.8e1 * a3 * g21 * g21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) - 0.8e1 * a3 * alpha * alpha * sin(theta) * cos(theta) - 
-	0.4e1 * a3 * pow(g22, 0.4e1) * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * 
+	E2 = -0.4e1 * a3 * g21 * g21 * g12 * g22 * beta * beta * cos(theta) * sin(theta)
+	- 0.4e1 * a3 * g12 * g22 * beta * beta * cos(theta) * sin(theta) - 0.4e1 * a3 *
+	g12 * pow(g22, 0.3e1) * beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 *
+	beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g12 * g22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * g21 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a3 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a3 * g11 *
+	g21 * beta * beta * cos(theta) * sin(theta) - 0.4e1 * a3 * g22 * g22 * beta *
+	beta * cos(theta) * sin(theta) + 0.2e1 * a3 * pow(g21, 0.4e1) * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.4e1 * a3 * g21 * g21 * beta * beta * cos(theta) *
+	sin(theta) + 0.2e1 * a3 * g12 * g12 * g22 * g22 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a3 * g11 * g11 * g21 * g21 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.4e1 * a3 * g21 * g21 * g22 * g22 * beta * beta * pow(cos(theta),
+	0.2e1) + 0.2e1 * a6 * a6 * g21 * g21 + 0.2e1 * a6 * a6 * g22 * g22 - 0.4e1 * a3
+	* g11 * pow(g21, 0.3e1) * beta * beta * cos(theta) * sin(theta) - 0.4e1 * a3 *
+	g11 * g21 * g22 * g22 * beta * beta * cos(theta) * sin(theta) + 0.4e1 * a3 * g11
+	* g21 * g12 * g22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a6 * a6 -
+	0.4e1 * a3 * g11 * g11 * g21 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) -
+	0.8e1 * a3 * g12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a3 *
+	g11 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a3 * g12 * g22 *
+	alpha * alpha * sin(theta) * cos(theta) - 0.8e1 * a3 * g12 * pow(g22, 0.3e1) *
+	alpha * alpha * sin(theta) * cos(theta) - 0.8e1 * a3 * g21 * g21 * g22 * g22 *
+	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a3 * g22 * g22 * alpha * alpha
+	* sin(theta) * cos(theta) - 0.8e1 * a3 * g21 * g21 * g12 * g22 * alpha * alpha *
+	sin(theta) * cos(theta) - 0.8e1 * a3 * g11 * pow(g21, 0.3e1) * alpha * alpha *
+	sin(theta) * cos(theta) - 0.4e1 * a3 * alpha * alpha * pow(sin(theta), 0.2e1) -
+	0.8e1 * a3 * g11 * g21 * g12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) -
+	0.4e1 * a3 * g12 * g12 * g22 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) -
+	0.8e1 * a3 * g21 * g21 * alpha * alpha * sin(theta) * cos(theta) - 0.8e1 * a3 *
+	g11 * g21 * alpha * alpha * sin(theta) * cos(theta) - 0.4e1 * a3 * alpha * alpha
+	* pow(cos(theta), 0.2e1) - 0.8e1 * a3 * g11 * g21 * g22 * g22 * alpha * alpha *
+	sin(theta) * cos(theta) + 0.4e1 * a3 * g21 * g21 * beta * beta * pow(cos(theta),
+	0.2e1) + 0.4e1 * a3 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 *
+	a3 * pow(g22, 0.4e1) * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a3 * beta
+	* beta * cos(theta) * sin(theta) - 0.4e1 * a3 * pow(g21, 0.4e1) * alpha * alpha
+	* pow(sin(theta), 0.2e1) - 0.8e1 * a3 * g21 * g21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) - 0.8e1 * a3 * alpha * alpha * sin(theta) * cos(theta) -
+	0.4e1 * a3 * pow(g22, 0.4e1) * alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 *
 	a3 * g22 * g22 * alpha * alpha * pow(sin(theta), 0.2e1);
 
-	F0 = -0.2e1 * beta * cos(theta) * (-a6 * a6 * h22 * g22 - a6 * a6 * h21 * g21 - 
-	a3 * g11 * h21 * g22 * g22 * beta * beta * cos(theta) * sin(theta) + a3 * g11 * 
-	h21 * g12 * g22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 
-	* g21 * g21 * beta * beta * cos(theta) * sin(theta) + a3 * pow(g22, 0.3e1) * h22 
-	* beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a3 * g21 * h21 * g12 * g22 * beta * beta * cos(theta) * 
-	sin(theta) + a3 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g12 * 
-	g12 * h22 * g22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g21 * h21 * g22 * 
-	g22 * beta * beta * pow(cos(theta), 0.2e1) - a3 * g21 * g21 * g12 * h22 * beta * 
-	beta * cos(theta) * sin(theta) - a3 * g11 * h21 * beta * beta * cos(theta) * 
-	sin(theta) + a3 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - a3 * g11 * 
-	g21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) - a3 * g22 * h22 * beta 
-	* beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g12 * h22 * g22 * g22 * beta * 
-	beta * cos(theta) * sin(theta) + a3 * g21 * h21 * beta * beta * pow(cos(theta), 
-	0.2e1) + a3 * g21 * g21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - a3 
-	* g21 * h21 * beta * beta * cos(theta) * sin(theta) - a3 * g12 * h22 * beta * 
-	beta * cos(theta) * sin(theta) + a3 * g11 * g11 * h21 * g21 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a3 * pow(g21, 0.3e1) * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a3 * g11 * g21 * g12 * h22 * beta * beta * 
+	F0 = -0.2e1 * beta * cos(theta) * (-a6 * a6 * h22 * g22 - a6 * a6 * h21 * g21 -
+	a3 * g11 * h21 * g22 * g22 * beta * beta * cos(theta) * sin(theta) + a3 * g11 *
+	h21 * g12 * g22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21
+	* g21 * g21 * beta * beta * cos(theta) * sin(theta) + a3 * pow(g22, 0.3e1) * h22
+	* beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - a3 * g21 * h21 * g12 * g22 * beta * beta * cos(theta) *
+	sin(theta) + a3 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g12 *
+	g12 * h22 * g22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g21 * h21 * g22 *
+	g22 * beta * beta * pow(cos(theta), 0.2e1) - a3 * g21 * g21 * g12 * h22 * beta *
+	beta * cos(theta) * sin(theta) - a3 * g11 * h21 * beta * beta * cos(theta) *
+	sin(theta) + a3 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - a3 * g11 *
+	g21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) - a3 * g22 * h22 * beta
+	* beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g12 * h22 * g22 * g22 * beta *
+	beta * cos(theta) * sin(theta) + a3 * g21 * h21 * beta * beta * pow(cos(theta),
+	0.2e1) + a3 * g21 * g21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - a3
+	* g21 * h21 * beta * beta * cos(theta) * sin(theta) - a3 * g12 * h22 * beta *
+	beta * cos(theta) * sin(theta) + a3 * g11 * g11 * h21 * g21 * beta * beta *
+	pow(sin(theta), 0.2e1) + a3 * pow(g21, 0.3e1) * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + a3 * g11 * g21 * g12 * h22 * beta * beta *
 	pow(sin(theta), 0.2e1));
 
-	F1 = -0.2e1 * beta * cos(theta) * (-0.4e1 * a3 * g21 * h21 * alpha * sin(theta) 
-	* beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.2e1 * a3 * g21 * h21 * alpha * pow(sin(theta), 0.2e1) * 
-	beta - 0.2e1 * a3 * g21 * h21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.2e1 * 
-	a3 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * g12 
-	* h22 * g22 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * h22 * 
-	g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * g22 
-	* g22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g21 * h21 * g22 * 
-	g22 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g21 * g21 * g12 * 
-	h22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g21 * g21 * g12 * h22 
-	* beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 * a3 * g11 * h21 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * h21 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.4e1 * a3 * g22 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sin(theta), 0.2e1) 
-	* beta - 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cos(theta), 0.2e1) * 
-	alpha + 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) 
-	* beta - 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) * 
-	alpha + 0.4e1 * a3 * g12 * h22 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 
-	* a3 * g11 * h21 * g12 * g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * 
-	a3 * g11 * h21 * g21 * g21 * beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 
-	* pow(g22, 0.3e1) * h22 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a3 * 
-	g11 * h21 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11 
-	* h21 * alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g12 * h22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g22 * h22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g22 * h22 * beta * pow(cos(theta), 
-	0.2e1) * alpha) + 0.4e1 * alpha * sin(theta) * (-a6 * a6 * h22 * g22 - a6 * a6 * 
-	h21 * g21 - a3 * g11 * h21 * g22 * g22 * beta * beta * cos(theta) * sin(theta) + 
-	a3 * g11 * h21 * g12 * g22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * 
-	g11 * h21 * g21 * g21 * beta * beta * cos(theta) * sin(theta) + a3 * pow(g22, 
-	0.3e1) * h22 * beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * h22 * beta * 
-	beta * pow(cos(theta), 0.2e1) - a3 * g21 * h21 * g12 * g22 * beta * beta * 
-	cos(theta) * sin(theta) + a3 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) 
-	+ a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g21 * 
-	h21 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a3 * g21 * g21 * g12 * 
-	h22 * beta * beta * cos(theta) * sin(theta) - a3 * g11 * h21 * beta * beta * 
-	cos(theta) * sin(theta) + a3 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) 
-	- a3 * g11 * g21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) - a3 * g22 
-	* h22 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g12 * h22 * g22 * 
-	g22 * beta * beta * cos(theta) * sin(theta) + a3 * g21 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a3 * g21 * g21 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a3 * g21 * h21 * beta * beta * cos(theta) * sin(theta) 
-	- a3 * g12 * h22 * beta * beta * cos(theta) * sin(theta) + a3 * g11 * g11 * h21 
-	* g21 * beta * beta * pow(sin(theta), 0.2e1) + a3 * pow(g21, 0.3e1) * h21 * beta 
-	* beta * pow(cos(theta), 0.2e1) + a3 * g11 * g21 * g12 * h22 * beta * beta * 
+	F1 = -0.2e1 * beta * cos(theta) * (-0.4e1 * a3 * g21 * h21 * alpha * sin(theta)
+	* beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * sin(theta) *
+	beta * cos(theta) - 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * sin(theta) *
+	beta * cos(theta) + 0.2e1 * a3 * g21 * h21 * alpha * pow(sin(theta), 0.2e1) *
+	beta - 0.2e1 * a3 * g21 * h21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.2e1 *
+	a3 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * g12
+	* h22 * g22 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * h22 *
+	g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * g22
+	* g22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g21 * h21 * g22 *
+	g22 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g21 * g21 * g12 *
+	h22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g21 * g21 * g12 * h22
+	* beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 * a3 * g11 * h21 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * h21 * alpha * sin(theta) *
+	beta * cos(theta) - 0.4e1 * a3 * g22 * h22 * alpha * sin(theta) * beta *
+	cos(theta) + 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sin(theta), 0.2e1)
+	* beta - 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cos(theta), 0.2e1) *
+	alpha + 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sin(theta) * beta *
+	cos(theta) + 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1)
+	* beta - 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) *
+	alpha + 0.4e1 * a3 * g12 * h22 * alpha * sin(theta) * beta * cos(theta) + 0.4e1
+	* a3 * g11 * h21 * g12 * g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 *
+	a3 * g11 * h21 * g21 * g21 * beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3
+	* pow(g22, 0.3e1) * h22 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a3 *
+	g11 * h21 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11
+	* h21 * alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g12 * h22 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha *
+	sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g22 * h22 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g22 * h22 * beta * pow(cos(theta),
+	0.2e1) * alpha) + 0.4e1 * alpha * sin(theta) * (-a6 * a6 * h22 * g22 - a6 * a6 *
+	h21 * g21 - a3 * g11 * h21 * g22 * g22 * beta * beta * cos(theta) * sin(theta) +
+	a3 * g11 * h21 * g12 * g22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 *
+	g11 * h21 * g21 * g21 * beta * beta * cos(theta) * sin(theta) + a3 * pow(g22,
+	0.3e1) * h22 * beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * h22 * beta *
+	beta * pow(cos(theta), 0.2e1) - a3 * g21 * h21 * g12 * g22 * beta * beta *
+	cos(theta) * sin(theta) + a3 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1)
+	+ a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g21 *
+	h21 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a3 * g21 * g21 * g12 *
+	h22 * beta * beta * cos(theta) * sin(theta) - a3 * g11 * h21 * beta * beta *
+	cos(theta) * sin(theta) + a3 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1)
+	- a3 * g11 * g21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) - a3 * g22
+	* h22 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g12 * h22 * g22 *
+	g22 * beta * beta * cos(theta) * sin(theta) + a3 * g21 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + a3 * g21 * g21 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - a3 * g21 * h21 * beta * beta * cos(theta) * sin(theta)
+	- a3 * g12 * h22 * beta * beta * cos(theta) * sin(theta) + a3 * g11 * g11 * h21
+	* g21 * beta * beta * pow(sin(theta), 0.2e1) + a3 * pow(g21, 0.3e1) * h21 * beta
+	* beta * pow(cos(theta), 0.2e1) + a3 * g11 * g21 * g12 * h22 * beta * beta *
 	pow(sin(theta), 0.2e1));
 
-	F2 = -0.2e1 * beta * cos(theta) * (- (2 * a6 * a6 * h22 * g22) -  (2 * a6 * a6 * 
-	h21 * g21) + 0.2e1 * a3 * g11 *  h21 *  (g22 * g22) * beta * beta * cos(theta) * 
-	sin(theta) - 0.2e1 * a3 * g11 *  h21 * g12 *  g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 *  h21 *  (g21 * g21) * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a3 *   pow( g22,  3) *  h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 *  g22 *  h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a3 *  g21 *  h21 * g12 *  g22 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a3 * g12 *  h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g12 * g12 *  h22 *  g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a3 *  g21 *  h21 *  (g22 * g22) * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a3 *  (g21 * g21) * g12 *  h22 * beta * beta * 
-	cos(theta) * sin(theta) + 0.2e1 * a3 * g11 *  h21 * beta * beta * cos(theta) * 
-	sin(theta) - 0.2e1 * a3 * g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.2e1 * a3 * g11 *  g21 *  g22 *  h22 * beta * beta * cos(theta) * sin(theta) + 
-	0.2e1 * a3 *  g22 *  h22 * beta * beta * cos(theta) * sin(theta) + 0.4e1 * a3 * 
-	g12 *  h22 *  (g22 * g22) * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * 
-	g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 *  (g21 * g21) * 
-	g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a3 *  g21 *  h21 * 
-	beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g12 *  h22 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a3 * g11 * g11 *  h21 *  g21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a3 *   pow( g21,  3) *  h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 *  g21 * g12 *  h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  g21 *  h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  (g21 * g21) *  g22 *  h22 * alpha * alpha 
-	* pow(sin(theta), 0.2e1) + 0.4e1 * a3 *   pow( g21,  3) *  h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  g21 *  h21 * alpha * alpha * sin(theta) * 
-	cos(theta) + 0.4e1 * a3 * g12 *  h22 * alpha * alpha * sin(theta) * cos(theta) + 
-	0.4e1 * a3 * g12 * g12 *  h22 *  g22 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a3 *  (g21 * g21) * g12 *  h22 * alpha * alpha * sin(theta) * cos(theta) 
-	+ 0.4e1 * a3 * g11 *  h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 
-	* g11 *  h21 * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 *  g21 * 
-	h21 * g12 *  g22 * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g11 * 
-	g21 * g12 *  h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * 
-	h21 * g12 *  g22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * 
-	h21 *  (g22 * g22) * alpha * alpha * sin(theta) * cos(theta) + 0.8e1 * a3 * g11 
-	*  h21 *  (g21 * g21) * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * 
-	g22 *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  g21 *  h21 * 
-	(g22 * g22) * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 *   pow( g22, 
-	3) *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * g11 * 
-	h21 *  g21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 *  h22 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 *  g21 *  g22 *  h22 * 
-	alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 *  g22 *  h22 * alpha * 
-	alpha * sin(theta) * cos(theta) + 0.8e1 * a3 * g12 *  h22 *  (g22 * g22) * alpha 
-	* alpha * sin(theta) * cos(theta)) + 0.4e1 * alpha * sin(theta) * (-0.4e1 * a3 * 
-	g21 *  h21 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 *  (g21 * g21) 
-	*  g22 *  h22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 *   pow( 
-	g21,  3) *  h21 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 *  g21 * 
-	h21 * alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 *  g21 *  h21 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g12 *  h22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * g12 *  h22 *  g22 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 *  h22 *  (g22 * g22) * alpha 
-	* pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 *  h22 *  (g22 * g22) * beta 
-	* pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 *  g21 *  h21 *  (g22 * g22) * 
-	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 *  (g21 * g21) * g12 *  h22 
-	* alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 *  (g21 * g21) * g12 *  h22 
-	* beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 * a3 * g11 *  h21 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 *  h21 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.4e1 * a3 *  g22 *  h22 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.2e1 * a3 *  g21 *  h21 * g12 *  g22 * alpha * pow(sin(theta), 
-	0.2e1) * beta - 0.2e1 * a3 *  g21 *  h21 * g12 *  g22 * beta * pow(cos(theta), 
-	0.2e1) * alpha + 0.4e1 * a3 * g11 *  g21 * g12 *  h22 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.2e1 * a3 * g11 *  g21 *  g22 *  h22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g11 *  g21 *  g22 *  h22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 *  h22 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a3 * g11 *  h21 * g12 *  g22 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.4e1 * a3 * g11 *  h21 *  (g21 * g21) * beta * 
-	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 *   pow( g22,  3) *  h22 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g11 *  h21 *  (g22 * g22) * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11 *  h21 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g12 *  h22 * beta * pow(cos(theta), 
-	0.2e1) * alpha + 0.4e1 * a3 * g11 *  h21 *  (g21 * g21) * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g11 *  h21 *  (g22 * g22) * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * g11 *  h21 *  g21 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.2e1 * a3 *  g22 *  h22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 *  g22 *  h22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha) + 0.2e1 * beta * cos(theta) * (- (a6 * a6 * h22 
-	* g22) -  (a6 * a6 * h21 * g21) - a3 * g11 *  h21 *  (g22 * g22) * beta * beta * 
-	cos(theta) * sin(theta) + a3 * g11 *  h21 * g12 *  g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 *  h21 *  (g21 * g21) * beta * beta * 
-	cos(theta) * sin(theta) + a3 *   pow( g22,  3) *  h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a3 *  g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) 
-	- a3 *  g21 *  h21 * g12 *  g22 * beta * beta * cos(theta) * sin(theta) + a3 * 
-	g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g12 * g12 *  h22 *  g22 
-	* beta * beta * pow(sin(theta), 0.2e1) + a3 *  g21 *  h21 *  (g22 * g22) * beta 
-	* beta * pow(cos(theta), 0.2e1) - a3 *  (g21 * g21) * g12 *  h22 * beta * beta * 
-	cos(theta) * sin(theta) - a3 * g11 *  h21 * beta * beta * cos(theta) * 
-	sin(theta) + a3 * g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) - a3 * g11 * 
-	g21 *  g22 *  h22 * beta * beta * cos(theta) * sin(theta) - a3 *  g22 *  h22 * 
-	beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g12 *  h22 *  (g22 * g22) * 
-	beta * beta * cos(theta) * sin(theta) + a3 *  g21 *  h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a3 *  (g21 * g21) *  g22 *  h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a3 *  g21 *  h21 * beta * beta * cos(theta) * 
-	sin(theta) - a3 * g12 *  h22 * beta * beta * cos(theta) * sin(theta) + a3 * g11 
-	* g11 *  h21 *  g21 * beta * beta * pow(sin(theta), 0.2e1) + a3 *   pow( g21, 
-	3) *  h21 * beta * beta * pow(cos(theta), 0.2e1) + a3 * g11 *  g21 * g12 *  h22 
+	F2 = -0.2e1 * beta * cos(theta) * (- (2 * a6 * a6 * h22 * g22) -  (2 * a6 * a6 *
+	h21 * g21) + 0.2e1 * a3 * g11 *  h21 *  (g22 * g22) * beta * beta * cos(theta) *
+	sin(theta) - 0.2e1 * a3 * g11 *  h21 * g12 *  g22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 *  h21 *  (g21 * g21) * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a3 *   pow( g22,  3) *  h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 *  g22 *  h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a3 *  g21 *  h21 * g12 *  g22 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a3 * g12 *  h22 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g12 * g12 *  h22 *  g22 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a3 *  g21 *  h21 *  (g22 * g22) * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a3 *  (g21 * g21) * g12 *  h22 * beta * beta *
+	cos(theta) * sin(theta) + 0.2e1 * a3 * g11 *  h21 * beta * beta * cos(theta) *
+	sin(theta) - 0.2e1 * a3 * g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.2e1 * a3 * g11 *  g21 *  g22 *  h22 * beta * beta * cos(theta) * sin(theta) +
+	0.2e1 * a3 *  g22 *  h22 * beta * beta * cos(theta) * sin(theta) + 0.4e1 * a3 *
+	g12 *  h22 *  (g22 * g22) * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 *
+	g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 *  (g21 * g21) *
+	g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a3 *  g21 *  h21 *
+	beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g12 *  h22 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a3 * g11 * g11 *  h21 *  g21 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a3 *   pow( g21,  3) *  h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 *  g21 * g12 *  h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  g21 *  h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  (g21 * g21) *  g22 *  h22 * alpha * alpha
+	* pow(sin(theta), 0.2e1) + 0.4e1 * a3 *   pow( g21,  3) *  h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  g21 *  h21 * alpha * alpha * sin(theta) *
+	cos(theta) + 0.4e1 * a3 * g12 *  h22 * alpha * alpha * sin(theta) * cos(theta) +
+	0.4e1 * a3 * g12 * g12 *  h22 *  g22 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a3 *  (g21 * g21) * g12 *  h22 * alpha * alpha * sin(theta) * cos(theta)
+	+ 0.4e1 * a3 * g11 *  h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3
+	* g11 *  h21 * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 *  g21 *
+	h21 * g12 *  g22 * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g11 *
+	g21 * g12 *  h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 *
+	h21 * g12 *  g22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 *
+	h21 *  (g22 * g22) * alpha * alpha * sin(theta) * cos(theta) + 0.8e1 * a3 * g11
+	*  h21 *  (g21 * g21) * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 *
+	g22 *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 *  g21 *  h21 *
+	(g22 * g22) * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 *   pow( g22,
+	3) *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * g11 *
+	h21 *  g21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 *  h22 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 *  g21 *  g22 *  h22 *
+	alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 *  g22 *  h22 * alpha *
+	alpha * sin(theta) * cos(theta) + 0.8e1 * a3 * g12 *  h22 *  (g22 * g22) * alpha
+	* alpha * sin(theta) * cos(theta)) + 0.4e1 * alpha * sin(theta) * (-0.4e1 * a3 *
+	g21 *  h21 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 *  (g21 * g21)
+	*  g22 *  h22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 *   pow(
+	g21,  3) *  h21 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 *  g21 *
+	h21 * alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 *  g21 *  h21 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g12 *  h22 * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * g12 *  h22 *  g22 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 *  h22 *  (g22 * g22) * alpha
+	* pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 *  h22 *  (g22 * g22) * beta
+	* pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 *  g21 *  h21 *  (g22 * g22) *
+	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 *  (g21 * g21) * g12 *  h22
+	* alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 *  (g21 * g21) * g12 *  h22
+	* beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 * a3 * g11 *  h21 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 *  h21 * alpha * sin(theta) *
+	beta * cos(theta) - 0.4e1 * a3 *  g22 *  h22 * alpha * sin(theta) * beta *
+	cos(theta) + 0.2e1 * a3 *  g21 *  h21 * g12 *  g22 * alpha * pow(sin(theta),
+	0.2e1) * beta - 0.2e1 * a3 *  g21 *  h21 * g12 *  g22 * beta * pow(cos(theta),
+	0.2e1) * alpha + 0.4e1 * a3 * g11 *  g21 * g12 *  h22 * alpha * sin(theta) *
+	beta * cos(theta) + 0.2e1 * a3 * g11 *  g21 *  g22 *  h22 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g11 *  g21 *  g22 *  h22 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 *  h22 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a3 * g11 *  h21 * g12 *  g22 * alpha * sin(theta) *
+	beta * cos(theta) - 0.4e1 * a3 * g11 *  h21 *  (g21 * g21) * beta *
+	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 *   pow( g22,  3) *  h22 * alpha *
+	sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g11 *  h21 *  (g22 * g22) * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11 *  h21 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g12 *  h22 * beta * pow(cos(theta),
+	0.2e1) * alpha + 0.4e1 * a3 * g11 *  h21 *  (g21 * g21) * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g11 *  h21 *  (g22 * g22) * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * g11 *  h21 *  g21 * alpha *
+	sin(theta) * beta * cos(theta) + 0.2e1 * a3 *  g22 *  h22 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 *  g22 *  h22 * beta *
+	pow(cos(theta), 0.2e1) * alpha) + 0.2e1 * beta * cos(theta) * (- (a6 * a6 * h22
+	* g22) -  (a6 * a6 * h21 * g21) - a3 * g11 *  h21 *  (g22 * g22) * beta * beta *
+	cos(theta) * sin(theta) + a3 * g11 *  h21 * g12 *  g22 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 *  h21 *  (g21 * g21) * beta * beta *
+	cos(theta) * sin(theta) + a3 *   pow( g22,  3) *  h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + a3 *  g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1)
+	- a3 *  g21 *  h21 * g12 *  g22 * beta * beta * cos(theta) * sin(theta) + a3 *
+	g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g12 * g12 *  h22 *  g22
+	* beta * beta * pow(sin(theta), 0.2e1) + a3 *  g21 *  h21 *  (g22 * g22) * beta
+	* beta * pow(cos(theta), 0.2e1) - a3 *  (g21 * g21) * g12 *  h22 * beta * beta *
+	cos(theta) * sin(theta) - a3 * g11 *  h21 * beta * beta * cos(theta) *
+	sin(theta) + a3 * g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) - a3 * g11 *
+	g21 *  g22 *  h22 * beta * beta * cos(theta) * sin(theta) - a3 *  g22 *  h22 *
+	beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g12 *  h22 *  (g22 * g22) *
+	beta * beta * cos(theta) * sin(theta) + a3 *  g21 *  h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + a3 *  (g21 * g21) *  g22 *  h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - a3 *  g21 *  h21 * beta * beta * cos(theta) *
+	sin(theta) - a3 * g12 *  h22 * beta * beta * cos(theta) * sin(theta) + a3 * g11
+	* g11 *  h21 *  g21 * beta * beta * pow(sin(theta), 0.2e1) + a3 *   pow( g21,
+	3) *  h21 * beta * beta * pow(cos(theta), 0.2e1) + a3 * g11 *  g21 * g12 *  h22
 	* beta * beta * pow(sin(theta), 0.2e1));
 
-	F3 = -0.2e1 * beta * cos(theta) * (0.4e1 * a3 * g21 * h21 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * sin(theta) * 
-	beta * cos(theta) - 0.2e1 * a3 * g21 * h21 * alpha * pow(sin(theta), 0.2e1) * 
-	beta + 0.2e1 * a3 * g21 * h21 * beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 * 
-	a3 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * g12 
-	* h22 * g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g12 * h22 * 
-	g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * h22 * g22 
-	* g22 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g21 * h21 * g22 * 
-	g22 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g21 * g21 * g12 * 
-	h22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g21 * g21 * g12 * h22 
-	* beta * pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11 * h21 * beta * 
-	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * alpha * sin(theta) * 
-	beta * cos(theta) + 0.4e1 * a3 * g22 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sin(theta), 0.2e1) 
-	* beta + 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cos(theta), 0.2e1) * 
-	alpha - 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) 
-	* beta + 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) * 
-	alpha - 0.4e1 * a3 * g12 * h22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 
-	* a3 * g11 * h21 * g12 * g22 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 * 
-	a3 * g11 * h21 * g21 * g21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 
-	* pow(g22, 0.3e1) * h22 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 * 
-	g11 * h21 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 * a3 * g11 
-	* h21 * alpha * pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g12 * h22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g22 * h22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g22 * h22 * beta * pow(cos(theta), 
-	0.2e1) * alpha) + 0.4e1 * alpha * sin(theta) * (-0.2e1 * a6 * a6 * h22 * g22 - 
-	0.2e1 * a6 * a6 * h21 * g21 + 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a3 * g11 * h21 * g12 * g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a3 * pow(g22, 0.3e1) * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * h22 * beta * beta * pow(cos(theta), 
-	0.2e1) + 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * beta * cos(theta) * 
-	sin(theta) - 0.2e1 * a3 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a3 * g21 * h21 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) + 
-	0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) + 
-	0.2e1 * a3 * g11 * h21 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * 
-	g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 * g21 * g22 
-	* h22 * beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g22 * h22 * beta * 
-	beta * cos(theta) * sin(theta) + 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * 
-	beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g21 * g21 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a3 * g21 * h21 * beta * beta * cos(theta) * 
-	sin(theta) + 0.2e1 * a3 * g12 * h22 * beta * beta * cos(theta) * sin(theta) - 
-	0.2e1 * a3 * g11 * g11 * h21 * g21 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a3 * pow(g21, 0.3e1) * h21 * beta * beta * pow(cos(theta), 0.2e1) - 
-	0.2e1 * a3 * g11 * g21 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a3 * g21 * h21 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 * 
-	g21 * g21 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 * 
-	pow(g21, 0.3e1) * h21 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 * 
-	g21 * h21 * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g12 * h22 * 
-	alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * g22 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g21 * g21 * g12 * h22 * 
-	alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g11 * h21 * alpha * alpha 
-	* pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * alpha * alpha * sin(theta) * 
-	cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * g22 * alpha * alpha * sin(theta) * 
-	cos(theta) + 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g22 * g22 * alpha * alpha * 
-	sin(theta) * cos(theta) + 0.8e1 * a3 * g11 * h21 * g21 * g21 * alpha * alpha * 
-	sin(theta) * cos(theta) + 0.4e1 * a3 * g22 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * g21 * g22 * h22 * alpha * alpha * 
-	sin(theta) * cos(theta) + 0.4e1 * a3 * g22 * h22 * alpha * alpha * sin(theta) * 
-	cos(theta) + 0.8e1 * a3 * g12 * h22 * g22 * g22 * alpha * alpha * sin(theta) * 
-	cos(theta)) + 0.2e1 * beta * cos(theta) * (-0.4e1 * a3 * g21 * h21 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g21 * h21 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g21 * h21 * beta * pow(cos(theta), 
-	0.2e1) * alpha + 0.2e1 * a3 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta 
-	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * sin(theta) * beta * cos(theta) + 
-	0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta - 
-	0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha - 
-	0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * sin(theta) * beta * cos(theta) + 
-	0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta - 
-	0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * pow(cos(theta), 0.2e1) * alpha - 
-	0.2e1 * a3 * g11 * h21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * 
-	g11 * h21 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g21 * h21 * g12 * g22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g21 * h21 * g12 * g22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g21 * g12 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g11 * g21 * g22 * h22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g11 * g21 * g22 * h22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * 
-	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11 * h21 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g12 * h22 * beta * pow(cos(theta), 
-	0.2e1) * alpha + 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * pow(sin(theta), 
-	0.2e1) * beta + 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * pow(sin(theta), 
-	0.2e1) * beta + 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.2e1 * a3 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) * beta - 
+	F3 = -0.2e1 * beta * cos(theta) * (0.4e1 * a3 * g21 * h21 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * sin(theta) *
+	beta * cos(theta) - 0.2e1 * a3 * g21 * h21 * alpha * pow(sin(theta), 0.2e1) *
+	beta + 0.2e1 * a3 * g21 * h21 * beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 *
+	a3 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * g12
+	* h22 * g22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g12 * h22 *
+	g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g12 * h22 * g22
+	* g22 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g21 * h21 * g22 *
+	g22 * alpha * sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g21 * g21 * g12 *
+	h22 * alpha * pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g21 * g21 * g12 * h22
+	* beta * pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11 * h21 * beta *
+	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * alpha * sin(theta) *
+	beta * cos(theta) + 0.4e1 * a3 * g22 * h22 * alpha * sin(theta) * beta *
+	cos(theta) - 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sin(theta), 0.2e1)
+	* beta + 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cos(theta), 0.2e1) *
+	alpha - 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sin(theta) * beta *
+	cos(theta) - 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1)
+	* beta + 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) *
+	alpha - 0.4e1 * a3 * g12 * h22 * alpha * sin(theta) * beta * cos(theta) - 0.4e1
+	* a3 * g11 * h21 * g12 * g22 * alpha * sin(theta) * beta * cos(theta) + 0.4e1 *
+	a3 * g11 * h21 * g21 * g21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3
+	* pow(g22, 0.3e1) * h22 * alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 *
+	g11 * h21 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.2e1 * a3 * g11
+	* h21 * alpha * pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g12 * h22 * beta *
+	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha *
+	sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g22 * h22 * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.2e1 * a3 * g22 * h22 * beta * pow(cos(theta),
+	0.2e1) * alpha) + 0.4e1 * alpha * sin(theta) * (-0.2e1 * a6 * a6 * h22 * g22 -
+	0.2e1 * a6 * a6 * h21 * g21 + 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a3 * g11 * h21 * g12 * g22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a3 * pow(g22, 0.3e1) * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * h22 * beta * beta * pow(cos(theta),
+	0.2e1) + 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * beta * cos(theta) *
+	sin(theta) - 0.2e1 * a3 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a3 * g21 * h21 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) +
+	0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) +
+	0.2e1 * a3 * g11 * h21 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 *
+	g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 * g21 * g22
+	* h22 * beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g22 * h22 * beta *
+	beta * cos(theta) * sin(theta) + 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta *
+	beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g21 * g21 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a3 * g21 * h21 * beta * beta * cos(theta) *
+	sin(theta) + 0.2e1 * a3 * g12 * h22 * beta * beta * cos(theta) * sin(theta) -
+	0.2e1 * a3 * g11 * g11 * h21 * g21 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a3 * pow(g21, 0.3e1) * h21 * beta * beta * pow(cos(theta), 0.2e1) -
+	0.2e1 * a3 * g11 * g21 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.4e1 * a3 * g21 * h21 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 *
+	g21 * g21 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 *
+	pow(g21, 0.3e1) * h21 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a3 *
+	g21 * h21 * alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g12 * h22 *
+	alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * g22 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g21 * g21 * g12 * h22 *
+	alpha * alpha * sin(theta) * cos(theta) + 0.4e1 * a3 * g11 * h21 * alpha * alpha
+	* pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * alpha * alpha * sin(theta) *
+	cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * g22 * alpha * alpha * sin(theta) *
+	cos(theta) + 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g22 * g22 * alpha * alpha *
+	sin(theta) * cos(theta) + 0.8e1 * a3 * g11 * h21 * g21 * g21 * alpha * alpha *
+	sin(theta) * cos(theta) + 0.4e1 * a3 * g22 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * g21 * g22 * h22 * alpha * alpha *
+	sin(theta) * cos(theta) + 0.4e1 * a3 * g22 * h22 * alpha * alpha * sin(theta) *
+	cos(theta) + 0.8e1 * a3 * g12 * h22 * g22 * g22 * alpha * alpha * sin(theta) *
+	cos(theta)) + 0.2e1 * beta * cos(theta) * (-0.4e1 * a3 * g21 * h21 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha *
+	sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g21 * h21 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g21 * h21 * beta * pow(cos(theta),
+	0.2e1) * alpha + 0.2e1 * a3 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta
+	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * sin(theta) * beta * cos(theta) +
+	0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta -
+	0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha -
+	0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * sin(theta) * beta * cos(theta) +
+	0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta -
+	0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * pow(cos(theta), 0.2e1) * alpha -
+	0.2e1 * a3 * g11 * h21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 *
+	g11 * h21 * alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g21 * h21 * g12 * g22 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g21 * h21 * g12 * g22 *
+	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g21 * g12 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.2e1 * a3 * g11 * g21 * g22 * h22 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g11 * g21 * g22 * h22 *
+	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta *
+	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha *
+	sin(theta) * beta * cos(theta) - 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.2e1 * a3 * g11 * h21 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.2e1 * a3 * g12 * h22 * beta * pow(cos(theta),
+	0.2e1) * alpha + 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * pow(sin(theta),
+	0.2e1) * beta + 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * pow(sin(theta),
+	0.2e1) * beta + 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * sin(theta) * beta *
+	cos(theta) + 0.2e1 * a3 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) * beta -
 	0.2e1 * a3 * g22 * h22 * beta * pow(cos(theta), 0.2e1) * alpha);
 
 
 
-	G0 = -beta * beta * pow(cos(theta), 0.2e1) * (-a6 * a6 * h21 * h21 - a6 * a6 * 
-	h22 * h22 + a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * 
-	g11 * g11 * h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 
-	* h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) + a3 * g21 * g21 * h21 
-	* h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 * 
-	g22 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22 
-	* beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 * 
-	beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta 
-	* pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * 
+	G0 = -beta * beta * pow(cos(theta), 0.2e1) * (-a6 * a6 * h21 * h21 - a6 * a6 *
+	h22 * h22 + a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 *
+	g11 * g11 * h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11
+	* h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) + a3 * g21 * g21 * h21
+	* h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 *
+	g22 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22
+	* beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 *
+	beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta
+	* pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta *
 	cos(theta) * sin(theta));
 
-	G1= -beta * beta * pow(cos(theta), 0.2e1) * (-0.4e1 * a3 * g21 * h21 * g12 * h22 
-	* beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * h21 * g21 * 
-	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g11 * h21 * h21 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * h21 * h21 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g22 * h22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * h22 * g22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * h22 * g22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * h21 * g22 * h22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g21 * h21 * g22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * g22 * h22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * h22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * h21 * g21 * 
-	alpha * pow(sin(theta), 0.2e1) * beta) + 0.4e1 * beta * cos(theta) * alpha * 
-	sin(theta) * (-a6 * a6 * h21 * h21 - a6 * a6 * h22 * h22 + a3 * g12 * g12 * h22 
-	* h22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 * h21 * g12 * 
-	h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g11 * g11 * h21 * h21 * beta * 
-	beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta 
-	* cos(theta) * sin(theta) + a3 * g21 * g21 * h21 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * 
-	cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * 
+	G1= -beta * beta * pow(cos(theta), 0.2e1) * (-0.4e1 * a3 * g21 * h21 * g12 * h22
+	* beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * h21 * g21 *
+	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g11 * h21 * h21 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * h21 * h21 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g22 * h22 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * h22 * g22 *
+	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * h22 * g22 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * h21 * g22 * h22 *
+	beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g21 * h21 * g22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * g22 * h22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g11 * h21 * g12 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * h22 *
+	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * h21 * g21 *
+	alpha * pow(sin(theta), 0.2e1) * beta) + 0.4e1 * beta * cos(theta) * alpha *
+	sin(theta) * (-a6 * a6 * h21 * h21 - a6 * a6 * h22 * h22 + a3 * g12 * g12 * h22
+	* h22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 * h21 * g12 *
+	h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g11 * g11 * h21 * h21 * beta *
+	beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta
+	* cos(theta) * sin(theta) + a3 * g21 * g21 * h21 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta *
+	cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta *
 	cos(theta) * sin(theta));
 
-	G2 = -beta * beta * pow(cos(theta), 0.2e1) * (-0.4e1 * a3 * g11 * h21 * g12 * 
-	h22 * beta * beta * pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g12 * h22 
-	* alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * g22 * h22 * h22 * 
-	beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta 
-	* beta * cos(theta) * sin(theta) - 0.2e1 * a6 * a6 * h21 * h21 + 0.8e1 * a3 * 
-	g21 * h21 * g12 * h22 * alpha * alpha * sin(theta) * cos(theta) - 0.2e1 * a3 * 
-	g11 * g11 * h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a6 * a6 * 
-	h22 * h22 + 0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sin(theta) * 
-	cos(theta) + 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) * 
-	sin(theta) + 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) - 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * 
-	sin(theta) * cos(theta) - 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * 
-	cos(theta) * sin(theta) + 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * 
-	cos(theta) * sin(theta) + 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * 
-	sin(theta) * cos(theta)) + 0.4e1 * beta * cos(theta) * alpha * sin(theta) * 
-	(-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cos(theta), 0.2e1) * alpha - 
-	0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cos(theta), 0.2e1) * alpha + 
-	0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sin(theta) * beta * cos(theta) - 
-	0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sin(theta) * beta * cos(theta) + 
-	0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sin(theta) * beta * cos(theta) + 
-	0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) * beta - 
-	0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha + 
-	0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta - 
-	0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) * alpha - 
-	0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sin(theta) * beta * cos(theta) - 
-	0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sin(theta) * beta * cos(theta) + 
-	0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sin(theta) * beta * cos(theta) + 
-	0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta + 
-	0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sin(theta), 0.2e1) * beta) - 
-	(-0.2e1 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * alpha * alpha * 
-	pow(sin(theta), 0.2e1)) * (-a6 * a6 * h21 * h21 - a6 * a6 * h22 * h22 + a3 * g12 
-	* g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 * 
-	h21 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g11 * g11 * h21 * 
-	h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * h21 * g21 
-	* beta * beta * cos(theta) * sin(theta) + a3 * g21 * g21 * h21 * h21 * beta * 
-	beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta 
-	* cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * 
-	cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * 
+	G2 = -beta * beta * pow(cos(theta), 0.2e1) * (-0.4e1 * a3 * g11 * h21 * g12 *
+	h22 * beta * beta * pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g12 * h22
+	* alpha * alpha * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * g22 * h22 * h22 *
+	beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta
+	* beta * cos(theta) * sin(theta) - 0.2e1 * a6 * a6 * h21 * h21 + 0.8e1 * a3 *
+	g21 * h21 * g12 * h22 * alpha * alpha * sin(theta) * cos(theta) - 0.2e1 * a3 *
+	g11 * g11 * h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a6 * a6 *
+	h22 * h22 + 0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sin(theta) *
+	cos(theta) + 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) *
+	sin(theta) + 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) - 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha *
+	sin(theta) * cos(theta) - 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta *
+	cos(theta) * sin(theta) + 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta *
+	cos(theta) * sin(theta) + 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha *
+	sin(theta) * cos(theta)) + 0.4e1 * beta * cos(theta) * alpha * sin(theta) *
+	(-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cos(theta), 0.2e1) * alpha -
+	0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cos(theta), 0.2e1) * alpha +
+	0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sin(theta) * beta * cos(theta) -
+	0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sin(theta) * beta * cos(theta) +
+	0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sin(theta) * beta * cos(theta) +
+	0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) * beta -
+	0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cos(theta), 0.2e1) * alpha +
+	0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sin(theta), 0.2e1) * beta -
+	0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) * alpha -
+	0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sin(theta) * beta * cos(theta) -
+	0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sin(theta) * beta * cos(theta) +
+	0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sin(theta) * beta * cos(theta) +
+	0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * beta +
+	0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sin(theta), 0.2e1) * beta) -
+	(-0.2e1 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * alpha * alpha *
+	pow(sin(theta), 0.2e1)) * (-a6 * a6 * h21 * h21 - a6 * a6 * h22 * h22 + a3 * g12
+	* g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 *
+	h21 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a3 * g11 * g11 * h21 *
+	h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * h21 * g21
+	* beta * beta * cos(theta) * sin(theta) + a3 * g21 * g21 * h21 * h21 * beta *
+	beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta
+	* cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta *
+	cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta *
 	cos(theta) * sin(theta));
 
-	G3 = -beta * beta * pow(cos(theta), 0.2e1) * (0.4e1 * a3 * g22 * g22 * h22 * h22 
-	* alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * g21 * h21 * h21 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * h21 * g21 * 
-	beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g12 * h22 * h22 * g22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * g22 * h22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * g11 * h21 * h21 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g21 * h21 * g22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g12 * g12 * h22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * g22 * h22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.8e1 * a3 * g11 * h21 * g12 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * h21 * h21 * g21 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g21 * h21 * g12 * h22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g21 * h21 * g12 * h22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha) + 0.4e1 * beta * cos(theta) * alpha * 
-	sin(theta) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a6 * a6 * h21 * h21 + 0.8e1 * a3 * g21 * h21 * 
-	g12 * h22 * alpha * alpha * sin(theta) * cos(theta) - 0.2e1 * a3 * g11 * g11 * 
-	h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a6 * a6 * h22 * h22 + 
-	0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sin(theta) * cos(theta) + 
-	0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) + 
-	0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * pow(sin(theta), 0.2e1) - 
-	0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 
-	0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * sin(theta) * cos(theta) - 
-	0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) + 
-	0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) + 
-	0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * sin(theta) * cos(theta)) - 
-	(-0.2e1 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * alpha * alpha * 
-	pow(sin(theta), 0.2e1)) * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * 
-	pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * 
-	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * 
-	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * 
-	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * 
-	pow(sin(theta), 0.2e1) * beta) - 0.4e1 * beta * cos(theta) * alpha * sin(theta) 
-	* (-a6 * a6 * h21 * h21 - a6 * a6 * h22 * h22 + a3 * g12 * g12 * h22 * h22 * 
-	beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta 
-	* beta * pow(sin(theta), 0.2e1) + a3 * g11 * g11 * h21 * h21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * 
-	cos(theta) * sin(theta) + a3 * g21 * g21 * h21 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * 
-	cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * 
+	G3 = -beta * beta * pow(cos(theta), 0.2e1) * (0.4e1 * a3 * g22 * g22 * h22 * h22
+	* alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * g21 * h21 * h21 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * h21 * g21 *
+	beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g12 * h22 * h22 * g22 *
+	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * g22 * h22 *
+	beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * g11 * h21 * h21 *
+	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g21 * h21 * g22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g12 * g12 * h22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * h22 * h22 * g22 *
+	beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * g22 * h22 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.8e1 * a3 * g11 * h21 * g12 * h22 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g11 * h21 * h21 * g21 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g21 * h21 * g12 * h22 *
+	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g21 * h21 * g12 * h22 *
+	beta * pow(cos(theta), 0.2e1) * alpha) + 0.4e1 * beta * cos(theta) * alpha *
+	sin(theta) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a6 * a6 * h21 * h21 + 0.8e1 * a3 * g21 * h21 *
+	g12 * h22 * alpha * alpha * sin(theta) * cos(theta) - 0.2e1 * a3 * g11 * g11 *
+	h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a6 * a6 * h22 * h22 +
+	0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sin(theta) * cos(theta) +
+	0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) +
+	0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * pow(sin(theta), 0.2e1) -
+	0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) -
+	0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * sin(theta) * cos(theta) -
+	0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cos(theta), 0.2e1) +
+	0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) +
+	0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) +
+	0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * sin(theta) * cos(theta)) -
+	(-0.2e1 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * alpha * alpha *
+	pow(sin(theta), 0.2e1)) * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta *
+	pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta *
+	pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha *
+	pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta *
+	pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha *
+	sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha *
+	sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha *
+	sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha *
+	pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha *
+	pow(sin(theta), 0.2e1) * beta) - 0.4e1 * beta * cos(theta) * alpha * sin(theta)
+	* (-a6 * a6 * h21 * h21 - a6 * a6 * h22 * h22 + a3 * g12 * g12 * h22 * h22 *
+	beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta
+	* beta * pow(sin(theta), 0.2e1) + a3 * g11 * g11 * h21 * h21 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta *
+	cos(theta) * sin(theta) + a3 * g21 * g21 * h21 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta *
+	cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta *
 	cos(theta) * sin(theta));
 
-	G4 = -0.2e1 * beta * beta * pow(cos(theta), 0.2e1) * (-a6 * a6 * h21 * h21 - a6 
-	* a6 * h22 * h22 + a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sin(theta), 
-	0.2e1) + a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) + a3 
-	* g21 * g21 * h21 * h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * 
-	g12 * h22 * h22 * g22 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g21 
-	* h21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g21 * 
-	h21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 * 
-	h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22 
-	* beta * beta * cos(theta) * sin(theta)) + 0.4e1 * beta * cos(theta) * alpha * 
-	sin(theta) * (0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cos(theta), 0.2e1) 
-	* alpha - 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sin(theta), 0.2e1) * 
-	beta + 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) * 
-	alpha - 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cos(theta), 0.2e1) 
-	* alpha - 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) * 
-	beta - 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sin(theta) * beta * 
-	cos(theta) - 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sin(theta), 0.2e1) 
-	* beta - 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) * 
-	beta + 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cos(theta), 0.2e1) * 
-	alpha) - (-0.2e1 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * alpha * alpha 
-	* pow(sin(theta), 0.2e1)) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * 
-	cos(theta) * sin(theta) - 0.2e1 * a6 * a6 * h21 * h21 + 0.8e1 * a3 * g21 * h21 * 
-	g12 * h22 * alpha * alpha * sin(theta) * cos(theta) - 0.2e1 * a3 * g11 * g11 * 
-	h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a6 * a6 * h22 * h22 + 
-	0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sin(theta) * cos(theta) + 
-	0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) + 
-	0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * pow(sin(theta), 0.2e1) - 
-	0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 
-	0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * sin(theta) * cos(theta) - 
-	0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) + 
-	0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) + 
-	0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * sin(theta) * cos(theta)) - 
-	0.4e1 * beta * cos(theta) * alpha * sin(theta) * (-0.4e1 * a3 * g21 * h21 * g12 
-	* h22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * h21 * 
-	g21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g11 * h21 * h21 
-	* alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * h21 * h21 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g22 * h22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * h22 * g22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * h22 * g22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * h21 * g22 * h22 * 
-	beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g21 * h21 * g22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * g22 * h22 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * 
-	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * h22 * 
-	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * h21 * g21 * 
+	G4 = -0.2e1 * beta * beta * pow(cos(theta), 0.2e1) * (-a6 * a6 * h21 * h21 - a6
+	* a6 * h22 * h22 + a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sin(theta),
+	0.2e1) + a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) + a3
+	* g21 * g21 * h21 * h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 *
+	g12 * h22 * h22 * g22 * beta * beta * cos(theta) * sin(theta) - 0.2e1 * a3 * g21
+	* h21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) + 0.2e1 * a3 * g21 *
+	h21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) + a3 * g22 * g22 * h22 *
+	h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g11 * h21 * g22 * h22
+	* beta * beta * cos(theta) * sin(theta)) + 0.4e1 * beta * cos(theta) * alpha *
+	sin(theta) * (0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sin(theta) * beta *
+	cos(theta) + 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sin(theta) * beta *
+	cos(theta) + 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cos(theta), 0.2e1)
+	* alpha - 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sin(theta), 0.2e1) *
+	beta + 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cos(theta), 0.2e1) *
+	alpha - 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sin(theta) * beta *
+	cos(theta) + 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sin(theta) * beta *
+	cos(theta) - 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sin(theta) * beta *
+	cos(theta) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cos(theta), 0.2e1)
+	* alpha - 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sin(theta), 0.2e1) *
+	beta - 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sin(theta) * beta *
+	cos(theta) - 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sin(theta), 0.2e1)
+	* beta - 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sin(theta), 0.2e1) *
+	beta + 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cos(theta), 0.2e1) *
+	alpha) - (-0.2e1 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * alpha * alpha
+	* pow(sin(theta), 0.2e1)) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * beta *
+	cos(theta) * sin(theta) - 0.2e1 * a6 * a6 * h21 * h21 + 0.8e1 * a3 * g21 * h21 *
+	g12 * h22 * alpha * alpha * sin(theta) * cos(theta) - 0.2e1 * a3 * g11 * g11 *
+	h21 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a6 * a6 * h22 * h22 +
+	0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sin(theta) * cos(theta) +
+	0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cos(theta) * sin(theta) +
+	0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * pow(sin(theta), 0.2e1) -
+	0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) -
+	0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * sin(theta) * cos(theta) -
+	0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cos(theta), 0.2e1) +
+	0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cos(theta) * sin(theta) +
+	0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cos(theta) * sin(theta) +
+	0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * sin(theta) * cos(theta)) -
+	0.4e1 * beta * cos(theta) * alpha * sin(theta) * (-0.4e1 * a3 * g21 * h21 * g12
+	* h22 * beta * pow(cos(theta), 0.2e1) * alpha - 0.4e1 * a3 * g11 * h21 * h21 *
+	g21 * beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g11 * g11 * h21 * h21
+	* alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g21 * g21 * h21 * h21 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g12 * g12 * h22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g11 * h21 * g22 * h22 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g12 * h22 * h22 * g22 *
+	beta * pow(cos(theta), 0.2e1) * alpha + 0.4e1 * a3 * g12 * h22 * h22 * g22 *
+	alpha * pow(sin(theta), 0.2e1) * beta - 0.4e1 * a3 * g11 * h21 * g22 * h22 *
+	beta * pow(cos(theta), 0.2e1) * alpha - 0.8e1 * a3 * g21 * h21 * g22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) - 0.4e1 * a3 * g22 * g22 * h22 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.8e1 * a3 * g11 * h21 * g12 * h22 *
+	alpha * sin(theta) * beta * cos(theta) + 0.4e1 * a3 * g21 * h21 * g12 * h22 *
+	alpha * pow(sin(theta), 0.2e1) * beta + 0.4e1 * a3 * g11 * h21 * h21 * g21 *
 	alpha * pow(sin(theta), 0.2e1) * beta);
 
-	H0 = -beta * beta * sin(theta) * cos(theta) * (a5 * g11 * g11 * h11 * h21 * beta 
-	* beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * a6 * h12 * h22 - a5 
-	* g22 * h12 * g11 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g22 * h12 
-	* g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g22 * g22 * h12 * h22 
-	* beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * h11 * g21 * h21 * 
-	beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * h22 * beta * beta 
-	* pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * beta * beta * sin(theta) 
-	* cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cos(theta), 0.2e1) 
-	- a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * g12 
-	* h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g21 * h11 * g22 
-	* h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g12 * h12 * g22 * 
-	h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 * g21 * h21 * beta 
-	* beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 * beta * beta * 
+	H0 = -beta * beta * sin(theta) * cos(theta) * (a5 * g11 * g11 * h11 * h21 * beta
+	* beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * a6 * h12 * h22 - a5
+	* g22 * h12 * g11 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g22 * h12
+	* g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g22 * g22 * h12 * h22
+	* beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * h11 * g21 * h21 *
+	beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * h22 * beta * beta
+	* pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * beta * beta * sin(theta)
+	* cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cos(theta), 0.2e1)
+	- a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * g12
+	* h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g21 * h11 * g22
+	* h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g12 * h12 * g22 *
+	h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 * g21 * h21 * beta
+	* beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 * beta * beta *
 	pow(sin(theta), 0.2e1));
 
-	H1 = -beta * beta * sin(theta) * cos(theta) * (0.4e1 * a5 * g11 * g11 * h11 * 
-	h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * 
-	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * 
-	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21 
-	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * pow(sin(theta), 0.2e1) 
-	* alpha + 0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (a5 * g11 * g11 * h11 
-	* h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * a6 * 
-	h12 * h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) * cos(theta) + 
-	a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g22 * 
-	g22 * h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * h11 
-	* g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * h22 
-	* beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * beta * 
-	beta * sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) + 
-	a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * 
-	g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 * 
-	g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 * 
+	H1 = -beta * beta * sin(theta) * cos(theta) * (0.4e1 * a5 * g11 * g11 * h11 *
+	h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 *
+	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 *
+	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21
+	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * pow(sin(theta), 0.2e1)
+	* alpha + 0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (a5 * g11 * g11 * h11
+	* h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * a6 *
+	h12 * h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) * cos(theta) +
+	a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g22 *
+	g22 * h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * h11
+	* g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * h22
+	* beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * beta *
+	beta * sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) +
+	a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 *
+	g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 *
+	g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 *
 	beta * beta * pow(sin(theta), 0.2e1));
 
-	H2 = -beta * beta * sin(theta) * cos(theta) * (-0.2e1 * a5 * g11 * g11 * h11 * 
-	h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a4 * a6 * h11 * h21 - 0.2e1 
-	* a4 * a6 * h12 * h22 + 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta)) - (-0.2e1 * beta * pow(sin(theta), 0.2e1) * alpha + 
-	0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (0.4e1 * a5 * g11 * g11 * h11 * 
-	h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * 
-	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * 
-	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21 
-	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * beta * sin(theta) * 
-	cos(theta) - 0.4e1 * alpha * alpha * cos(theta) * sin(theta)) * (a5 * g11 * g11 
-	* h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * 
-	a6 * h12 * h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + 
-	a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * 
-	g11 * h11 * g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * 
-	g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * 
-	beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta 
-	* pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) 
-	* cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) 
-	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 
-	* g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 
-	* g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 
+	H2 = -beta * beta * sin(theta) * cos(theta) * (-0.2e1 * a5 * g11 * g11 * h11 *
+	h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a4 * a6 * h11 * h21 - 0.2e1
+	* a4 * a6 * h12 * h22 + 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha *
+	cos(theta) * sin(theta)) - (-0.2e1 * beta * pow(sin(theta), 0.2e1) * alpha +
+	0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (0.4e1 * a5 * g11 * g11 * h11 *
+	h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 *
+	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 *
+	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21
+	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * beta * sin(theta) *
+	cos(theta) - 0.4e1 * alpha * alpha * cos(theta) * sin(theta)) * (a5 * g11 * g11
+	* h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 *
+	a6 * h12 * h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) +
+	a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 *
+	g11 * h11 * g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 *
+	g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 *
+	beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta
+	* pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta)
+	* cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1)
+	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5
+	* g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12
+	* g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22
 	* beta * beta * pow(sin(theta), 0.2e1));
 
-	H3 = -beta * beta * sin(theta) * cos(theta) * (0.4e1 * a5 * g21 * g21 * h11 * 
-	h21 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 * h11 * g12 * 
-	h22 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * 
-	h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * h12 * g11 * h21 
-	* alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g21 * h11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g22 * h12 * g21 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 * g11 * h11 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * pow(sin(theta), 0.2e1) 
-	* alpha + 0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (-0.2e1 * a5 * g11 * 
-	g11 * h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a4 * a6 * h11 * 
-	h21 - 0.2e1 * a4 * a6 * h12 * h22 + 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * 
-	beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * 
-	beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta 
-	* pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta)) - (-0.2e1 * beta * beta * sin(theta) * cos(theta) - 
-	0.4e1 * alpha * alpha * cos(theta) * sin(theta)) * (0.4e1 * a5 * g11 * g11 * h11 
-	* h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * 
-	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * 
-	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21 
-	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.2e1 * beta * pow(sin(theta), 0.2e1) * alpha) * (a5 * g11 * g11 
-	* h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * 
-	a6 * h12 * h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + 
-	a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * 
-	g11 * h11 * g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * 
-	g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * 
-	beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta 
-	* pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) 
-	* cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) 
-	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 
-	* g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 
-	* g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 
+	H3 = -beta * beta * sin(theta) * cos(theta) * (0.4e1 * a5 * g21 * g21 * h11 *
+	h21 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 * h11 * g12 *
+	h22 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 *
+	h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * h12 * g11 * h21
+	* alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g21 * h11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g22 * h12 * g21 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g22 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 * g11 * h11 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * pow(sin(theta), 0.2e1)
+	* alpha + 0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (-0.2e1 * a5 * g11 *
+	g11 * h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a4 * a6 * h11 *
+	h21 - 0.2e1 * a4 * a6 * h12 * h22 + 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta *
+	beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta *
+	beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta
+	* pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha *
+	cos(theta) * sin(theta)) - (-0.2e1 * beta * beta * sin(theta) * cos(theta) -
+	0.4e1 * alpha * alpha * cos(theta) * sin(theta)) * (0.4e1 * a5 * g11 * g11 * h11
+	* h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 *
+	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 *
+	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21
+	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.2e1 * beta * pow(sin(theta), 0.2e1) * alpha) * (a5 * g11 * g11
+	* h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 *
+	a6 * h12 * h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) +
+	a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 *
+	g11 * h11 * g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 *
+	g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 *
+	beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta
+	* pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta)
+	* cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1)
+	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5
+	* g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12
+	* g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22
 	* beta * beta * pow(sin(theta), 0.2e1));
 
-	H4 = -0.2e1 * beta * beta * sin(theta) * cos(theta) * (a5 * g11 * g11 * h11 * 
-	h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * a6 * h12 
-	* h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) * cos(theta) + a5 
-	* g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g22 * g22 
-	* h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * h11 * 
-	g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * h22 * 
-	beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * beta * beta 
-	* sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) + 
-	a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * 
-	g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 * 
-	g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 * 
-	beta * beta * pow(sin(theta), 0.2e1)) - (-0.2e1 * beta * pow(sin(theta), 0.2e1) 
-	* alpha + 0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (0.4e1 * a5 * g21 * 
-	g21 * h11 * h21 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 * 
-	h11 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * 
-	h12 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * h12 
-	* g11 * h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * 
-	g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 
-	* h21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g22 * 
-	h22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * h22 
-	* alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g21 * h11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g22 * h12 * g21 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 * g11 * h11 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * beta * sin(theta) * 
-	cos(theta) - 0.4e1 * alpha * alpha * cos(theta) * sin(theta)) * (-0.2e1 * a5 * 
-	g11 * g11 * h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a4 * a6 * 
-	h11 * h21 - 0.2e1 * a4 * a6 * h12 * h22 + 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * h21 * 
-	beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta 
-	* beta * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * 
-	beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * 
-	beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta 
-	* sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha * 
-	cos(theta) * sin(theta)) - (-0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.2e1 * beta * pow(sin(theta), 0.2e1) * alpha) * (0.4e1 * a5 * g11 * g11 * h11 * 
-	h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * 
-	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * 
-	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21 
-	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 * 
+	H4 = -0.2e1 * beta * beta * sin(theta) * cos(theta) * (a5 * g11 * g11 * h11 *
+	h21 * beta * beta * pow(sin(theta), 0.2e1) - a4 * a6 * h11 * h21 - a4 * a6 * h12
+	* h22 - a5 * g22 * h12 * g11 * h21 * beta * beta * sin(theta) * cos(theta) + a5
+	* g22 * h12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g22 * g22
+	* h12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * h11 *
+	g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * h22 *
+	beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * h22 * beta * beta
+	* sin(theta) * cos(theta) + a5 * g21 * g21 * h11 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - a5 * g21 * h11 * g12 * h22 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) +
+	a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 *
+	g12 * h12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h12 *
+	g21 * h21 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * h22 *
+	beta * beta * pow(sin(theta), 0.2e1)) - (-0.2e1 * beta * pow(sin(theta), 0.2e1)
+	* alpha + 0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta) * (0.4e1 * a5 * g21 *
+	g21 * h11 * h21 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 *
+	h11 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 *
+	h12 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * h12
+	* g11 * h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 *
+	g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21
+	* h21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g22 *
+	h22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * h22
+	* alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g21 * h11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g22 * h12 * g21 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g22 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g11 * g11 * h11 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta) - (-0.2e1 * beta * beta * sin(theta) *
+	cos(theta) - 0.4e1 * alpha * alpha * cos(theta) * sin(theta)) * (-0.2e1 * a5 *
+	g11 * g11 * h11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a4 * a6 *
+	h11 * h21 - 0.2e1 * a4 * a6 * h12 * h22 + 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * h21 *
+	beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta
+	* beta * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta *
+	beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta *
+	beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta
+	* sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha *
+	cos(theta) * sin(theta)) - (-0.2e1 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.2e1 * beta * pow(sin(theta), 0.2e1) * alpha) * (0.4e1 * a5 * g11 * g11 * h11 *
+	h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 *
+	h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 *
+	h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g12 * h12 * g11 * h21
+	* alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * h12 * g21 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * h11 * h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * h11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * g22 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * g21 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g22 * h12 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * h12 * g22 * h22 *
 	alpha * pow(cos(theta), 0.2e1) * beta);
 
-	J0 = -beta * cos(theta) * (-a4 * a6 * g12 * h22 - a4 * a6 * g11 * h21 + a5 * g12 
-	* h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * g12 * g21 * h21 * beta 
-	* beta * pow(cos(theta), 0.2e1) + a5 * g12 * g12 * g11 * h21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a5 * g12 * g12 * g21 * h21 * beta * beta * sin(theta) * 
-	cos(theta) - a5 * g22 * g12 * g11 * h21 * beta * beta * sin(theta) * cos(theta) 
-	- a5 * g22 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h21 * beta 
-	* beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11 * g21 * h21 * beta * 
-	beta * sin(theta) * cos(theta) - a5 * g12 * h22 * beta * beta * sin(theta) * 
-	cos(theta) - a5 * g11 * h21 * beta * beta * sin(theta) * cos(theta) - a5 * g21 * 
-	g11 * g12 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * pow(g12, 0.3e1) * 
-	h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * g22 * g12 * h22 * beta * 
-	beta * pow(cos(theta), 0.2e1) - a5 * g21 * h21 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * 
-	pow(g11, 0.3e1) * h21 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g11 * g11 * 
-	g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * g11 * g22 * h22 * 
-	beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * g11 * h21 * beta * beta 
-	* pow(cos(theta), 0.2e1) + a5 * g21 * g11 * g22 * h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a5 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) - 
+	J0 = -beta * cos(theta) * (-a4 * a6 * g12 * h22 - a4 * a6 * g11 * h21 + a5 * g12
+	* h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * g12 * g21 * h21 * beta
+	* beta * pow(cos(theta), 0.2e1) + a5 * g12 * g12 * g11 * h21 * beta * beta *
+	pow(sin(theta), 0.2e1) - a5 * g12 * g12 * g21 * h21 * beta * beta * sin(theta) *
+	cos(theta) - a5 * g22 * g12 * g11 * h21 * beta * beta * sin(theta) * cos(theta)
+	- a5 * g22 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h21 * beta
+	* beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11 * g21 * h21 * beta *
+	beta * sin(theta) * cos(theta) - a5 * g12 * h22 * beta * beta * sin(theta) *
+	cos(theta) - a5 * g11 * h21 * beta * beta * sin(theta) * cos(theta) - a5 * g21 *
+	g11 * g12 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * pow(g12, 0.3e1) *
+	h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * g22 * g12 * h22 * beta *
+	beta * pow(cos(theta), 0.2e1) - a5 * g21 * h21 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 *
+	pow(g11, 0.3e1) * h21 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g11 * g11 *
+	g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * g11 * g22 * h22 *
+	beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * g11 * h21 * beta * beta
+	* pow(cos(theta), 0.2e1) + a5 * g21 * g11 * g22 * h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + a5 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) -
 	0.2e1 * a5 * g12 * g12 * g22 * h22 * beta * beta * sin(theta) * cos(theta));
 
-	J1 = -beta * cos(theta) * (0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g12 * h22 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a5 * g21 * h21 * alpha * cos(theta) * beta * sin(theta) 
-	+ 0.4e1 * a5 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * 
-	pow(g11, 0.3e1) * h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * 
-	g12 * h22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * g12 * g21 
-	* h21 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * g12 * g11 * 
-	h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * g12 * g11 * h21 
-	* beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h21 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 * h22 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) 
-	* beta + 0.2e1 * a5 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 
-	* a5 * g22 * g22 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * 
-	a5 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h21 
-	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g22 * h22 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * h21 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cos(theta) * beta 
-	* sin(theta)) + 0.2e1 * alpha * sin(theta) * (-a4 * a6 * g12 * h22 - a4 * a6 * 
-	g11 * h21 + a5 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * 
-	g12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g12 * g12 * g11 * 
-	h21 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g12 * g12 * g21 * h21 * beta * 
-	beta * sin(theta) * cos(theta) - a5 * g22 * g12 * g11 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - a5 * g22 * h22 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11 
-	* g21 * h21 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h22 * beta * 
-	beta * sin(theta) * cos(theta) - a5 * g11 * h21 * beta * beta * sin(theta) * 
-	cos(theta) - a5 * g21 * g11 * g12 * h22 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * pow(g12, 0.3e1) * h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * 
-	g22 * g12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g21 * h21 * beta * 
-	beta * sin(theta) * cos(theta) + a5 * g21 * h21 * beta * beta * pow(cos(theta), 
-	0.2e1) + a5 * pow(g11, 0.3e1) * h21 * beta * beta * pow(sin(theta), 0.2e1) + a5 
-	* g11 * g11 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * g11 
-	* g22 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * g11 * h21 
-	* beta * beta * pow(cos(theta), 0.2e1) + a5 * g21 * g11 * g22 * h22 * beta * 
-	beta * pow(cos(theta), 0.2e1) + a5 * g22 * h22 * beta * beta * pow(cos(theta), 
-	0.2e1) - 0.2e1 * a5 * g12 * g12 * g22 * h22 * beta * beta * sin(theta) * 
+	J1 = -beta * cos(theta) * (0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha *
+	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha *
+	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g12 * h22 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a5 * g21 * h21 * alpha * cos(theta) * beta * sin(theta)
+	+ 0.4e1 * a5 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 *
+	pow(g11, 0.3e1) * h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 *
+	g12 * h22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * g12 * g21
+	* h21 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * g12 * g11 *
+	h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * g12 * g11 * h21
+	* beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h21 * alpha *
+	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h21 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 * h22 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cos(theta) * beta *
+	sin(theta) - 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cos(theta), 0.2e1)
+	* beta + 0.2e1 * a5 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1
+	* a5 * g22 * g22 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 *
+	a5 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h21
+	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g22 * h22 * alpha *
+	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * h21 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cos(theta) * beta
+	* sin(theta)) + 0.2e1 * alpha * sin(theta) * (-a4 * a6 * g12 * h22 - a4 * a6 *
+	g11 * h21 + a5 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 *
+	g12 * g21 * h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g12 * g12 * g11 *
+	h21 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g12 * g12 * g21 * h21 * beta *
+	beta * sin(theta) * cos(theta) - a5 * g22 * g12 * g11 * h21 * beta * beta *
+	sin(theta) * cos(theta) - a5 * g22 * h22 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11
+	* g21 * h21 * beta * beta * sin(theta) * cos(theta) - a5 * g12 * h22 * beta *
+	beta * sin(theta) * cos(theta) - a5 * g11 * h21 * beta * beta * sin(theta) *
+	cos(theta) - a5 * g21 * g11 * g12 * h22 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * pow(g12, 0.3e1) * h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 *
+	g22 * g12 * h22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g21 * h21 * beta *
+	beta * sin(theta) * cos(theta) + a5 * g21 * h21 * beta * beta * pow(cos(theta),
+	0.2e1) + a5 * pow(g11, 0.3e1) * h21 * beta * beta * pow(sin(theta), 0.2e1) + a5
+	* g11 * g11 * g12 * h22 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * g11
+	* g22 * h22 * beta * beta * sin(theta) * cos(theta) + a5 * g21 * g21 * g11 * h21
+	* beta * beta * pow(cos(theta), 0.2e1) + a5 * g21 * g11 * g22 * h22 * beta *
+	beta * pow(cos(theta), 0.2e1) + a5 * g22 * h22 * beta * beta * pow(cos(theta),
+	0.2e1) - 0.2e1 * a5 * g12 * g12 * g22 * h22 * beta * beta * sin(theta) *
 	cos(theta));
 
-	J2 = -beta * cos(theta) * (- (2 * a4 * a6 * g12 * h22) -  (2 * a4 * a6 * g11 * 
-	h21) - 0.2e1 * a5 *  g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * 
-	a5 * g22 *  g12 * g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 
-	*  (g12 * g12) *  g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 
-	*  (g12 * g12) * g21 *  h21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 
-	* g22 *  g12 *  g11 *  h21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 
-	* g22 *  h22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 *  g11 *  h21 
-	* beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a5 *  (g11 * g11) * g21 *  h21 
-	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  g12 *  h22 * beta * beta 
-	* sin(theta) * cos(theta) + 0.2e1 * a5 *  g11 *  h21 * beta * beta * sin(theta) 
-	* cos(theta) + 0.2e1 * a5 * g21 *  g11 *  g12 *  h22 * beta * beta * sin(theta) 
-	* cos(theta) - 0.2e1 * a5 *   pow( g12,  3) *  h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 *  g12 *  h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 *  h21 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) - 
-	0.2e1 * a5 *   pow( g11,  3) *  h21 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a5 *  (g11 * g11) *  g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.2e1 * a5 *  (g11 * g11) * g22 *  h22 * beta * beta * sin(theta) * cos(theta) - 
-	0.2e1 * a5 * g21 * g21 *  g11 *  h21 * beta * beta * pow(cos(theta), 0.2e1) - 
-	0.2e1 * a5 * g21 *  g11 * g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) - 
-	0.2e1 * a5 * g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * 
-	(g12 * g12) * g22 *  h22 * beta * beta * sin(theta) * cos(theta) + 0.4e1 * a5 * 
-	(g11 * g11) *  g12 *  h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 
-	*  (g11 * g11) * g22 *  h22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * 
-	a5 * g21 *  g11 *  g12 *  h22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 
-	* a5 *  (g11 * g11) * g21 *  h21 * alpha * alpha * cos(theta) * sin(theta) + 
-	0.4e1 * a5 *   pow( g12,  3) *  h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a5 * g22 * g22 *  g12 *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a5 *  g11 *  h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * 
-	g21 *  h21 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 *  g12 *  h22 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *   pow( g11,  3) *  h21 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *  g12 *  h22 * alpha * 
-	alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 *  g12 * g21 *  h21 * alpha * 
-	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 *  g12 *  g11 *  h21 * alpha * 
-	alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *  g11 *  h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 *  g11 * g22 *  h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 *  h22 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a5 *  (g12 * g12) * g21 *  h21 * alpha * alpha * cos(theta) 
-	* sin(theta) + 0.4e1 * a5 * g21 *  h21 * alpha * alpha * cos(theta) * sin(theta) 
-	+ 0.4e1 * a5 *  (g12 * g12) *  g11 *  h21 * alpha * alpha * pow(cos(theta), 
-	0.2e1) + 0.4e1 * a5 * g22 *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.8e1 * a5 *  (g12 * g12) * g22 *  h22 * alpha * alpha * cos(theta) * sin(theta) 
-	+ 0.4e1 * a5 * g21 * g21 *  g11 *  h21 * alpha * alpha * pow(sin(theta), 0.2e1)) 
-	+ 0.2e1 * alpha * sin(theta) * (0.4e1 * a5 *  (g11 * g11) *  g12 *  h22 * alpha 
-	* cos(theta) * beta * sin(theta) - 0.2e1 * a5 *  (g11 * g11) * g22 *  h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 *  g11 *  g12 *  h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 *  g11 *  g12 *  h22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 *  (g11 * g11) * g21 *  h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 *  (g11 * g11) * g21 *  h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 *  g12 * g21 *  h21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 *   pow( g12,  3) *  h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *  g12 *  h22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 *  h21 * alpha * cos(theta) * 
-	beta * sin(theta) + 0.4e1 * a5 *  g12 *  h22 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.4e1 * a5 *   pow( g11,  3) *  h21 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.2e1 * a5 *  g12 *  h22 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.2e1 * a5 *  (g12 * g12) * g21 *  h21 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.2e1 * a5 * g22 *  g12 *  g11 *  h21 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.2e1 * a5 * g22 *  g12 *  g11 *  h21 * beta * pow(sin(theta), 0.2e1) * alpha + 
-	0.4e1 * a5 *  g11 *  h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * 
-	g11 *  h21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 *  h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 *  (g12 * g12) *  g11 *  h21 
-	* alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 *  (g12 * g12) * g21 * 
-	h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 *  h22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * g22 *  g12 *  h22 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g21 *  h21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 *  h21 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a5 * g21 *  g11 * g22 *  h22 * alpha * cos(theta) * 
-	beta * sin(theta) - 0.4e1 * a5 * g22 *  h22 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.4e1 * a5 *  (g12 * g12) * g22 *  h22 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a5 *  (g12 * g12) * g22 *  h22 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.2e1 * a5 *  g11 *  h21 * beta * pow(sin(theta), 0.2e1) * 
-	alpha + 0.2e1 * a5 *  (g11 * g11) * g22 *  h22 * beta * pow(sin(theta), 0.2e1) * 
-	alpha - 0.4e1 * a5 * g21 * g21 *  g11 *  h21 * alpha * cos(theta) * beta * 
-	sin(theta)) + beta * cos(theta) * (- (a4 * a6 * g12 * h22) -  (a4 * a6 * g11 * 
-	h21) + a5 *  g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 *  g12 
-	* g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 *  (g12 * g12) *  g11 * 
-	h21 * beta * beta * pow(sin(theta), 0.2e1) - a5 *  (g12 * g12) * g21 *  h21 * 
-	beta * beta * sin(theta) * cos(theta) - a5 * g22 *  g12 *  g11 *  h21 * beta * 
-	beta * sin(theta) * cos(theta) - a5 * g22 *  h22 * beta * beta * sin(theta) * 
-	cos(theta) + a5 *  g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * 
-	a5 *  (g11 * g11) * g21 *  h21 * beta * beta * sin(theta) * cos(theta) - a5 * 
-	g12 *  h22 * beta * beta * sin(theta) * cos(theta) - a5 *  g11 *  h21 * beta * 
-	beta * sin(theta) * cos(theta) - a5 * g21 *  g11 *  g12 *  h22 * beta * beta * 
-	sin(theta) * cos(theta) + a5 *   pow( g12,  3) *  h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a5 * g22 * g22 *  g12 *  h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a5 * g21 *  h21 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 *   pow( g11,  3) 
-	*  h21 * beta * beta * pow(sin(theta), 0.2e1) + a5 *  (g11 * g11) *  g12 *  h22 
-	* beta * beta * pow(sin(theta), 0.2e1) - a5 *  (g11 * g11) * g22 *  h22 * beta * 
-	beta * sin(theta) * cos(theta) + a5 * g21 * g21 *  g11 *  h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a5 * g21 *  g11 * g22 *  h22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a5 * g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) 
-	- 0.2e1 * a5 *  (g12 * g12) * g22 *  h22 * beta * beta * sin(theta) * 
+	J2 = -beta * cos(theta) * (- (2 * a4 * a6 * g12 * h22) -  (2 * a4 * a6 * g11 *
+	h21) - 0.2e1 * a5 *  g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 *
+	a5 * g22 *  g12 * g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5
+	*  (g12 * g12) *  g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5
+	*  (g12 * g12) * g21 *  h21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5
+	* g22 *  g12 *  g11 *  h21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5
+	* g22 *  h22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 *  g11 *  h21
+	* beta * beta * pow(sin(theta), 0.2e1) + 0.4e1 * a5 *  (g11 * g11) * g21 *  h21
+	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  g12 *  h22 * beta * beta
+	* sin(theta) * cos(theta) + 0.2e1 * a5 *  g11 *  h21 * beta * beta * sin(theta)
+	* cos(theta) + 0.2e1 * a5 * g21 *  g11 *  g12 *  h22 * beta * beta * sin(theta)
+	* cos(theta) - 0.2e1 * a5 *   pow( g12,  3) *  h22 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 *  g12 *  h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 *  h21 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) -
+	0.2e1 * a5 *   pow( g11,  3) *  h21 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a5 *  (g11 * g11) *  g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.2e1 * a5 *  (g11 * g11) * g22 *  h22 * beta * beta * sin(theta) * cos(theta) -
+	0.2e1 * a5 * g21 * g21 *  g11 *  h21 * beta * beta * pow(cos(theta), 0.2e1) -
+	0.2e1 * a5 * g21 *  g11 * g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) -
+	0.2e1 * a5 * g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *
+	(g12 * g12) * g22 *  h22 * beta * beta * sin(theta) * cos(theta) + 0.4e1 * a5 *
+	(g11 * g11) *  g12 *  h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5
+	*  (g11 * g11) * g22 *  h22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 *
+	a5 * g21 *  g11 *  g12 *  h22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1
+	* a5 *  (g11 * g11) * g21 *  h21 * alpha * alpha * cos(theta) * sin(theta) +
+	0.4e1 * a5 *   pow( g12,  3) *  h22 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a5 * g22 * g22 *  g12 *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a5 *  g11 *  h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *
+	g21 *  h21 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 *  g12 *  h22 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *   pow( g11,  3) *  h21 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *  g12 *  h22 * alpha *
+	alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 *  g12 * g21 *  h21 * alpha *
+	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 *  g12 *  g11 *  h21 * alpha *
+	alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *  g11 *  h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g21 *  g11 * g22 *  h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 *  h22 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a5 *  (g12 * g12) * g21 *  h21 * alpha * alpha * cos(theta)
+	* sin(theta) + 0.4e1 * a5 * g21 *  h21 * alpha * alpha * cos(theta) * sin(theta)
+	+ 0.4e1 * a5 *  (g12 * g12) *  g11 *  h21 * alpha * alpha * pow(cos(theta),
+	0.2e1) + 0.4e1 * a5 * g22 *  h22 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.8e1 * a5 *  (g12 * g12) * g22 *  h22 * alpha * alpha * cos(theta) * sin(theta)
+	+ 0.4e1 * a5 * g21 * g21 *  g11 *  h21 * alpha * alpha * pow(sin(theta), 0.2e1))
+	+ 0.2e1 * alpha * sin(theta) * (0.4e1 * a5 *  (g11 * g11) *  g12 *  h22 * alpha
+	* cos(theta) * beta * sin(theta) - 0.2e1 * a5 *  (g11 * g11) * g22 *  h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 *  g11 *  g12 *  h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 *  g11 *  g12 *  h22 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 *  (g11 * g11) * g21 *  h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 *  (g11 * g11) * g21 *  h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 *  g12 * g21 *  h21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 *   pow( g12,  3) *  h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *  g12 *  h22 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 *  h21 * alpha * cos(theta) *
+	beta * sin(theta) + 0.4e1 * a5 *  g12 *  h22 * alpha * cos(theta) * beta *
+	sin(theta) + 0.4e1 * a5 *   pow( g11,  3) *  h21 * alpha * cos(theta) * beta *
+	sin(theta) - 0.2e1 * a5 *  g12 *  h22 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.2e1 * a5 *  (g12 * g12) * g21 *  h21 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.2e1 * a5 * g22 *  g12 *  g11 *  h21 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.2e1 * a5 * g22 *  g12 *  g11 *  h21 * beta * pow(sin(theta), 0.2e1) * alpha +
+	0.4e1 * a5 *  g11 *  h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 *
+	g11 *  h21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 *  h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 *  (g12 * g12) *  g11 *  h21
+	* alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 *  (g12 * g12) * g21 *
+	h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 *  h22 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g22 * g22 *  g12 *  h22 * alpha *
+	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g21 *  h21 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 *  h21 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a5 * g21 *  g11 * g22 *  h22 * alpha * cos(theta) *
+	beta * sin(theta) - 0.4e1 * a5 * g22 *  h22 * alpha * cos(theta) * beta *
+	sin(theta) - 0.4e1 * a5 *  (g12 * g12) * g22 *  h22 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a5 *  (g12 * g12) * g22 *  h22 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.2e1 * a5 *  g11 *  h21 * beta * pow(sin(theta), 0.2e1) *
+	alpha + 0.2e1 * a5 *  (g11 * g11) * g22 *  h22 * beta * pow(sin(theta), 0.2e1) *
+	alpha - 0.4e1 * a5 * g21 * g21 *  g11 *  h21 * alpha * cos(theta) * beta *
+	sin(theta)) + beta * cos(theta) * (- (a4 * a6 * g12 * h22) -  (a4 * a6 * g11 *
+	h21) + a5 *  g12 *  h22 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 *  g12
+	* g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 *  (g12 * g12) *  g11 *
+	h21 * beta * beta * pow(sin(theta), 0.2e1) - a5 *  (g12 * g12) * g21 *  h21 *
+	beta * beta * sin(theta) * cos(theta) - a5 * g22 *  g12 *  g11 *  h21 * beta *
+	beta * sin(theta) * cos(theta) - a5 * g22 *  h22 * beta * beta * sin(theta) *
+	cos(theta) + a5 *  g11 *  h21 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 *
+	a5 *  (g11 * g11) * g21 *  h21 * beta * beta * sin(theta) * cos(theta) - a5 *
+	g12 *  h22 * beta * beta * sin(theta) * cos(theta) - a5 *  g11 *  h21 * beta *
+	beta * sin(theta) * cos(theta) - a5 * g21 *  g11 *  g12 *  h22 * beta * beta *
+	sin(theta) * cos(theta) + a5 *   pow( g12,  3) *  h22 * beta * beta *
+	pow(sin(theta), 0.2e1) + a5 * g22 * g22 *  g12 *  h22 * beta * beta *
+	pow(cos(theta), 0.2e1) - a5 * g21 *  h21 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g21 *  h21 * beta * beta * pow(cos(theta), 0.2e1) + a5 *   pow( g11,  3)
+	*  h21 * beta * beta * pow(sin(theta), 0.2e1) + a5 *  (g11 * g11) *  g12 *  h22
+	* beta * beta * pow(sin(theta), 0.2e1) - a5 *  (g11 * g11) * g22 *  h22 * beta *
+	beta * sin(theta) * cos(theta) + a5 * g21 * g21 *  g11 *  h21 * beta * beta *
+	pow(cos(theta), 0.2e1) + a5 * g21 *  g11 * g22 *  h22 * beta * beta *
+	pow(cos(theta), 0.2e1) + a5 * g22 *  h22 * beta * beta * pow(cos(theta), 0.2e1)
+	- 0.2e1 * a5 *  (g12 * g12) * g22 *  h22 * beta * beta * sin(theta) *
 	cos(theta));
 
-	J3 = -beta * cos(theta) * (-0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g12 * h22 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a5 * g21 * h21 * alpha * cos(theta) * beta * sin(theta) 
-	- 0.4e1 * a5 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * 
-	pow(g11, 0.3e1) * h21 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * 
-	g12 * h22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 * g12 * g21 
-	* h21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g22 * g12 * g11 * 
-	h21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 * g12 * g11 * h21 
-	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g11 * h21 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * h22 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) 
-	* beta - 0.2e1 * a5 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 
-	* a5 * g22 * g22 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * 
-	a5 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h21 
-	* beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g21 * g11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * h22 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g11 * h21 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cos(theta) * beta 
-	* sin(theta)) + 0.2e1 * alpha * sin(theta) * (-0.2e1 * a4 * a6 * g12 * h22 - 
-	0.2e1 * a4 * a6 * g11 * h21 - 0.2e1 * a5 * g12 * h22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * g12 * g21 * h21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g12 * g12 * g11 * h21 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a5 * g22 * h22 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * beta * sin(theta) * cos(theta) + 
-	0.2e1 * a5 * g12 * h22 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * 
-	g11 * h21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g21 * g11 * g12 
-	* h22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * pow(g12, 0.3e1) * 
-	h22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * g12 * h22 
-	* beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * h21 * beta * beta * pow(cos(theta), 
-	0.2e1) - 0.2e1 * a5 * pow(g11, 0.3e1) * h21 * beta * beta * pow(sin(theta), 
-	0.2e1) - 0.2e1 * a5 * g11 * g11 * g12 * h22 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g21 * g21 * g11 * h21 * beta * beta * pow(cos(theta), 
-	0.2e1) - 0.2e1 * a5 * g21 * g11 * g22 * h22 * beta * beta * pow(cos(theta), 
-	0.2e1) - 0.2e1 * a5 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 * 
-	a5 * g12 * g12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) + 0.4e1 * a5 
-	* g11 * g11 * g12 * h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * 
-	g11 * g11 * g22 * h22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * 
-	g21 * g11 * g12 * h22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a5 * 
-	g11 * g11 * g21 * h21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * 
-	pow(g12, 0.3e1) * h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * 
-	g22 * g22 * g12 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * 
-	g11 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h21 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h22 * alpha * alpha 
-	* pow(cos(theta), 0.2e1) + 0.4e1 * a5 * pow(g11, 0.3e1) * h21 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h22 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g12 * g11 * h21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h21 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h22 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a5 * g12 * g12 * g21 * h21 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a5 * g21 * h21 * alpha * alpha * cos(theta) * sin(theta) + 
-	0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a5 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a5 * 
-	g12 * g12 * g22 * h22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * 
-	g21 * g21 * g11 * h21 * alpha * alpha * pow(sin(theta), 0.2e1)) + beta * 
-	cos(theta) * (0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * pow(cos(theta), 0.2e1) 
-	* beta - 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * pow(cos(theta), 0.2e1) * 
-	beta + 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * pow(sin(theta), 0.2e1) * 
-	alpha - 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) * 
-	beta + 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * pow(sin(theta), 0.2e1) * 
-	alpha - 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.2e1 * a5 * g12 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.4e1 * a5 * g21 * h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * 
-	g12 * h22 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * pow(g11, 
-	0.3e1) * h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g12 * h22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * g12 * g21 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * g12 * g11 * h21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * g12 * g11 * h21 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h21 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 * h22 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) 
-	* beta + 0.2e1 * a5 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 
-	* a5 * g22 * g22 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * 
-	a5 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h21 
-	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g11 * g22 * h22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g22 * h22 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * h21 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cos(theta) * beta 
+	J3 = -beta * cos(theta) * (-0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha *
+	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha *
+	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha *
+	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g12 * h22 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a5 * g21 * h21 * alpha * cos(theta) * beta * sin(theta)
+	- 0.4e1 * a5 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 *
+	pow(g11, 0.3e1) * h21 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *
+	g12 * h22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 * g12 * g21
+	* h21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g22 * g12 * g11 *
+	h21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 * g12 * g11 * h21
+	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g11 * h21 * alpha *
+	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h21 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * h22 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cos(theta) * beta *
+	sin(theta) + 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cos(theta), 0.2e1)
+	* beta - 0.2e1 * a5 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1
+	* a5 * g22 * g22 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 *
+	a5 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h21
+	* beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g21 * g11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * h22 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g11 * h21 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cos(theta) * beta
+	* sin(theta)) + 0.2e1 * alpha * sin(theta) * (-0.2e1 * a4 * a6 * g12 * h22 -
+	0.2e1 * a4 * a6 * g11 * h21 - 0.2e1 * a5 * g12 * h22 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * g12 * g21 * h21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g12 * g12 * g11 * h21 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a5 * g22 * h22 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g11 * h21 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * beta * sin(theta) * cos(theta) +
+	0.2e1 * a5 * g12 * h22 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 *
+	g11 * h21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g21 * g11 * g12
+	* h22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * pow(g12, 0.3e1) *
+	h22 * beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * g22 * g12 * h22
+	* beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g21 * h21 * beta * beta * pow(cos(theta),
+	0.2e1) - 0.2e1 * a5 * pow(g11, 0.3e1) * h21 * beta * beta * pow(sin(theta),
+	0.2e1) - 0.2e1 * a5 * g11 * g11 * g12 * h22 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g21 * g21 * g11 * h21 * beta * beta * pow(cos(theta),
+	0.2e1) - 0.2e1 * a5 * g21 * g11 * g22 * h22 * beta * beta * pow(cos(theta),
+	0.2e1) - 0.2e1 * a5 * g22 * h22 * beta * beta * pow(cos(theta), 0.2e1) + 0.4e1 *
+	a5 * g12 * g12 * g22 * h22 * beta * beta * sin(theta) * cos(theta) + 0.4e1 * a5
+	* g11 * g11 * g12 * h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *
+	g11 * g11 * g22 * h22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *
+	g21 * g11 * g12 * h22 * alpha * alpha * cos(theta) * sin(theta) + 0.8e1 * a5 *
+	g11 * g11 * g21 * h21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *
+	pow(g12, 0.3e1) * h22 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 *
+	g22 * g22 * g12 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 *
+	g11 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g21 * h21 *
+	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h22 * alpha * alpha
+	* pow(cos(theta), 0.2e1) + 0.4e1 * a5 * pow(g11, 0.3e1) * h21 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h22 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * g12 * g11 * h21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h21 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * alpha *
+	pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h22 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a5 * g12 * g12 * g21 * h21 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a5 * g21 * h21 * alpha * alpha * cos(theta) * sin(theta) +
+	0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a5 * g22 * h22 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.8e1 * a5 *
+	g12 * g12 * g22 * h22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *
+	g21 * g21 * g11 * h21 * alpha * alpha * pow(sin(theta), 0.2e1)) + beta *
+	cos(theta) * (0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * cos(theta) * beta *
+	sin(theta) - 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * pow(cos(theta), 0.2e1)
+	* beta - 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * pow(cos(theta), 0.2e1) *
+	beta + 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * pow(sin(theta), 0.2e1) *
+	alpha - 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) *
+	beta + 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * pow(sin(theta), 0.2e1) *
+	alpha - 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * cos(theta) * beta *
+	sin(theta) + 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * cos(theta) * beta *
+	sin(theta) + 0.2e1 * a5 * g12 * h22 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.4e1 * a5 * g21 * h21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 *
+	g12 * h22 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * pow(g11,
+	0.3e1) * h21 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g12 * h22 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * g12 * g21 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * g12 * g11 * h21 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * g12 * g11 * h21 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h21 * alpha *
+	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h21 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g22 * h22 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cos(theta) * beta *
+	sin(theta) - 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cos(theta), 0.2e1)
+	* beta + 0.2e1 * a5 * g22 * h22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1
+	* a5 * g22 * g22 * g12 * h22 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 *
+	a5 * g21 * h21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h21
+	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g21 * g11 * g22 * h22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g22 * h22 * alpha *
+	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * h21 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cos(theta) * beta
 	* sin(theta));
 
-	K0 = -beta * sin(theta) * (a5 * pow(g21, 0.3e1) * h11 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a5 * g12 * h12 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g21 * h11 * beta 
-	* beta * pow(cos(theta), 0.2e1) - a5 * g22 * h12 * g11 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - a5 * g11 * h11 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * h12 * beta 
-	* beta * pow(cos(theta), 0.2e1) + a5 * pow(g22, 0.3e1) * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a5 * g11 * g11 * h11 * g21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a5 * g21 * h11 * g12 * g22 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1) + 
-	a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g21 * 
-	h11 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * h12 * g11 * g21 * beta 
-	* beta * pow(sin(theta), 0.2e1) - a5 * g12 * h12 * g21 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * 
-	sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta), 0.2e1) - 
-	a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 
-	* g22 * g22 * beta * beta * sin(theta) * cos(theta) - a4 * a6 * h11 * g21 - a4 * 
+	K0 = -beta * sin(theta) * (a5 * pow(g21, 0.3e1) * h11 * beta * beta *
+	pow(cos(theta), 0.2e1) - a5 * g12 * h12 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g21 * h11 * beta
+	* beta * pow(cos(theta), 0.2e1) - a5 * g22 * h12 * g11 * g21 * beta * beta *
+	sin(theta) * cos(theta) - a5 * g11 * h11 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * h12 * beta
+	* beta * pow(cos(theta), 0.2e1) + a5 * pow(g22, 0.3e1) * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) + a5 * g11 * g11 * h11 * g21 * beta * beta *
+	pow(sin(theta), 0.2e1) - a5 * g21 * h11 * g12 * g22 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1) +
+	a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g21 *
+	h11 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * h12 * g11 * g21 * beta
+	* beta * pow(sin(theta), 0.2e1) - a5 * g12 * h12 * g21 * g21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g21 * g21 * beta * beta *
+	sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * g22 * beta * beta *
+	pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta), 0.2e1) -
+	a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12
+	* g22 * g22 * beta * beta * sin(theta) * cos(theta) - a4 * a6 * h11 * g21 - a4 *
 	a6 * h12 * g22);
 
-	K1 = -beta * sin(theta) * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 * h12 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.4e1 * a5 * g12 * h12 * alpha * cos(theta) * beta * sin(theta) - 
-	0.4e1 * a5 * g21 * h11 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * 
-	g21 * h11 * g12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 
-	* h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cos(theta) * beta 
-	* sin(theta) - 0.2e1 * a5 * g11 * h11 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha + 
-	0.4e1 * a5 * g11 * h11 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * 
-	g11 * h11 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g11 
-	* h11 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g11 * 
-	h11 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g11 * h11 
-	* g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * 
-	g12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g12 
-	* g22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) * beta 
-	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha) - 
-	0.2e1 * alpha * cos(theta) * (a5 * pow(g21, 0.3e1) * h11 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a5 * g12 * h12 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g21 * h11 * beta 
-	* beta * pow(cos(theta), 0.2e1) - a5 * g22 * h12 * g11 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - a5 * g11 * h11 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * h12 * beta 
-	* beta * pow(cos(theta), 0.2e1) + a5 * pow(g22, 0.3e1) * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a5 * g11 * g11 * h11 * g21 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a5 * g21 * h11 * g12 * g22 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1) + 
-	a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g21 * 
-	h11 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * h12 * g11 * g21 * beta 
-	* beta * pow(sin(theta), 0.2e1) - a5 * g12 * h12 * g21 * g21 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * 
-	sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) * 
-	cos(theta) + a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta), 0.2e1) - 
-	a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 
-	* g22 * g22 * beta * beta * sin(theta) * cos(theta) - a4 * a6 * h11 * g21 - a4 * 
+	K1 = -beta * sin(theta) * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 * h12 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cos(theta) * beta *
+	sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cos(theta) * beta *
+	sin(theta) - 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cos(theta) * beta *
+	sin(theta) + 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * cos(theta) * beta *
+	sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cos(theta) * beta *
+	sin(theta) + 0.4e1 * a5 * g12 * h12 * alpha * cos(theta) * beta * sin(theta) -
+	0.4e1 * a5 * g21 * h11 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *
+	g21 * h11 * g12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12
+	* h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * alpha *
+	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * h11 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cos(theta) * beta
+	* sin(theta) - 0.2e1 * a5 * g11 * h11 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha +
+	0.4e1 * a5 * g11 * h11 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 *
+	g11 * h11 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g11
+	* h11 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g11 *
+	h11 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g11 * h11
+	* g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g21 * h11 *
+	g12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g12
+	* g22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g22 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha *
+	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) * beta
+	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha) -
+	0.2e1 * alpha * cos(theta) * (a5 * pow(g21, 0.3e1) * h11 * beta * beta *
+	pow(cos(theta), 0.2e1) - a5 * g12 * h12 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g21 * h11 * beta
+	* beta * pow(cos(theta), 0.2e1) - a5 * g22 * h12 * g11 * g21 * beta * beta *
+	sin(theta) * cos(theta) - a5 * g11 * h11 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g12 * h12 * beta * beta * pow(sin(theta), 0.2e1) + a5 * g22 * h12 * beta
+	* beta * pow(cos(theta), 0.2e1) + a5 * pow(g22, 0.3e1) * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) + a5 * g11 * g11 * h11 * g21 * beta * beta *
+	pow(sin(theta), 0.2e1) - a5 * g21 * h11 * g12 * g22 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1) +
+	a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g21 *
+	h11 * beta * beta * sin(theta) * cos(theta) + a5 * g12 * h12 * g11 * g21 * beta
+	* beta * pow(sin(theta), 0.2e1) - a5 * g12 * h12 * g21 * g21 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 * g21 * g21 * beta * beta *
+	sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * g22 * beta * beta *
+	pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) *
+	cos(theta) + a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta), 0.2e1) -
+	a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12
+	* g22 * g22 * beta * beta * sin(theta) * cos(theta) - a4 * a6 * h11 * g21 - a4 *
 	a6 * h12 * g22);
 
-	K2 = -beta * sin(theta) * (-0.2e1 * a5 * pow(g21, 0.3e1) * h11 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g12 * h12 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a5 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g22 
-	* h12 * g11 * g21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g11 * 
-	h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * beta * 
-	beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * pow(g22, 0.3e1) * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * beta * sin(theta) * 
-	cos(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.4e1 
-	* a5 * g12 * h12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * 
-	a4 * a6 * h11 * g21 - 0.2e1 * a4 * a6 * h12 * g22 + 0.4e1 * a5 * pow(g22, 0.3e1) 
-	* h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * pow(g21, 0.3e1) * 
-	h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * alpha * 
-	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * g21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a5 * g11 * h11 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * 
-	g12 * h12 * g11 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 * 
-	g11 * h11 * g21 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * 
-	g11 * h11 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * 
-	g22 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * 
-	g12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * 
-	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * g21 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * g21 * 
-	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 * g12 * h12 * g22 * g22 * 
-	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha 
-	* cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1)) - 0.2e1 * alpha * cos(theta) * (0.2e1 * a5 * g22 * h12 * 
-	g11 * g21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 * h12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * g21 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * g21 * g21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * g22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * g22 * g22 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g11 * g21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * alpha * cos(theta) * 
-	beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta 
-	- 0.4e1 * a5 * g22 * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * 
-	g11 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * pow(g21, 0.3e1) 
-	* h11 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * alpha 
-	* pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h11 * alpha * cos(theta) * 
-	beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.2e1 * a5 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.2e1 * a5 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * 
-	g12 * h12 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12 
-	* h12 * g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * 
-	pow(g22, 0.3e1) * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * 
-	g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * h12 * g22 * g22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha) + beta * sin(theta) * (a5 * pow(g21, 
-	0.3e1) * h11 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g12 * h12 * beta * 
-	beta * sin(theta) * cos(theta) + a5 * g11 * h11 * beta * beta * pow(sin(theta), 
-	0.2e1) + a5 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g22 * h12 
-	* g11 * g21 * beta * beta * sin(theta) * cos(theta) - a5 * g11 * h11 * beta * 
-	beta * sin(theta) * cos(theta) + a5 * g12 * h12 * beta * beta * pow(sin(theta), 
-	0.2e1) + a5 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + a5 * pow(g22, 
-	0.3e1) * h12 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g11 * g11 * h11 * g21 
-	* beta * beta * pow(sin(theta), 0.2e1) - a5 * g21 * h11 * g12 * g22 * beta * 
-	beta * sin(theta) * cos(theta) + a5 * g22 * h12 * g21 * g21 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a5 * g21 * h11 * g22 * g22 * beta * beta * 
-	pow(cos(theta), 0.2e1) - a5 * g21 * h11 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g12 * 
-	h12 * g21 * g21 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11 
-	* g21 * g21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * g22 
-	* beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * g22 * beta * 
-	beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * g22 * beta * beta * 
-	pow(sin(theta), 0.2e1) - a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) 
-	- 0.2e1 * a5 * g12 * h12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - 
+	K2 = -beta * sin(theta) * (-0.2e1 * a5 * pow(g21, 0.3e1) * h11 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g12 * h12 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a5 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g22
+	* h12 * g11 * g21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g11 *
+	h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * beta *
+	beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * pow(g22, 0.3e1) * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * beta * sin(theta) *
+	cos(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.4e1
+	* a5 * g12 * h12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 *
+	a4 * a6 * h11 * g21 - 0.2e1 * a4 * a6 * h12 * g22 + 0.4e1 * a5 * pow(g22, 0.3e1)
+	* h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * pow(g21, 0.3e1) *
+	h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * alpha *
+	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * g21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a5 * g11 * h11 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *
+	g12 * h12 * g11 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 *
+	g11 * h11 * g21 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *
+	g11 * h11 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 *
+	g22 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 *
+	g12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 *
+	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * g21 *
+	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * g21 *
+	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 * g12 * h12 * g22 * g22 *
+	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha
+	* cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha *
+	pow(sin(theta), 0.2e1)) - 0.2e1 * alpha * cos(theta) * (0.2e1 * a5 * g22 * h12 *
+	g11 * g21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 * h12 *
+	beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * g21 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * g21 * g21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * g22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * g22 * g22 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g11 * g21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * alpha *
+	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * alpha * cos(theta) *
+	beta * sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta
+	- 0.4e1 * a5 * g22 * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *
+	g11 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * pow(g21, 0.3e1)
+	* h11 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * alpha
+	* pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h11 * alpha * cos(theta) *
+	beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cos(theta) * beta *
+	sin(theta) + 0.2e1 * a5 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.2e1 * a5 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 *
+	g12 * h12 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12
+	* h12 * g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 *
+	pow(g22, 0.3e1) * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *
+	g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * h12 * g22 * g22 *
+	beta * pow(sin(theta), 0.2e1) * alpha) + beta * sin(theta) * (a5 * pow(g21,
+	0.3e1) * h11 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g12 * h12 * beta *
+	beta * sin(theta) * cos(theta) + a5 * g11 * h11 * beta * beta * pow(sin(theta),
+	0.2e1) + a5 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g22 * h12
+	* g11 * g21 * beta * beta * sin(theta) * cos(theta) - a5 * g11 * h11 * beta *
+	beta * sin(theta) * cos(theta) + a5 * g12 * h12 * beta * beta * pow(sin(theta),
+	0.2e1) + a5 * g22 * h12 * beta * beta * pow(cos(theta), 0.2e1) + a5 * pow(g22,
+	0.3e1) * h12 * beta * beta * pow(cos(theta), 0.2e1) + a5 * g11 * g11 * h11 * g21
+	* beta * beta * pow(sin(theta), 0.2e1) - a5 * g21 * h11 * g12 * g22 * beta *
+	beta * sin(theta) * cos(theta) + a5 * g22 * h12 * g21 * g21 * beta * beta *
+	pow(cos(theta), 0.2e1) + a5 * g21 * h11 * g22 * g22 * beta * beta *
+	pow(cos(theta), 0.2e1) - a5 * g21 * h11 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sin(theta), 0.2e1) - a5 * g12 *
+	h12 * g21 * g21 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g11 * h11
+	* g21 * g21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * h11 * g12 * g22
+	* beta * beta * pow(sin(theta), 0.2e1) - a5 * g11 * h11 * g22 * g22 * beta *
+	beta * sin(theta) * cos(theta) + a5 * g12 * g12 * h12 * g22 * beta * beta *
+	pow(sin(theta), 0.2e1) - a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta)
+	- 0.2e1 * a5 * g12 * h12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) -
 	a4 * a6 * h11 * g21 - a4 * a6 * h12 * g22);
 
-	K3 = -beta * sin(theta) * (-0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cos(theta) * beta * 
-	sin(theta) - 0.4e1 * a5 * g12 * h12 * alpha * cos(theta) * beta * sin(theta) + 
-	0.4e1 * a5 * g21 * h11 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * 
-	g21 * h11 * g12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 
-	* h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g22 * h12 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cos(theta) * beta 
-	* sin(theta) + 0.2e1 * a5 * g11 * h11 * alpha * pow(cos(theta), 0.2e1) * beta - 
-	0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.4e1 * a5 * g11 * h11 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * 
-	g11 * h11 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 
-	* h11 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g11 * 
-	h11 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * h11 
-	* g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h11 * 
-	g12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g12 
-	* g22 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g22 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g22 * h12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g21 * h11 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.2e1 * a5 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) * beta 
-	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha) - 
-	0.2e1 * alpha * cos(theta) * (-0.2e1 * a5 * pow(g21, 0.3e1) * h11 * beta * beta 
-	* pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g12 * h12 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.2e1 * a5 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g22 
-	* h12 * g11 * g21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g11 * 
-	h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * beta * 
-	beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * pow(g22, 0.3e1) * h12 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * beta * 
-	sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * beta * sin(theta) * 
-	cos(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) * 
-	cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta), 
-	0.2e1) + 0.2e1 * a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.4e1 
-	* a5 * g12 * h12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * 
-	a4 * a6 * h11 * g21 - 0.2e1 * a4 * a6 * h12 * g22 + 0.4e1 * a5 * pow(g22, 0.3e1) 
-	* h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * pow(g21, 0.3e1) * 
-	h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * alpha * 
-	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * g21 * alpha * alpha * 
-	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha * 
-	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha * cos(theta) * 
-	sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 
-	0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) + 
-	0.4e1 * a5 * g11 * h11 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * 
-	g12 * h12 * g11 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 * 
-	g11 * h11 * g21 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * 
-	g11 * h11 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 * 
-	g22 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * 
-	g12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * 
-	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * g21 * 
-	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * g21 * 
-	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 * g12 * h12 * g22 * g22 * 
-	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha 
-	* cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha * 
-	pow(sin(theta), 0.2e1)) + beta * sin(theta) * (0.2e1 * a5 * g22 * h12 * g11 * 
-	g21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 * h12 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * alpha * cos(theta) * 
-	beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sin(theta), 0.2e1) 
-	* alpha - 0.2e1 * a5 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 
-	* a5 * g22 * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * 
-	h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * pow(g21, 0.3e1) * h11 
-	* alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * 
-	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h11 * alpha * cos(theta) * 
-	beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cos(theta) * beta * 
-	sin(theta) + 0.2e1 * a5 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.2e1 * a5 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * 
-	g12 * h12 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12 
-	* h12 * g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * 
-	pow(g22, 0.3e1) * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * 
-	g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 * 
-	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * h12 * g22 * g22 * 
+	K3 = -beta * sin(theta) * (-0.2e1 * a5 * g22 * h12 * g11 * g21 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g12 * h12 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cos(theta) * beta *
+	sin(theta) - 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cos(theta) * beta *
+	sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cos(theta) * beta *
+	sin(theta) - 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * cos(theta) * beta *
+	sin(theta) - 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cos(theta) * beta *
+	sin(theta) - 0.4e1 * a5 * g12 * h12 * alpha * cos(theta) * beta * sin(theta) +
+	0.4e1 * a5 * g21 * h11 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 *
+	g21 * h11 * g12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12
+	* h12 * alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g22 * h12 * alpha *
+	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cos(theta) * beta
+	* sin(theta) + 0.2e1 * a5 * g11 * h11 * alpha * pow(cos(theta), 0.2e1) * beta -
+	0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.4e1 * a5 * g11 * h11 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 *
+	g11 * h11 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11
+	* h11 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g11 *
+	h11 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * h11
+	* g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g21 * h11 *
+	g12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g11 * h11 * g12
+	* g22 * alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g22 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g22 * h12 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha *
+	cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g21 * h11 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.2e1 * a5 * g21 * h11 * alpha * pow(cos(theta), 0.2e1) * beta
+	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha) -
+	0.2e1 * alpha * cos(theta) * (-0.2e1 * a5 * pow(g21, 0.3e1) * h11 * beta * beta
+	* pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g12 * h12 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g11 * h11 * beta * beta * pow(sin(theta), 0.2e1) -
+	0.2e1 * a5 * g21 * h11 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g22
+	* h12 * g11 * g21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g11 *
+	h11 * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 * g12 * h12 * beta *
+	beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 * g22 * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * pow(g22, 0.3e1) * h12 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * beta *
+	sin(theta) * cos(theta) - 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 * g21 * h11 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * beta * sin(theta) *
+	cos(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * beta * sin(theta) *
+	cos(theta) - 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sin(theta),
+	0.2e1) + 0.2e1 * a5 * g22 * h12 * beta * beta * sin(theta) * cos(theta) + 0.4e1
+	* a5 * g12 * h12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - 0.2e1 *
+	a4 * a6 * h11 * g21 - 0.2e1 * a4 * a6 * h12 * g22 + 0.4e1 * a5 * pow(g22, 0.3e1)
+	* h12 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * pow(g21, 0.3e1) *
+	h11 * alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * alpha *
+	alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g22 * h12 * g11 * g21 * alpha * alpha *
+	cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha *
+	pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * alpha * alpha * cos(theta) *
+	sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha * pow(sin(theta), 0.2e1) +
+	0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * pow(cos(theta), 0.2e1) +
+	0.4e1 * a5 * g11 * h11 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *
+	g12 * h12 * g11 * g21 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 *
+	g11 * h11 * g21 * g21 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 *
+	g11 * h11 * alpha * alpha * pow(cos(theta), 0.2e1) + 0.4e1 * a5 * g11 * h11 *
+	g22 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 *
+	g12 * g22 * alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 *
+	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g22 * h12 * g21 * g21 *
+	alpha * alpha * pow(sin(theta), 0.2e1) + 0.4e1 * a5 * g12 * h12 * g21 * g21 *
+	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 *
+	alpha * alpha * pow(cos(theta), 0.2e1) + 0.8e1 * a5 * g12 * h12 * g22 * g22 *
+	alpha * alpha * cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * alpha * alpha
+	* cos(theta) * sin(theta) + 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha *
+	pow(sin(theta), 0.2e1)) + beta * sin(theta) * (0.2e1 * a5 * g22 * h12 * g11 *
+	g21 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 * h12 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha *
+	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g12 * h12 * alpha * cos(theta) *
+	beta * sin(theta) - 0.4e1 * a5 * g21 * h11 * alpha * cos(theta) * beta *
+	sin(theta) + 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sin(theta), 0.2e1)
+	* alpha - 0.2e1 * a5 * g12 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1
+	* a5 * g22 * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 *
+	h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * pow(g21, 0.3e1) * h11
+	* alpha * cos(theta) * beta * sin(theta) - 0.2e1 * a5 * g11 * h11 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta *
+	pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g11 * h11 * alpha * cos(theta) *
+	beta * sin(theta) + 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cos(theta) * beta *
+	sin(theta) + 0.2e1 * a5 * g22 * h12 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.2e1 * a5 * g22 * h12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 *
+	g12 * h12 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g12
+	* h12 * g22 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 *
+	pow(g22, 0.3e1) * h12 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *
+	g21 * h11 * beta * pow(sin(theta), 0.2e1) * alpha - 0.2e1 * a5 * g21 * h11 *
+	alpha * pow(cos(theta), 0.2e1) * beta + 0.4e1 * a5 * g12 * h12 * g22 * g22 *
 	beta * pow(sin(theta), 0.2e1) * alpha);
 
-	L0 = a4 * a6 * g11 * g21 + a4 * a6 * g12 * g22 + a4 * a6 - a5 * g22 * g22 * beta 
-	* beta * pow(cos(theta), 0.2e1) - a5 * g21 * g21 * beta * beta * pow(cos(theta), 
-	0.2e1) + a5 * g11 * g11 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - a5 
-	* beta * beta * pow(sin(theta), 0.2e1) - a5 * beta * beta * pow(cos(theta), 
-	0.2e1) - a5 * pow(g12, 0.3e1) * g22 * beta * beta * pow(sin(theta), 0.2e1) - a5 
-	* g12 * g12 * g11 * g21 * beta * beta * pow(sin(theta), 0.2e1) - a5 * pow(g21, 
-	0.3e1) * g11 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g22 * g12 * beta * 
-	beta * pow(cos(theta), 0.2e1) - a5 * g21 * g11 * beta * beta * pow(sin(theta), 
-	0.2e1) - a5 * pow(g22, 0.3e1) * g12 * beta * beta * pow(cos(theta), 0.2e1) + 
-	0.2e1 * a5 * g21 * g11 * beta * beta * sin(theta) * cos(theta) - a5 * g22 * g12 
-	* beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g21 * g11 * g12 * g22 * 
-	beta * beta * sin(theta) * cos(theta) - a5 * g21 * g11 * beta * beta * 
-	pow(cos(theta), 0.2e1) + a5 * g12 * g12 * beta * beta * sin(theta) * cos(theta) 
-	- a5 * g12 * g12 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * g11 
-	* g21 * g21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g22 * g12 * 
-	beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * beta * beta * sin(theta) * 
-	cos(theta) - a5 * g22 * g12 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1) + 
-	0.2e1 * a5 * g12 * g12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) + a5 
-	* g12 * g12 * g21 * g21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * g11 
-	* beta * beta * sin(theta) * cos(theta) - a5 * g11 * g11 * g12 * g22 * beta * 
-	beta * pow(sin(theta), 0.2e1) - a5 * pow(g11, 0.3e1) * g21 * beta * beta * 
-	pow(sin(theta), 0.2e1) + a5 * g21 * g21 * beta * beta * sin(theta) * cos(theta) 
-	+ a5 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - a5 * g21 * g11 * g22 
-	* g22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g11 * g11 * beta * beta * 
+	L0 = a4 * a6 * g11 * g21 + a4 * a6 * g12 * g22 + a4 * a6 - a5 * g22 * g22 * beta
+	* beta * pow(cos(theta), 0.2e1) - a5 * g21 * g21 * beta * beta * pow(cos(theta),
+	0.2e1) + a5 * g11 * g11 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - a5
+	* beta * beta * pow(sin(theta), 0.2e1) - a5 * beta * beta * pow(cos(theta),
+	0.2e1) - a5 * pow(g12, 0.3e1) * g22 * beta * beta * pow(sin(theta), 0.2e1) - a5
+	* g12 * g12 * g11 * g21 * beta * beta * pow(sin(theta), 0.2e1) - a5 * pow(g21,
+	0.3e1) * g11 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g22 * g12 * beta *
+	beta * pow(cos(theta), 0.2e1) - a5 * g21 * g11 * beta * beta * pow(sin(theta),
+	0.2e1) - a5 * pow(g22, 0.3e1) * g12 * beta * beta * pow(cos(theta), 0.2e1) +
+	0.2e1 * a5 * g21 * g11 * beta * beta * sin(theta) * cos(theta) - a5 * g22 * g12
+	* beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g21 * g11 * g12 * g22 *
+	beta * beta * sin(theta) * cos(theta) - a5 * g21 * g11 * beta * beta *
+	pow(cos(theta), 0.2e1) + a5 * g12 * g12 * beta * beta * sin(theta) * cos(theta)
+	- a5 * g12 * g12 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 * g11 * g11
+	* g21 * g21 * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * g22 * g12 *
+	beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * beta * beta * sin(theta) *
+	cos(theta) - a5 * g22 * g12 * g21 * g21 * beta * beta * pow(cos(theta), 0.2e1) +
+	0.2e1 * a5 * g12 * g12 * g22 * g22 * beta * beta * sin(theta) * cos(theta) + a5
+	* g12 * g12 * g21 * g21 * beta * beta * sin(theta) * cos(theta) + a5 * g11 * g11
+	* beta * beta * sin(theta) * cos(theta) - a5 * g11 * g11 * g12 * g22 * beta *
+	beta * pow(sin(theta), 0.2e1) - a5 * pow(g11, 0.3e1) * g21 * beta * beta *
+	pow(sin(theta), 0.2e1) + a5 * g21 * g21 * beta * beta * sin(theta) * cos(theta)
+	+ a5 * g22 * g22 * beta * beta * sin(theta) * cos(theta) - a5 * g21 * g11 * g22
+	* g22 * beta * beta * pow(cos(theta), 0.2e1) - a5 * g11 * g11 * beta * beta *
 	pow(sin(theta), 0.2e1);
 
-	L1 = 0.4e1 * a5 * pow(g22, 0.3e1) * g12 * alpha * cos(theta) * beta * sin(theta) 
-	+ 0.4e1 * a5 * pow(g21, 0.3e1) * g11 * alpha * cos(theta) * beta * sin(theta) + 
-	0.4e1 * a5 * g21 * g21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 * 
-	g21 * g11 * g12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g21 
-	* g11 * g12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g21 * 
-	g11 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g21 * g11 * beta * 
-	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * g11 * g21 * alpha * 
-	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * pow(g12, 0.3e1) * g22 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * g11 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g11 * g11 * beta * pow(sin(theta), 
-	0.2e1) * alpha + 0.4e1 * a5 * g12 * g12 * g22 * g22 * alpha * pow(cos(theta), 
-	0.2e1) * beta + 0.4e1 * a5 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 
-	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g12 * g21 * g21 * alpha * 
-	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g12 * alpha * 
-	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g12 * beta * pow(sin(theta), 
-	0.2e1) * alpha - 0.2e1 * a5 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha 
-	- 0.4e1 * a5 * g11 * g11 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha + 
-	0.4e1 * a5 * g11 * g11 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta + 
-	0.4e1 * a5 * g22 * g22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * 
-	g12 * g12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 * g12 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * g11 * g22 * g22 * 
-	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g11 * g11 * g22 * g22 * 
-	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g21 * g11 * g22 * g22 * 
-	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * pow(g11, 0.3e1) * g21 * 
-	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * g21 * alpha * 
-	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * g22 * alpha * pow(cos(theta), 
-	0.2e1) * beta - 0.2e1 * a5 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha - 
-	0.4e1 * a5 * g11 * g11 * g12 * g22 * alpha * cos(theta) * beta * sin(theta) - 
-	0.4e1 * a5 * g11 * g11 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * 
-	g12 * g12 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12 
-	* g12 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 * 
+	L1 = 0.4e1 * a5 * pow(g22, 0.3e1) * g12 * alpha * cos(theta) * beta * sin(theta)
+	+ 0.4e1 * a5 * pow(g21, 0.3e1) * g11 * alpha * cos(theta) * beta * sin(theta) +
+	0.4e1 * a5 * g21 * g21 * alpha * cos(theta) * beta * sin(theta) + 0.4e1 * a5 *
+	g21 * g11 * g12 * g22 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g21
+	* g11 * g12 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g21 *
+	g11 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g21 * g11 * beta *
+	pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * g11 * g21 * alpha *
+	cos(theta) * beta * sin(theta) - 0.4e1 * a5 * pow(g12, 0.3e1) * g22 * alpha *
+	cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g11 * g11 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g11 * g11 * beta * pow(sin(theta),
+	0.2e1) * alpha + 0.4e1 * a5 * g12 * g12 * g22 * g22 * alpha * pow(cos(theta),
+	0.2e1) * beta + 0.4e1 * a5 * alpha * pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5
+	* beta * pow(sin(theta), 0.2e1) * alpha - 0.4e1 * a5 * g12 * g12 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g12 * g21 * g21 * alpha *
+	cos(theta) * beta * sin(theta) + 0.4e1 * a5 * g22 * g12 * alpha *
+	pow(cos(theta), 0.2e1) * beta - 0.4e1 * a5 * g22 * g12 * beta * pow(sin(theta),
+	0.2e1) * alpha - 0.2e1 * a5 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha
+	- 0.4e1 * a5 * g11 * g11 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha +
+	0.4e1 * a5 * g11 * g11 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta +
+	0.4e1 * a5 * g22 * g22 * alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 *
+	g12 * g12 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 * g12 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g11 * g11 * g22 * g22 *
+	alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g11 * g11 * g22 * g22 *
+	beta * pow(sin(theta), 0.2e1) * alpha + 0.4e1 * a5 * g21 * g11 * g22 * g22 *
+	alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 * pow(g11, 0.3e1) * g21 *
+	alpha * cos(theta) * beta * sin(theta) + 0.2e1 * a5 * g21 * g21 * alpha *
+	pow(cos(theta), 0.2e1) * beta + 0.2e1 * a5 * g22 * g22 * alpha * pow(cos(theta),
+	0.2e1) * beta - 0.2e1 * a5 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha -
+	0.4e1 * a5 * g11 * g11 * g12 * g22 * alpha * cos(theta) * beta * sin(theta) -
+	0.4e1 * a5 * g11 * g11 * alpha * cos(theta) * beta * sin(theta) - 0.4e1 * a5 *
+	g12 * g12 * g22 * g22 * beta * pow(sin(theta), 0.2e1) * alpha + 0.2e1 * a5 * g12
+	* g12 * g21 * g21 * alpha * pow(cos(theta), 0.2e1) * beta - 0.2e1 * a5 * g12 *
 	g12 * g21 * g21 * beta * pow(sin(theta), 0.2e1) * alpha;
 
-	L2 =  (2 * a4 * a6 * g11 * g21) +  (2 * a4 * a6 * g12 * g22) +  (2 * a4 * a6) + 
-	0.2e1 * a5 *  (g22 * g22) * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * 
-	(g21 * g21) * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 *  (g11 * g11) * 
-	(g22 * g22) * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * beta * beta * 
-	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * beta * beta * pow(cos(theta), 0.2e1) + 
-	0.2e1 * a5 *   pow( g12,  3) *  g22 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.2e1 * a5 *  (g12 * g12) *  g11 *  g21 * beta * beta * pow(sin(theta), 0.2e1) + 
-	0.2e1 * a5 *   pow( g21,  3) *  g11 * beta * beta * pow(cos(theta), 0.2e1) + 
-	0.2e1 * a5 *  g22 *  g12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 * 
-	g21 *  g11 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 *   pow( g22,  3) 
-	*  g12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  g21 *  g11 * beta 
-	* beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  g22 *  g12 * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  g21 *  g11 *  g12 *  g22 * beta * beta * 
-	sin(theta) * cos(theta) + 0.2e1 * a5 *  g21 *  g11 * beta * beta * 
-	pow(cos(theta), 0.2e1) - 0.2e1 * a5 *  (g12 * g12) * beta * beta * sin(theta) * 
-	cos(theta) + 0.2e1 * a5 *  (g12 * g12) * beta * beta * pow(sin(theta), 0.2e1) - 
-	0.4e1 * a5 *  (g11 * g11) *  (g21 * g21) * beta * beta * sin(theta) * cos(theta) 
-	- 0.4e1 * a5 *  g22 *  g12 * beta * beta * sin(theta) * cos(theta) - 0.4e1 * a5 
-	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  g22 *  g12 *  (g21 * 
-	g21) * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g12 * g12) *  (g22 
-	* g22) * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 *  (g12 * g12) * 
-	(g21 * g21) * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 *  (g11 * g11) 
-	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  (g11 * g11) *  g12 * 
-	g22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 *   pow( g11,  3) *  g21 
-	* beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 *  (g21 * g21) * beta * beta 
-	* sin(theta) * cos(theta) - 0.2e1 * a5 *  (g22 * g22) * beta * beta * sin(theta) 
-	* cos(theta) + 0.2e1 * a5 *  g21 *  g11 *  (g22 * g22) * beta * beta * 
-	pow(cos(theta), 0.2e1) + 0.2e1 * a5 *  (g11 * g11) * beta * beta * 
-	pow(sin(theta), 0.2e1) - 0.4e1 * a5 * alpha * alpha * pow(cos(theta), 0.2e1) - 
-	0.4e1 * a5 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 *   pow( g22, 
-	3) *  g12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  (g21 * g21) * 
-	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a5 *  (g11 * g11) *  (g21 * 
-	g21) * alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g22 *  g12 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g11 * g11) * alpha * 
-	alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g22 * g22) * alpha * alpha * 
-	pow(sin(theta), 0.2e1) - 0.8e1 * a5 * alpha * alpha * cos(theta) * sin(theta) - 
-	0.4e1 * a5 *   pow( g21,  3) *  g11 * alpha * alpha * pow(sin(theta), 0.2e1) - 
-	0.4e1 * a5 *  g22 *  g12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 * 
-	(g12 * g12) *  g11 *  g21 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 
-	*  g21 *  g11 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *   pow( 
-	g12,  3) *  g22 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g11 * 
-	g11) * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a5 *  (g12 * g12) * 
-	(g22 * g22) * alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g12 * 
-	g12) * alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a5 *  g21 *  g11 *  g12 
-	*  g22 * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a5 *  g22 *  g12 * 
-	alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g21 * g21) * alpha * 
-	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g21 *  g11 * alpha * alpha * 
-	pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  (g11 * g11) *  (g22 * g22) * alpha * 
-	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g12 * g12) *  (g21 * g21) * 
-	alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *   pow( g11,  3) *  g21 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g22 * g22) * alpha * 
-	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g11 * g11) *  g12 *  g22 * 
-	alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a5 *  g21 *  g11 * alpha * 
-	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g22 *  g12 *  (g21 * g21) * 
-	alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  (g12 * g12) * alpha * 
-	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g21 *  g11 *  (g22 * g22) * 
+	L2 =  (2 * a4 * a6 * g11 * g21) +  (2 * a4 * a6 * g12 * g22) +  (2 * a4 * a6) +
+	0.2e1 * a5 *  (g22 * g22) * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 *
+	(g21 * g21) * beta * beta * pow(cos(theta), 0.2e1) - 0.2e1 * a5 *  (g11 * g11) *
+	(g22 * g22) * beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 * beta * beta *
+	pow(sin(theta), 0.2e1) + 0.2e1 * a5 * beta * beta * pow(cos(theta), 0.2e1) +
+	0.2e1 * a5 *   pow( g12,  3) *  g22 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.2e1 * a5 *  (g12 * g12) *  g11 *  g21 * beta * beta * pow(sin(theta), 0.2e1) +
+	0.2e1 * a5 *   pow( g21,  3) *  g11 * beta * beta * pow(cos(theta), 0.2e1) +
+	0.2e1 * a5 *  g22 *  g12 * beta * beta * pow(cos(theta), 0.2e1) + 0.2e1 * a5 *
+	g21 *  g11 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 *   pow( g22,  3)
+	*  g12 * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  g21 *  g11 * beta
+	* beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  g22 *  g12 * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  g21 *  g11 *  g12 *  g22 * beta * beta *
+	sin(theta) * cos(theta) + 0.2e1 * a5 *  g21 *  g11 * beta * beta *
+	pow(cos(theta), 0.2e1) - 0.2e1 * a5 *  (g12 * g12) * beta * beta * sin(theta) *
+	cos(theta) + 0.2e1 * a5 *  (g12 * g12) * beta * beta * pow(sin(theta), 0.2e1) -
+	0.4e1 * a5 *  (g11 * g11) *  (g21 * g21) * beta * beta * sin(theta) * cos(theta)
+	- 0.4e1 * a5 *  g22 *  g12 * beta * beta * sin(theta) * cos(theta) - 0.4e1 * a5
+	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  g22 *  g12 *  (g21 *
+	g21) * beta * beta * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g12 * g12) *  (g22
+	* g22) * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 *  (g12 * g12) *
+	(g21 * g21) * beta * beta * sin(theta) * cos(theta) - 0.2e1 * a5 *  (g11 * g11)
+	* beta * beta * sin(theta) * cos(theta) + 0.2e1 * a5 *  (g11 * g11) *  g12 *
+	g22 * beta * beta * pow(sin(theta), 0.2e1) + 0.2e1 * a5 *   pow( g11,  3) *  g21
+	* beta * beta * pow(sin(theta), 0.2e1) - 0.2e1 * a5 *  (g21 * g21) * beta * beta
+	* sin(theta) * cos(theta) - 0.2e1 * a5 *  (g22 * g22) * beta * beta * sin(theta)
+	* cos(theta) + 0.2e1 * a5 *  g21 *  g11 *  (g22 * g22) * beta * beta *
+	pow(cos(theta), 0.2e1) + 0.2e1 * a5 *  (g11 * g11) * beta * beta *
+	pow(sin(theta), 0.2e1) - 0.4e1 * a5 * alpha * alpha * pow(cos(theta), 0.2e1) -
+	0.4e1 * a5 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 *   pow( g22,
+	3) *  g12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  (g21 * g21) *
+	alpha * alpha * pow(sin(theta), 0.2e1) - 0.8e1 * a5 *  (g11 * g11) *  (g21 *
+	g21) * alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g22 *  g12 *
+	alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g11 * g11) * alpha *
+	alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g22 * g22) * alpha * alpha *
+	pow(sin(theta), 0.2e1) - 0.8e1 * a5 * alpha * alpha * cos(theta) * sin(theta) -
+	0.4e1 * a5 *   pow( g21,  3) *  g11 * alpha * alpha * pow(sin(theta), 0.2e1) -
+	0.4e1 * a5 *  g22 *  g12 * alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 *
+	(g12 * g12) *  g11 *  g21 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5
+	*  g21 *  g11 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *   pow(
+	g12,  3) *  g22 * alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g11 *
+	g11) * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a5 *  (g12 * g12) *
+	(g22 * g22) * alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g12 *
+	g12) * alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a5 *  g21 *  g11 *  g12
+	*  g22 * alpha * alpha * cos(theta) * sin(theta) - 0.8e1 * a5 *  g22 *  g12 *
+	alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g21 * g21) * alpha *
+	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g21 *  g11 * alpha * alpha *
+	pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  (g11 * g11) *  (g22 * g22) * alpha *
+	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g12 * g12) *  (g21 * g21) *
+	alpha * alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *   pow( g11,  3) *  g21 *
+	alpha * alpha * pow(cos(theta), 0.2e1) - 0.4e1 * a5 *  (g22 * g22) * alpha *
+	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  (g11 * g11) *  g12 *  g22 *
+	alpha * alpha * pow(cos(theta), 0.2e1) - 0.8e1 * a5 *  g21 *  g11 * alpha *
+	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g22 *  g12 *  (g21 * g21) *
+	alpha * alpha * pow(sin(theta), 0.2e1) - 0.4e1 * a5 *  (g12 * g12) * alpha *
+	alpha * cos(theta) * sin(theta) - 0.4e1 * a5 *  g21 *  g11 *  (g22 * g22) *
 	alpha * alpha * pow(sin(theta), 0.2e1);
-	 
+
 	//% t-dependent stuff:
 
 	//%rf_pose_from_point_tangents_2_fn_t(t);

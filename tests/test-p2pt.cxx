@@ -224,7 +224,7 @@ test_rf_pose_from_point_tangents_2_fn_t_for_root()
 	};
 
 	double output[t_vector_len][11];
-	for (int i = 0; i < root_ids_len; i++) {
+	for (int i = 0; i < t_vector_len; i++) {
 		p.rf_pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i], output[i]);
 	}
 
@@ -235,7 +235,18 @@ test_rf_pose_from_point_tangents_2_fn_t_for_root()
 		TEST_NEAR(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
 	}
 
+	//double test_fvalue;
+	//char indexstr[128];
 
+	//p.rf_pose_from_point_tangents_2_fn_t_for_root(0, output[0]);
+	//test_fvalue = output[0][0];
+	//snprintf(indexstr, 128, "fvalue[%d]", 0);
+	//TEST_NEAR(indexstr, test_fvalue, 5159552357.01911, eps);
+
+	//p.rf_pose_from_point_tangents_2_fn_t_for_root(1, output[0]);
+	//test_fvalue = output[0][0];
+	//snprintf(indexstr, 128, "fvalue[%d]", 0);
+	//TEST_NEAR(indexstr, test_fvalue, 1599787.71374685, eps);
 }
 
 static void
@@ -261,7 +272,7 @@ test_rf_pose_from_point_tangents_2_fn_t()
 	};
 
 	double output[t_vector_len][11];
-	for (int i = 0; i < root_ids_len; i++) {
+	for (int i = 0; i < t_vector_len; i++) {
 		p.rf_pose_from_point_tangents_2_fn_t(sample_t_vector[i], output[i]);
 	}
 

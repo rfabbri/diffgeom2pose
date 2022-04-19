@@ -238,12 +238,9 @@ rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len])
 	/* 50 ...................... */ vec_el_wise_mult5(G,      E,      B_pow2, K_pow2, J_pow2,                    fvalue_terms[50]);
 	/* 51 */ vec_mult_by_scalar( 8, vec_el_wise_mult8(G,      E,      A,      H,      K,      C,      J,      L, fvalue_terms[51]), fvalue_terms[51]);
 
-	for (int i = 0; i < t_vector_len; i++) {
-		for (int j = 0; j < 52; j++) {
+	for (int i = 0; i < t_vector_len; i++)
+		for (int j = 0; j < 52; j++)
 			fvalue[i] += fvalue_terms[j][i];
-		}
-		std::cout << "inside pose_poly: fvalue[" << i << "]" << " is " << fvalue[i] << std::endl;
-	}
 }
 
 }

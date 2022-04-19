@@ -17,9 +17,9 @@ namespace common {
 
 	// TODO: optimize! (make inline or use #define)
 	template<typename T>
-	T norm(T *input_vec, int length)
+	T norm(const T *input_vec, int length)
 	{
-		T output = 0;
+		static T output = 0;
 		for (int i = 0; i < length; i++) {
 			output += abs(input_vec[i] * input_vec[i]);
 		}
@@ -27,20 +27,22 @@ namespace common {
 	}
 
 	template<typename T>
-	T det3x3(T input_matrix[3][3])
+	T det3x3(const T input_matrix[3][3])
 	{
 		// TODO: Check if this algorithm is correct
 		// Matrix must be 3x3 square
-		T x = ((input_matrix[1][1] * input_matrix[2][2]) - (input_matrix[2][1] * input_matrix[1][2]));
-		T y = ((input_matrix[1][0] * input_matrix[2][2]) - (input_matrix[2][0] * input_matrix[1][2]));
-		T z = ((input_matrix[1][0] * input_matrix[2][1]) - (input_matrix[2][0] * input_matrix[1][1]));
+		static T x, y, z;
+
+		x = ((input_matrix[1][1] * input_matrix[2][2]) - (input_matrix[2][1] * input_matrix[1][2]));
+		y = ((input_matrix[1][0] * input_matrix[2][2]) - (input_matrix[2][0] * input_matrix[1][2]));
+		z = ((input_matrix[1][0] * input_matrix[2][1]) - (input_matrix[2][0] * input_matrix[1][1]));
 
 		return input_matrix[0][0] * x - input_matrix[0][1] * y - input_matrix[0][2] * z;
 	}
 
 	// TODO: Make Matrix into a class; simplify several operations
 	template<typename T>
-	void invm3x3(T input_m[3][3], T output_m[3][3])
+	void invm3x3(const T input_m[3][3], T output_m[3][3])
 	{
 		// 3x3 MATRIX INVERSION ALGORITHM
 		//             -1               T
@@ -52,17 +54,18 @@ namespace common {
 		// B = -(di - fg), E =  (ai - cg), H = -(af - cd),
 		// C =  (dh - eg), F = -(ah - bg), I =  (ae - bd).
 
-		static T
+		static T a_, b_, c_, d_, e_, f_, g_, h_, i_;
 		a_ = input_m[0][0], b_ = input_m[0][1], c_ = input_m[0][2],
 		d_ = input_m[1][0], e_ = input_m[1][1], f_ = input_m[1][2],
 		g_ = input_m[2][0], h_ = input_m[2][1], i_ = input_m[2][2];
 
-		static T
+		static T A_, B_, C_, D_, E_, F_, G_, H_, I_;
 		A_ =  (e_*i_ - f_*h_), B_ = -(d_*i_ - f_*g_), C_ =  (d_*h_ - e_*g_),
 		D_ = -(b_*i_ - c_*h_), E_ =  (a_*i_ - c_*g_), F_ = -(a_*h_ - b_*g_),
 		G_ =  (b_*f_ - c_*e_), H_ = -(a_*f_ - c_*d_), I_ =  (a_*e_ - b_*d_);
 
-		static T invdet_A = 1 / (a_*A_ + b_*B_ + c_*C_);
+		static T invdet_A;
+		invdet_A = 1 / (a_*A_ + b_*B_ + c_*C_);
 
 		output_m[0][0] = invdet_A * A_; output_m[0][1] = invdet_A * D_; output_m[0][2] = invdet_A * G_;
 		output_m[1][0] = invdet_A * B_; output_m[1][1] = invdet_A * E_; output_m[1][2] = invdet_A * H_;
