@@ -13,6 +13,7 @@
 #include <p2pt/common.hxx>
 #include <p2pt/rf_pose_from_point_tangents_2.hxx>
 #include <p2pt/rf_find_bounded_root_intervals.hxx>
+#include <p2pt/rf_rhos_from_root_ids.hxx>
 
 #include <tests/test-p2pt-constants.hxx>
 
@@ -113,8 +114,8 @@ test_rf_find_bounded_root_intervals()
 	p.rf_find_bounded_root_intervals(sample_t_vector, test_root_ids);
 
 	for (int i = 0; i < root_ids_len; i++) {
-		char indexstr[20];
-		snprintf(indexstr, 20, "root_ids[%d]", i);
+		char indexstr[128];
+		snprintf(indexstr, 128, "root_ids[%d]", i);
 		TEST_NEAR(indexstr, test_root_ids[i], sample_root_ids[i], eps);
 	}
 }
@@ -135,41 +136,97 @@ test_rf_sample_pose_poly()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	double test_A[t_vector_len];
-	double test_B[t_vector_len];
-	double test_C[t_vector_len];
-	double test_E[t_vector_len];
-	double test_F[t_vector_len];
-	double test_G[t_vector_len];
-	double test_H[t_vector_len];
-	double test_J[t_vector_len];
-	double test_K[t_vector_len];
-	double test_L[t_vector_len];
-	double test_fvalue[t_vector_len] = {0};
+	double output[11][t_vector_len];
 
-	p.rf_sample_pose_poly(
-		sample_t_vector,
-		test_A, test_B, test_C, test_E, test_F,
-		test_G, test_H, test_J, test_K, test_L,
-		test_fvalue
-	);
+	p.rf_sample_pose_poly(sample_t_vector, output);
 
-	for (int i = 0; i < root_ids_len; i++) {
-		char indexstr[20];
-		snprintf(indexstr, 20, "fvalue[%d]", i);
+	double *test_fvalue = output[0];
+
+	for (int i = 0; i < t_vector_len; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "fvalue[%d]", i);
 		TEST_NEAR(indexstr, test_fvalue[i], sample_fvalue[i], eps);
 	}
 
+}
+
+static void
+test_rf_rhos_from_root_ids()
+{
+	pose_poly<double> p;
+	p.alpha = sample_alpha;
+	p.beta  = sample_beta;
+	p.theta = sample_theta;
+
+	double output[7][t_vector_len];
+
+	p.rf_rhos_from_root_ids(sample_t_vector, sample_root_ids, output);
+
+	double* test_rhos1       = output[0];
+	double* test_rhos1_minus = output[1];
+	double* test_rhos1_plus  = output[2];
+	double* test_rhos2       = output[3];
+	double* test_rhos2_minus = output[4];
+	double* test_rhos2_plus  = output[5];
+	double* test_ts          = output[6];
+
+	for (int i = 0; i < 4; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "test_rhos1[%d]", i);
+		TEST_NEAR(indexstr, test_rhos1[i], sample_rhos1[i], eps);
+	}
+	for (int i = 0; i < 4; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "test_rhos1_minus[%d]", i);
+		TEST_NEAR(indexstr, test_rhos1_minus[i], sample_rhos1_minus[i], eps);
+	}
+	for (int i = 0; i < 4; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "test_rhos1_plus[%d]", i);
+		TEST_NEAR(indexstr, test_rhos1_plus[i] , sample_rhos1_plus[i], eps);
+	}
+	for (int i = 0; i < 4; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "test_rhos2[%d]", i);
+		TEST_NEAR(indexstr, test_rhos2[i], sample_rhos2[i], eps);
+	}
+	for (int i = 0; i < 4; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "test_rhos2_minus[%d]", i);
+		TEST_NEAR(indexstr, test_rhos2_minus[i], sample_rhos2_minus[i], eps);
+	}
+	for (int i = 0; i < 4; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "test_rhos2_plus[%d]", i);
+		TEST_NEAR(indexstr, test_rhos2_plus[i], sample_rhos2_plus[i], eps);
+	}
+	for (int i = 0; i < 4; i++) {
+		char indexstr[128];
+		snprintf(indexstr, 128, "test_ts[%d]", i);
+		TEST_NEAR(indexstr, test_ts[i], sample_ts[i], eps);
+	}
 }
 
 // main test function - place all the tests to be run here
 void
 test_p2pt()
 {
+	std::cout << "*** USING eps = " << std::scientific << eps << " FOR ALL TESTS ***" << std::endl;
+
+	std::cout << "\nTEST #1 - test_hello" << std::endl;
 	test_hello();
+
+	std::cout << "\nTEST #2 - test_rf_pose_from_point_tangents_2" << std::endl;
 	test_rf_pose_from_point_tangents_2();
+
+	std::cout << "\nTEST #3 - test_rf_find_bounded_root_intervals" << std::endl;
 	test_rf_find_bounded_root_intervals();
+
+	std::cout << "\nTEST #4 - test_rf_sample_pose_poly" << std::endl;
 	test_rf_sample_pose_poly();
+
+	std::cout << "\nTEST #5 - test_rf_rhos_from_root_ids" << std::endl;
+	test_rf_rhos_from_root_ids();
 }
 
 TESTMAIN(test_p2pt);

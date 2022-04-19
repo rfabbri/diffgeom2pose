@@ -80,19 +80,8 @@ rf_get_r_from_rhos(
 
 	#define TEMP 10;
 
-	// MATRIX OF MATRICES
-	// [ [a b c]      ]
-	// [ [d e f], ... ],
-	// [ [g h i]      ]
-	//     .
-	//     .
-	//     .
-	// [ [m n o]      ]
-    // [ [p q r], ... ]
-    // [ [s t u]      ]
-
-	T Rots[TEMP][TEMP][3][3];
-	T Transls[TEMP][TEMP][3][3];
+	T Rots[TEMP][3][3];
+	T Transls[TEMP][3][3];
 	int Rots_end    = 0;
 	int Transls_end = 0;
 
@@ -111,10 +100,28 @@ rf_get_r_from_rhos(
 			};
 
 			// TODO: Check if `A` and `B` are always 3x3
-			Rots[Rots_end++] = common::
+			common::multm3x3(B, inv_A, Rots[Rots_end++]);
 
+			//% be sure it's close to 1:
+			//common::det3x3(Rots[Rots_end]);
 
+			T buff1[3];
+			T buff2[3];
 
+			// Transls{end+1} = rhos1(i)*gama1 - Rots{end}*Gama1;
+			common::vec_mult_by_scalar(rhos1[i], gama1, buff1);
+			common::multm_3x3_3x1(Rots[Rots_end], Gama1, buff2);
+			common::vec1vec2_sub(buff1, buff2, Transls[Transls_end++]);
+
+			//% this should be the same
+			// rhos2(i)*gama2 - Rots{end}*Gama2;
+			//common::vec_mult_by_scalar(rhos2[i], gama2, buff1);
+			//common::multm_3x3_3x1(Rots[Rots_end], Gama2, buff2);
+			//common::vec1vec2_sub(buff1, buff2, buff1);
+
+			//for (int i = 0; i < 3; i++) {
+			//	assert(Transls[Transls_end - 1][i] - buff1[i] < 1.0e-4);
+			//}
 		}
 	}
 

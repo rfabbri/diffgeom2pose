@@ -20,19 +20,19 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	//%
 
 	//%function of t part :
-	static T *fvalue = output[0];
-	static T *A      = output[1];
-	static T *B      = output[2];
-	static T *C      = output[3];
+	static T& fvalue = output[0];
+	static T& A      = output[1];
+	static T& B      = output[2];
+	static T& C      = output[3];
 
-	static T *E      = output[4];
-	static T *F      = output[5];
-	static T *G      = output[6];
-	static T *H      = output[7];
+	static T& E      = output[4];
+	static T& F      = output[5];
+	static T& G      = output[6];
+	static T& H      = output[7];
 
-	static T *J      = output[8];
-	static T *K      = output[9];
-	static T *L      = output[10];
+	static T& J      = output[8];
+	static T& K      = output[9];
+	static T& L      = output[10];
 
 	// `t` integer powers
 	static T t_pow2 = t * t;
@@ -49,16 +49,16 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 	static T t_pow2_plus1_pow4 = t_pow2_plus1_pow3 * (t_pow2 + 1);
 
 	// Denominators
-	static T *A_den = t_pow2_plus1_pow2;
-	static T *B_den = t_pow2_plus1_pow3;
-	static T *C_den = t_pow2_plus1_pow4;
-	static T *E_den = t_pow2_plus1_pow2;
-	static T *F_den = t_pow2_plus1_pow3;
-	static T *G_den = t_pow2_plus1_pow4;
-	static T *H_den = t_pow2_plus1_pow4;
-	static T *J_den = t_pow2_plus1_pow3;
-	static T *K_den = t_pow2_plus1_pow3;
-	static T *L_den = t_pow2_plus1_pow2;
+	static T& A_den = t_pow2_plus1_pow2;
+	static T& B_den = t_pow2_plus1_pow3;
+	static T& C_den = t_pow2_plus1_pow4;
+	static T& E_den = t_pow2_plus1_pow2;
+	static T& F_den = t_pow2_plus1_pow3;
+	static T& G_den = t_pow2_plus1_pow4;
+	static T& H_den = t_pow2_plus1_pow4;
+	static T& J_den = t_pow2_plus1_pow3;
+	static T& K_den = t_pow2_plus1_pow3;
+	static T& L_den = t_pow2_plus1_pow2;
 
 	// Calculations
 	A = (A0 + A1 * t + A2 * t_pow2 - A1 * t_pow3 + A0 * t_pow4) / A_den;
@@ -74,12 +74,12 @@ rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11])
 
 	// `output`
 	//       2nd power          3rd power               4th power
-	static T A_pow2 = A * A,    A_pow3 = A_pow2 * A,    A_pow4 = A_pow3 * A;
-	static T B_pow2 = B * B,    B_pow3 = B_pow2 * B,    B_pow4 = B_pow3 * B;
-	static T C_pow2 = C * C,    C_pow3 = C_pow2 * C,    C_pow4 = C_pow3 * C;
-	static T E_pow2 = E * E,    E_pow3 = E_pow2 * E,    E_pow4 = E_pow3 * E;
-	static T F_pow2 = F * F,    F_pow3 = F_pow2 * F,    F_pow4 = F_pow3 * F;
-	static T G_pow2 = G * G,    G_pow3 = G_pow2 * G,    G_pow4 = G_pow3 * G;
+	static T A_pow2 = A * A;
+	static T B_pow2 = B * B;
+	static T C_pow2 = C * C;
+	static T E_pow2 = E * E;
+	static T F_pow2 = F * F;
+	static T G_pow2 = G * G;
 	static T H_pow2 = H * H,    H_pow3 = H_pow2 * H,    H_pow4 = H_pow3 * H;
 	static T J_pow2 = J * J,    J_pow3 = J_pow2 * J,    J_pow4 = J_pow3 * J;
 	static T K_pow2 = K * K,    K_pow3 = K_pow2 * K,    K_pow4 = K_pow3 * K;

@@ -12,19 +12,20 @@ rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len])
 	//% function of t part:
 	using namespace common;
 
-	static T *fvalue = output[0];
-	static T *A      = output[1];
-	static T *B      = output[2];
-	static T *C      = output[3];
+	// TODO: Check why `static` was breaking the tests
+	/* static */ T *fvalue = output[0];
+	/* static */ T *A      = output[1];
+	/* static */ T *B      = output[2];
+	/* static */ T *C      = output[3];
 	// TODO: check why `D` is missing
-	static T *E      = output[4];
-	static T *F      = output[5];
-	static T *G      = output[6];
-	static T *H      = output[7];
+	/* static */ T *E      = output[4];
+	/* static */ T *F      = output[5];
+	/* static */ T *G      = output[6];
+	/* static */ T *H      = output[7];
 	// TODO: check why `I` is missing
-	static T *J      = output[8];
-	static T *K      = output[9];
-	static T *L      = output[10];
+	/* static */ T *J      = output[8];
+	/* static */ T *K      = output[9];
+	/* static */ T *L      = output[10];
 
 	// TODO: POSSIBLY OPTIMIZE ALL THESE FUNCION CALLS FOR
 	// `t_powN[]`,
@@ -241,6 +242,9 @@ rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len])
 		for (int j = 0; j < 52; j++) {
 			fvalue[i] += fvalue_terms[j][i];
 		}
+		std::cout << "inside pose_poly: fvalue[" << i << "]" << " is " << fvalue[i] << std::endl;
 	}
+}
+
 }
 

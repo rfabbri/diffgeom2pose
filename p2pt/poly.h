@@ -31,6 +31,10 @@ struct pose_poly {
 	void rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len]);
 	void rf_pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11]);
 	void rf_pose_from_point_tangents_2_fn_t(const T t, T output[11]);
+	void rf_rhos_from_root_ids(
+		const T t_vector[t_vector_len], const T root_ids[t_vector_len],
+		T output[7][t_vector_len] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+	);
 };
 
 }

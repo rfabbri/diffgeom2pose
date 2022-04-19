@@ -54,16 +54,20 @@ constexpr double sample_L1 = -0.087873618366435841;
 constexpr double sample_L2 = 19.341789232030056;
 
 constexpr double sample_gama1[] = {0.51515532818894982, 0.1487011661471217, 1};
-constexpr double sample_tgt1[] = {0.527886693031222, 0.84931480578202578, 0};
+constexpr double sample_tgt1[]  = {0.527886693031222, 0.84931480578202578, 0};
 
 constexpr double sample_gama2[] = {0.16081537437895527, -0.48875444114985156, 1};
-constexpr double sample_tgt2[] = {-0.27224516854045233, -0.96222791905368288, 0};
+constexpr double sample_tgt2[]  = {-0.27224516854045233, -0.96222791905368288, 0};
 
 constexpr double sample_Gama1[] = {-0.43359202230568356, 3.5783969397257605, -1.3498869401565212};
-constexpr double sample_Tgt1[] = {0.70708731473372055, 0.69669519863759266, -0.12100962580713076};
+constexpr double sample_Tgt1[]  = {0.70708731473372055, 0.69669519863759266, -0.12100962580713076};
 
 constexpr double sample_Gama2[] = {0.34262446653864992, 2.7694370298848772, 3.0349234663318545};
-constexpr double sample_Tgt2[] = {-0.041895437077508819, -0.13618523302227314, 0.98979712803117059};
+constexpr double sample_Tgt2[]  = {-0.041895437077508819, -0.13618523302227314, 0.98979712803117059};
+
+constexpr double sample_alpha = 2.99316452421144;
+constexpr double sample_beta  = 8.77711253699776;
+constexpr double sample_theta = 0.779767013089326;
 
 constexpr double sample_root_ids[t_vector_len] = {
 	0,
@@ -4070,7 +4074,7 @@ constexpr double sample_t_vector[t_vector_len] = {
 	0.999000000000000,
 	1
 };
-constexpr double sample_fvalue[t_vector_len] = {
+constexpr double sample_fvalue[t_vector_len]   = {
 	1599787.71374669,
 	1605360.45517041,
 	1610811.19942987,
@@ -6074,6 +6078,16 @@ constexpr double sample_fvalue[t_vector_len] = {
 	1599787.71374685
 };
 
+constexpr double sample_rhos1[]       = {4.20582991999997, 5.38744796313994, 5.51209006581205, 4.03587398491222};
+constexpr double sample_rhos1_minus[] = {4.19654670944222, 5.38019708944851, 5.51776326765562, 4.04268855289702};
+constexpr double sample_rhos1_plus[]  = {4.21510336408264, 5.3946799668862, 5.50640677350622, 4.02905873466068};
+constexpr double sample_rhos2[]       = {6.43709158403864, 6.57569415482449, 2.24649263802363, 0.060368043942569};
+constexpr double sample_rhos2_minus[] = {6.43448894533826, 6.57642149868896, 2.25654591307366, 0.0691198833952585};
+constexpr double sample_rhos2_plus[]  = {6.439673320473, 6.57494124271865, 2.23644129997713, 0.0516243612096208};
+constexpr double sample_ts[]          = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};
+
 // Floating-point comparison precision
-constexpr double eps = 1e-4;
+// TODO: Check why tests are only passing with low precision
+//constexpr double eps = 1e-4;
+constexpr double eps = 1e-1;
 

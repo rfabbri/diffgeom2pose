@@ -1,9 +1,13 @@
+#include "poly.h"
 #include "rf_pose_from_point_tangents_2_fn_t_for_root.hxx"
+
+namespace P2Pt {
 
 template <typename T>
 void
+pose_poly<T>::
 rf_rhos_from_root_ids(
-	T t_vector[t_vector_len], T root_ids[t_vector_len],
+	const T t_vector[t_vector_len], const T root_ids[t_vector_len],
 	T output[7][t_vector_len] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
 )
 {
@@ -16,9 +20,6 @@ rf_rhos_from_root_ids(
 	T* ts          = output[6];
 	// TODO: Create element counter for ts
 
-	// TODO: Make member of poly? Needs access to `alpha`, `beta`, and `theta`
-	extern T alpha, beta, theta;
-
 	for (int i = 0; i < root_ids_len; i++) {
 		if (root_ids[i] == 1) {
 			// TODO: implement fzero using (t_vector(i) + t_vector(i+1))/2; maybe use Newton's method later
@@ -26,11 +27,11 @@ rf_rhos_from_root_ids(
 			static T t_ref;
 
 			// First round
-			rf_pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i])/2, t_ref_arr); 
+			rf_pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i])/2, t_ref_arr);
 			t_ref = t_ref_arr[0];
 
 			// Second round
-			rf_pose_from_point_tangents_2_fn_t_for_root(t_ref/2, t_ref_arr); 
+			rf_pose_from_point_tangents_2_fn_t_for_root(t_ref/2, t_ref_arr);
 			t_ref = t_ref_arr[0];
 
 
@@ -46,17 +47,23 @@ rf_rhos_from_root_ids(
 
 	T t_stddev = t_vector[1] - t_vector[0];
 
-	// TODO: Check if inline functions are a better fit
-	template<typename T>
-	constexpr auto ALPHA_TS_COS(T x) { return (2 * alpha * (x) * cos(theta)); }
-	template<typename T>
-	constexpr auto ALPHA_TS_SIN(T x) { return (-2 * alpha * (x) * sin(theta)); }
-	template<typename T>
-	constexpr auto BETA_TS_SIN(T x) { return (beta * (1 - (x) * (x)) * sin(theta)); }
-	template<typename T>
-	constexpr auto BETA_TS_COS(T x) { return (beta * (1 - (x) * (x)) * cos(theta)); }
-	template<typename T>
-	constexpr auto TS_DEN(T x) { return (1 + (x) * (x)); }
+	// !!! error: a template declaration cannot appear at block scope
+	//template<typename T>
+	//constexpr auto ALPHA_TS_COS(T x) { return (2 * alpha * (x) * cos(theta)); }
+	//template<typename T>
+	//constexpr auto ALPHA_TS_SIN(T x) { return (-2 * alpha * (x) * sin(theta)); }
+	//template<typename T>
+	//constexpr auto BETA_TS_SIN(T x) { return (beta * (1 - (x) * (x)) * sin(theta)); }
+	//template<typename T>
+	//constexpr auto BETA_TS_COS(T x) { return (beta * (1 - (x) * (x)) * cos(theta)); }
+	//template<typename T>
+	//constexpr auto TS_DEN(T x) { return (1 + (x) * (x)); }
+
+	#define ALPHA_TS_COS(x) (2 * alpha * (x) * cos(theta))
+	#define ALPHA_TS_SIN(x) (-2 * alpha * (x) * sin(theta))
+	#define BETA_TS_SIN(x) (beta * (1 - (x) * (x)) * sin(theta))
+	#define BETA_TS_COS(x) (beta * (1 - (x) * (x)) * cos(theta))
+	#define TS_DEN(x) (1 + (x) * (x))
 
 	//% Each root is now ts(i), plus minus t_stddev.
 	//% Now get rho1(t):
@@ -84,4 +91,7 @@ rf_rhos_from_root_ids(
 	}
 
 }
+
+}
+
 
