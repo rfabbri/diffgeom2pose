@@ -85,6 +85,7 @@ rf_get_r_from_rhos(
 	int Rots_end    = 0;
 	int Transls_end = 0;
 
+	// TODO: Create a single matrix with rotation and translation
 	for (int i = 0; i < ts_len; i++) {
 		for (int j = 0; j < end_sigmas1[0]; j++) {
 

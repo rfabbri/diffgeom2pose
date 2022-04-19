@@ -26,15 +26,8 @@ rf_rhos_from_root_ids(
 			static T t_ref_arr[11];
 			static T t_ref;
 
-			// First round
 			rf_pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, t_ref_arr);
 			t_ref = t_ref_arr[0];
-
-			// Second round
-			rf_pose_from_point_tangents_2_fn_t_for_root(t_ref/2, t_ref_arr);
-			t_ref = t_ref_arr[0];
-
-
 
 			//rf_pose_from_point_tangents_2_fn_t_for_root(t_ref);
 
@@ -46,18 +39,6 @@ rf_rhos_from_root_ids(
 	}
 
 	T t_stddev = t_vector[1] - t_vector[0];
-
-	// !!! error: a template declaration cannot appear at block scope
-	//template<typename T>
-	//constexpr auto ALPHA_TS_COS(T x) { return (2 * alpha * (x) * cos(theta)); }
-	//template<typename T>
-	//constexpr auto ALPHA_TS_SIN(T x) { return (-2 * alpha * (x) * sin(theta)); }
-	//template<typename T>
-	//constexpr auto BETA_TS_SIN(T x) { return (beta * (1 - (x) * (x)) * sin(theta)); }
-	//template<typename T>
-	//constexpr auto BETA_TS_COS(T x) { return (beta * (1 - (x) * (x)) * cos(theta)); }
-	//template<typename T>
-	//constexpr auto TS_DEN(T x) { return (1 + (x) * (x)); }
 
 	#define ALPHA_TS_COS(x) (2 * alpha * (x) * cos(theta))
 	#define ALPHA_TS_SIN(x) (-2 * alpha * (x) * sin(theta))
