@@ -109,7 +109,7 @@ rf_pose_from_point_tangents_2(
 
 	double t8 = g21 * g21;
 	double t14 = g12 * g12;
-	double t15 = t1 * t1;
+	// double t15 = t1 * t1; double-checked: not used in matlab
 	double t21 = g11 * g11;
 
 	double den1 = 2*t1*(g11*g21 +g12*g22 + 1) + t2*(t21 + t14 - t8 - t5);
