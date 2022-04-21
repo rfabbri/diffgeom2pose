@@ -1,10 +1,10 @@
-#include "rf_pose_from_point_tangents_2_fn_t.hxx"
+#include "pose_from_point_tangents_2_fn_t.hxx"
 
 namespace P2Pt {
 
 template<typename T>
 void
-rf_get_sigmas(const T ts[t_vector_len], const int ts_len, T output[11]) // TODO: Fix size of output
+get_sigmas(const T ts[t_vector_len], const int ts_len, T output[11]) // TODO: Fix size of output
 {
 	T my_eps = 1;
 
@@ -17,27 +17,27 @@ rf_get_sigmas(const T ts[t_vector_len], const int ts_len, T output[11]) // TODO:
 	int end_sigmas1[ts_len];
 	int end_sigmas2[ts_len];
 
-	static T rf_pose_output[11];
+	static T pose_output[11];
 
 	for (int i = 0; i < ts_len; i++) {
 		end_sigmas1[i] = 0;
 		end_sigmas2[i] = 0;
 
-		rf_pose_from_point_tangents_2_fn_t(ts[i], rf_pose_output);
+		pose_from_point_tangents_2_fn_t(ts[i], pose_output);
 
 		// Getting value instead of pointer to avoid confusion between
 		// dereference `*` and multiplication `*` in the formulas below
-		static T fvalue = rf_pose_output[0];
-		static T A      = rf_pose_output[1];
-		static T B      = rf_pose_output[2];
-		static T C      = rf_pose_output[3];
-		static T E      = rf_pose_output[4];
-		static T F      = rf_pose_output[5];
-		static T G      = rf_pose_output[6];
-		static T H      = rf_pose_output[7];
-		static T J      = rf_pose_output[8];
-		static T K      = rf_pose_output[9];
-		static T L      = rf_pose_output[10];
+		static T fvalue = pose_output[0];
+		static T A      = pose_output[1];
+		static T B      = pose_output[2];
+		static T C      = pose_output[3];
+		static T E      = pose_output[4];
+		static T F      = pose_output[5];
+		static T G      = pose_output[6];
+		static T H      = pose_output[7];
+		static T J      = pose_output[8];
+		static T K      = pose_output[9];
+		static T L      = pose_output[10];
 
 		// TODO: Optimize quadratic function algorithm
 		// TODO: Deal with complex results

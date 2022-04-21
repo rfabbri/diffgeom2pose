@@ -11,10 +11,10 @@
 #include <p2pt/poly.h>
 
 #include <p2pt/common.hxx>
-#include <p2pt/rf_pose_from_point_tangents_2.hxx>
-#include <p2pt/rf_find_bounded_root_intervals.hxx>
-#include <p2pt/rf_rhos_from_root_ids.hxx>
-#include <p2pt/rf_get_sigmas.hxx>
+#include <p2pt/pose_from_point_tangents_2.hxx>
+#include <p2pt/find_bounded_root_intervals.hxx>
+#include <p2pt/rhos_from_root_ids.hxx>
+#include <p2pt/get_sigmas.hxx>
 
 #include <tests/test-p2pt-constants.hxx>
 
@@ -32,11 +32,11 @@ test_hello()
 }
 
 static void
-test_rf_pose_from_point_tangents_2()
+test_pose_from_point_tangents_2()
 {
 	pose_poly<double> p;
 
-	p.rf_pose_from_point_tangents_2(
+	p.pose_from_point_tangents_2(
 		sample_gama1, sample_tgt1,
 		sample_gama2, sample_tgt2,
 		sample_Gama1, sample_Tgt1,
@@ -95,7 +95,7 @@ test_rf_pose_from_point_tangents_2()
 }
 
 static void
-test_rf_find_bounded_root_intervals()
+test_find_bounded_root_intervals()
 {
 	static double test_root_ids[root_ids_len];
 
@@ -112,7 +112,7 @@ test_rf_find_bounded_root_intervals()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	p.rf_find_bounded_root_intervals(sample_t_vector, test_root_ids);
+	p.find_bounded_root_intervals(sample_t_vector, test_root_ids);
 
 	for (int i = 0; i < root_ids_len; i++) {
 		char indexstr[128];
@@ -122,7 +122,7 @@ test_rf_find_bounded_root_intervals()
 }
 
 static void
-test_rf_sample_pose_poly()
+test_sample_pose_poly()
 {
 	pose_poly<double> p = {
 		sample_A0, sample_A1, sample_A2,
@@ -139,7 +139,7 @@ test_rf_sample_pose_poly()
 
 	double output[11][t_vector_len];
 
-	p.rf_sample_pose_poly(sample_t_vector, output);
+	p.sample_pose_poly(sample_t_vector, output);
 
 	double *test_fvalue = output[0];
 
@@ -151,7 +151,7 @@ test_rf_sample_pose_poly()
 }
 
 static void
-test_rf_rhos_from_root_ids()
+test_rhos_from_root_ids()
 {
 	pose_poly<double> p;
 	p.alpha = sample_alpha;
@@ -160,7 +160,7 @@ test_rf_rhos_from_root_ids()
 
 	double output[7][t_vector_len];
 
-	p.rf_rhos_from_root_ids(sample_t_vector, sample_root_ids, output);
+	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, output);
 
 	double* test_rhos1       = output[0];
 	double* test_rhos1_minus = output[1];
@@ -208,7 +208,7 @@ test_rf_rhos_from_root_ids()
 }
 
 static void
-test_rf_pose_from_point_tangents_2_fn_t_for_root()
+test_pose_from_point_tangents_2_fn_t_for_root()
 {
 	pose_poly<double> p = {
 		sample_A0, sample_A1, sample_A2,
@@ -225,7 +225,7 @@ test_rf_pose_from_point_tangents_2_fn_t_for_root()
 
 	double output[t_vector_len][11];
 	for (int i = 0; i < t_vector_len; i++) {
-		p.rf_pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i], output[i]);
+		p.pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i], output[i]);
 	}
 
 	for (int i = 0; i < t_vector_len; i++) {
@@ -238,25 +238,25 @@ test_rf_pose_from_point_tangents_2_fn_t_for_root()
 	//double test_fvalue;
 	//char indexstr[128];
 
-	//p.rf_pose_from_point_tangents_2_fn_t_for_root(0, output[0]);
+	//p.pose_from_point_tangents_2_fn_t_for_root(0, output[0]);
 	//test_fvalue = output[0][0];
 	//snprintf(indexstr, 128, "fvalue[%d]", 0);
 	//TEST_NEAR(indexstr, test_fvalue, 5159552357.01911, eps);
 
-	//p.rf_pose_from_point_tangents_2_fn_t_for_root(1, output[0]);
+	//p.pose_from_point_tangents_2_fn_t_for_root(1, output[0]);
 	//test_fvalue = output[0][0];
 	//snprintf(indexstr, 128, "fvalue[%d]", 0);
 	//TEST_NEAR(indexstr, test_fvalue, 1599787.71374685, eps);
 }
 
 static void
-test_rf_get_sigmas()
+test_get_sigmas()
 {
 
 }
 
 static void
-test_rf_pose_from_point_tangents_2_fn_t()
+test_pose_from_point_tangents_2_fn_t()
 {
 	pose_poly<double> p = {
 		sample_A0, sample_A1, sample_A2,
@@ -273,7 +273,7 @@ test_rf_pose_from_point_tangents_2_fn_t()
 
 	double output[t_vector_len][11];
 	for (int i = 0; i < t_vector_len; i++) {
-		p.rf_pose_from_point_tangents_2_fn_t(sample_t_vector[i], output[i]);
+		p.pose_from_point_tangents_2_fn_t(sample_t_vector[i], output[i]);
 	}
 
 	for (int i = 0; i < t_vector_len; i++) {
@@ -285,7 +285,7 @@ test_rf_pose_from_point_tangents_2_fn_t()
 }
 
 static void
-test_rf_get_r_t_from_rhos()
+test_get_r_t_from_rhos()
 {
 
 }
@@ -299,29 +299,29 @@ test_p2pt()
 	std::cout << "\nTEST #1 - test_hello" << std::endl;
 	test_hello();
 
-	std::cout << "\nTEST #2 - test_rf_pose_from_point_tangents_2" << std::endl;
-	test_rf_pose_from_point_tangents_2();
+	std::cout << "\nTEST #2 - test_pose_from_point_tangents_2" << std::endl;
+	test_pose_from_point_tangents_2();
 
-	std::cout << "\nTEST #3 - test_rf_find_bounded_root_intervals" << std::endl;
-	test_rf_find_bounded_root_intervals();
+	std::cout << "\nTEST #3 - test_find_bounded_root_intervals" << std::endl;
+	test_find_bounded_root_intervals();
 
-	std::cout << "\nTEST #4 - test_rf_sample_pose_poly" << std::endl;
-	test_rf_sample_pose_poly();
+	std::cout << "\nTEST #4 - test_sample_pose_poly" << std::endl;
+	test_sample_pose_poly();
 
-	std::cout << "\nTEST #5 - test_rf_rhos_from_root_ids" << std::endl;
-	test_rf_rhos_from_root_ids();
+	std::cout << "\nTEST #5 - test_rhos_from_root_ids" << std::endl;
+	test_rhos_from_root_ids();
 
-	std::cout << "\nTEST #6 - test_rf_pose_from_point_tangents_2_fn_t_for_root" << std::endl;
-	test_rf_pose_from_point_tangents_2_fn_t_for_root();
+	std::cout << "\nTEST #6 - test_pose_from_point_tangents_2_fn_t_for_root" << std::endl;
+	test_pose_from_point_tangents_2_fn_t_for_root();
 
-	std::cout << "\nTEST #7 - test_rf_get_sigmas" << std::endl;
-	test_rf_get_sigmas();
+	std::cout << "\nTEST #7 - test_get_sigmas" << std::endl;
+	test_get_sigmas();
 
-	std::cout << "\nTEST #8 - test_rf_pose_from_point_tangents_2_fn_t" << std::endl;
-	test_rf_pose_from_point_tangents_2_fn_t();
+	std::cout << "\nTEST #8 - test_pose_from_point_tangents_2_fn_t" << std::endl;
+	test_pose_from_point_tangents_2_fn_t();
 
-	std::cout << "\nTEST #9 - test_rf_get_r_t_from_rhos" << std::endl;
-	test_rf_get_r_t_from_rhos();
+	std::cout << "\nTEST #9 - test_get_r_t_from_rhos" << std::endl;
+	test_get_r_t_from_rhos();
 }
 
 TESTMAIN(test_p2pt);

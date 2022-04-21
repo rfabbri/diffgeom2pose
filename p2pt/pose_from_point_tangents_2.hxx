@@ -1,4 +1,4 @@
-//% This is usually called from rf_pose_from_point_tangents_root_find_function_any.m
+//% This is usually called from pose_from_point_tangents_root_find_function_any.m
 //%
 //% Input: gama1, gama2, tgt1, tgt2, Gama1, Gama2, Tgt1, Tgt2
 //% ----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ using namespace common;
 template<typename T>
 void
 pose_poly<T>::
-rf_pose_from_point_tangents_2(
+pose_from_point_tangents_2(
 	const T gama1[3], const T tgt1[3],
 	const T gama2[3], const T tgt2[3],
 	const T Gama1[3], const T Tgt1[3],
@@ -2236,7 +2236,7 @@ rf_pose_from_point_tangents_2(
 
 	//% t-dependent stuff:
 
-	//%rf_pose_from_point_tangents_2_fn_t(t);
+	//%pose_from_point_tangents_2_fn_t(t);
 
 	//% Not used - just to check magnitute of poly.
 	//double int_coef[] = {A0, A1, A2, B0, B1, B2, B3, C0, C1, C2, C3, C4, E0, E1, E2, F0, F1, F2, F3, G0, G1, G2, G3, G4, H0, H1, H2, H3, H4, J0, J1, J2, J3, K0, K1, K2, K3, L0, L1, L2};

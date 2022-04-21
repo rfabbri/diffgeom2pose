@@ -164,7 +164,7 @@ namespace common {
 	}
 
 
-	// Returns pointer for simplicity of calculations in `rf_sample_pose_poly`
+	// Returns pointer for simplicity of calculations in `sample_pose_poly`
 	// TODO: Check if there is a better way to do this (variadic function perhaps?)
 	#pragma region vec_el_wise_mult
 

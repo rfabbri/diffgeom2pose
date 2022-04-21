@@ -1,12 +1,12 @@
 #include "poly.h"
-#include "rf_pose_from_point_tangents_2_fn_t_for_root.hxx"
+#include "pose_from_point_tangents_2_fn_t_for_root.hxx"
 
 namespace P2Pt {
 
 template <typename T>
 void
 pose_poly<T>::
-rf_rhos_from_root_ids(
+rhos_from_root_ids(
 	const T t_vector[t_vector_len], const T root_ids[t_vector_len],
 	T output[7][t_vector_len] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
 )
@@ -18,23 +18,22 @@ rf_rhos_from_root_ids(
 	T* rhos2_minus = output[4];
 	T* rhos2_plus  = output[5];
 	T* ts          = output[6];
-	// TODO: Create element counter for ts
 
+	int ts_end = 0;
 	for (int i = 0; i < root_ids_len; i++) {
 		if (root_ids[i] == 1) {
 			// TODO: implement fzero using (t_vector(i) + t_vector(i+1))/2; maybe use Newton's method later
 			static T t_ref_arr[11];
 			static T t_ref;
 
-			rf_pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, t_ref_arr);
+			pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, t_ref_arr);
 			t_ref = t_ref_arr[0];
 
-			//rf_pose_from_point_tangents_2_fn_t_for_root(t_ref);
+			//pose_from_point_tangents_2_fn_t_for_root(t_ref);
 
-			// TODO: Check total size/appending of elements for `ts[]` as in MATLAB
 			// TODO: Possibly optimize the size of `ts[]`.
 			// What is the max number of 1s than can appear in `root_ids[]`?
-			ts[i] = t_ref;
+			ts[ts_end++] = t_ref;
 		}
 	}
 

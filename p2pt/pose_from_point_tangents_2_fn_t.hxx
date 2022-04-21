@@ -5,9 +5,9 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-rf_pose_from_point_tangents_2_fn_t(const T t, T output[11])
+pose_from_point_tangents_2_fn_t(const T t, T output[11])
 {
-	// TODO: See if this can be reused from `rf_sample_pose_poly`, even though this function
+	// TODO: See if this can be reused from `sample_pose_poly`, even though this function
 	// only applies to scalar values rather than vectors. Function overloading?
 
 	//%function of t part :

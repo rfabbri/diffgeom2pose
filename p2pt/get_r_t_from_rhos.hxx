@@ -1,16 +1,16 @@
-// % to be called from rf_pose_from_point_tangents_root_find_function_any.m
+// % to be called from pose_from_point_tangents_root_find_function_any.m
 #include "common.hxx"
 
 template<typename T>
 void
-rf_get_r_from_rhos(
+get_r_from_rhos(
 	const int ts_len,
 	T sigmas1[ts_len][ts_len], int end_sigmas1[ts_len],
 	T sigmas2[ts_len][ts_len], int end_sigmas2[ts_len],
 	T rhos1[t_vector_len], T rhos2[t_vector_len]
 )
 {
-	//% to be called from rf_pose_from_point_tangents_root_find_function_any.m
+	//% to be called from pose_from_point_tangents_root_find_function_any.m
 
 	//% Lambdas:
 	static T lambdas1[ts_len][ts_len] = {0};

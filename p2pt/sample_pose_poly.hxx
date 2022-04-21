@@ -7,7 +7,7 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-rf_sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len])
+sample_pose_poly(const T t[t_vector_len], T output[11][t_vector_len])
 {
 	//% function of t part:
 	using namespace common;

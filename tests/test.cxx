@@ -1,22 +1,22 @@
 #include <iostream>
-#include "../diffgeom2pose/rf_pose_from_point_tangents_root_find_function_any.hxx"
+#include "../diffgeom2pose/pose_from_point_tangents_root_find_function_any.hxx"
 #include "../diffgeom2pose/common.hxx"
 
 #define MAGIC_NUM 100
 
 /*****************************************************************************
- * Test variables 
- * 
+ * Test variables
+ *
  * These values were taken from a single MATLAB run and are generated randomly
  *****************************************************************************/
 
 // TODO: Check if `T_tilde`, `Gama1`, `Gama2`, `Tgt1`, `Tgt2`, `gama1`, `gama2`, `tgt1`, and `tgt2` need to be transposed
 
 #pragma region variables
-static double R_tilde[3][3] = { 
+static double R_tilde[3][3] = {
 	{ -0.917851347078650,   0.362140358287978,  -0.162490816863482 },
 	{  0.084622149462850,  -0.221430418224087,  -0.971497638548542 },
-	{ -0.387798912435548,  -0.905440738416469,   0.172595112125592 } 
+	{ -0.387798912435548,  -0.905440738416469,   0.172595112125592 }
 };
 static double T_tilde[3] = { 0.862173320368121, 0.318765239858981, 8.692311703694727 };
 
@@ -74,7 +74,7 @@ int main()
 
 	static double* result[3] = {Rots, Transls, degen};
 
-	rf_pose_from_point_tangents_root_find_function_any(
+	pose_from_point_tangents_root_find_function_any(
 		gama1, tgt1,
 		gama2, tgt2,
 		Gama1, Tgt1,
