@@ -8,8 +8,7 @@ constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 // TODO: THIS IS TEMPORARY! FOR TEST ONLY
 constexpr int TS_LEN = 4;
 
-// TODO: Figure max length of sigma. Should be equal to `TS_LEN`?
-constexpr int SIGMA_LEN = 10;
+constexpr int SIGMA_LEN = 4;
 
 namespace P2Pt {
 

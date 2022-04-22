@@ -252,8 +252,6 @@ test_pose_from_point_tangents_2_fn_t_for_root()
 static void
 test_get_sigmas()
 {
-	//constexpr int SIGMA_LEN = 10;
-
 	pose_poly<double> p = {
 		sample_A0, sample_A1, sample_A2,
 		sample_B0, sample_B1, sample_B2, sample_B3,
@@ -285,9 +283,10 @@ test_get_sigmas()
 
 		pass = test_end_sigmas1[i] == sample_end_sigmas1[i] && pass;
 		for (int j = 0; pass && j < sample_end_sigmas1[i]; j++) {
-			snprintf(indexstr, 128, "test_sigmas1[%d]", i);
+			snprintf(indexstr, 128, "test_sigmas1[%d][%d]", i, j);
 			TEST_NEAR(indexstr, test_sigmas1[i][j], sample_sigmas1[i][j], eps);
 		}
+		if (pass) std::cout << std::endl;
 	}
 
 	pass = true;
@@ -297,9 +296,10 @@ test_get_sigmas()
 
 		pass = test_end_sigmas2[i] == sample_end_sigmas2[i] && pass;
 		for (int j = 0; pass && j < sample_end_sigmas2[i]; j++) {
-			snprintf(indexstr, 128, "test_sigmas2[%d]", i);
+			snprintf(indexstr, 128, "test_sigmas2[%d][%d]", i, j);
 			TEST_NEAR(indexstr, test_sigmas2[i][j], sample_sigmas2[i][j], eps);
 		}
+		if (pass) std::cout << std::endl;
 	}
 }
 
