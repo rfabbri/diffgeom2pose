@@ -27,7 +27,7 @@ void pose_from_point_tangents_root_find_function_any(
 	// % test for geometric degeneracy -------------------------------
 
 	static T DGama[3];
-	common::vec1vec2_sub(Gama1, Gama2, DGama);
+	common::vec1vec2_sub3(Gama1, Gama2, DGama);
 	DGama = Dgama / common::norm(DGama, DGama_len);
 
 	// Matrix for degeneracy calculation

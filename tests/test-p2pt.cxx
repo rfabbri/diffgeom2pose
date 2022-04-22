@@ -367,7 +367,7 @@ test_get_r_t_from_rhos()
 	for (int i = 0; i < RT_LEN; i++) {
 		for (int k = 0; k < 3; k++) {
 			snprintf(indexstr, 128, "Transls[%d][%d]", i, k);
-			TEST_NEAR(indexstr, test_Transls[i][3][k], sample_Rots[i][3][k], eps);
+			TEST_NEAR(indexstr, test_Transls[i][3][k], sample_Transls[i][k], eps);
 		}
 		std::cout << std::endl;
 	}

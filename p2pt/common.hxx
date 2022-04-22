@@ -76,7 +76,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void multm3x3(T m1[3][3], T m2[3][3], T output_m[3][3])
+	void multm3x3(const T m1[3][3], const T m2[3][3], T output_m[3][3])
 	{
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -116,7 +116,7 @@ namespace common {
 	}
 
 	template<typename T>
-	T vec1vec2_dot(const T vec1[3], const T vec2[3])
+	T vec1vec2_dot3(const T vec1[3], const T vec2[3])
 	{
 		T output = 0;
 		for (int i = 0; i < 3; i++) {
@@ -134,7 +134,15 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec1vec2_sub(const T vec1[3], const T vec2[3], T output[3])
+	void vec1vec2_sum3(T vec1[3], T vec2[3], T output[3])
+	{
+		for (int i = 0; i < 3; i++) {
+			output[i] = vec1[i] + vec2[i];
+		}
+	}
+
+	template<typename T>
+	void vec1vec2_sub3(const T vec1[3], const T vec2[3], T output[3])
 	{
 		// For vectors of 3 elements
 		for (int i = 0; i < 3; i++) {
@@ -289,7 +297,7 @@ namespace common {
 	}
 
 	template<typename T>
-	T vec_el_sum(T vec[3])
+	T vec_el_sum3(T vec[3])
 	{
 		T output = 0;
 		for (int i = 0; i < 3; i++) {
