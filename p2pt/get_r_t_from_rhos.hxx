@@ -1,13 +1,16 @@
 // % to be called from pose_from_point_tangents_root_find_function_any.m
 #include "common.hxx"
 
+namespace P2Pt {
+
 template<typename T>
 void
-get_r_from_rhos(
+pose_poly<T>::
+get_r_t_from_rhos(
 	const int ts_len,
-	T sigmas1[ts_len][ts_len], int end_sigmas1[ts_len],
-	T sigmas2[ts_len][ts_len], int end_sigmas2[ts_len],
-	T rhos1[t_vector_len], T rhos2[t_vector_len]
+	T sigmas1[TS_LEN][TS_LEN], int end_sigmas1[TS_LEN],
+	T sigmas2[TS_LEN][TS_LEN], int end_sigmas2[TS_LEN],
+	T rhos1[T_VECTOR_LEN], T rhos2[T_VECTOR_LEN]
 )
 {
 	//% to be called from pose_from_point_tangents_root_find_function_any.m
@@ -126,6 +129,8 @@ get_r_from_rhos(
 		}
 	}
 
+
+}
 
 }
 

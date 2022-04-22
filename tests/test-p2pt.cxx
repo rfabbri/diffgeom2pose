@@ -19,8 +19,8 @@
 #include <tests/test-p2pt-constants.hxx>
 
 // TODO: Make this global across files
-//constexpr int t_vector_len = 2001;
-//constexpr int root_ids_len = t_vector_len - 1;
+//constexpr int T_VECTOR_LEN = 2001;
+//constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 
 using namespace P2Pt;
 
@@ -97,7 +97,7 @@ test_pose_from_point_tangents_2()
 static void
 test_find_bounded_root_intervals()
 {
-	static double test_root_ids[root_ids_len];
+	static double test_root_ids[ROOT_IDS_LEN];
 
 	pose_poly<double> p = {
 		sample_A0, sample_A1, sample_A2,
@@ -114,7 +114,7 @@ test_find_bounded_root_intervals()
 
 	p.find_bounded_root_intervals(sample_t_vector, test_root_ids);
 
-	for (int i = 0; i < root_ids_len; i++) {
+	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		char indexstr[128];
 		snprintf(indexstr, 128, "root_ids[%d]", i);
 		TEST_NEAR(indexstr, test_root_ids[i], sample_root_ids[i], eps);
@@ -137,13 +137,13 @@ test_sample_pose_poly()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	double output[11][t_vector_len];
+	double output[11][T_VECTOR_LEN];
 
 	p.sample_pose_poly(sample_t_vector, output);
 
 	double *test_fvalue = output[0];
 
-	for (int i = 0; i < t_vector_len; i++) {
+	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		char indexstr[128];
 		snprintf(indexstr, 128, "fvalue[%d]", i);
 		TEST_NEAR(indexstr, test_fvalue[i], sample_fvalue_pose_poly[i], eps);
@@ -158,7 +158,7 @@ test_rhos_from_root_ids()
 	p.beta  = sample_beta;
 	p.theta = sample_theta;
 
-	double output[7][t_vector_len];
+	double output[7][T_VECTOR_LEN];
 
 	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, output);
 
@@ -223,12 +223,12 @@ test_pose_from_point_tangents_2_fn_t_for_root()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	double output[t_vector_len][11];
-	for (int i = 0; i < t_vector_len; i++) {
+	double output[T_VECTOR_LEN][11];
+	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		p.pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i], output[i]);
 	}
 
-	for (int i = 0; i < t_vector_len; i++) {
+	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		double test_fvalue = output[i][0];
 		char indexstr[128];
 		snprintf(indexstr, 128, "fvalue[%d]", i);
@@ -252,7 +252,55 @@ test_pose_from_point_tangents_2_fn_t_for_root()
 static void
 test_get_sigmas()
 {
+	//constexpr int SIGMA_LEN = 10;
 
+	pose_poly<double> p = {
+		sample_A0, sample_A1, sample_A2,
+		sample_B0, sample_B1, sample_B2, sample_B3,
+		sample_C0, sample_C1, sample_C2, sample_C3, sample_C4,
+		sample_E0, sample_E1, sample_E2,
+		sample_F0, sample_F1, sample_F2, sample_F3,
+		sample_G0, sample_G1, sample_G2, sample_G3, sample_G4,
+		sample_H0, sample_H1, sample_H2, sample_H3, sample_H4,
+		sample_J0, sample_J1, sample_J2, sample_J3,
+		sample_K0, sample_K1, sample_K2, sample_K3,
+		sample_L0, sample_L1, sample_L2
+	};
+
+	bool pass;
+	double output[4][SIGMA_LEN][SIGMA_LEN];
+	char indexstr[128];
+
+	double (*test_sigmas1)[SIGMA_LEN] = output[0];
+	double (*test_sigmas2)[SIGMA_LEN] = output[1];
+	double *test_end_sigmas1 = output[2][0];
+	double *test_end_sigmas2 = output[3][0];
+
+	p.get_sigmas(sample_ts, sample_ts_len, output);
+
+	pass = true;
+	for (int i = 0; i < sample_ts_len; i++) {
+		snprintf(indexstr, 128, "test_end_sigmas1[%d]", i);
+		TEST_EQUAL(indexstr, test_end_sigmas1[i], sample_end_sigmas1[i]);
+
+		pass = test_end_sigmas1[i] == sample_end_sigmas1[i] && pass;
+		for (int j = 0; pass && j < sample_end_sigmas1[i]; j++) {
+			snprintf(indexstr, 128, "test_sigmas1[%d]", i);
+			TEST_NEAR(indexstr, test_sigmas1[i][j], sample_sigmas1[i][j], eps);
+		}
+	}
+
+	pass = true;
+	for (int i = 0; i < sample_ts_len; i++) {
+		snprintf(indexstr, 128, "test_end_sigmas2[%d]", i);
+		TEST_EQUAL(indexstr, test_end_sigmas2[i], sample_end_sigmas2[i]);
+
+		pass = test_end_sigmas2[i] == sample_end_sigmas2[i] && pass;
+		for (int j = 0; pass && j < sample_end_sigmas2[i]; j++) {
+			snprintf(indexstr, 128, "test_sigmas2[%d]", i);
+			TEST_NEAR(indexstr, test_sigmas2[i][j], sample_sigmas2[i][j], eps);
+		}
+	}
 }
 
 static void
@@ -271,12 +319,12 @@ test_pose_from_point_tangents_2_fn_t()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	double output[t_vector_len][11];
-	for (int i = 0; i < t_vector_len; i++) {
+	double output[T_VECTOR_LEN][11];
+	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		p.pose_from_point_tangents_2_fn_t(sample_t_vector[i], output[i]);
 	}
 
-	for (int i = 0; i < t_vector_len; i++) {
+	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		double test_fvalue = output[i][0];
 		char indexstr[128];
 		snprintf(indexstr, 128, "fvalue[%d]", i);

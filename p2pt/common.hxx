@@ -123,9 +123,9 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec1vec2_sum(T vec1[t_vector_len], T vec2[t_vector_len], T output[t_vector_len])
+	void vec1vec2_sum(T vec1[T_VECTOR_LEN], T vec2[T_VECTOR_LEN], T output[T_VECTOR_LEN])
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] + vec2[i];
 		}
 	}
@@ -140,25 +140,25 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec_add_scalar(T vec1[t_vector_len], int scalar, T output[t_vector_len])
+	void vec_add_scalar(T vec1[T_VECTOR_LEN], int scalar, T output[T_VECTOR_LEN])
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] + scalar;
 		}
 	}
 
 	template<typename T>
-	void vec_el_wise_pow(const T vec[t_vector_len], int exp, T output[t_vector_len])
+	void vec_el_wise_pow(const T vec[T_VECTOR_LEN], int exp, T output[T_VECTOR_LEN])
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = pow(vec[i], exp);
 		}
 	}
 
 	template<typename T>
-	void vec1vec2_el_wise_right_div(T vec1[t_vector_len], T vec2[t_vector_len], T output[t_vector_len])
+	void vec1vec2_el_wise_right_div(T vec1[T_VECTOR_LEN], T vec2[T_VECTOR_LEN], T output[T_VECTOR_LEN])
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] / vec2[i];
 		}
 	}
@@ -172,8 +172,8 @@ namespace common {
 	// TODO: Check if there is a batter way to do this
 	template<typename T>
 	T* vec_3el_wise_mult2(
-		const T vec1[t_vector_len], const T vec2[t_vector_len],
-		T output[t_vector_len]
+		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN],
+		T output[T_VECTOR_LEN]
 	)
 	{
 		for (int i = 0; i < 3; i++) {
@@ -185,11 +185,11 @@ namespace common {
 	// For 3 vectors
 	template<typename T>
 	T *vec_el_wise_mult3(
-		const T vec1[t_vector_len], const T vec2[t_vector_len], const T vec3[t_vector_len],
-		T output[t_vector_len]
+		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN], const T vec3[T_VECTOR_LEN],
+		T output[T_VECTOR_LEN]
 	)
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] * vec2[i] * vec3[i];
 		}
 		return output;
@@ -198,11 +198,11 @@ namespace common {
 	// For 4 vectors
 	template<typename T>
 	T *vec_el_wise_mult4(
-		const T vec1[t_vector_len], const T vec2[t_vector_len], const T vec3[t_vector_len], const T vec4[t_vector_len],
-		T output[t_vector_len]
+		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN], const T vec3[T_VECTOR_LEN], const T vec4[T_VECTOR_LEN],
+		T output[T_VECTOR_LEN]
 	)
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i];
 		}
 		return output;
@@ -211,12 +211,12 @@ namespace common {
 	// For 5 vectors
 	template<typename T>
 	T *vec_el_wise_mult5(
-		const T vec1[t_vector_len], const T vec2[t_vector_len], const T vec3[t_vector_len], const T vec4[t_vector_len],
-		const T vec5[t_vector_len],
-		T output[t_vector_len]
+		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN], const T vec3[T_VECTOR_LEN], const T vec4[T_VECTOR_LEN],
+		const T vec5[T_VECTOR_LEN],
+		T output[T_VECTOR_LEN]
 	)
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
 				* vec5[i];
 		}
@@ -226,12 +226,12 @@ namespace common {
 	// For 6 vectors
 	template<typename T>
 	T *vec_el_wise_mult6(
-		const T vec1[t_vector_len], const T vec2[t_vector_len], const T vec3[t_vector_len], const T vec4[t_vector_len],
-		const T vec5[t_vector_len], const T vec6[t_vector_len],
-		T output[t_vector_len]
+		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN], const T vec3[T_VECTOR_LEN], const T vec4[T_VECTOR_LEN],
+		const T vec5[T_VECTOR_LEN], const T vec6[T_VECTOR_LEN],
+		T output[T_VECTOR_LEN]
 	)
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
 				* vec5[i] * vec6[i];
 		}
@@ -241,12 +241,12 @@ namespace common {
 	// For 7 vectors
 	template<typename T>
 	T *vec_el_wise_mult7(
-		const T vec1[t_vector_len], const T vec2[t_vector_len], const T vec3[t_vector_len], const T vec4[t_vector_len],
-		const T vec5[t_vector_len], const T vec6[t_vector_len], const T vec7[t_vector_len],
-		T output[t_vector_len]
+		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN], const T vec3[T_VECTOR_LEN], const T vec4[T_VECTOR_LEN],
+		const T vec5[T_VECTOR_LEN], const T vec6[T_VECTOR_LEN], const T vec7[T_VECTOR_LEN],
+		T output[T_VECTOR_LEN]
 	)
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
 				* vec5[i] * vec6[i] * vec7[i];
 		}
@@ -256,12 +256,12 @@ namespace common {
 	// For 8 vectors
 	template<typename T>
 	T *vec_el_wise_mult8(
-		const T vec1[t_vector_len], const T vec2[t_vector_len], const T vec3[t_vector_len], const T vec4[t_vector_len],
-		const T vec5[t_vector_len], const T vec6[t_vector_len], const T vec7[t_vector_len], const T vec8[t_vector_len],
-		T output[t_vector_len]
+		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN], const T vec3[T_VECTOR_LEN], const T vec4[T_VECTOR_LEN],
+		const T vec5[T_VECTOR_LEN], const T vec6[T_VECTOR_LEN], const T vec7[T_VECTOR_LEN], const T vec8[T_VECTOR_LEN],
+		T output[T_VECTOR_LEN]
 	)
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
 				* vec5[i] * vec6[i] * vec7[i] * vec8[i];
 		}
@@ -270,9 +270,9 @@ namespace common {
 	#pragma endregion
 
 	template<typename T>
-	void vec_mult_by_scalar(int scalar, T vec[t_vector_len], T output[t_vector_len])
+	void vec_mult_by_scalar(int scalar, T vec[T_VECTOR_LEN], T output[T_VECTOR_LEN])
 	{
-		for (int i = 0; i < t_vector_len; i++) {
+		for (int i = 0; i < T_VECTOR_LEN; i++) {
 			output[i] = vec[i] * scalar;
 		}
 	}

@@ -5,8 +5,8 @@
 #include "find_bounded_root_intervals.hxx"
 
 // TODO: Make this global across files
-constexpr int t_vector_len = 2001;
-constexpr int root_ids_len = t_vector_len - 1;
+constexpr int T_VECTOR_LEN = 2001;
+constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 
 template<typename T>
 void pose_from_point_tangents_root_find_function_any(
@@ -44,17 +44,17 @@ void pose_from_point_tangents_root_find_function_any(
 
 	// % compute roots -------------------------------
 
-	T t_vector[t_vector_len]; common::colon(-1, 0.001, 1, t_vector);
+	T t_vector[T_VECTOR_LEN]; common::colon(-1, 0.001, 1, t_vector);
 
 	pose_poly poly;
 	poly.pose_from_point_tangents_2(gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
 	// root_ids[length(t_vector) - 1]
-	static T root_ids[root_ids_len] = {0};
+	static T root_ids[ROOT_IDS_LEN] = {0};
 	poly.find_bounded_root_intervals(t_vector, root_ids);
 
 	// % compute rhos, r, t --------------------------
-	static T rhos[7][t_vector_len];
+	static T rhos[7][T_VECTOR_LEN];
 	rhos_from_root_ids(t_vector, root_ids, rhos); // TODO: implement `rhos_from_root_ids()`
 
 	//#include "get_sigmas.hxx"

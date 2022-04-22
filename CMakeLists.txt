@@ -200,12 +200,13 @@ endif()
 option(USE_Boost "Use Boost libraries" NO)
 if ( USE_Boost )
   set(Boost_USE_STATIC_LIBS   OFF)
-  find_package( Boost 1.35.0 COMPONENTS iostreams)
-  #if(Boost_FOUND)
-  #    message("aww yeah")
-  # else(Boost_FOUND)
-  #  message("OH NO")
-  #endif(Boost_FOUND)
+  find_package( Boost 1.79.0 )
+  if(Boost_FOUND)
+      message("aww yeah")
+      include_directories(${Boost_INCLUDE_DIRS})
+  else(Boost_FOUND)
+    message("OH NO")
+  endif(Boost_FOUND)
   set( Boost_FOUND TRUE )
 else ( USE_Boost )
   set( Boost_FOUND FALSE )
@@ -224,11 +225,11 @@ set(DIFFGEOM2POSE_LIBRARY_PATH ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} CACHE STATIC "W
 # main lib
 add_subdirectory(p2pt)
 # commands / executables
-add_subdirectory(cmd) 
+add_subdirectory(cmd)
 
 set(BUILD_TESTING OFF CACHE BOOL "Build tests for diffgeom2pose")
 set(VXL_BUILD_POSITION_DEPENDENT_CODE ON CACHE BOOL "Generate position dependent code - code cannot be used in shared library")
-  
+
 if(VXL_FOUND)  # For now we need vxl to build tests
   if( BUILD_TESTING )
     add_subdirectory(tests)
