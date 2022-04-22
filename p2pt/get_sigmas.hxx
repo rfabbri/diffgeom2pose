@@ -17,8 +17,8 @@ get_sigmas(
 	 `output`
 	       [0] -> sigmas1[SIGMA_LEN][SIGMA_LEN]
 	       [1] -> sigmas2[SIGMA_LEN][SIGMA_LEN]
-	       [2] -> end_sigmas1[SIGMA_LEN][SIGMA_LEN]
-	       [3] -> end_sigmas2[SIGMA_LEN][SIGMA_LEN]
+	       [2] -> sigmas1_end[SIGMA_LEN][SIGMA_LEN]
+	       [3] -> sigmas2_end[SIGMA_LEN][SIGMA_LEN]
 
 	       `sigmasX` (can contain single values or array of values)
 	             [0][0] -> float/double
@@ -29,7 +29,7 @@ get_sigmas(
 	               .
 	               .
 
-	       `end_sigmasX` (single values)
+	       `sigmasX_end` (single values)
 	             [0][0] -> float/double (cast to integer on use)
 	             [0][1] -> float/double (cast to integer on use)
 	             [0][2] -> float/double (cast to integer on use)
@@ -43,14 +43,14 @@ get_sigmas(
 
 	// Stores the number of elements for each row of `sigmasX`
 	// Ugly hack, could be set as a struct
-	T *end_sigmas1 = output[2][0];
-	T *end_sigmas2 = output[3][0];
+	T *sigmas1_end = output[2][0];
+	T *sigmas2_end = output[3][0];
 
 	static T pose_output[11];
 
 	for (int i = 0; i < ts_len; i++) {
-		end_sigmas1[i] = 0;
-		end_sigmas2[i] = 0;
+		sigmas1_end[i] = 0;
+		sigmas2_end[i] = 0;
 
 		pose_from_point_tangents_2_fn_t(ts[i], pose_output);
 
@@ -94,32 +94,32 @@ get_sigmas(
 		//% If not, issue a warning.
 
 		if (abs(H + J*sigma1_m + K*sigma2_m + L*sigma1_m*sigma2_m) < my_eps) {
-			sigmas1[i][(int)end_sigmas1[i]++] = sigma1_m.real();
-			sigmas2[i][(int)end_sigmas2[i]++] = sigma2_m.real();
+			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_m.real();
+			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_m.real();
 		}
 
 		if (abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
-			if (end_sigmas1[i] != 0) // !isempty(sigmas1[i])
+			if (sigmas1_end[i] != 0) // !isempty(sigmas1[i])
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][(int)end_sigmas1[i]++] = sigma1_p.real();
-			sigmas2[i][(int)end_sigmas2[i]++] = sigma2_m.real();
+			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_p.real();
+			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_m.real();
 		}
 
 		if (abs(H + J*sigma1_p + K*sigma2_p + L*sigma1_p*sigma2_p) < my_eps) {
-			if (end_sigmas1[i] != 0)
+			if (sigmas1_end[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][(int)end_sigmas1[i]++] = sigma1_p.real();
-			sigmas2[i][(int)end_sigmas2[i]++] = sigma2_p.real();
+			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_p.real();
+			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_p.real();
 		}
 
 		if (abs(H + J*sigma1_m + K*sigma2_p + L*sigma1_m*sigma2_p) < my_eps) {
-			if (end_sigmas1[i] != 0)
+			if (sigmas1_end[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][(int)end_sigmas1[i]++] = sigma1_m.real();
-			sigmas2[i][(int)end_sigmas2[i]++] = sigma2_p.real();
+			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_m.real();
+			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_p.real();
 		}
 
-		if (end_sigmas1[i] == 0) // isempty(sigmas1[i])
+		if (sigmas1_end[i] == 0) // isempty(sigmas1[i])
 			std::cerr << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 
 	}

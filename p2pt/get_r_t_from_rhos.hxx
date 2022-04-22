@@ -8,25 +8,30 @@ void
 pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
-	T sigmas1[TS_LEN][TS_LEN], int end_sigmas1[TS_LEN],
-	T sigmas2[TS_LEN][TS_LEN], int end_sigmas2[TS_LEN],
-	T rhos1[T_VECTOR_LEN], T rhos2[T_VECTOR_LEN]
+	const T sigmas1[TS_LEN][TS_LEN], const int sigmas1_end[TS_LEN],
+	const T sigmas2[TS_LEN][TS_LEN], const int sigmas2_end[TS_LEN],
+	const T rhos1[T_VECTOR_LEN], const T rhos2[T_VECTOR_LEN],
+	const T gama1[3], const T tgt1[3],
+	const T gama2[3], const T tgt2[3],
+	const T Gama1[3], const T Tgt1[3],
+	const T Gama2[3], const T Tgt2[3],
+	T output[RT_LEN][4][3]
 )
 {
 	//% to be called from pose_from_point_tangents_root_find_function_any.m
 
 	//% Lambdas:
-	static T lambdas1[ts_len][ts_len] = {0};
-	static T lambdas2[ts_len][ts_len] = {0};
+	static T lambdas1[TS_LEN][TS_LEN] = { {0} };
+	static T lambdas2[TS_LEN][TS_LEN] = { {0} };
 
 	static T DGama[3];
 
 	for (int i = 0; i < ts_len; i++) {
-		if (end_sigmas1[i] == 0) {
+		//if (sigmas1_end[i] == 0) {
 			// Is this necessary?
 			//lambdas1[i] = {};
 			//lambdas2[i] = {};
-		}
+		//}
 		//lambdas1[i] = zeros(size(sigmas1{i}));
 		//lambdas2[i] = zeros(size(sigmas2{i}));
 
@@ -34,7 +39,7 @@ get_r_t_from_rhos(
 		static T den1[3], den2[3], den3[3];
 
 		// TODO: Check if separate loops are better for vectorization
-		for (int j = 0; end_sigmas1[i]; j++) {
+		for (int j = 0; sigmas1_end[i]; j++) {
 			common::vec1vec2_sub(Gama1, Gama2, DGama);               // DGama = Gama1 - Gama2
 
 			// TODO: Modify to product of 3 elements
@@ -49,7 +54,7 @@ get_r_t_from_rhos(
 			// lambdas1{i}(j) = DGama' * Tgt1 / den2' * den3
 			lambdas1[i][j] = common::vec1vec2_dot(DGama, Tgt1) / common::vec1vec2_dot(den2, den3);
 		}
-		for (int j = 0; end_sigmas1[i]; j++) {
+		for (int j = 0; sigmas1_end[i]; j++) {
 			common::vec1vec2_sub(Gama1, Gama2, DGama);               // DGama = Gama1 - Gama2
 
 			// TODO: Modify to product of 3 elements
@@ -81,19 +86,23 @@ get_r_t_from_rhos(
 
 	T inv_A[3][3]; common::invm3x3(A, inv_A);
 
-	#define TEMP 10;
 
-	T Rots[TEMP][3][3];
-	T Transls[TEMP][3][3];
+	T Rots[RT_LEN][3][3];
+	T Transls[RT_LEN][3];
+	// Matrix containing Rotations and Translations
+	T (*RT)[4][3] = output;
+
+	int RT_end = 0;
+
 	int Rots_end    = 0;
 	int Transls_end = 0;
 
 	// TODO: Create a single matrix with rotation and translation
 	for (int i = 0; i < ts_len; i++) {
-		for (int j = 0; j < end_sigmas1[0]; j++) {
+		for (int j = 0; j < sigmas1_end[0]; j++) {
 
 			#define B_row(r) \
-				rhos[i]*gama1[r] - rhos[i]*gama2[r], \
+				rhos1[i]*gama1[r] - rhos2[i]*gama2[r], \
 				lambdas1[i][j]*(rhos1[i]*tgt1[r] + sigmas1[i][j]*gama1[r]), \
 				lambdas2[i][j]*(rhos2[i]*tgt2[r] + sigmas2[i][j]*gama2[r]) \
 
@@ -129,7 +138,8 @@ get_r_t_from_rhos(
 		}
 	}
 
-
+	//std::copy(std::begin(Rots[0][0][0]), std::end(Rots[Rots_end][2][2]), std::begin(RT[0][0][0]));
+	//std::copy(std::begin(Transls[0][0]), std::end(Transls[Transls_end][2]), std::begin(RT[3][0][0]));
 }
 
 }

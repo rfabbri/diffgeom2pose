@@ -10,11 +10,11 @@
 #include <p2pt/p2pt.h>
 #include <p2pt/poly.h>
 
-#include <p2pt/common.hxx>
 #include <p2pt/pose_from_point_tangents_2.hxx>
 #include <p2pt/find_bounded_root_intervals.hxx>
 #include <p2pt/rhos_from_root_ids.hxx>
 #include <p2pt/get_sigmas.hxx>
+#include <p2pt/get_r_t_from_rhos.hxx>
 
 #include <tests/test-p2pt-constants.hxx>
 
@@ -271,35 +271,35 @@ test_get_sigmas()
 
 	double (*test_sigmas1)[SIGMA_LEN] = output[0];
 	double (*test_sigmas2)[SIGMA_LEN] = output[1];
-	double *test_end_sigmas1 = output[2][0];
-	double *test_end_sigmas2 = output[3][0];
+	double *test_sigmas1_end = output[2][0];
+	double *test_sigmas2_end = output[3][0];
 
 	p.get_sigmas(sample_ts, sample_ts_len, output);
 
 	pass = true;
 	for (int i = 0; i < sample_ts_len; i++) {
-		snprintf(indexstr, 128, "test_end_sigmas1[%d]", i);
-		TEST_EQUAL(indexstr, test_end_sigmas1[i], sample_end_sigmas1[i]);
+		snprintf(indexstr, 128, "test_sigmas1_end[%d]", i);
+		TEST_EQUAL(indexstr, test_sigmas1_end[i], sample_sigmas1_end[i]);
 
-		pass = test_end_sigmas1[i] == sample_end_sigmas1[i] && pass;
-		for (int j = 0; pass && j < sample_end_sigmas1[i]; j++) {
+		pass = test_sigmas1_end[i] == sample_sigmas1_end[i] && pass;
+		for (int j = 0; pass && j < sample_sigmas1_end[i]; j++) {
 			snprintf(indexstr, 128, "test_sigmas1[%d][%d]", i, j);
 			TEST_NEAR(indexstr, test_sigmas1[i][j], sample_sigmas1[i][j], eps);
 		}
-		if (pass) std::cout << std::endl;
+		std::cout << std::endl;
 	}
 
 	pass = true;
 	for (int i = 0; i < sample_ts_len; i++) {
-		snprintf(indexstr, 128, "test_end_sigmas2[%d]", i);
-		TEST_EQUAL(indexstr, test_end_sigmas2[i], sample_end_sigmas2[i]);
+		snprintf(indexstr, 128, "test_sigmas2_end[%d]", i);
+		TEST_EQUAL(indexstr, test_sigmas2_end[i], sample_sigmas2_end[i]);
 
-		pass = test_end_sigmas2[i] == sample_end_sigmas2[i] && pass;
-		for (int j = 0; pass && j < sample_end_sigmas2[i]; j++) {
+		pass = test_sigmas2_end[i] == sample_sigmas2_end[i] && pass;
+		for (int j = 0; pass && j < sample_sigmas2_end[i]; j++) {
 			snprintf(indexstr, 128, "test_sigmas2[%d][%d]", i, j);
 			TEST_NEAR(indexstr, test_sigmas2[i][j], sample_sigmas2[i][j], eps);
 		}
-		if (pass) std::cout << std::endl;
+		std::cout << std::endl;
 	}
 }
 
@@ -335,6 +335,42 @@ test_pose_from_point_tangents_2_fn_t()
 static void
 test_get_r_t_from_rhos()
 {
+	pose_poly<double> p;
+
+	double output[RT_LEN][4][3];
+	double (*test_Rots)[4][3]    = output;
+	double (*test_Transls)[4][3] = output;
+	char indexstr[128];
+
+	p.get_r_t_from_rhos(
+		sample_ts_len,
+		sample_sigmas1, sample_sigmas1_end,
+		sample_sigmas2, sample_sigmas2_end,
+		sample_rhos1, sample_rhos2,
+		sample_gama1, sample_tgt1,
+		sample_gama2, sample_tgt2,
+		sample_Gama1, sample_Tgt1,
+		sample_Gama2, sample_Tgt2,
+		output
+	);
+
+	for (int i = 0; i < RT_LEN; i++) {
+		for (int j = 0; j < 3; j++) {
+			for (int k = 0; k < 3; k++) {
+				snprintf(indexstr, 128, "Rots[%d][%d][%d]", i, j, k);
+				TEST_NEAR(indexstr, test_Rots[i][j][k], sample_Rots[i][j][k], eps);
+			}
+		}
+		std::cout << std::endl;
+	}
+
+	for (int i = 0; i < RT_LEN; i++) {
+		for (int k = 0; k < 3; k++) {
+			snprintf(indexstr, 128, "Transls[%d][%d]", i, k);
+			TEST_NEAR(indexstr, test_Transls[i][3][k], sample_Rots[i][3][k], eps);
+		}
+		std::cout << std::endl;
+	}
 
 }
 

@@ -7,6 +7,7 @@ constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 
 // TODO: THIS IS TEMPORARY! FOR TEST ONLY
 constexpr int TS_LEN = 4;
+constexpr int RT_LEN = 7;
 
 constexpr int SIGMA_LEN = 4;
 
@@ -46,9 +47,14 @@ struct pose_poly {
 	);
 	void get_r_t_from_rhos(
 		const int ts_len,
-		T sigmas1[TS_LEN][TS_LEN], int end_sigmas1[TS_LEN],
-		T sigmas2[TS_LEN][TS_LEN], int end_sigmas2[TS_LEN],
-		T rhos1[T_VECTOR_LEN], T rhos2[T_VECTOR_LEN]
+		const T sigmas1[TS_LEN][TS_LEN], const int sigmas1_end[TS_LEN],
+		const T sigmas2[TS_LEN][TS_LEN], const int sigmas2_end[TS_LEN],
+		const T rhos1[T_VECTOR_LEN], const T rhos2[T_VECTOR_LEN],
+		const T gama1[3], const T tgt1[3],
+		const T gama2[3], const T tgt2[3],
+		const T Gama1[3], const T Tgt1[3],
+		const T Gama2[3], const T Tgt2[3],
+		T output[RT_LEN][4][3]
 	);
 };
 

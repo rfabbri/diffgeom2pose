@@ -27,7 +27,7 @@
 //
 //% Precomputed, t-independent terms:
 
-//#include "common.hxx"
+#include "common.hxx"
 
 namespace P2Pt {
 

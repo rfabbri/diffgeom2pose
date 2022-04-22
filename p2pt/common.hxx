@@ -1,4 +1,7 @@
 /* Includes common functions to all modules */
+#ifndef common_hxx_
+#define common_hxx_
+
 #include <iostream>
 #include <cmath>
 
@@ -86,7 +89,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void multm_3x3_3x1(T m1[3][3], T m2[3], T output_m[3])
+	void multm_3x3_3x1(const T m1[3][3], const T m2[3], T output_m[3])
 	{
 		for (int i = 0; i < 3; i++) {
 			output_m[i] = 0;
@@ -113,7 +116,7 @@ namespace common {
 	}
 
 	template<typename T>
-	T vec1vec2_dot(T vec1[3], T vec2[3])
+	T vec1vec2_dot(const T vec1[3], const T vec2[3])
 	{
 		T output = 0;
 		for (int i = 0; i < 3; i++) {
@@ -267,12 +270,20 @@ namespace common {
 		}
 		return output;
 	}
-	#pragma endregion
+	#pragma endregion // vec_el_wise_mult
 
 	template<typename T>
-	void vec_mult_by_scalar(int scalar, T vec[T_VECTOR_LEN], T output[T_VECTOR_LEN])
+	void vec_mult_by_scalar(const int scalar, const T vec[T_VECTOR_LEN], T output[T_VECTOR_LEN])
 	{
 		for (int i = 0; i < T_VECTOR_LEN; i++) {
+			output[i] = vec[i] * scalar;
+		}
+	}
+
+	template<typename T>
+	void vec_mult_by_scalar3(const T scalar, const T vec[3], T output[3])
+	{
+		for (int i = 0; i < 3; i++) {
 			output[i] = vec[i] * scalar;
 		}
 	}
@@ -289,3 +300,4 @@ namespace common {
 
 }
 
+#endif // common_hxx_
