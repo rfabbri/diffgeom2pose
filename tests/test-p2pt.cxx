@@ -224,19 +224,6 @@ test_pose_from_point_tangents_2_fn_t_for_root()
 		snprintf(indexstr, 128, "fvalue[%d]", i);
 		TEST_NEAR_REL(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
 	}
-
-	//double test_fvalue;
-	//char indexstr[128];
-
-	//p.pose_from_point_tangents_2_fn_t_for_root(0, output[0]);
-	//test_fvalue = output[0][0];
-	//snprintf(indexstr, 128, "fvalue[%d]", 0);
-	//TEST_NEAR_REL(indexstr, test_fvalue, 5159552357.01911, eps);
-
-	//p.pose_from_point_tangents_2_fn_t_for_root(1, output[0]);
-	//test_fvalue = output[0][0];
-	//snprintf(indexstr, 128, "fvalue[%d]", 0);
-	//TEST_NEAR_REL(indexstr, test_fvalue, 1599787.71374685, eps);
 }
 
 static void

@@ -10,8 +10,6 @@
  * These values were taken from a single MATLAB run and are generated randomly
  *****************************************************************************/
 
-// TODO: Check if `T_tilde`, `Gama1`, `Gama2`, `Tgt1`, `Tgt2`, `gama1`, `gama2`, `tgt1`, and `tgt2` need to be transposed
-
 #pragma region variables
 static double R_tilde[3][3] = {
 	{ -0.917851347078650,   0.362140358287978,  -0.162490816863482 },

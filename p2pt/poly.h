@@ -1,7 +1,6 @@
 #ifndef poly_h_
 #define poly_h_
 
-// TODO: Make this global across files
 constexpr int T_VECTOR_LEN = 2001;
 constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 

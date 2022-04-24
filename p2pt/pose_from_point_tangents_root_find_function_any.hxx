@@ -4,10 +4,6 @@
 #include "pose_from_point_tangents_2.hxx"
 #include "find_bounded_root_intervals.hxx"
 
-// TODO: Make this global across files
-constexpr int T_VECTOR_LEN = 2001;
-constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
-
 template<typename T>
 void pose_from_point_tangents_root_find_function_any(
 	const T (&gama1)[3], const T (&tgt1)[3],

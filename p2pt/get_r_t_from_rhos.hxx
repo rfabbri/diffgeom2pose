@@ -87,7 +87,6 @@ get_r_t_from_rhos(
 	T (&RT)[7][4][3] = *output;
 	int RT_end = 0;
 
-	// TODO: Create a single matrix with rotation and translation
 	for (int i = 0; i < ts_len; i++) {
 		for (int j = 0; j < sigmas1_end[i]; j++, RT_end++) {
 			T (&Rots)[4][3] = RT[RT_end];
@@ -104,7 +103,6 @@ get_r_t_from_rhos(
 				B_row(2)
 			};
 
-			// TODO: Check if `A` and `B` are always 3x3
 			common::multm3x3(B, inv_A, Rots);
 
 			//% be sure it's close to 1:

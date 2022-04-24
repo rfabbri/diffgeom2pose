@@ -176,11 +176,9 @@ namespace common {
 
 
 	// Returns pointer for simplicity of calculations in `sample_pose_poly`
-	// TODO: Check if there is a better way to do this (variadic function perhaps?)
 	#pragma region vec_el_wise_mult
 
 	// Special case for 2 vectors of 3 elements each
-	// TODO: Check if there is a batter way to do this
 	template<typename T>
 	T* vec_3el_wise_mult2(
 		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN],
