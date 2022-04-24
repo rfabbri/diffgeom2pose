@@ -10,11 +10,9 @@
 #include <p2pt/p2pt.h>
 #include <p2pt/poly.h>
 
-#include <p2pt/pose_from_point_tangents_2.hxx>
-#include <p2pt/find_bounded_root_intervals.hxx>
+#include <p2pt/pose_from_point_tangents_root_find_function_any.hxx>
 #include <p2pt/rhos_from_root_ids.hxx>
 #include <p2pt/get_sigmas.hxx>
-#include <p2pt/get_r_t_from_rhos.hxx>
 
 #include <tests/test-p2pt-constants.hxx>
 
@@ -25,6 +23,42 @@ test_hello()
 {
 	p2pt<double>::hello();
 	TEST("Rodou hello? ", true, true);
+}
+
+static void
+test_pose_from_point_tangents_root_find_function_any()
+{
+	double output[2][RT_LEN][4][3];
+
+	pose_from_point_tangents_root_find_function_any(
+		sample_gama1, sample_tgt1,
+		sample_gama2, sample_tgt2,
+		sample_Gama1, sample_Tgt1,
+		sample_Gama2, sample_Tgt2,
+		&output
+	);
+
+	double (&RT)[RT_LEN][4][3] = output[0];
+	double &test_degen         = output[1][0][0][0];
+	char indexstr[128];
+
+	for (int i = 0; i < RT_LEN; i++) {
+		for (int j = 0; j < 3; j++) {
+			for (int k = 0; k < 3; k++) {
+				double (&test_Rots)[4][3] = RT[i];
+				snprintf(indexstr, 128, "RT[%d]: Rots[%d][%d]", i, j, k);
+				TEST_NEAR_REL(indexstr, test_Rots[j][k], sample_Rots[i][j][k], eps);
+			}
+		}
+		for (int j = 0; j < 3; j++) {
+			double (&test_Transls)[3] = RT[i][3];
+			snprintf(indexstr, 128, "RT[%d]: Transls[%d]", i, j);
+			TEST_NEAR_REL(indexstr, test_Transls[j], sample_Transls[i][j], eps);
+		}
+		std::cout << std::endl;
+	}
+	TEST_NEAR_REL("degen", test_degen, sample_degen, eps);
+
 }
 
 static void
@@ -154,18 +188,18 @@ test_rhos_from_root_ids()
 	p.beta  = sample_beta;
 	p.theta = sample_theta;
 
-	double output[7][T_VECTOR_LEN];
+	double output[7][ROOT_IDS_LEN];
 	char indexstr[128];
 
 	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, &output);
 
-	double (&test_rhos1)[T_VECTOR_LEN]       = output[0];
-	double (&test_rhos1_minus)[T_VECTOR_LEN] = output[1];
-	double (&test_rhos1_plus)[T_VECTOR_LEN]  = output[2];
-	double (&test_rhos2)[T_VECTOR_LEN]       = output[3];
-	double (&test_rhos2_minus)[T_VECTOR_LEN] = output[4];
-	double (&test_rhos2_plus)[T_VECTOR_LEN]  = output[5];
-	double (&test_ts)[T_VECTOR_LEN]          = output[6];
+	double (&test_rhos1)[ROOT_IDS_LEN]       = output[0];
+	double (&test_rhos1_minus)[ROOT_IDS_LEN] = output[1];
+	double (&test_rhos1_plus)[ROOT_IDS_LEN]  = output[2];
+	double (&test_rhos2)[ROOT_IDS_LEN]       = output[3];
+	double (&test_rhos2_minus)[ROOT_IDS_LEN] = output[4];
+	double (&test_rhos2_plus)[ROOT_IDS_LEN]  = output[5];
+	double (&test_ts)[ROOT_IDS_LEN]          = output[6];
 
 	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos1[%d]", i);

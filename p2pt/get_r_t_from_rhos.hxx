@@ -8,8 +8,8 @@ void
 pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
-	const T (&sigmas1)[TS_LEN][TS_LEN], const int (&sigmas1_end)[TS_LEN],
-	const T (&sigmas2)[TS_LEN][TS_LEN], const int (&sigmas2_end)[TS_LEN],
+	const T (&sigmas1)[TS_LEN][TS_LEN], const T (&sigmas1_end)[TS_LEN], // `sigmas1_end`: Ugly, needs to be cast to integer
+	const T (&sigmas2)[TS_LEN][TS_LEN], const T (&sigmas2_end)[TS_LEN], // `sigmas2_end`: Ugly, needs to be cast to integer
 	const T (&rhos1)[TS_LEN], const T (&rhos2)[TS_LEN],
 	const T (&gama1)[3], const T (&tgt1)[3],
 	const T (&gama2)[3], const T (&tgt2)[3],
@@ -39,33 +39,33 @@ get_r_t_from_rhos(
 		static T den1[3], den2[3], den3[3];
 
 		// TODO: Check if separate loops are better for vectorization
-		for (int j = 0; j < sigmas1_end[i]; j++) {
-			common::vec1vec2_sub3(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
+		for (int j = 0; j < (int)sigmas1_end[i]; j++) {
+			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
 
-			common::vec_mult_by_scalar3(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
-			common::vec_mult_by_scalar3(rhos2[i], gama2, den2);       // den2 = rhos2(i) * gama2
-			common::vec1vec2_sub3(den1, den2, den1);                  // den1 = den1 - den2
+			common::vec_3el_mult_by_scalar(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
+			common::vec_3el_mult_by_scalar(rhos2[i], gama2, den2);       // den2 = rhos2(i) * gama2
+			common::vec1vec2_3el_sub(den1, den2, den1);                  // den1 = den1 - den2
 
-			common::vec_mult_by_scalar3(rhos1[i], tgt1, den2);        // den2 = rhos1(i) * tgt1
-			common::vec_mult_by_scalar3(sigmas1[i][j], gama1, den3);  // den3 = sigmas1{i}(j) * gama1
-			common::vec1vec2_sum3(den2, den3, den2);                  // den2 = den2 + den3
+			common::vec_3el_mult_by_scalar(rhos1[i], tgt1, den2);        // den2 = rhos1(i) * tgt1
+			common::vec_3el_mult_by_scalar(sigmas1[i][j], gama1, den3);  // den3 = sigmas1{i}(j) * gama1
+			common::vec1vec2_3el_sum(den2, den3, den2);                  // den2 = den2 + den3
 
 			// lambdas1{i}(j) = Gama_sub' * Tgt1 / den1' * den2
-			lambdas1[i][j] = common::vec1vec2_dot3(Gama_sub, Tgt1) / common::vec1vec2_dot3(den1, den2);
+			lambdas1[i][j] = common::vec1vec2_3el_dot(Gama_sub, Tgt1) / common::vec1vec2_3el_dot(den1, den2);
 		}
-		for (int j = 0; j < sigmas1_end[i]; j++) {
-			common::vec1vec2_sub3(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
+		for (int j = 0; j < (int)sigmas1_end[i]; j++) {
+			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
 
-			common::vec_mult_by_scalar3(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
-			common::vec_mult_by_scalar3(rhos2[i], gama2, den2);       // den2 = rhos2(i) * gama2
-			common::vec1vec2_sub3(den1, den2, den1);                  // den1 = den1 - den2
+			common::vec_3el_mult_by_scalar(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
+			common::vec_3el_mult_by_scalar(rhos2[i], gama2, den2);       // den2 = rhos2(i) * gama2
+			common::vec1vec2_3el_sub(den1, den2, den1);                  // den1 = den1 - den2
 
-			common::vec_mult_by_scalar3(rhos2[i], tgt2, den2);        // den2 = rhos2(i) * tgt2
-			common::vec_mult_by_scalar3(sigmas2[i][j], gama2, den3);  // den3 = sigmas2{i}(j) * gama2
-			common::vec1vec2_sum3(den2, den3, den2);                  // den2 = den2 + den3
+			common::vec_3el_mult_by_scalar(rhos2[i], tgt2, den2);        // den2 = rhos2(i) * tgt2
+			common::vec_3el_mult_by_scalar(sigmas2[i][j], gama2, den3);  // den3 = sigmas2{i}(j) * gama2
+			common::vec1vec2_3el_sum(den2, den3, den2);                  // den2 = den2 + den3
 
 			// lambdas2{i}(j) = Gama_sub' * Tgt2 / den1' * den2
-			lambdas2[i][j] = common::vec1vec2_dot3(Gama_sub, Tgt2) / common::vec1vec2_dot3(den1, den2);
+			lambdas2[i][j] = common::vec1vec2_3el_dot(Gama_sub, Tgt2) / common::vec1vec2_3el_dot(den1, den2);
 		}
 	}
 
@@ -84,11 +84,11 @@ get_r_t_from_rhos(
 	T inv_A[3][3]; common::invm3x3(A, inv_A);
 
 	// Matrix containing Rotations and Translations
-	T (&RT)[7][4][3] = *output;
+	T (&RT)[RT_LEN][4][3] = *output;
 	int RT_end = 0;
 
 	for (int i = 0; i < ts_len; i++) {
-		for (int j = 0; j < sigmas1_end[i]; j++, RT_end++) {
+		for (int j = 0; j < (int)sigmas1_end[i]; j++, RT_end++) {
 			T (&Rots)[4][3] = RT[RT_end];
 			T (&Transls)[3] = RT[RT_end][3];
 
@@ -111,15 +111,15 @@ get_r_t_from_rhos(
 			T buff1[3], buff2[3];
 
 			// Transls{end+1} = rhos1(i)*gama1 - Rots{end}*Gama1;
-			common::vec_mult_by_scalar3(rhos1[i], gama1, buff1);
+			common::vec_3el_mult_by_scalar(rhos1[i], gama1, buff1);
 			common::multm_3x3_3x1(Rots, Gama1, buff2);
-			common::vec1vec2_sub3(buff1, buff2, Transls);
+			common::vec1vec2_3el_sub(buff1, buff2, Transls);
 
 			//% this should be the same
 			// rhos2(i)*gama2 - Rots{end}*Gama2;
 			//common::vec_mult_by_scalar(rhos2[i], gama2, buff1);
 			//common::multm_3x3_3x1(Rots[Rots_end], Gama2, buff2);
-			//common::vec1vec2_sub3(buff1, buff2, buff1);
+			//common::vec1vec2_3el_sub(buff1, buff2, buff1);
 
 			//for (int i = 0; i < 3; i++) {
 			//	assert(Transls[Transls_end - 1][i] - buff1[i] < 1.0e-4);

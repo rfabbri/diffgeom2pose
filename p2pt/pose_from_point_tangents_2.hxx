@@ -55,28 +55,28 @@ pose_from_point_tangents_2(
 	double h22 = tgt2[1];
 
 	double V[3];
-	vec1vec2_sub3(Gama1, Gama2, V);
+	vec1vec2_3el_sub(Gama1, Gama2, V);
 
 
 	static double buf[3];
 
 	vec_3el_wise_mult2(V, V, buf);
-	double a1 = vec_el_sum3(buf);
+	double a1 = vec_3el_sum(buf);
 
 	vec_3el_wise_mult2(Tgt1, Tgt1, buf);
-	double a2 = vec_el_sum3(buf);
+	double a2 = vec_3el_sum(buf);
 
 	vec_3el_wise_mult2(Tgt2, Tgt2, buf);
-	double a3 = vec_el_sum3(buf);
+	double a3 = vec_3el_sum(buf);
 
 	vec_3el_wise_mult2(V, Tgt1, buf);
-	double a4 = vec_el_sum3(buf);
+	double a4 = vec_3el_sum(buf);
 
 	vec_3el_wise_mult2(Tgt1, Tgt2, buf);
-	double a5 = vec_el_sum3(buf);
+	double a5 = vec_3el_sum(buf);
 
 	vec_3el_wise_mult2(V, Tgt2, buf);
-	double a6 = vec_el_sum3(buf);
+	double a6 = vec_3el_sum(buf);
 
 
 	double t4 = g11 * g11;

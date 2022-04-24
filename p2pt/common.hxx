@@ -116,7 +116,7 @@ namespace common {
 	}
 
 	template<typename T>
-	T vec1vec2_dot3(const T vec1[3], const T vec2[3])
+	T vec1vec2_3el_dot(const T vec1[3], const T vec2[3])
 	{
 		T output = 0;
 		for (int i = 0; i < 3; i++) {
@@ -134,7 +134,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec1vec2_sum3(T vec1[3], T vec2[3], T output[3])
+	void vec1vec2_3el_sum(T vec1[3], T vec2[3], T output[3])
 	{
 		for (int i = 0; i < 3; i++) {
 			output[i] = vec1[i] + vec2[i];
@@ -142,7 +142,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec1vec2_sub3(const T vec1[3], const T vec2[3], T output[3])
+	void vec1vec2_3el_sub(const T vec1[3], const T vec2[3], T output[3])
 	{
 		// For vectors of 3 elements
 		for (int i = 0; i < 3; i++) {
@@ -174,11 +174,19 @@ namespace common {
 		}
 	}
 
+	template<typename T>
+	void vec_3el_div_by_scalar(const T scalar, T vec[3], T output[3])
+	{
+		for (int i = 0; i < 3; i++) {
+			output[i] = vec[i] / scalar;
+		}
+	}
 
-	// Returns pointer for simplicity of calculations in `sample_pose_poly`
+
 	#pragma region vec_el_wise_mult
 
 	// Special case for 2 vectors of 3 elements each
+	// Returns pointer for simplicity of calculations in `sample_pose_poly`
 	template<typename T>
 	T* vec_3el_wise_mult2(
 		const T vec1[T_VECTOR_LEN], const T vec2[T_VECTOR_LEN],
@@ -287,7 +295,7 @@ namespace common {
 	}
 
 	template<typename T>
-	void vec_mult_by_scalar3(const T scalar, const T vec[3], T output[3])
+	void vec_3el_mult_by_scalar(const T scalar, const T vec[3], T output[3])
 	{
 		for (int i = 0; i < 3; i++) {
 			output[i] = vec[i] * scalar;
@@ -295,7 +303,7 @@ namespace common {
 	}
 
 	template<typename T>
-	T vec_el_sum3(T vec[3])
+	T vec_3el_sum(T vec[3])
 	{
 		T output = 0;
 		for (int i = 0; i < 3; i++) {

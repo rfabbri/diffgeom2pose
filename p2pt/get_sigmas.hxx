@@ -7,7 +7,7 @@ template<typename T>
 void
 pose_poly<T>::
 get_sigmas(
-	const T (&ts)[T_VECTOR_LEN], const int ts_len,
+	const T (&ts)[ROOT_IDS_LEN], const int ts_len,
 	T (*output)[4][SIGMA_LEN][SIGMA_LEN]
 )
 {

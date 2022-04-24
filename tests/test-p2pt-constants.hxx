@@ -69,7 +69,7 @@ constexpr double sample_alpha = 2.99316452421144;
 constexpr double sample_beta  = 8.77711253699776;
 constexpr double sample_theta = 0.779767013089326;
 
-constexpr double sample_root_ids[T_VECTOR_LEN] = {
+constexpr double sample_root_ids[ROOT_IDS_LEN] = {
 	0,
 	0,
 	0,
@@ -6087,7 +6087,7 @@ constexpr double sample_rhos1_plus[4]    = {4.21510336408264, 5.3946799668862, 5
 constexpr double sample_rhos2[4]         = {6.43709158403864, 6.57569415482449, 2.24649263802363, 0.060368043942569};
 constexpr double sample_rhos2_minus[4]   = {6.43448894533826, 6.57642149868896, 2.25654591307366, 0.0691198833952585};
 constexpr double sample_rhos2_plus[4]    = {6.439673320473, 6.57494124271865, 2.23644129997713, 0.0516243612096208};
-constexpr double sample_ts[T_VECTOR_LEN] = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};
+constexpr double sample_ts[ROOT_IDS_LEN] = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};
 constexpr int    sample_ts_len           = 4;
 
 constexpr double sample_sigmas1[4][4] = {
@@ -6102,8 +6102,8 @@ constexpr double sample_sigmas2[4][4] = {
 	{-2.23388593591439},
 	{-0.114058798509118, -0.114058798509118, -0.066817663927889, -0.066817663927889}
 };
-constexpr int sample_sigmas1_end[4] = {1, 1, 1, 4};
-constexpr int sample_sigmas2_end[4] = {1, 1, 1, 4};
+constexpr double sample_sigmas1_end[4] = {1, 1, 1, 4};
+constexpr double sample_sigmas2_end[4] = {1, 1, 1, 4};
 
 constexpr double sample_Rots[7][3][3] = {
 	{
@@ -6152,6 +6152,7 @@ constexpr double sample_Transls[7][3] = {
 	{ 1.39535159739184,   6.47712179863055,  1.15930952677909},
 	{-1.66663219754732,  -0.25893886116481,  3.82004579353875}
 };
+constexpr double sample_degen = -0.174617421223572;
 
 // Floating-point comparison precision
 // TODO: Check why tests are only passing with low precision
