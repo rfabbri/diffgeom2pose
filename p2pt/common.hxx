@@ -22,25 +22,20 @@ namespace common {
 	template<typename T>
 	T norm(const T *input_vec, int length)
 	{
-		static T output = 0;
+		static T output;
+		output = 0;
 		for (int i = 0; i < length; i++) {
 			output += std::abs(input_vec[i] * input_vec[i]);
 		}
-		return output;
+		return std::sqrt(output);
 	}
 
 	template<typename T>
-	T det3x3(const T input_matrix[3][3])
+	T det3x3(const T (&m)[3][3])
 	{
-		// TODO: Check if this algorithm is correct
-		// Matrix must be 3x3 square
-		static T x, y, z;
-
-		x = ((input_matrix[1][1] * input_matrix[2][2]) - (input_matrix[2][1] * input_matrix[1][2]));
-		y = ((input_matrix[1][0] * input_matrix[2][2]) - (input_matrix[2][0] * input_matrix[1][2]));
-		z = ((input_matrix[1][0] * input_matrix[2][1]) - (input_matrix[2][0] * input_matrix[1][1]));
-
-		return input_matrix[0][0] * x - input_matrix[0][1] * y - input_matrix[0][2] * z;
+		return
+			  (m[0][0]*m[1][1]*m[2][2] + m[0][1]*m[1][2]*m[2][0] + m[0][2]*m[1][0]*m[2][1])
+			- (m[2][0]*m[1][1]*m[0][2] + m[2][1]*m[1][2]*m[0][0] + m[2][2]*m[1][0]*m[0][1]);
 	}
 
 	// TODO: Make Matrix into a class; simplify several operations

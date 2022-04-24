@@ -28,7 +28,7 @@ void pose_from_point_tangents_root_find_function_any(
 	common::vec_3el_div_by_scalar(common::norm(DGama, 3), DGama, DGama);
 
 	// Matrix for degeneracy calculation
-	static T degen_matrix[3][3] = {
+	const T degen_matrix[3][3] = {
 		DGama[0], Tgt1[0], Tgt2[0],
 		DGama[1], Tgt1[1], Tgt2[1],
 		DGama[2], Tgt1[2], Tgt2[2]
@@ -50,7 +50,6 @@ void pose_from_point_tangents_root_find_function_any(
 	pose_poly<T> p;
 	p.pose_from_point_tangents_2(gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
-	// root_ids[length(t_vector) - 1]
 	static T root_ids[ROOT_IDS_LEN] = {0};
 	p.find_bounded_root_intervals(t_vector, &root_ids);
 
@@ -62,14 +61,12 @@ void pose_from_point_tangents_root_find_function_any(
 	T (&ts)[ROOT_IDS_LEN]    = rhos[6];
 
 	static T sigmas[4][SIGMA_LEN][SIGMA_LEN];
-	p.get_sigmas(ts, T_VECTOR_LEN, &sigmas);
+	p.get_sigmas(ROOT_IDS_LEN, ts, &sigmas);
 	T (&sigmas1)[SIGMA_LEN][SIGMA_LEN] = sigmas[0];
 	T (&sigmas2)[SIGMA_LEN][SIGMA_LEN] = sigmas[1];
 	T (&sigmas1_end)[SIGMA_LEN]        = sigmas[2][0];
 	T (&sigmas2_end)[SIGMA_LEN]        = sigmas[3][0];
 
-
-	//static T RT[RT_LEN][4][3];
 	p.get_r_t_from_rhos(
 		TS_LEN,
 		sigmas1, sigmas1_end,

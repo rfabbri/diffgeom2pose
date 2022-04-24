@@ -13,7 +13,8 @@ pose_from_point_tangents_2_fn_t_for_root(const T t, T (*output)[11])
 	//% perturb = -4.9e6;
 	//% perturb = -1.7e8;
 	//% perturb = -2.55e7;
-	static T perturb = 0;
+	static T perturb;
+	perturb = 0;
 	//% same as  pose_from_point_tangents_2_fn_t, but polynomial value might be
 	//% perturbed by max of(perturb) so that roots appear for noisy data.This wasn't
 	//% used in the end.

@@ -49,14 +49,15 @@ struct pose_poly {
 		T (*output)[7][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
 	);
 	void get_sigmas(
-		const T (&ts)[ROOT_IDS_LEN], const int ts_len,
+		const int ts_len,
+		const T (&ts)[ROOT_IDS_LEN],
 		T (*output)[4][SIGMA_LEN][SIGMA_LEN]
 	);
 	void get_r_t_from_rhos(
 		const int ts_len,
 		const T (&sigmas1)[TS_LEN][TS_LEN], const T (&sigmas1_end)[TS_LEN],
 		const T (&sigmas2)[TS_LEN][TS_LEN], const T (&sigmas2_end)[TS_LEN],
-		const T (&rhos1)[TS_LEN], const T (&rhos2)[TS_LEN],
+		const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN],
 		const T (&gama1)[3], const T (&tgt1)[3],
 		const T (&gama2)[3], const T (&tgt2)[3],
 		const T (&Gama1)[3], const T (&Tgt1)[3],

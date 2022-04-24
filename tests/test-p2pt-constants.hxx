@@ -6081,10 +6081,11 @@ constexpr double sample_fvalue_pose_poly[T_VECTOR_LEN] = {
 constexpr double sample_fvalue_tan_2_fn_t_for_root = 5949387.61663628;
 constexpr double sample_fvalue_tan_2_fn_t          = 8.392333984375e-05;
 
-constexpr double sample_rhos1[4]         = {4.20582991999997, 5.38744796313994, 5.51209006581205, 4.03587398491222};
+// TODO: Fix hacky sizes
+constexpr double sample_rhos1[ROOT_IDS_LEN]         = {4.20582991999997, 5.38744796313994, 5.51209006581205, 4.03587398491222};
 constexpr double sample_rhos1_minus[4]   = {4.19654670944222, 5.38019708944851, 5.51776326765562, 4.04268855289702};
 constexpr double sample_rhos1_plus[4]    = {4.21510336408264, 5.3946799668862, 5.50640677350622, 4.02905873466068};
-constexpr double sample_rhos2[4]         = {6.43709158403864, 6.57569415482449, 2.24649263802363, 0.060368043942569};
+constexpr double sample_rhos2[ROOT_IDS_LEN]         = {6.43709158403864, 6.57569415482449, 2.24649263802363, 0.060368043942569};
 constexpr double sample_rhos2_minus[4]   = {6.43448894533826, 6.57642149868896, 2.25654591307366, 0.0691198833952585};
 constexpr double sample_rhos2_plus[4]    = {6.439673320473, 6.57494124271865, 2.23644129997713, 0.0516243612096208};
 constexpr double sample_ts[ROOT_IDS_LEN] = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};

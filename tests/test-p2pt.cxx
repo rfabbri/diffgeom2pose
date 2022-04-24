@@ -28,7 +28,7 @@ test_hello()
 static void
 test_pose_from_point_tangents_root_find_function_any()
 {
-	double output[2][RT_LEN][4][3];
+	double output[2][RT_LEN][4][3] = {0};
 
 	pose_from_point_tangents_root_find_function_any(
 		sample_gama1, sample_tgt1,
@@ -58,7 +58,6 @@ test_pose_from_point_tangents_root_find_function_any()
 		std::cout << std::endl;
 	}
 	TEST_NEAR_REL("degen", test_degen, sample_degen, eps);
-
 }
 
 static void
@@ -285,7 +284,7 @@ test_get_sigmas()
 	double (&test_sigmas1_end)[SIGMA_LEN]        = output[2][0];
 	double (&test_sigmas2_end)[SIGMA_LEN]        = output[3][0];
 
-	p.get_sigmas(sample_ts, sample_ts_len, &output);
+	p.get_sigmas(sample_ts_len, sample_ts, &output);
 
 	pass = true;
 	for (int i = 0; i < sample_ts_len; i++) {
@@ -390,28 +389,31 @@ test_p2pt()
 	std::cout << "\nTEST #1 - test_hello" << std::endl;
 	test_hello();
 
-	std::cout << "\nTEST #2 - test_pose_from_point_tangents_2" << std::endl;
+	std::cout << "\nTEST #1 - test_pose_from_tangents_root_find_function_any" << std::endl;
+	test_pose_from_point_tangents_root_find_function_any();
+
+	std::cout << "\nTEST #3 - test_pose_from_point_tangents_2" << std::endl;
 	test_pose_from_point_tangents_2();
 
-	std::cout << "\nTEST #3 - test_find_bounded_root_intervals" << std::endl;
+	std::cout << "\nTEST #4 - test_find_bounded_root_intervals" << std::endl;
 	test_find_bounded_root_intervals();
 
-	std::cout << "\nTEST #4 - test_sample_pose_poly" << std::endl;
+	std::cout << "\nTEST #5 - test_sample_pose_poly" << std::endl;
 	test_sample_pose_poly();
 
-	std::cout << "\nTEST #5 - test_rhos_from_root_ids" << std::endl;
+	std::cout << "\nTEST #6 - test_rhos_from_root_ids" << std::endl;
 	test_rhos_from_root_ids();
 
-	std::cout << "\nTEST #6 - test_pose_from_point_tangents_2_fn_t_for_root" << std::endl;
+	std::cout << "\nTEST #7 - test_pose_from_point_tangents_2_fn_t_for_root" << std::endl;
 	test_pose_from_point_tangents_2_fn_t_for_root();
 
-	std::cout << "\nTEST #7 - test_get_sigmas" << std::endl;
+	std::cout << "\nTEST #8 - test_get_sigmas" << std::endl;
 	test_get_sigmas();
 
-	std::cout << "\nTEST #8 - test_pose_from_point_tangents_2_fn_t" << std::endl;
+	std::cout << "\nTEST #9 - test_pose_from_point_tangents_2_fn_t" << std::endl;
 	test_pose_from_point_tangents_2_fn_t();
 
-	std::cout << "\nTEST #9 - test_get_r_t_from_rhos" << std::endl;
+	std::cout << "\nTEST #10 - test_get_r_t_from_rhos" << std::endl;
 	test_get_r_t_from_rhos();
 }
 

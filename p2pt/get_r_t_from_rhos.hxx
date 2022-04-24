@@ -10,7 +10,7 @@ get_r_t_from_rhos(
 	const int ts_len,
 	const T (&sigmas1)[TS_LEN][TS_LEN], const T (&sigmas1_end)[TS_LEN], // `sigmas1_end`: Ugly, needs to be cast to integer
 	const T (&sigmas2)[TS_LEN][TS_LEN], const T (&sigmas2_end)[TS_LEN], // `sigmas2_end`: Ugly, needs to be cast to integer
-	const T (&rhos1)[TS_LEN], const T (&rhos2)[TS_LEN],
+	const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN], // TODO: Fix size. Pass as an additional argument, or use a struct
 	const T (&gama1)[3], const T (&tgt1)[3],
 	const T (&gama2)[3], const T (&tgt2)[3],
 	const T (&Gama1)[3], const T (&Tgt1)[3],
