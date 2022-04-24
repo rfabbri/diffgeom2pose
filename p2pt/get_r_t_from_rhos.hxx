@@ -83,17 +83,15 @@ get_r_t_from_rhos(
 
 	T inv_A[3][3]; common::invm3x3(A, inv_A);
 
-
 	// Matrix containing Rotations and Translations
 	T (&RT)[7][4][3] = *output;
 	int RT_end = 0;
 
 	// TODO: Create a single matrix with rotation and translation
 	for (int i = 0; i < ts_len; i++) {
-		T (&Rots)[4][3] = RT[i];
-		T (&Transls)[3] = RT[i][3];
-
-		for (int j = 0; j < sigmas1_end[0]; j++) {
+		for (int j = 0; j < sigmas1_end[i]; j++, RT_end++) {
+			T (&Rots)[4][3] = RT[RT_end];
+			T (&Transls)[3] = RT[RT_end][3];
 
 			#define B_row(r) \
 				rhos1[i]*gama1[r] - rhos2[i]*gama2[r], \
@@ -112,14 +110,12 @@ get_r_t_from_rhos(
 			//% be sure it's close to 1:
 			//common::det3x3(Rots[Rots_end]);
 
-			T buff1[3];
-			T buff2[3];
+			T buff1[3], buff2[3];
 
 			// Transls{end+1} = rhos1(i)*gama1 - Rots{end}*Gama1;
 			common::vec_mult_by_scalar3(rhos1[i], gama1, buff1);
 			common::multm_3x3_3x1(Rots, Gama1, buff2);
 			common::vec1vec2_sub3(buff1, buff2, Transls);
-			RT_end++;
 
 			//% this should be the same
 			// rhos2(i)*gama2 - Rots{end}*Gama2;
