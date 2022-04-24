@@ -8,14 +8,14 @@ void
 pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
-	const T sigmas1[TS_LEN][TS_LEN], const int sigmas1_end[TS_LEN],
-	const T sigmas2[TS_LEN][TS_LEN], const int sigmas2_end[TS_LEN],
-	const T rhos1[T_VECTOR_LEN], const T rhos2[T_VECTOR_LEN],
-	const T gama1[3], const T tgt1[3],
-	const T gama2[3], const T tgt2[3],
-	const T Gama1[3], const T Tgt1[3],
-	const T Gama2[3], const T Tgt2[3],
-	T output[RT_LEN][4][3]
+	const T (&sigmas1)[TS_LEN][TS_LEN], const int (&sigmas1_end)[TS_LEN],
+	const T (&sigmas2)[TS_LEN][TS_LEN], const int (&sigmas2_end)[TS_LEN],
+	const T (&rhos1)[TS_LEN], const T (&rhos2)[TS_LEN],
+	const T (&gama1)[3], const T (&tgt1)[3],
+	const T (&gama2)[3], const T (&tgt2)[3],
+	const T (&Gama1)[3], const T (&Tgt1)[3],
+	const T (&Gama2)[3], const T (&Tgt2)[3],
+	T (*output)[RT_LEN][4][3]
 )
 {
 	//% to be called from pose_from_point_tangents_root_find_function_any.m
@@ -85,13 +85,13 @@ get_r_t_from_rhos(
 
 
 	// Matrix containing Rotations and Translations
-	T (*RT)[4][3] = output;
+	T (&RT)[7][4][3] = *output;
 	int RT_end = 0;
 
 	// TODO: Create a single matrix with rotation and translation
 	for (int i = 0; i < ts_len; i++) {
-		T (*Rots)[3] = RT[i];
-		T *Transls   = RT[i][3];
+		T (&Rots)[4][3] = RT[i];
+		T (&Transls)[3] = RT[i][3];
 
 		for (int j = 0; j < sigmas1_end[0]; j++) {
 

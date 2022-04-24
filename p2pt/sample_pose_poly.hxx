@@ -7,25 +7,24 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-sample_pose_poly(const T t[T_VECTOR_LEN], T output[11][T_VECTOR_LEN])
+sample_pose_poly(const T (&t)[T_VECTOR_LEN], T (*output)[11][T_VECTOR_LEN])
 {
 	//% function of t part:
 	using namespace common;
 
-	// TODO: Check why `static` was breaking the tests
-	/* static */ T *fvalue = output[0];
-	/* static */ T *A      = output[1];
-	/* static */ T *B      = output[2];
-	/* static */ T *C      = output[3];
-	// TODO: check why `D` is missing
-	/* static */ T *E      = output[4];
-	/* static */ T *F      = output[5];
-	/* static */ T *G      = output[6];
-	/* static */ T *H      = output[7];
-	// TODO: check why `I` is missing
-	/* static */ T *J      = output[8];
-	/* static */ T *K      = output[9];
-	/* static */ T *L      = output[10];
+	T (&fvalue)[T_VECTOR_LEN] = (*output)[0];
+	T (&A)[T_VECTOR_LEN]      = (*output)[1];
+	T (&B)[T_VECTOR_LEN]      = (*output)[2];
+	T (&C)[T_VECTOR_LEN]      = (*output)[3];
+
+	T (&E)[T_VECTOR_LEN]      = (*output)[4];
+	T (&F)[T_VECTOR_LEN]      = (*output)[5];
+	T (&G)[T_VECTOR_LEN]      = (*output)[6];
+	T (&H)[T_VECTOR_LEN]      = (*output)[7];
+
+	T (&J)[T_VECTOR_LEN]      = (*output)[8];
+	T (&K)[T_VECTOR_LEN]      = (*output)[9];
+	T (&L)[T_VECTOR_LEN]      = (*output)[10];
 
 	// TODO: POSSIBLY OPTIMIZE ALL THESE FUNCION CALLS FOR
 	// `t_powN[]`,
@@ -54,16 +53,16 @@ sample_pose_poly(const T t[T_VECTOR_LEN], T output[11][T_VECTOR_LEN])
 	static T t_pow2_plus1_pow4[T_VECTOR_LEN]; vec_el_wise_pow(t_pow2_plus1, 4, t_pow2_plus1_pow4);
 
 	// Denominators
-	static T *A_den = t_pow2_plus1_pow2;
-	static T *B_den = t_pow2_plus1_pow3;
-	static T *C_den = t_pow2_plus1_pow4;
-	static T *E_den = t_pow2_plus1_pow2;
-	static T *F_den = t_pow2_plus1_pow3;
-	static T *G_den = t_pow2_plus1_pow4;
-	static T *H_den = t_pow2_plus1_pow4;
-	static T *J_den = t_pow2_plus1_pow3;
-	static T *K_den = t_pow2_plus1_pow3;
-	static T *L_den = t_pow2_plus1_pow2;
+	static T (&A_den)[T_VECTOR_LEN] = t_pow2_plus1_pow2;
+	static T (&B_den)[T_VECTOR_LEN] = t_pow2_plus1_pow3;
+	static T (&C_den)[T_VECTOR_LEN] = t_pow2_plus1_pow4;
+	static T (&E_den)[T_VECTOR_LEN] = t_pow2_plus1_pow2;
+	static T (&F_den)[T_VECTOR_LEN] = t_pow2_plus1_pow3;
+	static T (&G_den)[T_VECTOR_LEN] = t_pow2_plus1_pow4;
+	static T (&H_den)[T_VECTOR_LEN] = t_pow2_plus1_pow4;
+	static T (&J_den)[T_VECTOR_LEN] = t_pow2_plus1_pow3;
+	static T (&K_den)[T_VECTOR_LEN] = t_pow2_plus1_pow3;
+	static T (&L_den)[T_VECTOR_LEN] = t_pow2_plus1_pow2;
 
 	// Calculations
 	for (int i = 0; i < T_VECTOR_LEN; i++) {

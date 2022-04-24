@@ -5,8 +5,8 @@
 #include "p2pt.h"
 
 namespace P2Pt {
- 
-template <typename F> 
+
+template <typename F>
 void p2pt<F>::
 hello()
 {

@@ -24,7 +24,7 @@ namespace common {
 	{
 		static T output = 0;
 		for (int i = 0; i < length; i++) {
-			output += abs(input_vec[i] * input_vec[i]);
+			output += std::abs(input_vec[i] * input_vec[i]);
 		}
 		return output;
 	}

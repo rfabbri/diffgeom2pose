@@ -37,10 +37,10 @@ template<typename T>
 void
 pose_poly<T>::
 pose_from_point_tangents_2(
-	const T gama1[3], const T tgt1[3],
-	const T gama2[3], const T tgt2[3],
-	const T Gama1[3], const T Tgt1[3],
-	const T Gama2[3], const T Tgt2[3]
+	const T (&gama1)[3], const T (&tgt1)[3],
+	const T (&gama2)[3], const T (&tgt2)[3],
+	const T (&Gama1)[3], const T (&Tgt1)[3],
+	const T (&Gama2)[3], const T (&Tgt2)[3]
 )
 {
 	constexpr double PI = 3.141592653589793;
@@ -109,7 +109,7 @@ pose_from_point_tangents_2(
 
 	double t8 = g21 * g21;
 	double t14 = g12 * g12;
-	// double t15 = t1 * t1; double-checked: not used in matlab
+	//double t15 = t1 * t1; // double-checked: not used in matlab
 	double t21 = g11 * g11;
 
 	double den1 = 2*t1*(g11*g21 +g12*g22 + 1) + t2*(t21 + t14 - t8 - t5);

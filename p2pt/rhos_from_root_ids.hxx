@@ -8,17 +8,17 @@ template <typename T>
 void
 pose_poly<T>::
 rhos_from_root_ids(
-	const T t_vector[T_VECTOR_LEN], const T root_ids[T_VECTOR_LEN],
-	T output[7][T_VECTOR_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+	const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[T_VECTOR_LEN],
+	T (*output)[7][T_VECTOR_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
 )
 {
-	T* rhos1       = output[0];
-	T* rhos1_minus = output[1];
-	T* rhos1_plus  = output[2];
-	T* rhos2       = output[3];
-	T* rhos2_minus = output[4];
-	T* rhos2_plus  = output[5];
-	T* ts          = output[6];
+	T (&rhos1)[T_VECTOR_LEN]       = (*output)[0];
+	T (&rhos1_minus)[T_VECTOR_LEN] = (*output)[1];
+	T (&rhos1_plus)[T_VECTOR_LEN]  = (*output)[2];
+	T (&rhos2)[T_VECTOR_LEN]       = (*output)[3];
+	T (&rhos2_minus)[T_VECTOR_LEN] = (*output)[4];
+	T (&rhos2_plus)[T_VECTOR_LEN]  = (*output)[5];
+	T (&ts)[T_VECTOR_LEN]          = (*output)[6];
 
 	int ts_end = 0;
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
@@ -27,7 +27,7 @@ rhos_from_root_ids(
 			static T t_ref_arr[11];
 			static T t_ref;
 
-			pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, t_ref_arr);
+			pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, &t_ref_arr);
 			t_ref = t_ref_arr[0];
 
 			//pose_from_point_tangents_2_fn_t_for_root(t_ref);

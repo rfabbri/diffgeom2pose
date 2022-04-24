@@ -28,33 +28,41 @@ struct pose_poly {
 	T alpha, beta, theta;
 	// TODO: Add cos(theta) and sin(theta) as members
 	void pose_from_point_tangents_2(
-		const T gama1[3], const T tgt1[3],
-		const T gama2[3], const T tgt2[3],
-		const T Gama1[3], const T Tgt1[3],
-		const T Gama2[3], const T Tgt2[3]
+		const T (&gama1)[3], const T (&tgt1)[3],
+		const T (&gama2)[3], const T (&tgt2)[3],
+		const T (&Gama1)[3], const T (&Tgt1)[3],
+		const T (&Gama2)[3], const T (&Tgt2)[3]
 	);
-	void find_bounded_root_intervals(const T t_vector[T_VECTOR_LEN], T root_ids[ROOT_IDS_LEN]);
-	void sample_pose_poly(const T t[T_VECTOR_LEN], T output[11][T_VECTOR_LEN]);
-	void pose_from_point_tangents_2_fn_t_for_root(const T t, T output[11]);
-	void pose_from_point_tangents_2_fn_t(const T t, T output[11]);
+	void find_bounded_root_intervals(
+		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
+	);
+	void sample_pose_poly(
+		const T (&t)[T_VECTOR_LEN], T (*output)[11][T_VECTOR_LEN]
+	);
+	void pose_from_point_tangents_2_fn_t_for_root(
+		const T t, T (*output)[11]
+	);
+	void pose_from_point_tangents_2_fn_t(
+		const T t, T (*output)[11]
+	);
 	void rhos_from_root_ids(
-		const T t_vector[T_VECTOR_LEN], const T root_ids[T_VECTOR_LEN],
-		T output[7][T_VECTOR_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[T_VECTOR_LEN],
+		T (*output)[7][T_VECTOR_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
 	);
 	void get_sigmas(
-		const T ts[T_VECTOR_LEN], const int ts_len,
-		T output[4][SIGMA_LEN][SIGMA_LEN]
+		const T (&ts)[T_VECTOR_LEN], const int ts_len,
+		T (*output)[4][SIGMA_LEN][SIGMA_LEN]
 	);
 	void get_r_t_from_rhos(
 		const int ts_len,
-		const T sigmas1[TS_LEN][TS_LEN], const int sigmas1_end[TS_LEN],
-		const T sigmas2[TS_LEN][TS_LEN], const int sigmas2_end[TS_LEN],
-		const T rhos1[T_VECTOR_LEN], const T rhos2[T_VECTOR_LEN],
-		const T gama1[3], const T tgt1[3],
-		const T gama2[3], const T tgt2[3],
-		const T Gama1[3], const T Tgt1[3],
-		const T Gama2[3], const T Tgt2[3],
-		T output[RT_LEN][4][3]
+		const T (&sigmas1)[TS_LEN][TS_LEN], const int (&sigmas1_end)[TS_LEN],
+		const T (&sigmas2)[TS_LEN][TS_LEN], const int (&sigmas2_end)[TS_LEN],
+		const T (&rhos1)[TS_LEN], const T (&rhos2)[TS_LEN],
+		const T (&gama1)[3], const T (&tgt1)[3],
+		const T (&gama2)[3], const T (&tgt2)[3],
+		const T (&Gama1)[3], const T (&Tgt1)[3],
+		const T (&Gama2)[3], const T (&Tgt2)[3],
+		T (*output)[RT_LEN][4][3]
 	);
 };
 

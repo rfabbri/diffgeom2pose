@@ -5,25 +5,25 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-pose_from_point_tangents_2_fn_t(const T t, T output[11])
+pose_from_point_tangents_2_fn_t(const T t, T (*output)[11])
 {
 	// TODO: See if this can be reused from `sample_pose_poly`, even though this function
 	// only applies to scalar values rather than vectors. Function overloading?
 
 	//%function of t part :
-	T& fvalue = output[0];
-	T& A      = output[1];
-	T& B      = output[2];
-	T& C      = output[3];
+	T& fvalue = (*output)[0];
+	T& A      = (*output)[1];
+	T& B      = (*output)[2];
+	T& C      = (*output)[3];
 
-	T& E      = output[4];
-	T& F      = output[5];
-	T& G      = output[6];
-	T& H      = output[7];
+	T& E      = (*output)[4];
+	T& F      = (*output)[5];
+	T& G      = (*output)[6];
+	T& H      = (*output)[7];
 
-	T& J      = output[8];
-	T& K      = output[9];
-	T& L      = output[10];
+	T& J      = (*output)[8];
+	T& K      = (*output)[9];
+	T& L      = (*output)[10];
 
 	// `t` integer powers
 	static T t_pow2, t_pow3, t_pow4, t_pow5, t_pow6, t_pow7, t_pow8;

@@ -6156,5 +6156,5 @@ constexpr double sample_Transls[7][3] = {
 // Floating-point comparison precision
 // TODO: Check why tests are only passing with low precision
 //constexpr double eps = 1e-4;
-constexpr double eps = 1e-1;
+constexpr double eps = 1e-4;
 

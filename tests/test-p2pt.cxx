@@ -18,10 +18,6 @@
 
 #include <tests/test-p2pt-constants.hxx>
 
-// TODO: Make this global across files
-//constexpr int T_VECTOR_LEN = 2001;
-//constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
-
 using namespace P2Pt;
 
 static void
@@ -43,55 +39,55 @@ test_pose_from_point_tangents_2()
 		sample_Gama2, sample_Tgt2
 	);
 
-	TEST_NEAR("A0", p.A0, sample_A0, eps);
-	TEST_NEAR("A1", p.A1, sample_A1, eps);
-	TEST_NEAR("A2", p.A2, sample_A2, eps);
+	TEST_NEAR_REL("A0", p.A0, sample_A0, eps);
+	TEST_NEAR_REL("A1", p.A1, sample_A1, eps);
+	TEST_NEAR_REL("A2", p.A2, sample_A2, eps);
 
-	TEST_NEAR("B0", p.B0, sample_B0, eps);
-	TEST_NEAR("B1", p.B1, sample_B1, eps);
-	TEST_NEAR("B2", p.B2, sample_B2, eps);
-	TEST_NEAR("B3", p.B3, sample_B3, eps);
+	TEST_NEAR_REL("B0", p.B0, sample_B0, eps);
+	TEST_NEAR_REL("B1", p.B1, sample_B1, eps);
+	TEST_NEAR_REL("B2", p.B2, sample_B2, eps);
+	TEST_NEAR_REL("B3", p.B3, sample_B3, eps);
 
-	TEST_NEAR("C0", p.C0, sample_C0, eps);
-	TEST_NEAR("C1", p.C1, sample_C1, eps);
-	TEST_NEAR("C2", p.C2, sample_C2, eps);
-	TEST_NEAR("C3", p.C3, sample_C3, eps);
-	TEST_NEAR("C4", p.C4, sample_C4, eps);
+	TEST_NEAR_REL("C0", p.C0, sample_C0, eps);
+	TEST_NEAR_REL("C1", p.C1, sample_C1, eps);
+	TEST_NEAR_REL("C2", p.C2, sample_C2, eps);
+	TEST_NEAR_REL("C3", p.C3, sample_C3, eps);
+	TEST_NEAR_REL("C4", p.C4, sample_C4, eps);
 
-	TEST_NEAR("E0", p.E0, sample_E0, eps);
-	TEST_NEAR("E1", p.E1, sample_E1, eps);
-	TEST_NEAR("E2", p.E2, sample_E2, eps);
+	TEST_NEAR_REL("E0", p.E0, sample_E0, eps);
+	TEST_NEAR_REL("E1", p.E1, sample_E1, eps);
+	TEST_NEAR_REL("E2", p.E2, sample_E2, eps);
 
-	TEST_NEAR("F0", p.F0, sample_F0, eps);
-	TEST_NEAR("F1", p.F1, sample_F1, eps);
-	TEST_NEAR("F2", p.F2, sample_F2, eps);
-	TEST_NEAR("F3", p.F3, sample_F3, eps);
+	TEST_NEAR_REL("F0", p.F0, sample_F0, eps);
+	TEST_NEAR_REL("F1", p.F1, sample_F1, eps);
+	TEST_NEAR_REL("F2", p.F2, sample_F2, eps);
+	TEST_NEAR_REL("F3", p.F3, sample_F3, eps);
 
-	TEST_NEAR("G0", p.G0, sample_G0, eps);
-	TEST_NEAR("G1", p.G1, sample_G1, eps);
-	TEST_NEAR("G2", p.G2, sample_G2, eps);
-	TEST_NEAR("G3", p.G3, sample_G3, eps);
-	TEST_NEAR("G4", p.G4, sample_G4, eps);
+	TEST_NEAR_REL("G0", p.G0, sample_G0, eps);
+	TEST_NEAR_REL("G1", p.G1, sample_G1, eps);
+	TEST_NEAR_REL("G2", p.G2, sample_G2, eps);
+	TEST_NEAR_REL("G3", p.G3, sample_G3, eps);
+	TEST_NEAR_REL("G4", p.G4, sample_G4, eps);
 
-	TEST_NEAR("H0", p.H0, sample_H0, eps);
-	TEST_NEAR("H1", p.H1, sample_H1, eps);
-	TEST_NEAR("H2", p.H2, sample_H2, eps);
-	TEST_NEAR("H3", p.H3, sample_H3, eps);
-	TEST_NEAR("H4", p.H4, sample_H4, eps);
+	TEST_NEAR_REL("H0", p.H0, sample_H0, eps);
+	TEST_NEAR_REL("H1", p.H1, sample_H1, eps);
+	TEST_NEAR_REL("H2", p.H2, sample_H2, eps);
+	TEST_NEAR_REL("H3", p.H3, sample_H3, eps);
+	TEST_NEAR_REL("H4", p.H4, sample_H4, eps);
 
-	TEST_NEAR("J0", p.J0, sample_J0, eps);
-	TEST_NEAR("J1", p.J1, sample_J1, eps);
-	TEST_NEAR("J2", p.J2, sample_J2, eps);
-	TEST_NEAR("J3", p.J3, sample_J3, eps);
+	TEST_NEAR_REL("J0", p.J0, sample_J0, eps);
+	TEST_NEAR_REL("J1", p.J1, sample_J1, eps);
+	TEST_NEAR_REL("J2", p.J2, sample_J2, eps);
+	TEST_NEAR_REL("J3", p.J3, sample_J3, eps);
 
-	TEST_NEAR("K0", p.K0, sample_K0, eps);
-	TEST_NEAR("K1", p.K1, sample_K1, eps);
-	TEST_NEAR("K2", p.K2, sample_K2, eps);
-	TEST_NEAR("K3", p.K3, sample_K3, eps);
+	TEST_NEAR_REL("K0", p.K0, sample_K0, eps);
+	TEST_NEAR_REL("K1", p.K1, sample_K1, eps);
+	TEST_NEAR_REL("K2", p.K2, sample_K2, eps);
+	TEST_NEAR_REL("K3", p.K3, sample_K3, eps);
 
-	TEST_NEAR("L0", p.L0, sample_L0, eps);
-	TEST_NEAR("L1", p.L1, sample_L1, eps);
-	TEST_NEAR("L2", p.L2, sample_L2, eps);
+	TEST_NEAR_REL("L0", p.L0, sample_L0, eps);
+	TEST_NEAR_REL("L1", p.L1, sample_L1, eps);
+	TEST_NEAR_REL("L2", p.L2, sample_L2, eps);
 }
 
 static void
@@ -112,12 +108,12 @@ test_find_bounded_root_intervals()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	p.find_bounded_root_intervals(sample_t_vector, test_root_ids);
+	p.find_bounded_root_intervals(sample_t_vector, &test_root_ids);
 
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		char indexstr[128];
 		snprintf(indexstr, 128, "root_ids[%d]", i);
-		TEST_NEAR(indexstr, test_root_ids[i], sample_root_ids[i], eps);
+		TEST_NEAR_REL(indexstr, test_root_ids[i], sample_root_ids[i], eps);
 	}
 }
 
@@ -139,14 +135,14 @@ test_sample_pose_poly()
 
 	double output[11][T_VECTOR_LEN];
 
-	p.sample_pose_poly(sample_t_vector, output);
+	p.sample_pose_poly(sample_t_vector, &output);
 
-	double *test_fvalue = output[0];
+	double (&test_fvalue)[T_VECTOR_LEN] = output[0];
 
 	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		char indexstr[128];
 		snprintf(indexstr, 128, "fvalue[%d]", i);
-		TEST_NEAR(indexstr, test_fvalue[i], sample_fvalue_pose_poly[i], eps);
+		TEST_NEAR_REL(indexstr, test_fvalue[i], sample_fvalue_pose_poly[i], eps);
 	}
 }
 
@@ -159,51 +155,45 @@ test_rhos_from_root_ids()
 	p.theta = sample_theta;
 
 	double output[7][T_VECTOR_LEN];
+	char indexstr[128];
 
-	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, output);
+	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, &output);
 
-	double* test_rhos1       = output[0];
-	double* test_rhos1_minus = output[1];
-	double* test_rhos1_plus  = output[2];
-	double* test_rhos2       = output[3];
-	double* test_rhos2_minus = output[4];
-	double* test_rhos2_plus  = output[5];
-	double* test_ts          = output[6];
+	double (&test_rhos1)[T_VECTOR_LEN]       = output[0];
+	double (&test_rhos1_minus)[T_VECTOR_LEN] = output[1];
+	double (&test_rhos1_plus)[T_VECTOR_LEN]  = output[2];
+	double (&test_rhos2)[T_VECTOR_LEN]       = output[3];
+	double (&test_rhos2_minus)[T_VECTOR_LEN] = output[4];
+	double (&test_rhos2_plus)[T_VECTOR_LEN]  = output[5];
+	double (&test_ts)[T_VECTOR_LEN]          = output[6];
 
-	for (int i = 0; i < 4; i++) {
-		char indexstr[128];
+	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos1[%d]", i);
-		TEST_NEAR(indexstr, test_rhos1[i], sample_rhos1[i], eps);
+		TEST_NEAR_REL(indexstr, test_rhos1[i], sample_rhos1[i], eps);
 	}
-	for (int i = 0; i < 4; i++) {
-		char indexstr[128];
+	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos1_minus[%d]", i);
-		TEST_NEAR(indexstr, test_rhos1_minus[i], sample_rhos1_minus[i], eps);
+		TEST_NEAR_REL(indexstr, test_rhos1_minus[i], sample_rhos1_minus[i], eps);
 	}
-	for (int i = 0; i < 4; i++) {
-		char indexstr[128];
+	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos1_plus[%d]", i);
-		TEST_NEAR(indexstr, test_rhos1_plus[i] , sample_rhos1_plus[i], eps);
+		TEST_NEAR_REL(indexstr, test_rhos1_plus[i] , sample_rhos1_plus[i], eps);
 	}
-	for (int i = 0; i < 4; i++) {
-		char indexstr[128];
+	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos2[%d]", i);
-		TEST_NEAR(indexstr, test_rhos2[i], sample_rhos2[i], eps);
+		TEST_NEAR_REL(indexstr, test_rhos2[i], sample_rhos2[i], eps);
 	}
-	for (int i = 0; i < 4; i++) {
-		char indexstr[128];
+	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos2_minus[%d]", i);
-		TEST_NEAR(indexstr, test_rhos2_minus[i], sample_rhos2_minus[i], eps);
+		TEST_NEAR_REL(indexstr, test_rhos2_minus[i], sample_rhos2_minus[i], eps);
 	}
-	for (int i = 0; i < 4; i++) {
-		char indexstr[128];
+	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos2_plus[%d]", i);
-		TEST_NEAR(indexstr, test_rhos2_plus[i], sample_rhos2_plus[i], eps);
+		TEST_NEAR_REL(indexstr, test_rhos2_plus[i], sample_rhos2_plus[i], eps);
 	}
-	for (int i = 0; i < 4; i++) {
-		char indexstr[128];
+	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_ts[%d]", i);
-		TEST_NEAR(indexstr, test_ts[i], sample_ts[i], eps);
+		TEST_NEAR_REL(indexstr, test_ts[i], sample_ts[i], eps);
 	}
 }
 
@@ -225,14 +215,14 @@ test_pose_from_point_tangents_2_fn_t_for_root()
 
 	double output[T_VECTOR_LEN][11];
 	for (int i = 0; i < T_VECTOR_LEN; i++) {
-		p.pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i], output[i]);
+		p.pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i], &output[i]);
 	}
 
 	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		double test_fvalue = output[i][0];
 		char indexstr[128];
 		snprintf(indexstr, 128, "fvalue[%d]", i);
-		TEST_NEAR(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
+		TEST_NEAR_REL(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
 	}
 
 	//double test_fvalue;
@@ -241,12 +231,12 @@ test_pose_from_point_tangents_2_fn_t_for_root()
 	//p.pose_from_point_tangents_2_fn_t_for_root(0, output[0]);
 	//test_fvalue = output[0][0];
 	//snprintf(indexstr, 128, "fvalue[%d]", 0);
-	//TEST_NEAR(indexstr, test_fvalue, 5159552357.01911, eps);
+	//TEST_NEAR_REL(indexstr, test_fvalue, 5159552357.01911, eps);
 
 	//p.pose_from_point_tangents_2_fn_t_for_root(1, output[0]);
 	//test_fvalue = output[0][0];
 	//snprintf(indexstr, 128, "fvalue[%d]", 0);
-	//TEST_NEAR(indexstr, test_fvalue, 1599787.71374685, eps);
+	//TEST_NEAR_REL(indexstr, test_fvalue, 1599787.71374685, eps);
 }
 
 static void
@@ -269,12 +259,12 @@ test_get_sigmas()
 	double output[4][SIGMA_LEN][SIGMA_LEN];
 	char indexstr[128];
 
-	double (*test_sigmas1)[SIGMA_LEN] = output[0];
-	double (*test_sigmas2)[SIGMA_LEN] = output[1];
-	double *test_sigmas1_end = output[2][0];
-	double *test_sigmas2_end = output[3][0];
+	double (&test_sigmas1)[SIGMA_LEN][SIGMA_LEN] = output[0];
+	double (&test_sigmas2)[SIGMA_LEN][SIGMA_LEN] = output[1];
+	double (&test_sigmas1_end)[SIGMA_LEN]        = output[2][0];
+	double (&test_sigmas2_end)[SIGMA_LEN]        = output[3][0];
 
-	p.get_sigmas(sample_ts, sample_ts_len, output);
+	p.get_sigmas(sample_ts, sample_ts_len, &output);
 
 	pass = true;
 	for (int i = 0; i < sample_ts_len; i++) {
@@ -284,7 +274,7 @@ test_get_sigmas()
 		pass = test_sigmas1_end[i] == sample_sigmas1_end[i] && pass;
 		for (int j = 0; pass && j < sample_sigmas1_end[i]; j++) {
 			snprintf(indexstr, 128, "test_sigmas1[%d][%d]", i, j);
-			TEST_NEAR(indexstr, test_sigmas1[i][j], sample_sigmas1[i][j], eps);
+			TEST_NEAR_REL(indexstr, test_sigmas1[i][j], sample_sigmas1[i][j], eps);
 		}
 		std::cout << std::endl;
 	}
@@ -297,7 +287,7 @@ test_get_sigmas()
 		pass = test_sigmas2_end[i] == sample_sigmas2_end[i] && pass;
 		for (int j = 0; pass && j < sample_sigmas2_end[i]; j++) {
 			snprintf(indexstr, 128, "test_sigmas2[%d][%d]", i, j);
-			TEST_NEAR(indexstr, test_sigmas2[i][j], sample_sigmas2[i][j], eps);
+			TEST_NEAR_REL(indexstr, test_sigmas2[i][j], sample_sigmas2[i][j], eps);
 		}
 		std::cout << std::endl;
 	}
@@ -321,14 +311,14 @@ test_pose_from_point_tangents_2_fn_t()
 
 	double output[T_VECTOR_LEN][11];
 	for (int i = 0; i < T_VECTOR_LEN; i++) {
-		p.pose_from_point_tangents_2_fn_t(sample_t_vector[i], output[i]);
+		p.pose_from_point_tangents_2_fn_t(sample_t_vector[i], &output[i]);
 	}
 
 	for (int i = 0; i < T_VECTOR_LEN; i++) {
 		double test_fvalue = output[i][0];
 		char indexstr[128];
 		snprintf(indexstr, 128, "fvalue[%d]", i);
-		TEST_NEAR(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
+		TEST_NEAR_REL(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
 	}
 }
 
@@ -337,9 +327,7 @@ test_get_r_t_from_rhos()
 {
 	pose_poly<double> p;
 
-	double output[RT_LEN][4][3];
-	double (*test_Rots)[4][3]    = output;
-	double (*test_Transls)[4][3] = output;
+	double RT[RT_LEN][4][3];
 	char indexstr[128];
 
 	p.get_r_t_from_rhos(
@@ -351,23 +339,21 @@ test_get_r_t_from_rhos()
 		sample_gama2, sample_tgt2,
 		sample_Gama1, sample_Tgt1,
 		sample_Gama2, sample_Tgt2,
-		output
+		&RT
 	);
 
 	for (int i = 0; i < RT_LEN; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
-				snprintf(indexstr, 128, "Rots[%d][%d][%d]", i, j, k);
-				TEST_NEAR(indexstr, test_Rots[i][j][k], sample_Rots[i][j][k], eps);
+				double (&test_Rots)[4][3] = RT[i];
+				snprintf(indexstr, 128, "RT[%d]: Rots[%d][%d]", i, j, k);
+				TEST_NEAR_REL(indexstr, test_Rots[j][k], sample_Rots[i][j][k], eps);
 			}
 		}
-		std::cout << std::endl;
-	}
-
-	for (int i = 0; i < RT_LEN; i++) {
-		for (int k = 0; k < 3; k++) {
-			snprintf(indexstr, 128, "Transls[%d][%d]", i, k);
-			TEST_NEAR(indexstr, test_Transls[i][3][k], sample_Transls[i][k], eps);
+		for (int j = 0; j < 3; j++) {
+			double (&test_Transls)[3] = RT[i][3];
+			snprintf(indexstr, 128, "RT[%d]: Transls[%d]", i, j);
+			TEST_NEAR_REL(indexstr, test_Transls[j], sample_Transls[i][j], eps);
 		}
 		std::cout << std::endl;
 	}
