@@ -6153,7 +6153,8 @@ constexpr double sample_Transls[7][3] = {
 	{ 1.39535159739184,   6.47712179863055,  1.15930952677909},
 	{-1.66663219754732,  -0.25893886116481,  3.82004579353875}
 };
-constexpr double sample_degen = -0.174617421223572;
+constexpr double sample_degen  = -0.174617421223572;
+constexpr int    sample_RT_len = 7;
 
 // Floating-point comparison precision
 // TODO: Check why tests are only passing with low precision

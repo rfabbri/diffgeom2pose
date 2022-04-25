@@ -39,12 +39,12 @@ test_pose_from_point_tangents_root_find_function_any()
 	);
 
 	double (&RT)[RT_MAX_LEN + 1][4][3] = output[0];
-	double(&RT_len) = RT[0][0][0];
-	double &test_degen         = output[1][0][0][0];
+	double(&RT_len)    = RT[0][0][0];
+	double &test_degen = output[1][0][0][0];
 	char indexstr[128];
 
 	// HACK: `i+1` used to skip first value of `RT` which is `RT_len`
-	for (int i = 0; i < RT_len; i++) {
+	for (int i = 0; i < sample_RT_len; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
 				double (&test_Rots)[4][3] = RT[i+1];

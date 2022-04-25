@@ -6,7 +6,6 @@
 #include <cmath>
 
 namespace common {
-	// TODO: check if `colon()` is correct from MATLAB documentation
 	template<typename T>
 	void colon(T start, T step, T end, T output[])
 	{
