@@ -4,11 +4,11 @@
 constexpr int T_VECTOR_LEN = 2001;
 constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 
-// TODO: THIS IS TEMPORARY! FOR TEST ONLY
-constexpr int TS_LEN = 4;
-constexpr int RT_LEN = 7;
+// TODO: Assume a reasonable length for `ts`. Check if it can be longer than 4.
+constexpr int TS_MAX_LEN = 4;
+//constexpr int SIGMAS_MAX_LEN = (TS_MAX_LEN * TS_MAX_LEN);
+constexpr int RT_MAX_LEN = (TS_MAX_LEN * TS_MAX_LEN);
 
-constexpr int SIGMA_LEN = 4;
 
 namespace P2Pt {
 
@@ -46,23 +46,22 @@ struct pose_poly {
 	);
 	void rhos_from_root_ids(
 		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
-		T (*output)[7][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+		T (*output)[8][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts, ts_len} */
 	);
 	void get_sigmas(
-		const int ts_len,
-		const T (&ts)[ROOT_IDS_LEN],
-		T (*output)[4][SIGMA_LEN][SIGMA_LEN]
+		const int ts_len, const T (&ts)[ROOT_IDS_LEN],
+		T (*output)[4][TS_MAX_LEN][TS_MAX_LEN]
 	);
 	void get_r_t_from_rhos(
 		const int ts_len,
-		const T (&sigmas1)[TS_LEN][TS_LEN], const T (&sigmas1_end)[TS_LEN],
-		const T (&sigmas2)[TS_LEN][TS_LEN], const T (&sigmas2_end)[TS_LEN],
+		const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const T (&sigmas1_end)[TS_MAX_LEN],
+		const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN], const T (&sigmas2_end)[TS_MAX_LEN],
 		const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN],
 		const T (&gama1)[3], const T (&tgt1)[3],
 		const T (&gama2)[3], const T (&tgt2)[3],
 		const T (&Gama1)[3], const T (&Tgt1)[3],
 		const T (&Gama2)[3], const T (&Tgt2)[3],
-		T (*output)[RT_LEN][4][3]
+		T (*output)[RT_MAX_LEN + 1][4][3]
 	);
 };
 

@@ -13,12 +13,13 @@ void pose_from_point_tangents_root_find_function_any(
 	const T (&gama2)[3], const T (&tgt2)[3],
 	const T (&Gama1)[3], const T (&Tgt1)[3],
 	const T (&Gama2)[3], const T (&Tgt2)[3],
-	T (*output)[2][RT_LEN][4][3]
+	T (*output)[2][RT_MAX_LEN + 1][4][3]
 )
 {
 	// % This is the main routine to find roots. Can be used with any input.
 
-	T (&RT)[RT_LEN][4][3] = (*output)[0];
+	// HACK: Extra matrix to store final length of RT
+	T (&RT)[RT_MAX_LEN + 1][4][3] = (*output)[0];
 	T &degen              = (*output)[1][0][0][0];
 
 	// % test for geometric degeneracy -------------------------------
@@ -54,21 +55,22 @@ void pose_from_point_tangents_root_find_function_any(
 	p.find_bounded_root_intervals(t_vector, &root_ids);
 
 	// % compute rhos, r, t --------------------------
-	static T rhos[7][ROOT_IDS_LEN];
+	static T rhos[8][ROOT_IDS_LEN];
 	p.rhos_from_root_ids(t_vector, root_ids, &rhos);
 	T (&rhos1)[ROOT_IDS_LEN] = rhos[0];
 	T (&rhos2)[ROOT_IDS_LEN] = rhos[3];
 	T (&ts)[ROOT_IDS_LEN]    = rhos[6];
+	T (&ts_len)              = rhos[7][0];
 
-	static T sigmas[4][SIGMA_LEN][SIGMA_LEN];
-	p.get_sigmas(ROOT_IDS_LEN, ts, &sigmas);
-	T (&sigmas1)[SIGMA_LEN][SIGMA_LEN] = sigmas[0];
-	T (&sigmas2)[SIGMA_LEN][SIGMA_LEN] = sigmas[1];
-	T (&sigmas1_end)[SIGMA_LEN]        = sigmas[2][0];
-	T (&sigmas2_end)[SIGMA_LEN]        = sigmas[3][0];
+	static T sigmas[4][TS_MAX_LEN][TS_MAX_LEN];
+	p.get_sigmas(ts_len, ts, &sigmas);
+	T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[0];
+	T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[1];
+	T (&sigmas1_end)[TS_MAX_LEN]        = sigmas[2][0];
+	T (&sigmas2_end)[TS_MAX_LEN]        = sigmas[3][0];
 
 	p.get_r_t_from_rhos(
-		TS_LEN,
+		TS_MAX_LEN,
 		sigmas1, sigmas1_end,
 		sigmas2, sigmas2_end,
 		rhos1, rhos2,

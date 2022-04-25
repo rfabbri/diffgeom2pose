@@ -85,7 +85,7 @@ pose_from_point_tangents_2(
 	double t7 = g22 * g22;
 	double t11 = 2 * (1 + g11 * g21 + g12 * g22) / (t4 + t5 - t6 - t7);
 
-	double theta = 0.5*atan(t11);
+	theta = 0.5*atan(t11);
 	if (theta < 0) {
 		theta = theta + PI / 2;
 	}
@@ -117,12 +117,12 @@ pose_from_point_tangents_2(
 
 	double t25 = -2*a1 / (den1 - den2);
 
-	double beta = sqrt(t25);
+	beta = sqrt(t25);
 
 
 	double t24 = 2*a1 / (den1 + den2);
 
-	double alpha = sqrt(t24);
+	alpha = sqrt(t24);
 
 
 	//% Coefficient code adapted from Maple ::: can be further cleaned up but works

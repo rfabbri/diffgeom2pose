@@ -28,7 +28,7 @@ test_hello()
 static void
 test_pose_from_point_tangents_root_find_function_any()
 {
-	double output[2][RT_LEN][4][3] = {0};
+	double output[2][RT_MAX_LEN + 1][4][3] = {0};
 
 	pose_from_point_tangents_root_find_function_any(
 		sample_gama1, sample_tgt1,
@@ -38,21 +38,23 @@ test_pose_from_point_tangents_root_find_function_any()
 		&output
 	);
 
-	double (&RT)[RT_LEN][4][3] = output[0];
+	double (&RT)[RT_MAX_LEN + 1][4][3] = output[0];
+	double(&RT_len) = RT[0][0][0];
 	double &test_degen         = output[1][0][0][0];
 	char indexstr[128];
 
-	for (int i = 0; i < RT_LEN; i++) {
+	// HACK: `i+1` used to skip first value of `RT` which is `RT_len`
+	for (int i = 0; i < RT_len; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
-				double (&test_Rots)[4][3] = RT[i];
-				snprintf(indexstr, 128, "RT[%d]: Rots[%d][%d]", i, j, k);
+				double (&test_Rots)[4][3] = RT[i+1];
+				snprintf(indexstr, 128, "RT[%d]: Rots[%d][%d]", i+1, j, k);
 				TEST_NEAR_REL(indexstr, test_Rots[j][k], sample_Rots[i][j][k], eps);
 			}
 		}
 		for (int j = 0; j < 3; j++) {
-			double (&test_Transls)[3] = RT[i][3];
-			snprintf(indexstr, 128, "RT[%d]: Transls[%d]", i, j);
+			double (&test_Transls)[3] = RT[i+1][3];
+			snprintf(indexstr, 128, "RT[%d]: Transls[%d]", i+1, j);
 			TEST_NEAR_REL(indexstr, test_Transls[j], sample_Transls[i][j], eps);
 		}
 		std::cout << std::endl;
@@ -187,7 +189,7 @@ test_rhos_from_root_ids()
 	p.beta  = sample_beta;
 	p.theta = sample_theta;
 
-	double output[7][ROOT_IDS_LEN];
+	double output[8][ROOT_IDS_LEN];
 	char indexstr[128];
 
 	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, &output);
@@ -199,6 +201,7 @@ test_rhos_from_root_ids()
 	double (&test_rhos2_minus)[ROOT_IDS_LEN] = output[4];
 	double (&test_rhos2_plus)[ROOT_IDS_LEN]  = output[5];
 	double (&test_ts)[ROOT_IDS_LEN]          = output[6];
+	double (&test_ts_len)                    = output[7][0];
 
 	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos1[%d]", i);
@@ -228,6 +231,7 @@ test_rhos_from_root_ids()
 		snprintf(indexstr, 128, "test_ts[%d]", i);
 		TEST_NEAR_REL(indexstr, test_ts[i], sample_ts[i], eps);
 	}
+	TEST_EQUAL("ts_len", test_ts_len, sample_ts_len);
 }
 
 static void
@@ -276,13 +280,13 @@ test_get_sigmas()
 	};
 
 	bool pass;
-	double output[4][SIGMA_LEN][SIGMA_LEN];
+	double output[4][TS_MAX_LEN][TS_MAX_LEN];
 	char indexstr[128];
 
-	double (&test_sigmas1)[SIGMA_LEN][SIGMA_LEN] = output[0];
-	double (&test_sigmas2)[SIGMA_LEN][SIGMA_LEN] = output[1];
-	double (&test_sigmas1_end)[SIGMA_LEN]        = output[2][0];
-	double (&test_sigmas2_end)[SIGMA_LEN]        = output[3][0];
+	double (&test_sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = output[0];
+	double (&test_sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = output[1];
+	double (&test_sigmas1_end)[TS_MAX_LEN]        = output[2][0];
+	double (&test_sigmas2_end)[TS_MAX_LEN]        = output[3][0];
 
 	p.get_sigmas(sample_ts_len, sample_ts, &output);
 
@@ -347,7 +351,7 @@ test_get_r_t_from_rhos()
 {
 	pose_poly<double> p;
 
-	double RT[RT_LEN][4][3];
+	double RT[RT_MAX_LEN + 1][4][3];
 	char indexstr[128];
 
 	p.get_r_t_from_rhos(
@@ -362,17 +366,18 @@ test_get_r_t_from_rhos()
 		&RT
 	);
 
-	for (int i = 0; i < RT_LEN; i++) {
+	double (&RT_len) = RT[0][0][0];
+	for (int i = 0; i < RT_len; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
-				double (&test_Rots)[4][3] = RT[i];
-				snprintf(indexstr, 128, "RT[%d]: Rots[%d][%d]", i, j, k);
+				double (&test_Rots)[4][3] = RT[i+1];
+				snprintf(indexstr, 128, "RT[%d]: Rots[%d][%d]", i+1, j, k);
 				TEST_NEAR_REL(indexstr, test_Rots[j][k], sample_Rots[i][j][k], eps);
 			}
 		}
 		for (int j = 0; j < 3; j++) {
-			double (&test_Transls)[3] = RT[i][3];
-			snprintf(indexstr, 128, "RT[%d]: Transls[%d]", i, j);
+			double (&test_Transls)[3] = RT[i+1][3];
+			snprintf(indexstr, 128, "RT[%d]: Transls[%d]", i+1, j);
 			TEST_NEAR_REL(indexstr, test_Transls[j], sample_Transls[i][j], eps);
 		}
 		std::cout << std::endl;
@@ -389,7 +394,7 @@ test_p2pt()
 	std::cout << "\nTEST #1 - test_hello" << std::endl;
 	test_hello();
 
-	std::cout << "\nTEST #1 - test_pose_from_tangents_root_find_function_any" << std::endl;
+	std::cout << "\nTEST #2 - test_pose_from_tangents_root_find_function_any" << std::endl;
 	test_pose_from_point_tangents_root_find_function_any();
 
 	std::cout << "\nTEST #3 - test_pose_from_point_tangents_2" << std::endl;

@@ -10,10 +10,10 @@ namespace common {
 	template<typename T>
 	void colon(T start, T step, T end, T output[])
 	{
-		int num_elements = floor((end - start) / step);
+		int num_elements = floor((end - start) / step) + 1;
 
 		for (int i = 0; i < num_elements; i++) {
-			output[i] = start * i + step;
+			output[i] = start + i * step;
 		}
 
 	}

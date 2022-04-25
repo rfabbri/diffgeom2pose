@@ -8,21 +8,21 @@ void
 pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
-	const T (&sigmas1)[TS_LEN][TS_LEN], const T (&sigmas1_end)[TS_LEN], // `sigmas1_end`: Ugly, needs to be cast to integer
-	const T (&sigmas2)[TS_LEN][TS_LEN], const T (&sigmas2_end)[TS_LEN], // `sigmas2_end`: Ugly, needs to be cast to integer
+	const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const T (&sigmas1_end)[TS_MAX_LEN], // `sigmas1_end`: Ugly, needs to be cast to integer
+	const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN], const T (&sigmas2_end)[TS_MAX_LEN], // `sigmas2_end`: Ugly, needs to be cast to integer
 	const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN], // TODO: Fix size. Pass as an additional argument, or use a struct
 	const T (&gama1)[3], const T (&tgt1)[3],
 	const T (&gama2)[3], const T (&tgt2)[3],
 	const T (&Gama1)[3], const T (&Tgt1)[3],
 	const T (&Gama2)[3], const T (&Tgt2)[3],
-	T (*output)[RT_LEN][4][3]
+	T (*output)[RT_MAX_LEN + 1][4][3]
 )
 {
 	//% to be called from pose_from_point_tangents_root_find_function_any.m
 
 	//% Lambdas:
-	static T lambdas1[TS_LEN][TS_LEN] = { {0} };
-	static T lambdas2[TS_LEN][TS_LEN] = { {0} };
+	static T lambdas1[TS_MAX_LEN][TS_MAX_LEN] = { {0} };
+	static T lambdas2[TS_MAX_LEN][TS_MAX_LEN] = { {0} };
 
 	static T Gama_sub[3];
 
@@ -84,8 +84,10 @@ get_r_t_from_rhos(
 	T inv_A[3][3]; common::invm3x3(A, inv_A);
 
 	// Matrix containing Rotations and Translations
-	T (&RT)[RT_LEN][4][3] = *output;
-	int RT_end = 0;
+	T (&RT)[RT_MAX_LEN + 1][4][3] = *output;
+
+	// HACK: Set `RT_end` one ahead to allow space for `RT_len` as first value
+	int RT_end = 1;
 
 	for (int i = 0; i < ts_len; i++) {
 		for (int j = 0; j < (int)sigmas1_end[i]; j++, RT_end++) {
@@ -126,9 +128,8 @@ get_r_t_from_rhos(
 			//}
 		}
 	}
-
-	//std::copy(std::begin(Rots[0][0][0]), std::end(Rots[Rots_end][2][2]), std::begin(RT[0][0][0]));
-	//std::copy(std::begin(Transls[0][0]), std::end(Transls[Transls_end][2]), std::begin(RT[3][0][0]));
+	T (&RT_len) = (*output)[0][0][0];
+	RT_len = RT_end - 1;
 }
 
 }

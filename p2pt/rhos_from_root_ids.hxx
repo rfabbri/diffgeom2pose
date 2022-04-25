@@ -9,7 +9,7 @@ void
 pose_poly<T>::
 rhos_from_root_ids(
 	const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
-	T (*output)[7][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+	T (*output)[8][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts, ts_len} */
 )
 {
 	T (&rhos1)[ROOT_IDS_LEN]       = (*output)[0];
@@ -19,8 +19,11 @@ rhos_from_root_ids(
 	T (&rhos2_minus)[ROOT_IDS_LEN] = (*output)[4];
 	T (&rhos2_plus)[ROOT_IDS_LEN]  = (*output)[5];
 	T (&ts)[ROOT_IDS_LEN]          = (*output)[6];
+	T (&ts_len)                    = (*output)[7][0];
 
-	int ts_end = 0;
+	static int ts_end;
+	ts_end = 0;
+
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		if (root_ids[i] == 1) {
 			// TODO: implement fzero using (t_vector(i) + t_vector(i+1))/2; maybe use Newton's method later
@@ -42,6 +45,16 @@ rhos_from_root_ids(
 			ts[ts_end++] = t_ref;
 		}
 	}
+	ts_len = ts_end;
+
+	#if 0 // FOR TEST ONLY
+	ts_end = 4;
+	ts_len = 4;
+	ts[0] = -0.276012891405233;
+	ts[1] = -0.134802317714200;
+	ts[2] = 0.481519295339129;
+	ts[3] = 0.711198234568026;
+	#endif
 
 	T t_stddev = t_vector[1] - t_vector[0];
 

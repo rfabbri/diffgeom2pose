@@ -8,17 +8,17 @@ void
 pose_poly<T>::
 get_sigmas(
 	const int ts_len, const T (&ts)[ROOT_IDS_LEN],
-	T (*output)[4][SIGMA_LEN][SIGMA_LEN]
+	T (*output)[4][TS_MAX_LEN][TS_MAX_LEN]
 )
 {
 	T my_eps = 1;
 
 	/**************************************************************************
 	 `output`
-	       [0] -> sigmas1[SIGMA_LEN][SIGMA_LEN]
-	       [1] -> sigmas2[SIGMA_LEN][SIGMA_LEN]
-	       [2] -> sigmas1_end[SIGMA_LEN][SIGMA_LEN]
-	       [3] -> sigmas2_end[SIGMA_LEN][SIGMA_LEN]
+	       [0] -> sigmas1[TS_MAX_LEN][TS_MAX_LEN]
+	       [1] -> sigmas2[TS_MAX_LEN][TS_MAX_LEN]
+	       [2] -> sigmas1_end[TS_MAX_LEN][TS_MAX_LEN]
+	       [3] -> sigmas2_end[TS_MAX_LEN][TS_MAX_LEN]
 
 	       `sigmasX` (can contain single values or array of values)
 	             [0][0] -> float/double
@@ -38,13 +38,13 @@ get_sigmas(
 	               .
 	 **************************************************************************/
 
-	T (&sigmas1)[SIGMA_LEN][SIGMA_LEN] = (*output)[0];
-	T (&sigmas2)[SIGMA_LEN][SIGMA_LEN] = (*output)[1];
+	T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = (*output)[0];
+	T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = (*output)[1];
 
 	// Stores the number of elements for each row of `sigmasX`
 	// Ugly hack, could be set as a struct
-	T (&sigmas1_end)[SIGMA_LEN] = (*output)[2][0];
-	T (&sigmas2_end)[SIGMA_LEN] = (*output)[3][0];
+	T (&sigmas1_end)[TS_MAX_LEN] = (*output)[2][0];
+	T (&sigmas2_end)[TS_MAX_LEN] = (*output)[3][0];
 
 	static T pose_output[11];
 
