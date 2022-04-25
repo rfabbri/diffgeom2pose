@@ -7,18 +7,19 @@ template<typename T>
 void
 pose_poly<T>::
 get_sigmas(
-	const int ts_len, const T (&ts)[ROOT_IDS_LEN],
-	T (*output)[4][SIGMA_LEN][SIGMA_LEN]
+	const int ts_len, const T ts[],
+	T *output
 )
 {
 	T my_eps = 1;
+	int sigma_len = ts_len * ts_len;
 
 	/**************************************************************************
 	 `output`
-	       [0] -> sigmas1[SIGMA_LEN][SIGMA_LEN]
-	       [1] -> sigmas2[SIGMA_LEN][SIGMA_LEN]
-	       [2] -> sigmas1_end[SIGMA_LEN][SIGMA_LEN]
-	       [3] -> sigmas2_end[SIGMA_LEN][SIGMA_LEN]
+	       [0] -> sigmas1[sigma_len][sigma_len]
+	       [1] -> sigmas2[sigma_len][sigma_len]
+	       [2] -> sigmas1_end[sigma_len][sigma_len]
+	       [3] -> sigmas2_end[sigma_len][sigma_len]
 
 	       `sigmasX` (can contain single values or array of values)
 	             [0][0] -> float/double
@@ -38,13 +39,21 @@ get_sigmas(
 	               .
 	 **************************************************************************/
 
-	T (&sigmas1)[SIGMA_LEN][SIGMA_LEN] = (*output)[0];
-	T (&sigmas2)[SIGMA_LEN][SIGMA_LEN] = (*output)[1];
+
+	// TODO: Find less hacky way to do this
+	#define idx(a,b,c) ((a)*sigma_len*sigma_len + (b)*sigma_len + (c))
+	// (&sigmas1)[sigma_len][sigma_len]
+	// (&sigmas2)[sigma_len][sigma_len]
+
+	T *sigmas1 = &output[idx(0,0,0)];
+	T *sigmas2 = &output[idx(1,0,0)];
 
 	// Stores the number of elements for each row of `sigmasX`
 	// Ugly hack, could be set as a struct
-	T (&sigmas1_end)[SIGMA_LEN] = (*output)[2][0];
-	T (&sigmas2_end)[SIGMA_LEN] = (*output)[3][0];
+	// (&sigmas1_end)[sigma_len]
+	// (&sigmas2_end)[sigma_len]
+	T *sigmas1_end = &output[idx(2,0,0)];
+	T *sigmas2_end = &output[idx(3,0,0)];
 
 	static T pose_output[11];
 
@@ -94,35 +103,45 @@ get_sigmas(
 		//% If not, issue a warning.
 
 		if (std::abs(H + J*sigma1_m + K*sigma2_m + L*sigma1_m*sigma2_m) < my_eps) {
-			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_m.real();
-			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_m.real();
+			//sigmas1[i][(int)sigmas1_end[i]++] = sigma1_m.real();
+			//sigmas2[i][(int)sigmas2_end[i]++] = sigma2_m.real();
+			*(sigmas1 + sigma_len*i + (int)(*(sigmas1_end + i))++) = sigma1_m.real();
+			*(sigmas2 + sigma_len*i + (int)(*(sigmas2_end + i))++) = sigma2_m.real();
 		}
 
 		if (std::abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
 			if (sigmas1_end[i] != 0) // !isempty(sigmas1[i])
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_p.real();
-			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_m.real();
+			//sigmas1[i][(int)sigmas1_end[i]++] = sigma1_p.real();
+			//sigmas2[i][(int)sigmas2_end[i]++] = sigma2_m.real();
+			*(sigmas1 + sigma_len*i + (int)(*(sigmas1_end + i))++) = sigma1_p.real();
+			*(sigmas2 + sigma_len*i + (int)(*(sigmas2_end + i))++) = sigma2_m.real();
 		}
 
 		if (std::abs(H + J*sigma1_p + K*sigma2_p + L*sigma1_p*sigma2_p) < my_eps) {
 			if (sigmas1_end[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_p.real();
-			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_p.real();
+			//sigmas1[i][(int)sigmas1_end[i]++] = sigma1_p.real();
+			//sigmas2[i][(int)sigmas2_end[i]++] = sigma2_p.real();
+			*(sigmas1 + sigma_len*i + (int)(*(sigmas1_end + i))++) = sigma1_p.real();
+			*(sigmas2 + sigma_len*i + (int)(*(sigmas2_end + i))++) = sigma2_p.real();
+
 		}
 
 		if (std::abs(H + J*sigma1_m + K*sigma2_p + L*sigma1_m*sigma2_p) < my_eps) {
 			if (sigmas1_end[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][(int)sigmas1_end[i]++] = sigma1_m.real();
-			sigmas2[i][(int)sigmas2_end[i]++] = sigma2_p.real();
+			//sigmas1[i][(int)sigmas1_end[i]++] = sigma1_m.real();
+			//sigmas2[i][(int)sigmas2_end[i]++] = sigma2_p.real();
+			*(sigmas1 + sigma_len*i + (int)(*(sigmas1_end + i))++) = sigma1_m.real();
+			*(sigmas2 + sigma_len*i + (int)(*(sigmas2_end + i))++) = sigma2_p.real();
 		}
 
 		if (sigmas1_end[i] == 0) // isempty(sigmas1[i])
 			std::cerr << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 
 	}
+	#undef idx
 }
 
 }

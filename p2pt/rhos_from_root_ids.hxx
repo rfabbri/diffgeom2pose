@@ -9,9 +9,10 @@ void
 pose_poly<T>::
 rhos_from_root_ids(
 	const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
-	T (*output)[7][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+	T (*output)[8][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts, ts_len} */
 )
 {
+
 	T (&rhos1)[ROOT_IDS_LEN]       = (*output)[0];
 	T (&rhos1_minus)[ROOT_IDS_LEN] = (*output)[1];
 	T (&rhos1_plus)[ROOT_IDS_LEN]  = (*output)[2];
@@ -19,6 +20,7 @@ rhos_from_root_ids(
 	T (&rhos2_minus)[ROOT_IDS_LEN] = (*output)[4];
 	T (&rhos2_plus)[ROOT_IDS_LEN]  = (*output)[5];
 	T (&ts)[ROOT_IDS_LEN]          = (*output)[6];
+	T &ts_len                      = (*output)[7][0]; // Wastes a bit of memory, but it works for now
 
 	int ts_end = 0;
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
@@ -42,6 +44,7 @@ rhos_from_root_ids(
 			ts[ts_end++] = t_ref;
 		}
 	}
+	ts_len = ts_end;
 
 	T t_stddev = t_vector[1] - t_vector[0];
 

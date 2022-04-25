@@ -187,7 +187,7 @@ test_rhos_from_root_ids()
 	p.beta  = sample_beta;
 	p.theta = sample_theta;
 
-	double output[7][ROOT_IDS_LEN];
+	double output[8][ROOT_IDS_LEN];
 	char indexstr[128];
 
 	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, &output);
@@ -199,6 +199,7 @@ test_rhos_from_root_ids()
 	double (&test_rhos2_minus)[ROOT_IDS_LEN] = output[4];
 	double (&test_rhos2_plus)[ROOT_IDS_LEN]  = output[5];
 	double (&test_ts)[ROOT_IDS_LEN]          = output[6];
+	double &test_ts_len                      = output[7][0];
 
 	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_rhos1[%d]", i);
@@ -228,6 +229,7 @@ test_rhos_from_root_ids()
 		snprintf(indexstr, 128, "test_ts[%d]", i);
 		TEST_NEAR_REL(indexstr, test_ts[i], sample_ts[i], eps);
 	}
+	TEST_EQUAL("test_ts_len", test_ts_len, sample_ts_len);
 }
 
 static void
@@ -275,17 +277,19 @@ test_get_sigmas()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	bool pass;
-	double output[4][SIGMA_LEN][SIGMA_LEN];
+	static const int sigmas_max_len = sample_ts_len * sample_ts_len;
+	static double output[4][sigmas_max_len][sigmas_max_len];
+	double &output_flat = output[0][0][0];
+
+	p.get_sigmas(sample_ts_len, sample_ts, &output_flat);
+
+	double (&test_sigmas1)[sigmas_max_len][sigmas_max_len] = output[0];
+	double (&test_sigmas2)[sigmas_max_len][sigmas_max_len] = output[1];
+	double (&test_sigmas1_end)[sigmas_max_len]        = output[2][0];
+	double (&test_sigmas2_end)[sigmas_max_len]        = output[3][0];
+
 	char indexstr[128];
-
-	double (&test_sigmas1)[SIGMA_LEN][SIGMA_LEN] = output[0];
-	double (&test_sigmas2)[SIGMA_LEN][SIGMA_LEN] = output[1];
-	double (&test_sigmas1_end)[SIGMA_LEN]        = output[2][0];
-	double (&test_sigmas2_end)[SIGMA_LEN]        = output[3][0];
-
-	p.get_sigmas(sample_ts_len, sample_ts, &output);
-
+	static bool pass;
 	pass = true;
 	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "test_sigmas1_end[%d]", i);
@@ -347,19 +351,24 @@ test_get_r_t_from_rhos()
 {
 	pose_poly<double> p;
 
-	double RT[RT_LEN][4][3];
+
+	// TODO: Figure out optimal RT length
+	static const int RT_max_len = sample_ts_len * sample_ts_len;
+
+	static double RT[RT_max_len][4][3];
+	double &RT_flat = RT[0][0][0];
 	char indexstr[128];
 
 	p.get_r_t_from_rhos(
 		sample_ts_len,
-		sample_sigmas1, sample_sigmas1_end,
-		sample_sigmas2, sample_sigmas2_end,
+		*sample_sigmas1, sample_sigmas1_end,
+		*sample_sigmas2, sample_sigmas2_end,
 		sample_rhos1, sample_rhos2,
 		sample_gama1, sample_tgt1,
 		sample_gama2, sample_tgt2,
 		sample_Gama1, sample_Tgt1,
 		sample_Gama2, sample_Tgt2,
-		&RT
+		&RT_flat
 	);
 
 	for (int i = 0; i < RT_LEN; i++) {

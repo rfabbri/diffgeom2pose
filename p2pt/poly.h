@@ -8,8 +8,6 @@ constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 constexpr int TS_LEN = 4;
 constexpr int RT_LEN = 7;
 
-constexpr int SIGMA_LEN = 4;
-
 namespace P2Pt {
 
 template<typename T>
@@ -36,33 +34,55 @@ struct pose_poly {
 		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
 	);
 	void sample_pose_poly(
-		const T (&t)[T_VECTOR_LEN], T (*output)[11][T_VECTOR_LEN]
+		const T (&t)[T_VECTOR_LEN], T (*output)[11][T_VECTOR_LEN] // = {fvalue, A, B, C, E, F, G, H, J, K, L}
 	);
 	void pose_from_point_tangents_2_fn_t_for_root(
-		const T t, T (*output)[11]
+		const T t, T (*output)[11] // = {fvalue, A, B, C, E, F, G, H, J, K, L}
 	);
 	void pose_from_point_tangents_2_fn_t(
-		const T t, T (*output)[11]
+		const T t, T (*output)[11] // = {fvalue, A, B, C, E, F, G, H, J, K, L}
 	);
+
+	/**************************************************************************
+	 THINGS THAT NEED TO BE REFACTORED (using len, row/col arguments)
+	 - `rhos_from_root_ids`:
+	     + `output` [OK]
+	 - `get_sigmas`:
+	     + `ts`     [OK]
+	     + `output` [OK]
+	 - `get_r_t_from_rhos`
+	     + `sigmas1`
+		 + `sigmas2`
+		 + `rhos1`
+		 + `rhos2`
+	 **************************************************************************/
+
 	void rhos_from_root_ids(
 		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
-		T (*output)[7][ROOT_IDS_LEN] /* = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts} */
+		T (*output)[8][ROOT_IDS_LEN] // = {rhos1, rhos1_minus, rhos1_plus, rhos2, rhos2_minus, rhos2_plus, ts, ts_len}
 	);
 	void get_sigmas(
 		const int ts_len,
-		const T (&ts)[ROOT_IDS_LEN],
-		T (*output)[4][SIGMA_LEN][SIGMA_LEN]
+		const T ts[],
+		T *output // output[4][sigma_len][sigma_len] = {sigmas1, sigmas2, sigmas1_end, sigmas2_end}
 	);
 	void get_r_t_from_rhos(
 		const int ts_len,
-		const T (&sigmas1)[TS_LEN][TS_LEN], const T (&sigmas1_end)[TS_LEN],
-		const T (&sigmas2)[TS_LEN][TS_LEN], const T (&sigmas2_end)[TS_LEN],
-		const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN],
+		// (&sigmas1)[ts_len][ts_len]
+		// (&sigmas2)[ts_len][ts_len]
+		// (&sigmas1_end)[ts_len]
+		// (&sigmas2_end)[ts_len]
+		// (&rhos1)[ts_len]
+		// (&rhos2)[ts_len]
+		// (*output)[RT_LEN][4][3]
+		const T sigmas1[], const T sigmas1_end[],
+		const T sigmas2[], const T sigmas2_end[],
+		const T rhos1[], const T rhos2[],
 		const T (&gama1)[3], const T (&tgt1)[3],
 		const T (&gama2)[3], const T (&tgt2)[3],
 		const T (&Gama1)[3], const T (&Tgt1)[3],
 		const T (&Gama2)[3], const T (&Tgt2)[3],
-		T (*output)[RT_LEN][4][3]
+		T *output
 	);
 };
 

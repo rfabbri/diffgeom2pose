@@ -18,8 +18,6 @@ void pose_from_point_tangents_root_find_function_any(
 {
 	// % This is the main routine to find roots. Can be used with any input.
 
-	T (&RT)[RT_LEN][4][3] = (*output)[0];
-	T &degen              = (*output)[1][0][0][0];
 
 	// % test for geometric degeneracy -------------------------------
 
@@ -28,6 +26,7 @@ void pose_from_point_tangents_root_find_function_any(
 	common::vec_3el_div_by_scalar(common::norm(DGama, 3), DGama, DGama);
 
 	// Matrix for degeneracy calculation
+	T &degen = (*output)[1][0][0][0];
 	const T degen_matrix[3][3] = {
 		DGama[0], Tgt1[0], Tgt2[0],
 		DGama[1], Tgt1[1], Tgt2[1],
@@ -54,21 +53,37 @@ void pose_from_point_tangents_root_find_function_any(
 	p.find_bounded_root_intervals(t_vector, &root_ids);
 
 	// % compute rhos, r, t --------------------------
-	static T rhos[7][ROOT_IDS_LEN];
+	static T rhos[8][ROOT_IDS_LEN];
 	p.rhos_from_root_ids(t_vector, root_ids, &rhos);
 	T (&rhos1)[ROOT_IDS_LEN] = rhos[0];
 	T (&rhos2)[ROOT_IDS_LEN] = rhos[3];
 	T (&ts)[ROOT_IDS_LEN]    = rhos[6];
+	T &ts_len                = rhos[7][0];
 
-	static T sigmas[4][SIGMA_LEN][SIGMA_LEN];
-	p.get_sigmas(ROOT_IDS_LEN, ts, &sigmas);
-	T (&sigmas1)[SIGMA_LEN][SIGMA_LEN] = sigmas[0];
-	T (&sigmas2)[SIGMA_LEN][SIGMA_LEN] = sigmas[1];
-	T (&sigmas1_end)[SIGMA_LEN]        = sigmas[2][0];
-	T (&sigmas2_end)[SIGMA_LEN]        = sigmas[3][0];
+
+	// TODO: Check if this upper bound is correct (`for` loop and `sigmas1_end`)
+	int sigma_len = ts_len * ts_len;
+
+	T sigmas[4][sigma_len][sigma_len];
+
+	// HACK: Turn multidimensional array into flat array
+	T &sigmas_flat = sigmas[0][0][0];
+
+	p.get_sigmas(ts_len, ts, &sigmas_flat);
+	//T (&sigmas1)[sigma_len][sigma_len] = sigmas[0];
+	//T (&sigmas2)[sigma_len][sigma_len] = sigmas[1];
+	//T (&sigmas1_end)[sigma_len]        = sigmas[2][0];
+	//T (&sigmas2_end)[sigma_len]        = sigmas[3][0];
+	T *sigmas1     = &sigmas[0][0][0];
+	T *sigmas2     = &sigmas[1][0][0];
+	T *sigmas1_end = &sigmas[2][0][0];
+	T *sigmas2_end = &sigmas[3][0][0];
+
+	//T (&RT)[RT_LEN][4][3] = (*output)[0];
+	T &RT = (*output)[0][0][0][0];
 
 	p.get_r_t_from_rhos(
-		TS_LEN,
+		ts_len,
 		sigmas1, sigmas1_end,
 		sigmas2, sigmas2_end,
 		rhos1, rhos2,

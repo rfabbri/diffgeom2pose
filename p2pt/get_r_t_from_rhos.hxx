@@ -8,21 +8,24 @@ void
 pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
-	const T (&sigmas1)[TS_LEN][TS_LEN], const T (&sigmas1_end)[TS_LEN], // `sigmas1_end`: Ugly, needs to be cast to integer
-	const T (&sigmas2)[TS_LEN][TS_LEN], const T (&sigmas2_end)[TS_LEN], // `sigmas2_end`: Ugly, needs to be cast to integer
-	const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN], // TODO: Fix size. Pass as an additional argument, or use a struct
+	const T sigmas1[], const T sigmas1_end[],
+	const T sigmas2[], const T sigmas2_end[],
+	const T rhos1[], const T rhos2[],
 	const T (&gama1)[3], const T (&tgt1)[3],
 	const T (&gama2)[3], const T (&tgt2)[3],
 	const T (&Gama1)[3], const T (&Tgt1)[3],
 	const T (&Gama2)[3], const T (&Tgt2)[3],
-	T (*output)[RT_LEN][4][3]
+	T *output
 )
 {
 	//% to be called from pose_from_point_tangents_root_find_function_any.m
 
+	// TODO: Find less hacky way to do this
+	#define idx(a,b,c) ((a)*ts_len*ts_len + (b)*ts_len + (c))
+
 	//% Lambdas:
-	static T lambdas1[TS_LEN][TS_LEN] = { {0} };
-	static T lambdas2[TS_LEN][TS_LEN] = { {0} };
+	T lambdas1[ts_len][ts_len] = { {0} };
+	T lambdas2[ts_len][ts_len] = { {0} };
 
 	static T Gama_sub[3];
 
@@ -47,7 +50,8 @@ get_r_t_from_rhos(
 			common::vec1vec2_3el_sub(den1, den2, den1);                  // den1 = den1 - den2
 
 			common::vec_3el_mult_by_scalar(rhos1[i], tgt1, den2);        // den2 = rhos1(i) * tgt1
-			common::vec_3el_mult_by_scalar(sigmas1[i][j], gama1, den3);  // den3 = sigmas1{i}(j) * gama1
+			//common::vec_3el_mult_by_scalar(sigmas1[i][j], gama1, den3);  // den3 = sigmas1{i}(j) * gama1
+			common::vec_3el_mult_by_scalar(*(sigmas1 + i*ts_len + j), gama1, den3);  // den3 = sigmas1{i}(j) * gama1
 			common::vec1vec2_3el_sum(den2, den3, den2);                  // den2 = den2 + den3
 
 			// lambdas1{i}(j) = Gama_sub' * Tgt1 / den1' * den2
@@ -61,7 +65,7 @@ get_r_t_from_rhos(
 			common::vec1vec2_3el_sub(den1, den2, den1);                  // den1 = den1 - den2
 
 			common::vec_3el_mult_by_scalar(rhos2[i], tgt2, den2);        // den2 = rhos2(i) * tgt2
-			common::vec_3el_mult_by_scalar(sigmas2[i][j], gama2, den3);  // den3 = sigmas2{i}(j) * gama2
+			common::vec_3el_mult_by_scalar(*(sigmas2 + i*ts_len + j), gama2, den3);  // den3 = sigmas2{i}(j) * gama2
 			common::vec1vec2_3el_sum(den2, den3, den2);                  // den2 = den2 + den3
 
 			// lambdas2{i}(j) = Gama_sub' * Tgt2 / den1' * den2
@@ -84,18 +88,27 @@ get_r_t_from_rhos(
 	T inv_A[3][3]; common::invm3x3(A, inv_A);
 
 	// Matrix containing Rotations and Translations
-	T (&RT)[RT_LEN][4][3] = *output;
+	//T (&RT)[RT_LEN][4][3] = *output;
+	T *RT = output;
 	int RT_end = 0;
+	const int rt_len = ts_len * ts_len;
 
 	for (int i = 0; i < ts_len; i++) {
 		for (int j = 0; j < (int)sigmas1_end[i]; j++, RT_end++) {
-			T (&Rots)[4][3] = RT[RT_end];
-			T (&Transls)[3] = RT[RT_end][3];
+			//T (&Rots)[4][3] = RT[RT_end];
+			//T (&Transls)[3] = RT[RT_end][3];
+			T *Rots    = (RT + RT_end*ts_len);
+			T *Transls = (RT + RT_end*ts_len + 3*4);
+
+			//#define B_row(r) \
+			//	rhos1[i]*gama1[r] - rhos2[i]*gama2[r], \
+			//	lambdas1[i][j]*(rhos1[i]*tgt1[r] + sigmas1[i][j]*gama1[r]), \
+			//	lambdas2[i][j]*(rhos2[i]*tgt2[r] + sigmas2[i][j]*gama2[r]) \
 
 			#define B_row(r) \
 				rhos1[i]*gama1[r] - rhos2[i]*gama2[r], \
-				lambdas1[i][j]*(rhos1[i]*tgt1[r] + sigmas1[i][j]*gama1[r]), \
-				lambdas2[i][j]*(rhos2[i]*tgt2[r] + sigmas2[i][j]*gama2[r]) \
+				lambdas1[i][j]*(rhos1[i]*tgt1[r] + *(sigmas1 + i*ts_len + j)*gama1[r]), \
+				lambdas2[i][j]*(rhos2[i]*tgt2[r] + *(sigmas2 + i*ts_len + j)*gama2[r]) \
 
 			const T B[3][3] = {
 				B_row(0),
@@ -129,6 +142,7 @@ get_r_t_from_rhos(
 
 	//std::copy(std::begin(Rots[0][0][0]), std::end(Rots[Rots_end][2][2]), std::begin(RT[0][0][0]));
 	//std::copy(std::begin(Transls[0][0]), std::end(Transls[Transls_end][2]), std::begin(RT[3][0][0]));
+	#undef idx
 }
 
 }

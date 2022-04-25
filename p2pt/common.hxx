@@ -71,25 +71,25 @@ namespace common {
 	}
 
 	template<typename T>
-	void multm3x3(const T m1[3][3], const T m2[3][3], T output_m[3][3])
+	void multm3x3(const T m1[3][3], const T m2[3][3], T *output_m)
 	{
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				output_m[i][j] = 0;
+				*(output_m + i*3 + j) = 0;
 				for (int k = 0; k < 3; k++) {
-					output_m[i][j] += m1[i][k] * m2[k][j];
+					*(output_m + i*3 + j) += m1[i][k] * m2[k][j];
 				}
 			}
 		}
 	}
 
 	template<typename T>
-	void multm_3x3_3x1(const T m1[3][3], const T m2[3], T output_m[3])
+	void multm_3x3_3x1(const T *m1, const T m2[3], T output_m[3])
 	{
 		for (int i = 0; i < 3; i++) {
 			output_m[i] = 0;
 			for (int j = 0; j < 3; j++) {
-				output_m[i] += m1[i][j] * m2[j];
+				output_m[i] += *(m1 + i*3 + j) * m2[j];
 			}
 		}
 	}
