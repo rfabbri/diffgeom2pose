@@ -51,7 +51,6 @@ pose_from_point_tangents_2(
 	static double t1, t2, t4, t5, t6, t7, t8;
 	static double t11, t14, t15, t21, t24, t25;
 	static double den1, den2;
-	static double sth, cth;
 
 	g11 = gama1[0]; g12 = gama1[1];
 	g21 = gama2[0]; g22 = gama2[1];
@@ -75,8 +74,8 @@ pose_from_point_tangents_2(
 
 	theta = 0.5*atan(t11);
 	if (theta < 0) theta += PI / 2;
-	sth = sin(theta);
-	cth = cos(theta);
+	const double sth = sin(theta);
+	const double cth = cos(theta);
 
 	//% 497-798
 	//%theta = .7865071740;

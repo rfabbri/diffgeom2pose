@@ -63,6 +63,11 @@ struct pose_poly {
 		const T (&Gama2)[3], const T (&Tgt2)[3],
 		T (*output)[RT_MAX_LEN + 1][4][3]
 	);
+	T operator()(T t) {
+		static T t_ref_arr[11];
+		pose_poly<T>::pose_from_point_tangents_2_fn_t_for_root(t, &t_ref_arr);
+		return t_ref_arr[0];
+	}
 };
 
 }

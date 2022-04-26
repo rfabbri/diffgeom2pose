@@ -24,19 +24,34 @@ rhos_from_root_ids(
 	static int ts_end;
 	ts_end = 0;
 
+	#if 1
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		if (root_ids[i] == 1) {
 			// TODO: implement fzero using (t_vector(i) + t_vector(i+1))/2; maybe use Newton's method later
-			static T t_ref_arr[11];
 			static T t_ref;
 
-			pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, &t_ref_arr);
+			//pose_from_point_tangents_2_fn_t_for_root((t_vector[i] + t_vector[i+1])/2, &t_ref_arr);
 
-			//using namespace boost::math::tools;
-			//unsigned long max_iter = 100;
-			//auto test = toms748_solve(&P2Pt::pose_poly<double>::pose_from_point_tangents_2_fn_t_for_root, t_vector[i], t_vector[i+1], eps_tolerance<T>(), max_iter);
+			std::cout << i << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(t_vector[i-3]) << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(t_vector[i-2]) << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(t_vector[i-1]) << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(t_vector[i]) << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(t_vector[i+1]) << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(t_vector[i+2]) << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(t_vector[i+3]) << std::endl;
+			std::cout << "xxxxxxxxx: " << (*this)(0.5) << std::endl;
 
-			t_ref = t_ref_arr[0];
+			unsigned long max_iter = 100; // TODO: Change to 1--3
+			std::pair<T,T> t_ref_pair = boost::math::tools::toms748_solve(
+				*this,
+				t_vector[i],
+				t_vector[i+1],
+				boost::math::tools::eps_tolerance<T>(),
+				max_iter
+			);
+
+			t_ref = (t_ref_pair.first + t_ref_pair.second)/2.0;
 
 			//pose_from_point_tangents_2_fn_t_for_root(t_ref);
 
@@ -46,6 +61,7 @@ rhos_from_root_ids(
 		}
 	}
 	ts_len = ts_end;
+	#endif
 
 	#if 0 // FOR TEST ONLY
 	ts_end = 4;

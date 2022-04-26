@@ -184,7 +184,18 @@ test_sample_pose_poly()
 static void
 test_rhos_from_root_ids()
 {
-	pose_poly<double> p;
+	pose_poly<double> p = {
+		sample_A0, sample_A1, sample_A2,
+		sample_B0, sample_B1, sample_B2, sample_B3,
+		sample_C0, sample_C1, sample_C2, sample_C3, sample_C4,
+		sample_E0, sample_E1, sample_E2,
+		sample_F0, sample_F1, sample_F2, sample_F3,
+		sample_G0, sample_G1, sample_G2, sample_G3, sample_G4,
+		sample_H0, sample_H1, sample_H2, sample_H3, sample_H4,
+		sample_J0, sample_J1, sample_J2, sample_J3,
+		sample_K0, sample_K1, sample_K2, sample_K3,
+		sample_L0, sample_L1, sample_L2
+	};
 	p.alpha = sample_alpha;
 	p.beta  = sample_beta;
 	p.theta = sample_theta;

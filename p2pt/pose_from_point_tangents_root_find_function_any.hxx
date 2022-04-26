@@ -70,7 +70,7 @@ void pose_from_point_tangents_root_find_function_any(
 	T (&sigmas2_end)[TS_MAX_LEN]        = sigmas[3][0];
 
 	p.get_r_t_from_rhos(
-		TS_MAX_LEN,
+		ts_len,
 		sigmas1, sigmas1_end,
 		sigmas2, sigmas2_end,
 		rhos1, rhos2,
