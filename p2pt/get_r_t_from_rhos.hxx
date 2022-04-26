@@ -1,4 +1,3 @@
-// % to be called from pose_from_point_tangents_root_find_function_any.m
 #include "common.hxx"
 
 namespace P2Pt {
@@ -8,18 +7,16 @@ void
 pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
-	const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const T (&sigmas1_end)[TS_MAX_LEN], // `sigmas1_end`: Ugly, needs to be cast to integer
-	const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN], const T (&sigmas2_end)[TS_MAX_LEN], // `sigmas2_end`: Ugly, needs to be cast to integer
-	const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN], // TODO: Fix size. Pass as an additional argument, or use a struct
+	const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas1_len)[TS_MAX_LEN],
+	const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas2_len)[TS_MAX_LEN],
+	const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN],
 	const T (&gama1)[3], const T (&tgt1)[3],
 	const T (&gama2)[3], const T (&tgt2)[3],
 	const T (&Gama1)[3], const T (&Tgt1)[3],
 	const T (&Gama2)[3], const T (&Tgt2)[3],
-	T (*output)[RT_MAX_LEN + 1][4][3]
+	T (*output)[RT_MAX_LEN][4][3], int *output_len
 )
 {
-	//% to be called from pose_from_point_tangents_root_find_function_any.m
-
 	//% Lambdas:
 	static T lambdas1[TS_MAX_LEN][TS_MAX_LEN] = { {0} };
 	static T lambdas2[TS_MAX_LEN][TS_MAX_LEN] = { {0} };
@@ -27,19 +24,11 @@ get_r_t_from_rhos(
 	static T Gama_sub[3];
 
 	for (int i = 0; i < ts_len; i++) {
-		//if (sigmas1_end[i] == 0) {
-			// Is this necessary?
-			//lambdas1[i] = {};
-			//lambdas2[i] = {};
-		//}
-		//lambdas1[i] = zeros(size(sigmas1{i}));
-		//lambdas2[i] = zeros(size(sigmas2{i}));
-
 		// Buffers
 		static T den1[3], den2[3], den3[3];
 
 		// TODO: Check if separate loops are better for vectorization
-		for (int j = 0; j < (int)sigmas1_end[i]; j++) {
+		for (int j = 0; j < sigmas1_len[i]; j++) {
 			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
 
 			common::vec_3el_mult_by_scalar(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
@@ -53,7 +42,7 @@ get_r_t_from_rhos(
 			// lambdas1{i}(j) = Gama_sub' * Tgt1 / den1' * den2
 			lambdas1[i][j] = common::vec1vec2_3el_dot(Gama_sub, Tgt1) / common::vec1vec2_3el_dot(den1, den2);
 		}
-		for (int j = 0; j < (int)sigmas1_end[i]; j++) {
+		for (int j = 0; j < sigmas1_len[i]; j++) {
 			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
 
 			common::vec_3el_mult_by_scalar(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
@@ -84,20 +73,19 @@ get_r_t_from_rhos(
 	T inv_A[3][3]; common::invm3x3(A, inv_A);
 
 	// Matrix containing Rotations and Translations
-	T (&RT)[RT_MAX_LEN + 1][4][3] = *output;
+	T (&RT)[RT_MAX_LEN][4][3] = *output;
+	int &RT_len               = *output_len;
 
-	// HACK: Set `RT_end` one ahead to allow space for `RT_len` as first value
-	int RT_end = 1;
-
+	RT_len = 0;
 	for (int i = 0; i < ts_len; i++) {
-		for (int j = 0; j < (int)sigmas1_end[i]; j++, RT_end++) {
-			T (&Rots)[4][3] = RT[RT_end];
-			T (&Transls)[3] = RT[RT_end][3];
+		for (int j = 0; j < sigmas1_len[i]; j++, RT_len++) {
+			T (&Rots)[4][3] = RT[RT_len];
+			T (&Transls)[3] = RT[RT_len][3];
 
-			#define B_row(r) \
-				rhos1[i]*gama1[r] - rhos2[i]*gama2[r], \
-				lambdas1[i][j]*(rhos1[i]*tgt1[r] + sigmas1[i][j]*gama1[r]), \
-				lambdas2[i][j]*(rhos2[i]*tgt2[r] + sigmas2[i][j]*gama2[r]) \
+			#define B_row(r)                                                    \
+				rhos1[i]*gama1[(r)] - rhos2[i]*gama2[(r)],                      \
+				lambdas1[i][j]*(rhos1[i]*tgt1[(r)] + sigmas1[i][j]*gama1[(r)]), \
+				lambdas2[i][j]*(rhos2[i]*tgt2[(r)] + sigmas2[i][j]*gama2[(r)])
 
 			const T B[3][3] = {
 				B_row(0),
@@ -107,29 +95,14 @@ get_r_t_from_rhos(
 
 			common::multm3x3(B, inv_A, Rots);
 
-			//% be sure it's close to 1:
-			//common::det3x3(Rots[Rots_end]);
-
 			T buff1[3], buff2[3];
 
 			// Transls{end+1} = rhos1(i)*gama1 - Rots{end}*Gama1;
 			common::vec_3el_mult_by_scalar(rhos1[i], gama1, buff1);
 			common::multm_3x3_3x1(Rots, Gama1, buff2);
 			common::vec1vec2_3el_sub(buff1, buff2, Transls);
-
-			//% this should be the same
-			// rhos2(i)*gama2 - Rots{end}*Gama2;
-			//common::vec_mult_by_scalar(rhos2[i], gama2, buff1);
-			//common::multm_3x3_3x1(Rots[Rots_end], Gama2, buff2);
-			//common::vec1vec2_3el_sub(buff1, buff2, buff1);
-
-			//for (int i = 0; i < 3; i++) {
-			//	assert(Transls[Transls_end - 1][i] - buff1[i] < 1.0e-4);
-			//}
 		}
 	}
-	T (&RT_len) = (*output)[0][0][0];
-	RT_len = RT_end - 1;
 }
 
 }

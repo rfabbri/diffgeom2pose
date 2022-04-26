@@ -6103,8 +6103,8 @@ constexpr double sample_sigmas2[4][4] = {
 	{-2.23388593591439},
 	{-0.114058798509118, -0.114058798509118, -0.066817663927889, -0.066817663927889}
 };
-constexpr double sample_sigmas1_end[4] = {1, 1, 1, 4};
-constexpr double sample_sigmas2_end[4] = {1, 1, 1, 4};
+constexpr int sample_sigmas1_end[4] = {1, 1, 1, 4};
+constexpr int sample_sigmas2_end[4] = {1, 1, 1, 4};
 
 constexpr double sample_Rots[7][3][3] = {
 	{

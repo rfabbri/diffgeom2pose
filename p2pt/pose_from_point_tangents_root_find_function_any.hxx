@@ -13,17 +13,15 @@ void pose_from_point_tangents_root_find_function_any(
 	const T (&gama2)[3], const T (&tgt2)[3],
 	const T (&Gama1)[3], const T (&Tgt1)[3],
 	const T (&Gama2)[3], const T (&Tgt2)[3],
-	T (*output)[2][RT_MAX_LEN + 1][4][3]
+	T (*output_RT)[RT_MAX_LEN][4][3],
+	int *output_RT_len,
+	T *output_degen
 )
 {
 	// % This is the main routine to find roots. Can be used with any input.
 
-	// HACK: Extra matrix to store final length of RT
-	T (&RT)[RT_MAX_LEN + 1][4][3] = (*output)[0];
-	T &degen              = (*output)[1][0][0][0];
 
 	// % test for geometric degeneracy -------------------------------
-
 	static T DGama[3];
 	common::vec1vec2_3el_sub(Gama1, Gama2, DGama);
 	common::vec_3el_div_by_scalar(common::norm(DGama, 3), DGama, DGama);
@@ -34,6 +32,7 @@ void pose_from_point_tangents_root_find_function_any(
 		DGama[1], Tgt1[1], Tgt2[1],
 		DGama[2], Tgt1[2], Tgt2[2]
 	};
+	T &degen = *output_degen;
 	degen = common::det3x3(degen_matrix);
 
 	if (std::abs(degen) < 1.0e-3) {
@@ -49,36 +48,53 @@ void pose_from_point_tangents_root_find_function_any(
 	T t_vector[T_VECTOR_LEN]; common::colon(-1.0, 0.001, 1.0, t_vector);
 
 	pose_poly<T> p;
-	p.pose_from_point_tangents_2(gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
+	p.pose_from_point_tangents_2(
+		gama1, tgt1,
+		gama2, tgt2,
+		Gama1, Tgt1,
+		Gama2, Tgt2
+	);
 
 	static T root_ids[ROOT_IDS_LEN] = {0};
+
 	p.find_bounded_root_intervals(t_vector, &root_ids);
 
+
 	// % compute rhos, r, t --------------------------
-	static T rhos[8][ROOT_IDS_LEN];
-	p.rhos_from_root_ids(t_vector, root_ids, &rhos);
+	static T rhos[7][ROOT_IDS_LEN];
+	static int ts_len;
+
+	p.rhos_from_root_ids(t_vector, root_ids, &rhos, &ts_len);
+
 	T (&rhos1)[ROOT_IDS_LEN] = rhos[0];
 	T (&rhos2)[ROOT_IDS_LEN] = rhos[3];
 	T (&ts)[ROOT_IDS_LEN]    = rhos[6];
-	T (&ts_len)              = rhos[7][0];
 
-	static T sigmas[4][TS_MAX_LEN][TS_MAX_LEN];
-	p.get_sigmas(ts_len, ts, &sigmas);
+
+	static T sigmas[2][TS_MAX_LEN][TS_MAX_LEN];
+	static int sigmas_len[2][TS_MAX_LEN];
+
+	p.get_sigmas(ts_len, ts, &sigmas, &sigmas_len);
+
 	T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[0];
 	T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[1];
-	T (&sigmas1_end)[TS_MAX_LEN]        = sigmas[2][0];
-	T (&sigmas2_end)[TS_MAX_LEN]        = sigmas[3][0];
+	int (&sigmas1_len)[TS_MAX_LEN]       = sigmas_len[0];
+	int (&sigmas2_len)[TS_MAX_LEN]       = sigmas_len[1];
+
+
+	T (&RT)[RT_MAX_LEN][4][3] = *output_RT;
+	int &RT_len               = *output_RT_len;
 
 	p.get_r_t_from_rhos(
 		ts_len,
-		sigmas1, sigmas1_end,
-		sigmas2, sigmas2_end,
+		sigmas1, sigmas1_len,
+		sigmas2, sigmas2_len,
 		rhos1, rhos2,
 		gama1, tgt1,
 		gama2, tgt2,
 		Gama1, Tgt1,
 		Gama2, Tgt2,
-		&RT
+		&RT, &RT_len
 	);
 }
 

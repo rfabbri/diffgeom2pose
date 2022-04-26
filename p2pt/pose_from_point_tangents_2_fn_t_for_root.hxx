@@ -3,9 +3,9 @@
 namespace P2Pt {
 
 template<typename T>
-void
+T
 pose_poly<T>::
-pose_from_point_tangents_2_fn_t_for_root(const T t, T (*output)[11])
+pose_from_point_tangents_2_fn_t_for_root(const T t)
 {
 	// TODO: See if this can be reused from `sample_pose_poly`, even though this function
 	// only applies to scalar values rather than vectors. Function overloading?
@@ -13,27 +13,15 @@ pose_from_point_tangents_2_fn_t_for_root(const T t, T (*output)[11])
 	//% perturb = -4.9e6;
 	//% perturb = -1.7e8;
 	//% perturb = -2.55e7;
-	static T perturb;
-	perturb = 0;
+	//static T perturb;
+	//perturb = 0;
 	//% same as  pose_from_point_tangents_2_fn_t, but polynomial value might be
 	//% perturbed by max of(perturb) so that roots appear for noisy data.This wasn't
 	//% used in the end.
 	//%
 
 	//%function of t part :
-	T& fvalue = (*output)[0];
-	T& A      = (*output)[1];
-	T& B      = (*output)[2];
-	T& C      = (*output)[3];
-
-	T& E      = (*output)[4];
-	T& F      = (*output)[5];
-	T& G      = (*output)[6];
-	T& H      = (*output)[7];
-
-	T& J      = (*output)[8];
-	T& K      = (*output)[9];
-	T& L      = (*output)[10];
+	static T fvalue, A, B, C, E, F, G, H, J, K, L;
 
 	// `t` integer powers
 	static T t_pow2, t_pow3, t_pow4, t_pow5, t_pow6, t_pow7, t_pow8;
@@ -151,7 +139,8 @@ pose_from_point_tangents_2_fn_t_for_root(const T t, T (*output)[11])
 
 	fvalue = 0;
 	for (int i = 0; i < 52; i++)
-		fvalue += fvalue_terms[i] + perturb;
+		fvalue += fvalue_terms[i] /* + perturb */;
+	return fvalue;
 }
 
 }

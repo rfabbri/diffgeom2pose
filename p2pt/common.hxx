@@ -177,7 +177,6 @@ namespace common {
 	}
 
 
-	#pragma region vec_el_wise_mult
 
 	// Special case for 2 vectors of 3 elements each
 	// Returns pointer for simplicity of calculations in `sample_pose_poly`
@@ -278,7 +277,6 @@ namespace common {
 		}
 		return output;
 	}
-	#pragma endregion // vec_el_wise_mult
 
 	template<typename T>
 	void vec_mult_by_scalar(const int scalar, const T vec[T_VECTOR_LEN], T output[T_VECTOR_LEN])

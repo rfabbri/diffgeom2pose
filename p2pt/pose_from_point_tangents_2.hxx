@@ -1,4 +1,3 @@
-//% This is usually called from pose_from_point_tangents_root_find_function_any.m
 //%
 //% Input: gama1, gama2, tgt1, tgt2, Gama1, Gama2, Tgt1, Tgt2
 //% ----------------------------------------------------------------------------
@@ -49,7 +48,7 @@ pose_from_point_tangents_2(
 	static double V[3], buf[3];
 	static double a1, a2, a3, a4, a5, a6;
 	static double t1, t2, t4, t5, t6, t7, t8;
-	static double t11, t14, t15, t21, t24, t25;
+	static double t11, t14, /* t15, */ t21, t24, t25;
 	static double den1, den2;
 
 	g11 = gama1[0]; g12 = gama1[1];
