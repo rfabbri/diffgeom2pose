@@ -1,4 +1,5 @@
-#include "poly.h"
+#ifndef pose_from_point_tangents_2_fn_t_hxx_
+#define pose_from_point_tangents_2_fn_t_hxx_
 
 namespace P2Pt {
 
@@ -7,9 +8,6 @@ void
 pose_poly<T>::
 pose_from_point_tangents_2_fn_t(const T t, T (*output)[11])
 {
-	// TODO: See if this can be reused from `sample_pose_poly`, even though this function
-	// only applies to scalar values rather than vectors. Function overloading?
-
 	//%function of t part :
 	T& fvalue = (*output)[0];
 	T& A      = (*output)[1];
@@ -145,4 +143,6 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[11])
 }
 
 }
+
+#endif // !pose_from_point_tangents_2_fn_t_hxx_
 

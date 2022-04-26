@@ -1,4 +1,5 @@
-#include "poly.h"
+#ifndef pose_from_point_tangents_2_fn_t_for_root_hxx_
+#define pose_from_point_tangents_2_fn_t_for_root_hxx_
 
 namespace P2Pt {
 
@@ -7,21 +8,8 @@ T
 pose_poly<T>::
 pose_from_point_tangents_2_fn_t_for_root(const T t)
 {
-	// TODO: See if this can be reused from `sample_pose_poly`, even though this function
-	// only applies to scalar values rather than vectors. Function overloading?
-
-	//% perturb = -4.9e6;
-	//% perturb = -1.7e8;
-	//% perturb = -2.55e7;
-	//static T perturb;
-	//perturb = 0;
-	//% same as  pose_from_point_tangents_2_fn_t, but polynomial value might be
-	//% perturbed by max of(perturb) so that roots appear for noisy data.This wasn't
-	//% used in the end.
-	//%
-
 	//%function of t part :
-	static T fvalue, A, B, C, E, F, G, H, J, K, L;
+	static T A, B, C, E, F, G, H, J, K, L;
 
 	// `t` integer powers
 	static T t_pow2, t_pow3, t_pow4, t_pow5, t_pow6, t_pow7, t_pow8;
@@ -65,7 +53,6 @@ pose_from_point_tangents_2_fn_t_for_root(const T t)
 	K = (K0 + K1 * t + K2 * t_pow2 + K3 * t_pow3 - K2 * t_pow4 + K1 * t_pow5 - K0 * t_pow6) / K_den;
 	L = (L0 + L1 * t + L2 * t_pow2 - L1 * t_pow3 + L0 * t_pow4) / L_den;
 
-	// `output`
 	static T A_pow2, B_pow2, C_pow2, E_pow2, F_pow2, G_pow2, H_pow2, J_pow2, K_pow2, L_pow2;
 	static T H_pow3, J_pow3, K_pow3, L_pow3;
 	static T H_pow4, J_pow4, K_pow4, L_pow4;
@@ -137,11 +124,14 @@ pose_from_point_tangents_2_fn_t_for_root(const T t)
 	fvalue_terms[50] =      G      * E      * B_pow2 * K_pow2 * J_pow2;
 	fvalue_terms[51] =  8 * G      * E      * A      * H      * K      * C      * J      * L;
 
+	static T fvalue;
 	fvalue = 0;
 	for (int i = 0; i < 52; i++)
-		fvalue += fvalue_terms[i] /* + perturb */;
+		fvalue += fvalue_terms[i];
 	return fvalue;
 }
 
 }
+
+#endif // !pose_from_point_tangents_2_fn_t_for_root_hxx_
 

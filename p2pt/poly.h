@@ -34,7 +34,7 @@ struct pose_poly {
 		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
 	);
 	void sample_pose_poly(
-		const T (&t)[T_VECTOR_LEN], T (*output)[11][T_VECTOR_LEN]
+		const T (&t)[T_VECTOR_LEN], T (*output)[T_VECTOR_LEN]
 	);
 	T pose_from_point_tangents_2_fn_t_for_root(
 		const T t
@@ -44,7 +44,7 @@ struct pose_poly {
 	);
 	void rhos_from_root_ids(
 		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
-		T (*output)[7][ROOT_IDS_LEN], int *output_ts_len
+		T (*output)[3][ROOT_IDS_LEN], int *output_ts_len
 	);
 	void get_sigmas(
 		const int ts_len, const T (&ts)[ROOT_IDS_LEN],
@@ -68,4 +68,5 @@ struct pose_poly {
 
 }
 
-#endif // poly_h_
+#endif // !poly_h_
+

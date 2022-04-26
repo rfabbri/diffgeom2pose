@@ -1,5 +1,5 @@
-#include "poly.h"
-//#include "common.hxx"
+#ifndef sample_pose_poly_hxx_
+#define sample_pose_poly_hxx_
 
 namespace P2Pt {
 
@@ -7,24 +7,23 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-sample_pose_poly(const T (&t)[T_VECTOR_LEN], T (*output)[11][T_VECTOR_LEN])
+sample_pose_poly(const T (&t)[T_VECTOR_LEN], T (*output)[T_VECTOR_LEN])
 {
 	//% function of t part:
 	using namespace common;
 
-	T (&fvalue)[T_VECTOR_LEN] = (*output)[0];
-	T (&A)[T_VECTOR_LEN]      = (*output)[1];
-	T (&B)[T_VECTOR_LEN]      = (*output)[2];
-	T (&C)[T_VECTOR_LEN]      = (*output)[3];
+	static T A[T_VECTOR_LEN];
+	static T B[T_VECTOR_LEN];
+	static T C[T_VECTOR_LEN];
 
-	T (&E)[T_VECTOR_LEN]      = (*output)[4];
-	T (&F)[T_VECTOR_LEN]      = (*output)[5];
-	T (&G)[T_VECTOR_LEN]      = (*output)[6];
-	T (&H)[T_VECTOR_LEN]      = (*output)[7];
+	static T E[T_VECTOR_LEN];
+	static T F[T_VECTOR_LEN];
+	static T G[T_VECTOR_LEN];
+	static T H[T_VECTOR_LEN];
 
-	T (&J)[T_VECTOR_LEN]      = (*output)[8];
-	T (&K)[T_VECTOR_LEN]      = (*output)[9];
-	T (&L)[T_VECTOR_LEN]      = (*output)[10];
+	static T J[T_VECTOR_LEN];
+	static T K[T_VECTOR_LEN];
+	static T L[T_VECTOR_LEN];
 
 	// TODO: POSSIBLY OPTIMIZE ALL THESE FUNCION CALLS FOR
 	// `t_powN[]`,
@@ -237,10 +236,13 @@ sample_pose_poly(const T (&t)[T_VECTOR_LEN], T (*output)[11][T_VECTOR_LEN])
 	/* 50 ...................... */ vec_el_wise_mult5(G,      E,      B_pow2, K_pow2, J_pow2,                    fvalue_terms[50]);
 	/* 51 */ vec_mult_by_scalar( 8, vec_el_wise_mult8(G,      E,      A,      H,      K,      C,      J,      L, fvalue_terms[51]), fvalue_terms[51]);
 
+	T (&fvalue)[T_VECTOR_LEN] = *output;
 	for (int i = 0; i < T_VECTOR_LEN; i++)
 		for (int j = 0; j < 52; j++)
 			fvalue[i] += fvalue_terms[j][i];
 }
 
 }
+
+#endif // !sample_pose_poly_hxx_
 

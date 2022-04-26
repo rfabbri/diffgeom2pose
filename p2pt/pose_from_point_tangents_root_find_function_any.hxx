@@ -1,8 +1,13 @@
+#ifndef pose_from_point_tangents_root_find_function_any_hxx_
+#define pose_from_point_tangents_root_find_function_any_hxx_
+
 #include "common.hxx"
 #include "poly.h"
 
 #include "pose_from_point_tangents_2.hxx"
 #include "find_bounded_root_intervals.hxx"
+#include "rhos_from_root_ids.hxx"
+#include "get_sigmas.hxx"
 #include "get_r_t_from_rhos.hxx"
 
 namespace P2Pt {
@@ -37,16 +42,13 @@ void pose_from_point_tangents_root_find_function_any(
 
 	if (std::abs(degen) < 1.0e-3) {
 		std::cout << "data point not reliable" << std::endl;
-		//(*output)[0] = nullptr;
-		//(*output)[1] = nullptr;
-		//(*output)[2] = nullptr;
+		output_RT     = nullptr;
+		output_RT_len = nullptr;
+		output_degen  = nullptr;
 		return;
 	}
 
 	// % compute roots -------------------------------
-
-	T t_vector[T_VECTOR_LEN]; common::colon(-1.0, 0.001, 1.0, t_vector);
-
 	pose_poly<T> p;
 	p.pose_from_point_tangents_2(
 		gama1, tgt1,
@@ -55,20 +57,21 @@ void pose_from_point_tangents_root_find_function_any(
 		Gama2, Tgt2
 	);
 
+	static T t_vector[T_VECTOR_LEN]; common::colon(-1.0, 0.001, 1.0, t_vector);
 	static T root_ids[ROOT_IDS_LEN] = {0};
 
 	p.find_bounded_root_intervals(t_vector, &root_ids);
 
 
 	// % compute rhos, r, t --------------------------
-	static T rhos[7][ROOT_IDS_LEN];
+	static T rhos[3][ROOT_IDS_LEN];
 	static int ts_len;
 
 	p.rhos_from_root_ids(t_vector, root_ids, &rhos, &ts_len);
 
-	T (&rhos1)[ROOT_IDS_LEN] = rhos[0];
-	T (&rhos2)[ROOT_IDS_LEN] = rhos[3];
-	T (&ts)[ROOT_IDS_LEN]    = rhos[6];
+	T (&ts)[ROOT_IDS_LEN]    = rhos[0];
+	T (&rhos1)[ROOT_IDS_LEN] = rhos[1];
+	T (&rhos2)[ROOT_IDS_LEN] = rhos[2];
 
 
 	static T sigmas[2][TS_MAX_LEN][TS_MAX_LEN];
@@ -99,4 +102,6 @@ void pose_from_point_tangents_root_find_function_any(
 }
 
 }
+
+#endif // !pose_from_point_tangents_root_find_function_any_hxx_
 

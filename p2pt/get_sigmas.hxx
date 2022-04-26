@@ -1,5 +1,7 @@
-#include "pose_from_point_tangents_2_fn_t.hxx"
+#ifndef get_sigmas_hxx_
+#define get_sigmas_hxx_
 
+#include "pose_from_point_tangents_2_fn_t.hxx"
 
 namespace P2Pt {
 
@@ -12,7 +14,6 @@ get_sigmas(
 	int (*output_len)[2][TS_MAX_LEN]
 )
 {
-	T my_eps = 1.0;
 
 	/**************************************************************************
 	 `output`
@@ -85,6 +86,8 @@ get_sigmas(
 
 		//% Now check to see which pair pass. Only a single pair should pass, in theory.
 		//% If not, issue a warning.
+		constexpr T my_eps = 1.0;
+
 		if (std::abs(H + J*sigma1_m + K*sigma2_m + L*sigma1_m*sigma2_m) < my_eps) {
 			sigmas1[i][sigmas1_len[i]++] = sigma1_m.real();
 			sigmas2[i][sigmas2_len[i]++] = sigma2_m.real();
@@ -113,4 +116,6 @@ get_sigmas(
 }
 
 }
+
+#endif // !get_sigmas_hxx_
 

@@ -41,7 +41,6 @@ test_pose_from_point_tangents_root_find_function_any()
 	);
 
 	char indexstr[128];
-	// HACK: `i+1` used to skip first value of `RT` which is `RT_len`
 	for (int i = 0; i < sample_RT_len; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
@@ -167,11 +166,9 @@ test_sample_pose_poly()
 		sample_L0, sample_L1, sample_L2
 	};
 
-	double test_output[11][T_VECTOR_LEN];
+	double test_fvalue[T_VECTOR_LEN] = {0};
 
-	p.sample_pose_poly(sample_t_vector, &test_output);
-
-	double (&test_fvalue)[T_VECTOR_LEN] = test_output[0];
+	p.sample_pose_poly(sample_t_vector, &test_fvalue);
 
 	char indexstr[128];
 	for (int i = 0; i < T_VECTOR_LEN; i++) {
@@ -197,18 +194,14 @@ test_rhos_from_root_ids()
 		sample_alpha, sample_beta, sample_theta
 	};
 
-	double output[7][ROOT_IDS_LEN];
+	double output[3][ROOT_IDS_LEN];
 	int test_ts_len;
 
 	p.rhos_from_root_ids(sample_t_vector, sample_root_ids, &output, &test_ts_len);
 
-	double (&test_rhos1)[ROOT_IDS_LEN]       = output[0];
-	double (&test_rhos1_minus)[ROOT_IDS_LEN] = output[1];
-	double (&test_rhos1_plus)[ROOT_IDS_LEN]  = output[2];
-	double (&test_rhos2)[ROOT_IDS_LEN]       = output[3];
-	double (&test_rhos2_minus)[ROOT_IDS_LEN] = output[4];
-	double (&test_rhos2_plus)[ROOT_IDS_LEN]  = output[5];
-	double (&test_ts)[ROOT_IDS_LEN]          = output[6];
+	double (&test_ts)[ROOT_IDS_LEN]          = output[0];
+	double (&test_rhos1)[ROOT_IDS_LEN]       = output[1];
+	double (&test_rhos2)[ROOT_IDS_LEN]       = output[2];
 
 	char indexstr[128];
 	for (int i = 0; i < sample_ts_len; i++) {
@@ -216,24 +209,8 @@ test_rhos_from_root_ids()
 		TEST_NEAR_REL(indexstr, test_rhos1[i], sample_rhos1[i], eps);
 	}
 	for (int i = 0; i < sample_ts_len; i++) {
-		snprintf(indexstr, 128, "rhos1_minus[%d]", i);
-		TEST_NEAR_REL(indexstr, test_rhos1_minus[i], sample_rhos1_minus[i], eps);
-	}
-	for (int i = 0; i < sample_ts_len; i++) {
-		snprintf(indexstr, 128, "rhos1_plus[%d]", i);
-		TEST_NEAR_REL(indexstr, test_rhos1_plus[i] , sample_rhos1_plus[i], eps);
-	}
-	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "rhos2[%d]", i);
 		TEST_NEAR_REL(indexstr, test_rhos2[i], sample_rhos2[i], eps);
-	}
-	for (int i = 0; i < sample_ts_len; i++) {
-		snprintf(indexstr, 128, "rhos2_minus[%d]", i);
-		TEST_NEAR_REL(indexstr, test_rhos2_minus[i], sample_rhos2_minus[i], eps);
-	}
-	for (int i = 0; i < sample_ts_len; i++) {
-		snprintf(indexstr, 128, "rhos2_plus[%d]", i);
-		TEST_NEAR_REL(indexstr, test_rhos2_plus[i], sample_rhos2_plus[i], eps);
 	}
 	for (int i = 0; i < sample_ts_len; i++) {
 		snprintf(indexstr, 128, "ts[%d]", i);

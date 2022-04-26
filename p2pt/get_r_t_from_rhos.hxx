@@ -1,4 +1,5 @@
-#include "common.hxx"
+#ifndef get_r_t_from_rhos_hxx_
+#define get_r_t_from_rhos_hxx_
 
 namespace P2Pt {
 
@@ -18,8 +19,8 @@ get_r_t_from_rhos(
 )
 {
 	//% Lambdas:
-	static T lambdas1[TS_MAX_LEN][TS_MAX_LEN] = { {0} };
-	static T lambdas2[TS_MAX_LEN][TS_MAX_LEN] = { {0} };
+	static T lambdas1[TS_MAX_LEN][TS_MAX_LEN] = {0};
+	static T lambdas2[TS_MAX_LEN][TS_MAX_LEN] = {0};
 
 	static T Gama_sub[3];
 
@@ -82,7 +83,7 @@ get_r_t_from_rhos(
 			T (&Rots)[4][3] = RT[RT_len];
 			T (&Transls)[3] = RT[RT_len][3];
 
-			#define B_row(r)                                                    \
+			#define B_row(r)	                                                \
 				rhos1[i]*gama1[(r)] - rhos2[i]*gama2[(r)],                      \
 				lambdas1[i][j]*(rhos1[i]*tgt1[(r)] + sigmas1[i][j]*gama1[(r)]), \
 				lambdas2[i][j]*(rhos2[i]*tgt2[(r)] + sigmas2[i][j]*gama2[(r)])
@@ -106,4 +107,6 @@ get_r_t_from_rhos(
 }
 
 }
+
+#endif // !get_r_t_from_rhos_hxx_
 

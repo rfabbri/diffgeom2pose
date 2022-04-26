@@ -15,5 +15,5 @@ hello()
 
 } // namespace p2pt
 
-#endif // p2pt_hxx_
+#endif // !p2pt_hxx_
 

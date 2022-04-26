@@ -11,4 +11,5 @@ class p2pt { // fully static, not to be instantiated - just used for templating
 
 } // namespace P2Pt
 
-#endif  // p2pt_h_
+#endif  // !p2pt_h_
+
