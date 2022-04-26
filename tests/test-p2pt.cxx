@@ -4,7 +4,7 @@
 //
 // Tests more comprehensive runs of p2pt using the public interface
 //
-#include <cstring>
+
 #include <iostream>
 #include <testlib/testlib_test.h>
 #include <p2pt/p2pt.h>

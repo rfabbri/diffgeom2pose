@@ -17,7 +17,6 @@ colon(T start, T step, T end, T output[])
 
 }
 
-// TODO: optimize! (make inline or use #define)
 template<typename T>
 inline T
 norm(const T *input_vec, int length)

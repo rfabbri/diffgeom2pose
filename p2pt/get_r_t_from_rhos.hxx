@@ -28,7 +28,6 @@ get_r_t_from_rhos(
 		// Buffers
 		static T den1[3], den2[3], den3[3];
 
-		// TODO: Check if separate loops are better for vectorization
 		for (int j = 0; j < sigmas1_len[i]; j++) {
 			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
 
@@ -83,8 +82,8 @@ get_r_t_from_rhos(
 			T (&Rots)[4][3] = RT[RT_len];
 			T (&Transls)[3] = RT[RT_len][3];
 
-			#define B_row(r)	                                                \
-				rhos1[i]*gama1[(r)] - rhos2[i]*gama2[(r)],                      \
+			#define B_row(r) \
+				rhos1[i]*gama1[(r)] - rhos2[i]*gama2[(r)], \
 				lambdas1[i][j]*(rhos1[i]*tgt1[(r)] + sigmas1[i][j]*gama1[(r)]), \
 				lambdas2[i][j]*(rhos2[i]*tgt2[(r)] + sigmas2[i][j]*gama2[(r)])
 
