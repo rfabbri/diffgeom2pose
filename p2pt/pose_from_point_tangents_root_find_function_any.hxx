@@ -57,7 +57,7 @@ void pose_from_point_tangents_root_find_function_any(
 		Gama2, Tgt2
 	);
 
-	static T t_vector[T_VECTOR_LEN]; common::colon(-1.0, 0.001, 1.0, t_vector);
+	static T t_vector[T_VECTOR_LEN]; common::colon<T>(-1.0, 0.001, 1.0, t_vector);
 	static T root_ids[ROOT_IDS_LEN] = {0};
 
 	p.find_bounded_root_intervals(t_vector, &root_ids);

@@ -6,22 +6,35 @@
 #include "tests/test-p2pt-constants.hxx"
 #include "p2pt/pose_from_point_tangents_root_find_function_any.hxx"
 
-#define TEST // Disable stdout for testing speed
+#define NO_STDOUT // Disable stdout for testing speed
 
-int main()
+void
+test_run(const char *type)
 {
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-	double test_RT[RT_MAX_LEN][4][3] = {0};
-	int test_RT_len;
-	double test_degen;
 
-	P2Pt::pose_from_point_tangents_root_find_function_any(
-		sample_gama1, sample_tgt1,
-		sample_gama2, sample_tgt2,
-		sample_Gama1, sample_Tgt1,
-		sample_Gama2, sample_Tgt2,
-		&test_RT, &test_RT_len, &test_degen
-	);
+	double test_RT[RT_MAX_LEN][4][3] = {0};
+	double test_degen;
+	float  test_RT_float[RT_MAX_LEN][4][3] = {0};
+	float  test_degen_float;
+	int    test_RT_len;
+
+	if (strcmp(type, "float") == 0)
+		P2Pt::pose_from_point_tangents_root_find_function_any(
+			sample_gama1_float, sample_tgt1_float,
+			sample_gama2_float, sample_tgt2_float,
+			sample_Gama1_float, sample_Tgt1_float,
+			sample_Gama2_float, sample_Tgt2_float,
+			&test_RT_float, &test_RT_len, &test_degen_float
+		);
+	else
+		P2Pt::pose_from_point_tangents_root_find_function_any(
+			sample_gama1, sample_tgt1,
+			sample_gama2, sample_tgt2,
+			sample_Gama1, sample_Tgt1,
+			sample_Gama2, sample_Tgt2,
+			&test_RT, &test_RT_len, &test_degen
+		);
 
 	double diff;
 	char indexstr[128];
@@ -30,7 +43,7 @@ int main()
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
 				double (&test_Rots)[4][3] = test_RT[i];
-#ifndef TEST
+				#ifndef NO_STDOUT
 				snprintf(
 					indexstr, 128,
 					"RT[%d]: Rots[%d][%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
@@ -39,13 +52,13 @@ int main()
 					diff < eps ? "OK" : "FAILED"
 				);
 				std::cout << indexstr << std::endl;
-#endif
+				#endif
 			}
 		}
 		// Transls
 		for (int j = 0; j < 3; j++) {
 			double (&test_Transls)[3] = test_RT[i][3];
-#ifndef TEST
+			#ifndef NO_STDOUT
 			snprintf(
 				indexstr, 128,
 				"RT[%d]: Transls[%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
@@ -54,14 +67,14 @@ int main()
 				diff < eps ? "OK" : "FAILED"
 			);
 			std::cout << indexstr << std::endl;
-#endif
+			#endif
 		}
-#ifndef TEST
+		#ifndef NO_STDOUT
 		std::cout << std::endl;
-#endif
+		#endif
 	}
 	// Degen
-#ifndef TEST
+	#ifndef NO_STDOUT
 	snprintf(
 		indexstr, 128,
 		"degen = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
@@ -70,10 +83,15 @@ int main()
 		diff < eps ? "OK" : "FAILED"
 	);
 	std::cout << indexstr << std::endl;
-#endif
+	#endif
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
 	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
     std::cout << "Time of solver: " << duration << "us" << std::endl;
+}
+
+int main()
+{
+	test_run("double");
     return 0;
 }

@@ -15,14 +15,14 @@ pose_from_point_tangents_2(
 	const T (&Gama2)[3], const T (&Tgt2)[3]
 )
 {
-	constexpr double PI = 3.141592653589793;
+	constexpr T PI = 3.141592653589793;
 
-	static double g11, g12, g21, g22, h11, h12, h21, h22;
-	static double V[3], buf[3];
-	static double a1, a2, a3, a4, a5, a6;
-	static double t1, t2, t4, t5, t6, t7, t8;
-	static double t11, t14, /* t15, */ t21, t24, t25;
-	static double den1, den2;
+	static T g11, g12, g21, g22, h11, h12, h21, h22;
+	static T V[3], buf[3];
+	static T a1, a2, a3, a4, a5, a6;
+	static T t1, t2, t4, t5, t6, t7, t8;
+	static T t11, t14, /* t15, */ t21, t24, t25;
+	static T den1, den2;
 
 	g11 = gama1[0]; g12 = gama1[1];
 	g21 = gama2[0]; g22 = gama2[1];
@@ -46,8 +46,8 @@ pose_from_point_tangents_2(
 
 	theta = 0.5*atan(t11);
 	if (theta < 0) theta += PI / 2;
-	const double sth = sin(theta);
-	const double cth = cos(theta);
+	const T sth = sin(theta);
+	const T cth = cos(theta);
 
 	//% 497-798
 	//%theta = .7865071740;

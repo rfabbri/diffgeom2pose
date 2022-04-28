@@ -160,7 +160,7 @@ inline void
 vec_el_wise_pow(const T (&vec)[T_VECTOR_LEN], int exp, T (&output)[T_VECTOR_LEN])
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = pow(vec[i], exp);
+		output[i] = intpow(vec[i], exp);
 }
 
 template<typename T>
@@ -179,8 +179,6 @@ vec_3el_div_by_scalar(const T scalar, T (&vec)[3], T (&output)[3])
 		output[i] = vec[i] / scalar;
 }
 
-
-
 // Special case for 2 vectors of 3 elements each
 // Returns pointer for simplicity of calculations in `sample_pose_poly`
 template<typename T>
@@ -195,98 +193,124 @@ inline T
 	return output;
 }
 
-// For 3 vectors
+// For 3 vectors and add
 template<typename T>
-inline T
-*vec_el_wise_mult3(
+inline void
+vec_el_wise_mult3_and_add(
 	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN],
 	T (&output)[T_VECTOR_LEN]
 )
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = vec1[i] * vec2[i] * vec3[i];
-	return output;
+		output[i] += vec1[i] * vec2[i] * vec3[i];
 }
 
-// For 4 vectors
+// For 4 vectors and add
 template<typename T>
-inline T
-*vec_el_wise_mult4(
+inline void
+vec_el_wise_mult4_and_add(
 	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN], const T (&vec4)[T_VECTOR_LEN],
 	T (&output)[T_VECTOR_LEN]
 )
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i];
-	return output;
+		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i];
 }
 
-// For 5 vectors
+// For 5 vectors multiply by scalar and add
 template<typename T>
-inline T
-*vec_el_wise_mult5(
+inline void
+vec_el_wise_mult5_scalar_and_add(
+	const int scalar,
 	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN], const T (&vec4)[T_VECTOR_LEN],
 	const T (&vec5)[T_VECTOR_LEN],
 	T (&output)[T_VECTOR_LEN]
 )
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
-		          * vec5[i];
-	return output;
+		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i]
+		           * vec5[i] * scalar;
 }
 
-// For 6 vectors
+// For 5 vectors and add
 template<typename T>
-inline T
-*vec_el_wise_mult6(
+inline void
+vec_el_wise_mult5_and_add(
+	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN], const T (&vec4)[T_VECTOR_LEN],
+	const T (&vec5)[T_VECTOR_LEN],
+	T (&output)[T_VECTOR_LEN]
+)
+{
+	for (int i = 0; i < T_VECTOR_LEN; i++)
+		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i]
+		           * vec5[i];
+}
+
+// For 6 vectors multiply by scalar and add
+template<typename T>
+inline void
+vec_el_wise_mult6_scalar_and_add(
+	const int scalar,
 	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN], const T (&vec4)[T_VECTOR_LEN],
 	const T (&vec5)[T_VECTOR_LEN], const T (&vec6)[T_VECTOR_LEN],
 	T (&output)[T_VECTOR_LEN]
 )
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
-		          * vec5[i] * vec6[i];
-	return output;
+		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i]
+		           * vec5[i] * vec6[i] * scalar;
 }
 
-// For 7 vectors
+// For 6 vectors and add
 template<typename T>
-inline T
-*vec_el_wise_mult7(
+inline void
+vec_el_wise_mult6_and_add(
+	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN], const T (&vec4)[T_VECTOR_LEN],
+	const T (&vec5)[T_VECTOR_LEN], const T (&vec6)[T_VECTOR_LEN],
+	T (&output)[T_VECTOR_LEN]
+)
+{
+	for (int i = 0; i < T_VECTOR_LEN; i++)
+		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i]
+		           * vec5[i] * vec6[i];
+}
+
+// For 7 vectors multiply by scalar and add
+template<typename T>
+inline void
+vec_el_wise_mult7_scalar_and_add(
+	const int scalar,
 	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN], const T (&vec4)[T_VECTOR_LEN],
 	const T (&vec5)[T_VECTOR_LEN], const T (&vec6)[T_VECTOR_LEN], const T (&vec7)[T_VECTOR_LEN],
 	T (&output)[T_VECTOR_LEN]
 )
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
-		          * vec5[i] * vec6[i] * vec7[i];
-	return output;
+		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i]
+		           * vec5[i] * vec6[i] * vec7[i] * scalar;
 }
 
-// For 8 vectors
+// For 8 vectors multiply by scalar and add
 template<typename T>
-inline T
-*vec_el_wise_mult8(
+inline void
+vec_el_wise_mult8_scalar_and_add(
+	const int scalar,
 	const T (&vec1)[T_VECTOR_LEN], const T (&vec2)[T_VECTOR_LEN], const T (&vec3)[T_VECTOR_LEN], const T (&vec4)[T_VECTOR_LEN],
 	const T (&vec5)[T_VECTOR_LEN], const T (&vec6)[T_VECTOR_LEN], const T (&vec7)[T_VECTOR_LEN], const T (&vec8)[T_VECTOR_LEN],
 	T (&output)[T_VECTOR_LEN]
 )
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = vec1[i] * vec2[i] * vec3[i] * vec4[i]
-		          * vec5[i] * vec6[i] * vec7[i] * vec8[i];
-	return output;
+		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i]
+		           * vec5[i] * vec6[i] * vec7[i] * vec8[i] * scalar;
 }
 
 template<typename T>
 inline void
-vec_mult_by_scalar(const int scalar, const T vec[T_VECTOR_LEN], T (&output)[T_VECTOR_LEN])
+vec_mult_by_scalar_and_add(const int scalar, T vec[T_VECTOR_LEN], T (&output)[T_VECTOR_LEN])
 {
 	for (int i = 0; i < T_VECTOR_LEN; i++)
-		output[i] = vec[i] * scalar;
+		output[i] += scalar * vec[i];
 }
 
 template<typename T>

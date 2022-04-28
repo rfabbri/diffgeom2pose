@@ -23,13 +23,19 @@ rhos_from_root_ids(
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		if (root_ids[i] == 1) {
 			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
-			std::pair<T,T> t_ref_pair = boost::math::tools::toms748_solve(
-				*this,
-				t_vector[i],
-				t_vector[i+1],
-				boost::math::tools::eps_tolerance<T>(),
-				max_iter
-			);
+			std::pair<T,T> t_ref_pair;
+
+			try {
+				t_ref_pair = boost::math::tools::toms748_solve(
+					*this,
+					t_vector[i],
+					t_vector[i+1],
+					boost::math::tools::eps_tolerance<T>(),
+					max_iter
+				);
+			} catch (const std::exception& err) {
+				std::cerr << err.what() << std::endl;
+			}
 
 			static T t_ref;
 			t_ref = (t_ref_pair.first + t_ref_pair.second)/2.0;

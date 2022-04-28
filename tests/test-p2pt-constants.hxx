@@ -59,6 +59,24 @@ constexpr double sample_L0 = -3.0988661181325328;
 constexpr double sample_L1 = -0.087873618366435841;
 constexpr double sample_L2 = 19.341789232030056;
 
+
+// Float inputs
+
+constexpr float sample_gama1_float[3] = {0.51515532818894982, 0.1487011661471217, 1};
+constexpr float sample_tgt1_float[3]  = {0.527886693031222, 0.84931480578202578, 0};
+
+constexpr float sample_gama2_float[3] = {0.16081537437895527, -0.48875444114985156, 1};
+constexpr float sample_tgt2_float[3]  = {-0.27224516854045233, -0.96222791905368288, 0};
+
+constexpr float sample_Gama1_float[3] = {-0.43359202230568356, 3.5783969397257605, -1.3498869401565212};
+constexpr float sample_Tgt1_float[3]  = {0.70708731473372055, 0.69669519863759266, -0.12100962580713076};
+
+constexpr float sample_Gama2_float[3] = {0.34262446653864992, 2.7694370298848772, 3.0349234663318545};
+constexpr float sample_Tgt2_float[3]  = {-0.041895437077508819, -0.13618523302227314, 0.98979712803117059};
+
+
+// Double inputs
+
 constexpr double sample_gama1[3] = {0.51515532818894982, 0.1487011661471217, 1};
 constexpr double sample_tgt1[3]  = {0.527886693031222, 0.84931480578202578, 0};
 
@@ -70,6 +88,7 @@ constexpr double sample_Tgt1[3]  = {0.70708731473372055, 0.69669519863759266, -0
 
 constexpr double sample_Gama2[3] = {0.34262446653864992, 2.7694370298848772, 3.0349234663318545};
 constexpr double sample_Tgt2[3]  = {-0.041895437077508819, -0.13618523302227314, 0.98979712803117059};
+
 
 constexpr double sample_alpha = 2.99316452421144;
 constexpr double sample_beta  = 8.77711253699776;
