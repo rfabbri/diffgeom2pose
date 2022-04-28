@@ -83,113 +83,113 @@ pose_from_point_tangents_2(
 	A0 = a4 * a4 * g12 * g12
 	+ a4 * a4 * g11 * g11
 	+ a4 * a4
-	+ 2.0 * a2 * pow(g11, 3.0) * g21 * beta * beta * sth * cth
+	+ 2.0 * a2 * intpow(g11, 3) * g21 * beta * beta * sth * cth
 	+ 2.0 * a2 * g21 * g11 * g12 * g12 * beta * beta * sth * cth
-	- 2.0 * a2 * g11 * g11 * g12 * g12 * beta * beta * pow(sth, 2.0)
-	- a2 * pow(g12, 4.0) * beta * beta * pow(sth, 2.0)
-	- a2 * g21 * g21 * g11 * g11 * beta * beta * pow(cth, 2.0)
+	- 2.0 * a2 * g11 * g11 * g12 * g12 * beta * beta * intpow(sth, 2)
+	- a2 * intpow(g12, 4) * beta * beta * intpow(sth, 2)
+	- a2 * g21 * g21 * g11 * g11 * beta * beta * intpow(cth, 2)
 	+ 2.0 * a2 * g12 * g12 * beta * beta * sth * cth
 	+ 2.0 * a2 * g11 * g11 * beta * beta * sth * cth
 	+ 2.0 * a2 * g11 * g11 * g22 * g12 * beta * beta * sth * cth
-	- a2 * beta * beta * pow(cth, 2.0)
-	+ 2.0 * a2 * pow(g12, 3.0) * g22 * beta * beta * sth * cth
-	- a2 * pow(g11, 4.0) * beta * beta * pow(sth, 2.0)
-	- 2.0 * a2 * g11 * g11 * beta * beta * pow(sth, 2.0)
-	- 2.0 * a2 * g12 * g12 * beta * beta * pow(sth, 2.0)
+	- a2 * beta * beta * intpow(cth, 2)
+	+ 2.0 * a2 * intpow(g12, 3) * g22 * beta * beta * sth * cth
+	- a2 * intpow(g11, 4) * beta * beta * intpow(sth, 2)
+	- 2.0 * a2 * g11 * g11 * beta * beta * intpow(sth, 2)
+	- 2.0 * a2 * g12 * g12 * beta * beta * intpow(sth, 2)
 	+ 2.0 * a2 * beta * beta * sth * cth
-	- 2.0 * a2 * g21 * g11 * g22 * g12 * beta * beta * pow(cth, 2.0)
-	- a2 * beta * beta * pow(sth, 2.0)
+	- 2.0 * a2 * g21 * g11 * g22 * g12 * beta * beta * intpow(cth, 2)
+	- a2 * beta * beta * intpow(sth, 2)
 	+ 2.0 * a2 * g21 * g11 * beta * beta * sth * cth
-	- a2 * g22 * g22 * g12 * g12 * beta * beta * pow(cth, 2.0)
-	- 2.0 * a2 * g22 * g12 * beta * beta * pow(cth, 2.0)
-	- 2.0 * a2 * g21 * g11 * beta * beta * pow(cth, 2.0)
+	- a2 * g22 * g22 * g12 * g12 * beta * beta * intpow(cth, 2)
+	- 2.0 * a2 * g22 * g12 * beta * beta * intpow(cth, 2)
+	- 2.0 * a2 * g21 * g11 * beta * beta * intpow(cth, 2)
 	+ 2.0 * a2 * g22 * g12 * beta * beta * sth * cth;
 
-	A1 = 0.4e1 * a2 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * beta * pow(sth, 0.2e1) * alpha
+	A1 = 0.4e1 * a2 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g21 * g21 * g11 * g11 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g12 * g12 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a2 * g12 * g12 * alpha * intpow(cth, 2) * beta
 	+ 0.8e1 * a2 * g21 * g11 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g12 * g12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g22 * g12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g22 * g12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a2 * g12 * g12 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g22 * g12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g22 * g12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g22 * g22 * g12 * g12 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g21 * g11 * g12 * g12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g21 * g11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g11 * g11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * g11 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g21 * g11 * g12 * g12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g21 * g11 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a2 * g21 * g11 * g12 * g12 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g21 * g11 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g11 * g11 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * g11 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g21 * g11 * g12 * g12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g21 * g11 * beta * intpow(sth, 2) * alpha
 	- 0.8e1 * a2 * g11 * g11 * g12 * g12 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * pow(g11, 0.4e1) * alpha * sth * beta * cth
+	- 0.4e1 * a2 * intpow(g11, 4) * alpha * sth * beta * cth
 	- 0.8e1 * a2 * g11 * g11 * alpha * sth * beta * cth
 	+ 0.8e1 * a2 * g21 * g11 * g22 * g12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g12, 0.3e1) * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * pow(g12, 0.3e1) * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * pow(g12, 0.4e1) * alpha * sth * beta * cth
+	+ 0.4e1 * a2 * intpow(g12, 3) * g22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * intpow(g12, 3) * g22 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * intpow(g12, 4) * alpha * sth * beta * cth
 	- 0.8e1 * a2 * g12 * g12 * alpha * sth * beta * cth
 	+ 0.8e1 * a2 * g22 * g12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g11, 0.3e1) * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * pow(g11, 0.3e1) * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g11 * g11 * g22 * g12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * g11 * g22 * g12 * beta * pow(sth, 0.2e1) * alpha;
+	+ 0.4e1 * a2 * intpow(g11, 3) * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * intpow(g11, 3) * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g11 * g11 * g22 * g12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * g11 * g22 * g12 * beta * intpow(sth, 2) * alpha;
 
 	A2 = (2 * a4 * a4 * g12 * g12)
 	+ (2 * a4 * a4 * g11 * g11)
 	+ (2 * a4 * a4)
-	+ 0.2e1 * a2 * pow(g12, 4) * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a2 * pow(g11, 4) * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * (g11 * g11) * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * (g12 * g12) * beta * beta * pow(sth, 0.2e1)
+	+ 0.2e1 * a2 * intpow(g12, 4) * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a2 * intpow(g11, 4) * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a2 * (g11 * g11) * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a2 * (g12 * g12) * beta * beta * intpow(sth, 2)
 	- 0.4e1 * a2 * beta * beta * sth * cth
-	+ 0.2e1 * a2 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a2 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a2 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a2 * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a2 * g21 * g11 * (g12 * g12) * beta * beta * sth * cth
-	+ 0.2e1 * a2 * g21 * g21 * (g11 * g11) * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a2 * g21 * g21 * (g11 * g11) * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a2 * (g12 * g12) * beta * beta * sth * cth
-	+ 0.4e1 * a2 * g21 * g11 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a2 * g22 * g22 * (g12 * g12) * beta * beta * pow(cth, 0.2e1)
+	+ 0.4e1 * a2 * g21 * g11 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a2 * g22 * g22 * (g12 * g12) * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a2 * g22 * g12 * beta * beta * sth * cth
 	- 0.4e1 * a2 * (g11 * g11) * beta * beta * sth * cth
 	- 0.4e1 * a2 * g21 * g11 * beta * beta * sth * cth
-	+ 0.4e1 * a2 * (g11 * g11) * (g12 * g12) * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g22 * g12 * beta * beta * pow(cth, 0.2e1)
-	- 0.4e1 * a2 * pow(g11, 3) * g21 * beta * beta * sth * cth
+	+ 0.4e1 * a2 * (g11 * g11) * (g12 * g12) * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a2 * g22 * g12 * beta * beta * intpow(cth, 2)
+	- 0.4e1 * a2 * intpow(g11, 3) * g21 * beta * beta * sth * cth
 	- 0.4e1 * a2 * (g11 * g11) * g22 * g12 * beta * beta * sth * cth
-	+ 0.4e1 * a2 * g21 * g11 * g22 * g12 * beta * beta * pow(cth, 0.2e1)
-	- 0.4e1 * a2 * pow(g12, 3) * g22 * beta * beta * sth * cth
-	- 0.4e1 * a2 * pow(g11, 4) * alpha * alpha * pow(cth, 0.2e1)
-	- 0.8e1 * a2 * (g11 * g11) * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a2 * pow(g12, 4) * alpha * alpha * pow(cth, 0.2e1)
-	- 0.8e1 * a2 * (g12 * g12) * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a2 * g21 * g11 * g22 * g12 * beta * beta * intpow(cth, 2)
+	- 0.4e1 * a2 * intpow(g12, 3) * g22 * beta * beta * sth * cth
+	- 0.4e1 * a2 * intpow(g11, 4) * alpha * alpha * intpow(cth, 2)
+	- 0.8e1 * a2 * (g11 * g11) * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a2 * intpow(g12, 4) * alpha * alpha * intpow(cth, 2)
+	- 0.8e1 * a2 * (g12 * g12) * alpha * alpha * intpow(cth, 2)
 	- 0.8e1 * a2 * alpha * alpha * cth * sth
-	- 0.4e1 * a2 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a2 * alpha * alpha * pow(sth, 0.2e1)
+	- 0.4e1 * a2 * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a2 * alpha * alpha * intpow(sth, 2)
 	- 0.8e1 * a2 * g22 * g12 * alpha * alpha * cth * sth
-	- 0.4e1 * a2 * g21 * g21 * (g11 * g11) * alpha * alpha * pow(sth, 0.2e1)
+	- 0.4e1 * a2 * g21 * g21 * (g11 * g11) * alpha * alpha * intpow(sth, 2)
 	- 0.8e1 * a2 * (g12 * g12) * alpha * alpha * cth * sth
-	- 0.8e1 * a2 * g21 * g11 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a2 * g22 * g22 * (g12 * g12) * alpha * alpha * pow(sth, 0.2e1)
+	- 0.8e1 * a2 * g21 * g11 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a2 * g22 * g22 * (g12 * g12) * alpha * alpha * intpow(sth, 2)
 	- 0.8e1 * a2 * g21 * g11 * alpha * alpha * cth * sth
-	- 0.8e1 * a2 * (g11 * g11) * (g12 * g12) * alpha * alpha * pow(cth, 0.2e1)
+	- 0.8e1 * a2 * (g11 * g11) * (g12 * g12) * alpha * alpha * intpow(cth, 2)
 	- 0.8e1 * a2 * (g11 * g11) * alpha * alpha * cth * sth
 	- 0.8e1 * a2 * g21 * g11 * (g12 * g12) * alpha * alpha * cth * sth
-	- 0.8e1 * a2 * g21 * g11 * g22 * g12 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.8e1 * a2 * pow(g12, 3) * g22 * alpha * alpha * cth * sth
-	- 0.8e1 * a2 * g22 * g12 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.8e1 * a2 * pow(g11, 3) * g21 * alpha * alpha * cth * sth
+	- 0.8e1 * a2 * g21 * g11 * g22 * g12 * alpha * alpha * intpow(sth, 2)
+	- 0.8e1 * a2 * intpow(g12, 3) * g22 * alpha * alpha * cth * sth
+	- 0.8e1 * a2 * g22 * g12 * alpha * alpha * intpow(sth, 2)
+	- 0.8e1 * a2 * intpow(g11, 3) * g21 * alpha * alpha * cth * sth
 	- 0.8e1 * a2 * (g11 * g11) * g22 * g12 * alpha * alpha * cth * sth;
 
-	B0 = -0.2e1 * beta * sth * (a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g21 * h11 * g22 * g12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sth, 0.2e1)
+	B0 = -0.2e1 * beta * sth * (a2 * g21 * g11 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a2 * intpow(g12, 3) * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g21 * h11 * g22 * g12 * beta * beta * intpow(cth, 2)
+	+ a2 * g11 * h11 * g12 * g12 * beta * beta * intpow(sth, 2)
 	- a2 * g11 * h11 * beta * beta * sth * cth
 	- a4 * a4 * h11 * g11
-	+ a2 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g11 * h11 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * g12 * beta * beta * intpow(cth, 2)
+	+ a2 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a2 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- a2 * g11 * h11 * g22 * g12 * beta * beta * sth * cth
 	- a2 * g12 * h12 * beta * beta * sth * cth
 	- a2 * g21 * h11 * g12 * g12 * beta * beta * sth * cth
@@ -198,55 +198,55 @@ pose_from_point_tangents_2(
 	- 0.2e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	- 0.2e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- a2 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g21 * g21 * h11 * g11 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * intpow(g11, 3) * h11 * beta * beta * intpow(sth, 2)
+	+ a2 * g21 * g21 * h11 * g11 * beta * beta * intpow(cth, 2)
+	+ a2 * g21 * h11 * beta * beta * intpow(cth, 2)
 	- a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g11 * g11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- a4 * a4 * h12 * g12);
 
-	B1 = -0.2e1 * beta * sth * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sth, 0.2e1) * alpha
+	B1 = -0.2e1 * beta * sth * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g22 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g12 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g22 * h12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	+ 0.4e1 * a2 * g12 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
+	+ 0.4e1 * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	- 0.2e1 * a2 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g21 * h11 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * h11 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sth * beta * cth
 	+ 0.4e1 * a2 * g11 * h11 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a2 * g11 * h11 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * sth * beta * cth)
-	- 0.4e1 * alpha * cth * (a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g21 * h11 * g22 * g12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sth, 0.2e1)
+	- 0.4e1 * alpha * cth * (a2 * g21 * g11 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a2 * intpow(g12, 3) * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g21 * h11 * g22 * g12 * beta * beta * intpow(cth, 2)
+	+ a2 * g11 * h11 * g12 * g12 * beta * beta * intpow(sth, 2)
 	- a2 * g11 * h11 * beta * beta * sth * cth
 	- a4 * a4 * h11 * g11
-	+ a2 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g11 * h11 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * g12 * beta * beta * intpow(cth, 2)
+	+ a2 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a2 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- a2 * g11 * h11 * g22 * g12 * beta * beta * sth * cth
 	- a2 * g12 * h12 * beta * beta * sth * cth
 	- a2 * g21 * h11 * g12 * g12 * beta * beta * sth * cth
@@ -255,101 +255,101 @@ pose_from_point_tangents_2(
 	- 0.2e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	- 0.2e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- a2 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g21 * g21 * h11 * g11 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * intpow(g11, 3) * h11 * beta * beta * intpow(sth, 2)
+	+ a2 * g21 * g21 * h11 * g11 * beta * beta * intpow(cth, 2)
+	+ a2 * g21 * h11 * beta * beta * intpow(cth, 2)
 	- a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g11 * g11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- a4 * a4 * h12 * g12);
 
-	B2 = -0.2e1 * beta * sth * (0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * g11 * h11 * alpha * alpha * pow(cth, 0.2e1)
+	B2 = -0.2e1 * beta * sth * (0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * g11 * h11 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a2 * g11 * g11 * g22 * h12 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g11 * h11 * alpha * alpha * cth * sth
 	+ 0.8e1 * a2 * g11 * g11 * h11 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * intpow(g12, 3) * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * g12 * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * intpow(g11, 3) * h11 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a2 * g21 * h11 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g11 * h11 * g22 * g12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a2 * g21 * h11 * g12 * g12 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g22 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a2 * g22 * h12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a2 * g12 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g21 * h11 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g21 * h11 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a2 * g21 * g11 * g12 * h12 * alpha * alpha * cth * sth
 	+ 0.8e1 * a2 * g12 * g12 * h12 * g22 * alpha * alpha * cth * sth
 	- 0.2e1 * a4 * a4 * h11 * g11
 	- 0.2e1 * a4 * a4 * h12 * g12
-	- 0.2e1 * a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a2 * g22 * g22 * h12 * g12 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a2 * g12 * h12 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g22 * h12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a2 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g11 * g11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a2 * g22 * h12 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a2 * g21 * h11 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a2 * g11 * h11 * g12 * g12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * g11 * g11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a2 * g12 * h12 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a2 * g11 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a2 * g11 * h11 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * intpow(g11, 3) * h11 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a2 * g21 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g21 * h11 * g22 * g12 * beta * beta * pow(cth, 0.2e1))
-	- 0.4e1 * alpha * cth * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * intpow(g12, 3) * h12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * g21 * h11 * g22 * g12 * beta * beta * intpow(cth, 2))
+	- 0.4e1 * alpha * cth * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g22 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g12 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g22 * h12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	+ 0.4e1 * a2 * g12 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
+	+ 0.4e1 * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	- 0.2e1 * a2 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g21 * h11 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * h11 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sth * beta * cth
 	+ 0.4e1 * a2 * g11 * h11 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a2 * g11 * h11 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * sth * beta * cth)
-	+ 0.2e1 * beta * sth * (a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g21 * h11 * g22 * g12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sth, 0.2e1)
+	+ 0.2e1 * beta * sth * (a2 * g21 * g11 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a2 * intpow(g12, 3) * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g21 * h11 * g22 * g12 * beta * beta * intpow(cth, 2)
+	+ a2 * g11 * h11 * g12 * g12 * beta * beta * intpow(sth, 2)
 	- a2 * g11 * h11 * beta * beta * sth * cth
 	- a4 * a4 * h11 * g11
-	+ a2 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g11 * h11 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * g12 * beta * beta * intpow(cth, 2)
+	+ a2 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a2 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- a2 * g11 * h11 * g22 * g12 * beta * beta * sth * cth
 	- a2 * g12 * h12 * beta * beta * sth * cth
 	- a2 * g21 * h11 * g12 * g12 * beta * beta * sth * cth
@@ -358,1584 +358,1584 @@ pose_from_point_tangents_2(
 	- 0.2e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	- 0.2e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- a2 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g21 * g21 * h11 * g11 * beta * beta * pow(cth, 0.2e1)
-	+ a2 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * intpow(g11, 3) * h11 * beta * beta * intpow(sth, 2)
+	+ a2 * g21 * g21 * h11 * g11 * beta * beta * intpow(cth, 2)
+	+ a2 * g21 * h11 * beta * beta * intpow(cth, 2)
 	- a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g11 * g11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- a4 * a4 * h12 * g12);
 
-	B3 = -0.2e1 * beta * sth * (-0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sth, 0.2e1) * alpha
+	B3 = -0.2e1 * beta * sth * (-0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a2 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g22 * h12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a2 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g12 * h12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a2 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g12 * h12 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
+	- 0.4e1 * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	+ 0.2e1 * a2 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g21 * h11 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g21 * h11 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g11 * h11 * alpha * sth * beta * cth
 	+ 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g11 * h11 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * sth * beta * cth)
-	- 0.4e1 * alpha * cth * (0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * g11 * h11 * alpha * alpha * pow(cth, 0.2e1)
+	- 0.4e1 * alpha * cth * (0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * g11 * h11 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a2 * g11 * g11 * g22 * h12 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g11 * h11 * alpha * alpha * cth * sth
 	+ 0.8e1 * a2 * g11 * g11 * h11 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * intpow(g12, 3) * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * g12 * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * intpow(g11, 3) * h11 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a2 * g21 * h11 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g11 * h11 * g22 * g12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a2 * g21 * h11 * g12 * g12 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g22 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a2 * g22 * h12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a2 * g12 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g21 * h11 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g21 * h11 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a2 * g21 * g11 * g12 * h12 * alpha * alpha * cth * sth
 	+ 0.8e1 * a2 * g12 * g12 * h12 * g22 * alpha * alpha * cth * sth
 	- 0.2e1 * a4 * a4 * h11 * g11
 	- 0.2e1 * a4 * a4 * h12 * g12
-	- 0.2e1 * a2 * g22 * g22 * h12 * g12 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a2 * g22 * g22 * h12 * g12 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a2 * g12 * h12 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g22 * h12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a2 * g21 * g21 * h11 * g11 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a2 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a2 * g11 * h11 * g12 * g12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g11 * g11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a2 * g22 * h12 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a2 * g21 * h11 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a2 * g11 * h11 * g12 * g12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * g11 * g11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * beta * sth * cth
 	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a2 * g12 * h12 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a2 * g11 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * pow(g11, 0.3e1) * h11 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a2 * g11 * h11 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * intpow(g11, 3) * h11 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a2 * g21 * g11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a2 * g21 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a2 * pow(g12, 0.3e1) * h12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g21 * h11 * g22 * g12 * beta * beta * pow(cth, 0.2e1))
-	+ 0.2e1 * beta * sth * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * intpow(g12, 3) * h12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * g21 * h11 * g22 * g12 * beta * beta * intpow(cth, 2))
+	+ 0.2e1 * beta * sth * (0.2e1 * a2 * g11 * g11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a2 * g11 * g11 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a2 * g21 * h11 * g12 * g12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g21 * g11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * g12 * g12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g12 * g12 * h12 * g22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a2 * g21 * h11 * g12 * g12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a2 * g11 * h11 * g22 * g12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g11 * h11 * g22 * g12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g11 * h11 * g12 * g12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g22 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g22 * g22 * h12 * g12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g12 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g22 * h12 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a2 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * g11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g11 * g11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	+ 0.4e1 * a2 * g12 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g12, 0.3e1) * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * pow(g11, 0.3e1) * h11 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a2 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
+	+ 0.4e1 * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	- 0.2e1 * a2 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a2 * g21 * h11 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * h11 * alpha * sth * beta * cth
-	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a2 * g21 * g11 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g11 * g11 * g12 * h12 * alpha * sth * beta * cth
 	+ 0.4e1 * a2 * g11 * h11 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g21 * g11 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.2e1 * a2 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a2 * g11 * h11 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g21 * g21 * h11 * g11 * alpha * sth * beta * cth);
 
-	C0 = -beta * beta * pow(sth, 0.2e1) * (-a4 * a4 * h12 * h12
-	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	C0 = -beta * beta * intpow(sth, 2) * (-a4 * a4 * h12 * h12
+	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- a4 * a4 * h11 * h11
 	- 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
-	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1));
+	+ a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2));
 
-	C1 = -beta * beta * pow(sth, 0.2e1) * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
+	C1 = -beta * beta * intpow(sth, 2) * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * intpow(sth, 2) * alpha
 	- 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sth * beta * cth)
 	- 0.4e1 * beta * sth * alpha * cth * (-a4 * a4 * h12 * h12
-	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- a4 * a4 * h11 * h11
 	- 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
-	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1));
+	+ a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2));
 
-	C2 = -beta * beta * pow(sth, 0.2e1) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	C2 = -beta * beta * intpow(sth, 2) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
 	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- 0.2e1 * a4 * a4 * h12 * h12
-	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a2 * g21 * h11 * g12 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.2e1 * a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.4e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * alpha * intpow(cth, 2)
+	- 0.2e1 * a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	- 0.4e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	+ 0.8e1 * a2 * g11 * h11 * g22 * h12 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * alpha * intpow(sth, 2)
+	- 0.2e1 * a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * alpha * intpow(cth, 2)
 	- 0.2e1 * a4 * a4 * h11 * h11
-	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a2 * g12 * h12 * h12 * g22 * alpha * alpha * cth * sth
 	+ 0.8e1 * a2 * g11 * h11 * h11 * g21 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1))
+	- 0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2))
 	- 0.4e1 * beta * sth * alpha * cth * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * intpow(sth, 2) * alpha
 	- 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sth * beta * cth)
-	- (-0.2e1 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * alpha * alpha * pow(cth, 0.2e1)) * (-a4 * a4 * h12 * h12
-	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	- (-0.2e1 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * alpha * alpha * intpow(cth, 2)) * (-a4 * a4 * h12 * h12
+	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- a4 * a4 * h11 * h11
 	- 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
-	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1));
+	+ a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2));
 
-	C3 = -beta * beta * pow(sth, 0.2e1) * (0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	C3 = -beta * beta * intpow(sth, 2) * (0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	- 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
 	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sth * beta * cth)
-	- 0.4e1 * beta * sth * alpha * cth * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	- 0.4e1 * beta * sth * alpha * cth * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
 	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- 0.2e1 * a4 * a4 * h12 * h12
-	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a2 * g21 * h11 * g12 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.2e1 * a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.4e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * alpha * intpow(cth, 2)
+	- 0.2e1 * a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	- 0.4e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	+ 0.8e1 * a2 * g11 * h11 * g22 * h12 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * alpha * intpow(sth, 2)
+	- 0.2e1 * a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * alpha * intpow(cth, 2)
 	- 0.2e1 * a4 * a4 * h11 * h11
-	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a2 * g12 * h12 * h12 * g22 * alpha * alpha * cth * sth
 	+ 0.8e1 * a2 * g11 * h11 * h11 * g21 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1))
-	- (-0.2e1 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * alpha * alpha * pow(cth, 0.2e1)) * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
+	- 0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2))
+	- (-0.2e1 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * alpha * alpha * intpow(cth, 2)) * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * intpow(sth, 2) * alpha
 	- 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sth * beta * cth)
 	+ 0.4e1 * beta * sth * alpha * cth * (-a4 * a4 * h12 * h12
-	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- a4 * a4 * h11 * h11
 	- 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
-	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1));
+	+ a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2));
 
-	C4 = -0.2e1 * beta * beta * pow(sth, 0.2e1) * (-a4 * a4 * h12 * h12
-	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	C4 = -0.2e1 * beta * beta * intpow(sth, 2) * (-a4 * a4 * h12 * h12
+	+ 0.2e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- a4 * a4 * h11 * h11
 	- 0.2e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
-	+ a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	+ a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	+ a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	+ a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1))
-	- 0.4e1 * beta * sth * alpha * cth * (0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	+ a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2))
+	- 0.4e1 * beta * sth * alpha * cth * (0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	- 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
 	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sth * beta * cth)
-	- (-0.2e1 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * alpha * alpha * pow(cth, 0.2e1)) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
+	- (-0.2e1 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * alpha * alpha * intpow(cth, 2)) * (-0.4e1 * a2 * g11 * h11 * g12 * h12 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * beta * sth * cth
 	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * beta * sth * cth
 	- 0.2e1 * a4 * a4 * h12 * h12
-	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a2 * g21 * h11 * g12 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.2e1 * a2 * g22 * g22 * h12 * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.4e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
+	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * alpha * intpow(cth, 2)
+	- 0.2e1 * a2 * g22 * g22 * h12 * h12 * beta * beta * intpow(cth, 2)
+	- 0.4e1 * a2 * g21 * h11 * g22 * h12 * beta * beta * intpow(cth, 2)
 	+ 0.8e1 * a2 * g11 * h11 * g22 * h12 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * beta * sth * cth
-	+ 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g11 * g11 * h11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * alpha * intpow(cth, 2)
+	+ 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * alpha * intpow(sth, 2)
+	- 0.2e1 * a2 * g11 * g11 * h11 * h11 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * alpha * intpow(cth, 2)
 	- 0.2e1 * a4 * a4 * h11 * h11
-	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a2 * g12 * h12 * h12 * g22 * alpha * alpha * cth * sth
 	+ 0.8e1 * a2 * g11 * h11 * h11 * g21 * alpha * alpha * cth * sth
 	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * beta * sth * cth
-	- 0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * pow(cth, 0.2e1))
+	- 0.2e1 * a2 * g12 * g12 * h12 * h12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a2 * g21 * g21 * h11 * h11 * beta * beta * intpow(cth, 2))
 	+ 0.4e1 * beta * sth * alpha * cth * (0.8e1 * a2 * g11 * h11 * g12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g22 * g22 * h12 * h12 * alpha * sth * beta * cth
 	- 0.4e1 * a2 * g21 * g21 * h11 * h11 * alpha * sth * beta * cth
-	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.4e1 * a2 * g21 * h11 * g12 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g12 * h12 * h12 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a2 * g21 * h11 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a2 * g11 * h11 * h11 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a2 * g11 * h11 * g22 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a2 * g11 * g11 * h11 * h11 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a2 * g12 * h12 * h12 * g22 * beta * intpow(sth, 2) * alpha
 	- 0.8e1 * a2 * g21 * h11 * g22 * h12 * alpha * sth * beta * cth
-	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a2 * g11 * h11 * h11 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a2 * g12 * g12 * h12 * h12 * alpha * sth * beta * cth);
 
 	E0 = 0.2e1 * a3 * g21 * g21 * g12 * g22 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g12 * g22 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * g12 * pow(g22, 0.3e1) * beta * beta * cth * sth
-	- a3 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
-	- a3 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * g12 * intpow(g22, 3) * beta * beta * cth * sth
+	- a3 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * g12 * g22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * g11 * g21 * beta * beta * intpow(sth, 2)
+	- a3 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * g11 * g21 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g22 * g22 * beta * beta * cth * sth
-	- a3 * pow(g21, 0.4e1) * beta * beta * pow(cth, 0.2e1)
+	- a3 * intpow(g21, 4) * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * g21 * g21 * beta * beta * cth * sth
-	- a3 * g12 * g12 * g22 * g22 * beta * beta * pow(sth, 0.2e1)
-	- a3 * g11 * g11 * g21 * g21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * g21 * g21 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	- a3 * g12 * g12 * g22 * g22 * beta * beta * intpow(sth, 2)
+	- a3 * g11 * g11 * g21 * g21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * g21 * g21 * g22 * g22 * beta * beta * intpow(cth, 2)
 	+ a6 * a6 * g21 * g21
 	+ a6 * a6 * g22 * g22
-	+ 0.2e1 * a3 * g11 * pow(g21, 0.3e1) * beta * beta * cth * sth
+	+ 0.2e1 * a3 * g11 * intpow(g21, 3) * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g11 * g21 * g22 * g22 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g11 * g21 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * g21 * g12 * g22 * beta * beta * intpow(sth, 2)
 	+ a6 * a6
-	- 0.2e1 * a3 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
-	- a3 * pow(g22, 0.4e1) * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g21 * g21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g22 * g22 * beta * beta * intpow(cth, 2)
+	- a3 * intpow(g22, 4) * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * beta * beta * cth * sth;
 
 	E1 = -0.4e1 * a3 * g11 * g11 * g21 * g21 * alpha * sth * beta * cth
 	+ 0.8e1 * a3 * g21 * g21 * g22 * g22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g12 * g12 * g22 * g22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
+	+ 0.4e1 * a3 * g22 * g22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g22 * g22 * alpha * intpow(sth, 2) * beta
 	- 0.8e1 * a3 * g11 * g21 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g12 * g22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g12 * g22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g21 * g21 * g12 * g22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g12 * pow(g22, 0.3e1) * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g12 * pow(g22, 0.3e1) * beta * pow(cth, 0.2e1) * alpha
+	- 0.4e1 * a3 * g12 * g22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g12 * g22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g21 * g21 * g12 * g22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g12 * intpow(g22, 3) * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g12 * intpow(g22, 3) * beta * intpow(cth, 2) * alpha
 	+ 0.8e1 * a3 * g21 * g21 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * pow(g21, 0.4e1) * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * g21 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * g21 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * intpow(g21, 4) * alpha * sth * beta * cth
+	- 0.4e1 * a3 * g11 * g21 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * g21 * beta * intpow(cth, 2) * alpha
 	- 0.8e1 * a3 * g12 * g22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g21 * g21 * g12 * g22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * g21 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
+	- 0.4e1 * a3 * g21 * g21 * g12 * g22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * g21 * g22 * g22 * beta * intpow(cth, 2) * alpha
 	- 0.8e1 * a3 * g11 * g21 * g12 * g22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * pow(g21, 0.3e1) * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * pow(g21, 0.3e1) * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g21 * g21 * beta * pow(cth, 0.2e1) * alpha
+	- 0.4e1 * a3 * g11 * intpow(g21, 3) * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * intpow(g21, 3) * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g21 * g21 * beta * intpow(cth, 2) * alpha
 	+ 0.8e1 * a3 * g22 * g22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g21 * g21 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * pow(g22, 0.4e1) * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * g21 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * beta * pow(cth, 0.2e1) * alpha;
+	- 0.4e1 * a3 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g21 * g21 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * intpow(g22, 4) * alpha * sth * beta * cth
+	- 0.4e1 * a3 * g11 * g21 * g22 * g22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * beta * intpow(cth, 2) * alpha;
 
 	E2 = -0.4e1 * a3 * g21 * g21 * g12 * g22 * beta * beta * cth * sth
 	- 0.4e1 * a3 * g12 * g22 * beta * beta * cth * sth
-	- 0.4e1 * a3 * g12 * pow(g22, 0.3e1) * beta * beta * cth * sth
-	+ 0.2e1 * a3 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a3 * beta * beta * pow(cth, 0.2e1)
+	- 0.4e1 * a3 * g12 * intpow(g22, 3) * beta * beta * cth * sth
+	+ 0.2e1 * a3 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a3 * g12 * g22 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a3 * g11 * g21 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a3 * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a3 * g11 * g21 * beta * beta * cth * sth
 	- 0.4e1 * a3 * g22 * g22 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * pow(g21, 0.4e1) * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * intpow(g21, 4) * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a3 * g21 * g21 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * g12 * g12 * g22 * g22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a3 * g11 * g11 * g21 * g21 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * g21 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * g12 * g12 * g22 * g22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a3 * g11 * g11 * g21 * g21 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a3 * g21 * g21 * g22 * g22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a6 * a6 * g21 * g21
 	+ 0.2e1 * a6 * a6 * g22 * g22
-	- 0.4e1 * a3 * g11 * pow(g21, 0.3e1) * beta * beta * cth * sth
+	- 0.4e1 * a3 * g11 * intpow(g21, 3) * beta * beta * cth * sth
 	- 0.4e1 * a3 * g11 * g21 * g22 * g22 * beta * beta * cth * sth
-	+ 0.4e1 * a3 * g11 * g21 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * g21 * g12 * g22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a6 * a6
-	- 0.4e1 * a3 * g11 * g11 * g21 * g21 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.8e1 * a3 * g12 * g22 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.8e1 * a3 * g11 * g21 * alpha * alpha * pow(cth, 0.2e1)
+	- 0.4e1 * a3 * g11 * g11 * g21 * g21 * alpha * alpha * intpow(cth, 2)
+	- 0.8e1 * a3 * g12 * g22 * alpha * alpha * intpow(cth, 2)
+	- 0.8e1 * a3 * g11 * g21 * alpha * alpha * intpow(cth, 2)
 	- 0.8e1 * a3 * g12 * g22 * alpha * alpha * sth * cth
-	- 0.8e1 * a3 * g12 * pow(g22, 0.3e1) * alpha * alpha * sth * cth
-	- 0.8e1 * a3 * g21 * g21 * g22 * g22 * alpha * alpha * pow(sth, 0.2e1)
+	- 0.8e1 * a3 * g12 * intpow(g22, 3) * alpha * alpha * sth * cth
+	- 0.8e1 * a3 * g21 * g21 * g22 * g22 * alpha * alpha * intpow(sth, 2)
 	- 0.8e1 * a3 * g22 * g22 * alpha * alpha * sth * cth
 	- 0.8e1 * a3 * g21 * g21 * g12 * g22 * alpha * alpha * sth * cth
-	- 0.8e1 * a3 * g11 * pow(g21, 0.3e1) * alpha * alpha * sth * cth
-	- 0.4e1 * a3 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.8e1 * a3 * g11 * g21 * g12 * g22 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a3 * g12 * g12 * g22 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	- 0.8e1 * a3 * g11 * intpow(g21, 3) * alpha * alpha * sth * cth
+	- 0.4e1 * a3 * alpha * alpha * intpow(sth, 2)
+	- 0.8e1 * a3 * g11 * g21 * g12 * g22 * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a3 * g12 * g12 * g22 * g22 * alpha * alpha * intpow(cth, 2)
 	- 0.8e1 * a3 * g21 * g21 * alpha * alpha * sth * cth
 	- 0.8e1 * a3 * g11 * g21 * alpha * alpha * sth * cth
-	- 0.4e1 * a3 * alpha * alpha * pow(cth, 0.2e1)
+	- 0.4e1 * a3 * alpha * alpha * intpow(cth, 2)
 	- 0.8e1 * a3 * g11 * g21 * g22 * g22 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a3 * pow(g22, 0.4e1) * beta * beta * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g21 * g21 * beta * beta * intpow(cth, 2)
+	+ 0.4e1 * a3 * g22 * g22 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a3 * intpow(g22, 4) * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a3 * beta * beta * cth * sth
-	- 0.4e1 * a3 * pow(g21, 0.4e1) * alpha * alpha * pow(sth, 0.2e1)
-	- 0.8e1 * a3 * g21 * g21 * alpha * alpha * pow(sth, 0.2e1)
+	- 0.4e1 * a3 * intpow(g21, 4) * alpha * alpha * intpow(sth, 2)
+	- 0.8e1 * a3 * g21 * g21 * alpha * alpha * intpow(sth, 2)
 	- 0.8e1 * a3 * alpha * alpha * sth * cth
-	- 0.4e1 * a3 * pow(g22, 0.4e1) * alpha * alpha * pow(sth, 0.2e1)
-	- 0.8e1 * a3 * g22 * g22 * alpha * alpha * pow(sth, 0.2e1);
+	- 0.4e1 * a3 * intpow(g22, 4) * alpha * alpha * intpow(sth, 2)
+	- 0.8e1 * a3 * g22 * g22 * alpha * alpha * intpow(sth, 2);
 
 	F0 = -0.2e1 * beta * cth * (-a6 * a6 * h22 * g22
 	- a6 * a6 * h21 * g21
 	- a3 * g11 * h21 * g22 * g22 * beta * beta * cth * sth
-	+ a3 * g11 * h21 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g11 * h21 * g12 * g22 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * g21 * g21 * beta * beta * cth * sth
-	+ a3 * pow(g22, 0.3e1) * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * intpow(g22, 3) * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * h21 * g12 * g22 * beta * beta * cth * sth
-	+ a3 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g21 * h21 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g12 * g12 * h22 * g22 * beta * beta * intpow(sth, 2)
+	+ a3 * g21 * h21 * g22 * g22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * g21 * g12 * h22 * beta * beta * cth * sth
 	- a3 * g11 * h21 * beta * beta * cth * sth
-	+ a3 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- a3 * g11 * g21 * g22 * h22 * beta * beta * cth * sth
 	- a3 * g22 * h22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g12 * h22 * g22 * g22 * beta * beta * cth * sth
-	+ a3 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g21 * g21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a3 * g21 * g21 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * h21 * beta * beta * cth * sth
 	- a3 * g12 * h22 * beta * beta * cth * sth
-	+ a3 * g11 * g11 * h21 * g21 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * pow(g21, 0.3e1) * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g11 * g21 * g12 * h22 * beta * beta * pow(sth, 0.2e1));
+	+ a3 * g11 * g11 * h21 * g21 * beta * beta * intpow(sth, 2)
+	+ a3 * intpow(g21, 3) * h21 * beta * beta * intpow(cth, 2)
+	+ a3 * g11 * g21 * g12 * h22 * beta * beta * intpow(sth, 2));
 
 	F1 = -0.2e1 * beta * cth * (-0.4e1 * a3 * g21 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * h21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * h21 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.2e1 * a3 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
+	- 0.4e1 * a3 * intpow(g21, 3) * h21 * alpha * sth * beta * cth
+	+ 0.2e1 * a3 * g21 * h21 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * h21 * beta * intpow(cth, 2) * alpha
+	+ 0.2e1 * a3 * g12 * h22 * alpha * intpow(sth, 2) * beta
 	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.2e1 * a3 * g11 * h21 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.2e1 * a3 * g11 * h21 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g22 * h22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g12 * h22 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.2e1 * a3 * g11 * h21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
+	- 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * intpow(g22, 3) * h22 * alpha * sth * beta * cth
+	- 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * intpow(cth, 2) * alpha
+	+ 0.2e1 * a3 * g11 * h21 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * intpow(sth, 2) * beta
 	+ 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha)
+	+ 0.2e1 * a3 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g22 * h22 * beta * intpow(cth, 2) * alpha)
 	+ 0.4e1 * alpha * sth * (-a6 * a6 * h22 * g22
 	- a6 * a6 * h21 * g21
 	- a3 * g11 * h21 * g22 * g22 * beta * beta * cth * sth
-	+ a3 * g11 * h21 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g11 * h21 * g12 * g22 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * g21 * g21 * beta * beta * cth * sth
-	+ a3 * pow(g22, 0.3e1) * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * intpow(g22, 3) * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * h21 * g12 * g22 * beta * beta * cth * sth
-	+ a3 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g21 * h21 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g12 * g12 * h22 * g22 * beta * beta * intpow(sth, 2)
+	+ a3 * g21 * h21 * g22 * g22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * g21 * g12 * h22 * beta * beta * cth * sth
 	- a3 * g11 * h21 * beta * beta * cth * sth
-	+ a3 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- a3 * g11 * g21 * g22 * h22 * beta * beta * cth * sth
 	- a3 * g22 * h22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g12 * h22 * g22 * g22 * beta * beta * cth * sth
-	+ a3 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g21 * g21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a3 * g21 * g21 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * h21 * beta * beta * cth * sth
 	- a3 * g12 * h22 * beta * beta * cth * sth
-	+ a3 * g11 * g11 * h21 * g21 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * pow(g21, 0.3e1) * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g11 * g21 * g12 * h22 * beta * beta * pow(sth, 0.2e1));
+	+ a3 * g11 * g11 * h21 * g21 * beta * beta * intpow(sth, 2)
+	+ a3 * intpow(g21, 3) * h21 * beta * beta * intpow(cth, 2)
+	+ a3 * g11 * g21 * g12 * h22 * beta * beta * intpow(sth, 2));
 
 	F2 = -0.2e1 * beta * cth * (-(2 * a6 * a6 * h22 * g22)
 	- (2 * a6 * a6 * h21 * g21)
 	+ 0.2e1 * a3 * g11 * h21 * (g22 * g22) * beta * beta * cth * sth
-	- 0.2e1 * a3 * g11 * h21 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * h21 * g12 * g22 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * (g21 * g21) * beta * beta * cth * sth
-	- 0.2e1 * a3 * pow(g22, 3) * h22 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * intpow(g22, 3) * h22 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * g21 * h21 * (g22 * g22) * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g12 * h22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * g12 * g12 * h22 * g22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * g21 * h21 * (g22 * g22) * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * (g21 * g21) * g12 * h22 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g11 * h21 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * h21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g22 * h22 * beta * beta * cth * sth
 	+ 0.4e1 * a3 * g12 * h22 * (g22 * g22) * beta * beta * cth * sth
-	- 0.2e1 * a3 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * (g21 * g21) * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * (g21 * g21) * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * g21 * h21 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g12 * h22 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g11 * g11 * h21 * g21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * pow(g21, 3) * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g11 * g21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * (g21 * g21) * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * pow(g21, 3) * h21 * alpha * alpha * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * g11 * h21 * g21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * intpow(g21, 3) * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g11 * g21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a3 * g21 * h21 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * (g21 * g21) * g22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * intpow(g21, 3) * h21 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a3 * g21 * h21 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g12 * h22 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * (g21 * g21) * g12 * h22 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g21 * h21 * g12 * g22 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * (g22 * g22) * alpha * alpha * sth * cth
 	+ 0.8e1 * a3 * g11 * h21 * (g21 * g21) * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * h21 * (g22 * g22) * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * pow(g22, 3) * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g21 * h21 * (g22 * g22) * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * intpow(g22, 3) * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a3 * g12 * h22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * g21 * g22 * h22 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g22 * h22 * alpha * alpha * sth * cth
 	+ 0.8e1 * a3 * g12 * h22 * (g22 * g22) * alpha * alpha * sth * cth)
 	+ 0.4e1 * alpha * sth * (-0.4e1 * a3 * g21 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * (g21 * g21) * g22 * h22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * pow(g21, 3) * h21 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * h21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * h21 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.2e1 * a3 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
+	- 0.4e1 * a3 * intpow(g21, 3) * h21 * alpha * sth * beta * cth
+	+ 0.2e1 * a3 * g21 * h21 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * h21 * beta * intpow(cth, 2) * alpha
+	+ 0.2e1 * a3 * g12 * h22 * alpha * intpow(sth, 2) * beta
 	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g12 * h22 * (g22 * g22) * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g12 * h22 * (g22 * g22) * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g12 * h22 * (g22 * g22) * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g12 * h22 * (g22 * g22) * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g21 * h21 * (g22 * g22) * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * (g21 * g21) * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * (g21 * g21) * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.2e1 * a3 * g11 * h21 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * (g21 * g21) * g12 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * (g21 * g21) * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.2e1 * a3 * g11 * h21 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g22 * h22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g12 * h22 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * h21 * (g21 * g21) * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * pow(g22, 3) * h22 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g11 * h21 * (g22 * g22) * beta * pow(cth, 0.2e1) * alpha
-	+ 0.2e1 * a3 * g11 * h21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g11 * h21 * (g21 * g21) * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g11 * h21 * (g22 * g22) * alpha * pow(sth, 0.2e1) * beta
+	- 0.4e1 * a3 * g11 * h21 * (g21 * g21) * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * intpow(g22, 3) * h22 * alpha * sth * beta * cth
+	- 0.2e1 * a3 * g11 * h21 * (g22 * g22) * beta * intpow(cth, 2) * alpha
+	+ 0.2e1 * a3 * g11 * h21 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * (g21 * g21) * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g11 * h21 * (g22 * g22) * alpha * intpow(sth, 2) * beta
 	+ 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha)
+	+ 0.2e1 * a3 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g22 * h22 * beta * intpow(cth, 2) * alpha)
 	+ 0.2e1 * beta * cth * (-(a6 * a6 * h22 * g22)
 	- (a6 * a6 * h21 * g21)
 	- a3 * g11 * h21 * (g22 * g22) * beta * beta * cth * sth
-	+ a3 * g11 * h21 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g11 * h21 * g12 * g22 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * (g21 * g21) * beta * beta * cth * sth
-	+ a3 * pow(g22, 3) * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * intpow(g22, 3) * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * h21 * g12 * g22 * beta * beta * cth * sth
-	+ a3 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g21 * h21 * (g22 * g22) * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g12 * g12 * h22 * g22 * beta * beta * intpow(sth, 2)
+	+ a3 * g21 * h21 * (g22 * g22) * beta * beta * intpow(cth, 2)
 	- a3 * (g21 * g21) * g12 * h22 * beta * beta * cth * sth
 	- a3 * g11 * h21 * beta * beta * cth * sth
-	+ a3 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- a3 * g11 * g21 * g22 * h22 * beta * beta * cth * sth
 	- a3 * g22 * h22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g12 * h22 * (g22 * g22) * beta * beta * cth * sth
-	+ a3 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * (g21 * g21) * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a3 * (g21 * g21) * g22 * h22 * beta * beta * intpow(cth, 2)
 	- a3 * g21 * h21 * beta * beta * cth * sth
 	- a3 * g12 * h22 * beta * beta * cth * sth
-	+ a3 * g11 * g11 * h21 * g21 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * pow(g21, 3) * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g11 * g21 * g12 * h22 * beta * beta * pow(sth, 0.2e1));
+	+ a3 * g11 * g11 * h21 * g21 * beta * beta * intpow(sth, 2)
+	+ a3 * intpow(g21, 3) * h21 * beta * beta * intpow(cth, 2)
+	+ a3 * g11 * g21 * g12 * h22 * beta * beta * intpow(sth, 2));
 
 	F3 = -0.2e1 * beta * cth * (0.4e1 * a3 * g21 * h21 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g21 * h21 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g21 * h21 * beta * pow(cth, 0.2e1) * alpha
-	- 0.2e1 * a3 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
+	+ 0.4e1 * a3 * intpow(g21, 3) * h21 * alpha * sth * beta * cth
+	- 0.2e1 * a3 * g21 * h21 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g21 * h21 * beta * intpow(cth, 2) * alpha
+	- 0.2e1 * a3 * g12 * h22 * alpha * intpow(sth, 2) * beta
 	- 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
+	- 0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.2e1 * a3 * g11 * h21 * beta * pow(cth, 0.2e1) * alpha
+	- 0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	+ 0.2e1 * a3 * g11 * h21 * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g11 * h21 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g22 * h22 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cth, 0.2e1) * alpha
+	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g12 * h22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.2e1 * a3 * g11 * h21 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
+	+ 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * intpow(g22, 3) * h22 * alpha * sth * beta * cth
+	+ 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * intpow(cth, 2) * alpha
+	- 0.2e1 * a3 * g11 * h21 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * intpow(sth, 2) * beta
 	- 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha)
+	- 0.2e1 * a3 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g22 * h22 * beta * intpow(cth, 2) * alpha)
 	+ 0.4e1 * alpha * sth * (-0.2e1 * a6 * a6 * h22 * g22
 	- 0.2e1 * a6 * a6 * h21 * g21
 	+ 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g11 * h21 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * h21 * g12 * g22 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * beta * cth * sth
-	- 0.2e1 * a3 * pow(g22, 0.3e1) * h22 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * intpow(g22, 3) * h22 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * g12 * g12 * h22 * g22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * g21 * h21 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g12 * h22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * g12 * g12 * h22 * g22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * g21 * h21 * g22 * g22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g11 * h21 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * h21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g22 * h22 * beta * beta * cth * sth
 	+ 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g21 * g21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g21 * g21 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a3 * g21 * h21 * beta * beta * cth * sth
 	+ 0.2e1 * a3 * g12 * h22 * beta * beta * cth * sth
-	- 0.2e1 * a3 * g11 * g11 * h21 * g21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a3 * pow(g21, 0.3e1) * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g11 * g21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * alpha * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * g11 * h21 * g21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a3 * intpow(g21, 3) * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g11 * g21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.4e1 * a3 * g21 * h21 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * intpow(g21, 3) * h21 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a3 * g21 * h21 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g12 * h22 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * g21 * g21 * g12 * h22 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g21 * h21 * g12 * g22 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * g22 * g22 * alpha * alpha * sth * cth
 	+ 0.8e1 * a3 * g11 * h21 * g21 * g21 * alpha * alpha * sth * cth
-	+ 0.4e1 * a3 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * intpow(g22, 3) * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a3 * g12 * h22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * g21 * g22 * h22 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g22 * h22 * alpha * alpha * sth * cth
 	+ 0.8e1 * a3 * g12 * h22 * g22 * g22 * alpha * alpha * sth * cth)
 	+ 0.2e1 * beta * cth * (-0.4e1 * a3 * g21 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g21 * g21 * g22 * h22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * pow(g21, 0.3e1) * h21 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * h21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * h21 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.2e1 * a3 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
+	- 0.4e1 * a3 * intpow(g21, 3) * h21 * alpha * sth * beta * cth
+	+ 0.2e1 * a3 * g21 * h21 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * h21 * beta * intpow(cth, 2) * alpha
+	+ 0.2e1 * a3 * g12 * h22 * alpha * intpow(sth, 2) * beta
 	+ 0.4e1 * a3 * g12 * g12 * h22 * g22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g12 * h22 * g22 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g12 * h22 * g22 * g22 * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g21 * h21 * g22 * g22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.2e1 * a3 * g11 * h21 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g21 * g21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * g21 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.2e1 * a3 * g11 * h21 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g22 * h22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g21 * h21 * g12 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g21 * h21 * g12 * g22 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * g21 * g12 * h22 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.2e1 * a3 * g11 * g21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g11 * g21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g12 * h22 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g11 * h21 * g12 * g22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * pow(g22, 0.3e1) * h22 * alpha * sth * beta * cth
-	- 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.2e1 * a3 * g11 * h21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * pow(sth, 0.2e1) * beta
+	- 0.4e1 * a3 * g11 * h21 * g21 * g21 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * intpow(g22, 3) * h22 * alpha * sth * beta * cth
+	- 0.2e1 * a3 * g11 * h21 * g22 * g22 * beta * intpow(cth, 2) * alpha
+	+ 0.2e1 * a3 * g11 * h21 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * g21 * g21 * alpha * intpow(sth, 2) * beta
+	+ 0.2e1 * a3 * g11 * h21 * g22 * g22 * alpha * intpow(sth, 2) * beta
 	+ 0.4e1 * a3 * g11 * g11 * h21 * g21 * alpha * sth * beta * cth
-	+ 0.2e1 * a3 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.2e1 * a3 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha);
+	+ 0.2e1 * a3 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.2e1 * a3 * g22 * h22 * beta * intpow(cth, 2) * alpha);
 
-	G0 = -beta * beta * pow(cth, 0.2e1) * (-a6 * a6 * h21 * h21
+	G0 = -beta * beta * intpow(cth, 2) * (-a6 * a6 * h21 * h21
 	- a6 * a6 * h22 * h22
-	+ a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth);
 
-	G1 = -beta * beta * pow(cth, 0.2e1) * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cth, 0.2e1) * alpha
+	G1 = -beta * beta * intpow(cth, 2) * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	- 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sth * beta * cth
 	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sth, 0.2e1) * beta)
+	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * intpow(sth, 2) * beta)
 	+ 0.4e1 * beta * cth * alpha * sth * (-a6 * a6 * h21 * h21
 	- a6 * a6 * h22 * h22
-	+ a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth);
 
-	G2 = -beta * beta * pow(cth, 0.2e1) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	G2 = -beta * beta * intpow(cth, 2) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	- 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a6 * a6 * h21 * h21
 	+ 0.8e1 * a3 * g21 * h21 * g12 * h22 * alpha * alpha * sth * cth
-	- 0.2e1 * a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a6 * a6 * h22 * h22
 	+ 0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * sth * cth
-	- 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth
-	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * sth * cth)
-	+ 0.4e1 * beta * cth * alpha * sth * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * beta * cth * alpha * sth * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	- 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sth * beta * cth
 	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sth, 0.2e1) * beta)
-	- (-0.2e1 * beta * beta * pow(cth, 0.2e1)
-	+ 0.4e1 * alpha * alpha * pow(sth, 0.2e1)) * (-a6 * a6 * h21 * h21
+	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * intpow(sth, 2) * beta)
+	- (-0.2e1 * beta * beta * intpow(cth, 2)
+	+ 0.4e1 * alpha * alpha * intpow(sth, 2)) * (-a6 * a6 * h21 * h21
 	- a6 * a6 * h22 * h22
-	+ a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth);
 
-	G3 = -beta * beta * pow(cth, 0.2e1) * (0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sth * beta * cth
+	G3 = -beta * beta * intpow(cth, 2) * (0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sth * beta * cth
 	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
+	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * intpow(sth, 2) * beta
 	- 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha)
-	+ 0.4e1 * beta * cth * alpha * sth * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * intpow(cth, 2) * alpha)
+	+ 0.4e1 * beta * cth * alpha * sth * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	- 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a6 * a6 * h21 * h21
 	+ 0.8e1 * a3 * g21 * h21 * g12 * h22 * alpha * alpha * sth * cth
-	- 0.2e1 * a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a6 * a6 * h22 * h22
 	+ 0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * sth * cth
-	- 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth
-	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * sth * cth)
-	- (-0.2e1 * beta * beta * pow(cth, 0.2e1)
-	+ 0.4e1 * alpha * alpha * pow(sth, 0.2e1)) * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cth, 0.2e1) * alpha
+	- (-0.2e1 * beta * beta * intpow(cth, 2)
+	+ 0.4e1 * alpha * alpha * intpow(sth, 2)) * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	- 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sth * beta * cth
 	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sth, 0.2e1) * beta)
+	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * intpow(sth, 2) * beta)
 	- 0.4e1 * beta * cth * alpha * sth * (-a6 * a6 * h21 * h21
 	- a6 * a6 * h22 * h22
-	+ a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth);
 
-	G4 = -0.2e1 * beta * beta * pow(cth, 0.2e1) * (-a6 * a6 * h21 * h21
+	G4 = -0.2e1 * beta * beta * intpow(cth, 2) * (-a6 * a6 * h21 * h21
 	- a6 * a6 * h22 * h22
-	+ a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth)
 	+ 0.4e1 * beta * cth * alpha * sth * (0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	- 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sth * beta * cth
 	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
+	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * intpow(sth, 2) * beta
 	- 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sth * beta * cth
-	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha)
-	- (-0.2e1 * beta * beta * pow(cth, 0.2e1)
-	+ 0.4e1 * alpha * alpha * pow(sth, 0.2e1)) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * intpow(cth, 2) * alpha)
+	- (-0.2e1 * beta * beta * intpow(cth, 2)
+	+ 0.4e1 * alpha * alpha * intpow(sth, 2)) * (-0.4e1 * a3 * g11 * h21 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	- 0.2e1 * a3 * g22 * g22 * h22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * beta * cth * sth
 	- 0.2e1 * a6 * a6 * h21 * h21
 	+ 0.8e1 * a3 * g21 * h21 * g12 * h22 * alpha * alpha * sth * cth
-	- 0.2e1 * a3 * g11 * g11 * h21 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a3 * g11 * g11 * h21 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a6 * a6 * h22 * h22
 	+ 0.8e1 * a3 * g11 * h21 * h21 * g21 * alpha * alpha * sth * cth
 	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * beta * cth * sth
-	+ 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a3 * g21 * h21 * g22 * h22 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a3 * g12 * g12 * h22 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.8e1 * a3 * g12 * h22 * h22 * g22 * alpha * alpha * sth * cth
-	- 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a3 * g21 * g21 * h21 * h21 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * beta * cth * sth
-	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * beta * cth * sth
-	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.8e1 * a3 * g11 * h21 * g22 * h22 * alpha * alpha * sth * cth)
-	- 0.4e1 * beta * cth * alpha * sth * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * pow(cth, 0.2e1) * alpha
-	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * pow(cth, 0.2e1) * alpha
+	- 0.4e1 * beta * cth * alpha * sth * (-0.4e1 * a3 * g21 * h21 * g12 * h22 * beta * intpow(cth, 2) * alpha
+	- 0.4e1 * a3 * g11 * h21 * h21 * g21 * beta * intpow(cth, 2) * alpha
 	+ 0.4e1 * a3 * g11 * g11 * h21 * h21 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g21 * g21 * h21 * h21 * alpha * sth * beta * cth
 	+ 0.4e1 * a3 * g12 * g12 * h22 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * pow(cth, 0.2e1) * alpha
-	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * pow(sth, 0.2e1) * beta
-	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * pow(cth, 0.2e1) * alpha
+	+ 0.4e1 * a3 * g11 * h21 * g22 * h22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g12 * h22 * h22 * g22 * beta * intpow(cth, 2) * alpha
+	+ 0.4e1 * a3 * g12 * h22 * h22 * g22 * alpha * intpow(sth, 2) * beta
+	- 0.4e1 * a3 * g11 * h21 * g22 * h22 * beta * intpow(cth, 2) * alpha
 	- 0.8e1 * a3 * g21 * h21 * g22 * h22 * alpha * sth * beta * cth
 	- 0.4e1 * a3 * g22 * g22 * h22 * h22 * alpha * sth * beta * cth
 	+ 0.8e1 * a3 * g11 * h21 * g12 * h22 * alpha * sth * beta * cth
-	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * pow(sth, 0.2e1) * beta
-	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * pow(sth, 0.2e1) * beta);
+	+ 0.4e1 * a3 * g21 * h21 * g12 * h22 * alpha * intpow(sth, 2) * beta
+	+ 0.4e1 * a3 * g11 * h21 * h21 * g21 * alpha * intpow(sth, 2) * beta);
 
-	H0 = -beta * beta * sth * cth * (a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	H0 = -beta * beta * sth * cth * (a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- a4 * a6 * h11 * h21
 	- a4 * a6 * h12 * h22
 	- a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	- a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1));
+	+ a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2));
 
 	H1 = -beta * beta * sth * cth * (0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta)
-	- (-0.2e1 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * alpha * pow(cth, 0.2e1) * beta) * (a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * intpow(cth, 2) * beta)
+	- (-0.2e1 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * alpha * intpow(cth, 2) * beta) * (a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- a4 * a6 * h11 * h21
 	- a4 * a6 * h12 * h22
 	- a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	- a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1));
+	+ a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2));
 
-	H2 = -beta * beta * sth * cth * (-0.2e1 * a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	H2 = -beta * beta * sth * cth * (-0.2e1 * a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a4 * a6 * h11 * h21
 	- 0.2e1 * a4 * a6 * h12 * h22
 	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha * cth * sth
 	+ 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha * cth * sth)
-	- (-0.2e1 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * alpha * pow(cth, 0.2e1) * beta) * (0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
+	- (-0.2e1 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * alpha * intpow(cth, 2) * beta) * (0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta)
+	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * intpow(cth, 2) * beta)
 	- (-0.2e1 * beta * beta * sth * cth
-	- 0.4e1 * alpha * alpha * cth * sth) * (a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.4e1 * alpha * alpha * cth * sth) * (a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- a4 * a6 * h11 * h21
 	- a4 * a6 * h12 * h22
 	- a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	- a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1));
+	+ a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2));
 
 	H3 = -beta * beta * sth * cth * (0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta)
-	- (-0.2e1 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * alpha * pow(cth, 0.2e1) * beta) * (-0.2e1 * a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * intpow(cth, 2) * beta)
+	- (-0.2e1 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * alpha * intpow(cth, 2) * beta) * (-0.2e1 * a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a4 * a6 * h11 * h21
 	- 0.2e1 * a4 * a6 * h12 * h22
 	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha * cth * sth
 	+ 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha * cth * sth)
 	- (-0.2e1 * beta * beta * sth * cth
 	- 0.4e1 * alpha * alpha * cth * sth) * (0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta)
-	- (-0.2e1 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * beta * pow(sth, 0.2e1) * alpha) * (a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * intpow(cth, 2) * beta)
+	- (-0.2e1 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * beta * intpow(sth, 2) * alpha) * (a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- a4 * a6 * h11 * h21
 	- a4 * a6 * h12 * h22
 	- a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	- a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1));
+	+ a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2));
 
-	H4 = -0.2e1 * beta * beta * sth * cth * (a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	H4 = -0.2e1 * beta * beta * sth * cth * (a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- a4 * a6 * h11 * h21
 	- a4 * a6 * h12 * h22
 	- a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	- a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1))
-	- (-0.2e1 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * alpha * pow(cth, 0.2e1) * beta) * (0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * cth * beta * sth
+	+ a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2))
+	- (-0.2e1 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * alpha * intpow(cth, 2) * beta) * (0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta)
+	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * intpow(cth, 2) * beta)
 	- (-0.2e1 * beta * beta * sth * cth
-	- 0.4e1 * alpha * alpha * cth * sth) * (-0.2e1 * a5 * g11 * g11 * h11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.4e1 * alpha * alpha * cth * sth) * (-0.2e1 * a5 * g11 * g11 * h11 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a4 * a6 * h11 * h21
 	- 0.2e1 * a4 * a6 * h12 * h22
 	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g22 * h12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g22 * g22 * h12 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g21 * g21 * h11 * h21 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h12 * g11 * h21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g21 * h11 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * g12 * h12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a5 * g11 * h11 * g21 * h21 * alpha * alpha * cth * sth
 	+ 0.8e1 * a5 * g12 * h12 * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g22 * h12 * g11 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g21 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g21 * h11 * g12 * h22 * alpha * alpha * cth * sth)
-	- (-0.2e1 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * beta * pow(sth, 0.2e1) * alpha) * (0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
+	- (-0.2e1 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * beta * intpow(sth, 2) * alpha) * (0.4e1 * a5 * g11 * g11 * h11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g11 * h11 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g21 * h11 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g12 * h12 * g11 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * g12 * h12 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g12 * h12 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * h12 * g21 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g21 * h11 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g22 * h12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * h11 * g22 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g11 * h11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g11 * h11 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * h21 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * g22 * h12 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta);
+	- 0.4e1 * a5 * g12 * h12 * g22 * h22 * alpha * intpow(cth, 2) * beta);
 
 	J0 = -beta * cth * (-a4 * a6 * g12 * h22
 	- a4 * a6 * g11 * h21
-	+ a5 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * g12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g12 * g12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * g12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g12 * g12 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- a5 * g12 * g12 * g21 * h21 * beta * beta * sth * cth
 	- a5 * g22 * g12 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a5 * g11 * g11 * g21 * h21 * beta * beta * sth * cth
 	- a5 * g12 * h22 * beta * beta * sth * cth
 	- a5 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * pow(g12, 0.3e1) * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * g22 * g12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * intpow(g12, 3) * h22 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * g22 * g12 * h22 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * pow(g11, 0.3e1) * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g11 * g11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * intpow(g11, 3) * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * g11 * g11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * g11 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * g11 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g21 * g11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * g11 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g21 * g11 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g12 * g12 * g22 * h22 * beta * beta * sth * cth);
 
 	J1 = -beta * cth * (0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * pow(g11, 0.3e1) * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g22 * h22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g22 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g11 * h21 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cth * beta * sth)
 	+ 0.2e1 * alpha * sth * (-a4 * a6 * g12 * h22
 	- a4 * a6 * g11 * h21
-	+ a5 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * g12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g12 * g12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * g12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g12 * g12 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- a5 * g12 * g12 * g21 * h21 * beta * beta * sth * cth
 	- a5 * g22 * g12 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a5 * g11 * g11 * g21 * h21 * beta * beta * sth * cth
 	- a5 * g12 * h22 * beta * beta * sth * cth
 	- a5 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * pow(g12, 0.3e1) * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * g22 * g12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * intpow(g12, 3) * h22 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * g22 * g12 * h22 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * pow(g11, 0.3e1) * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g11 * g11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * intpow(g11, 3) * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * g11 * g11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * g11 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * g11 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g21 * g11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * g11 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g21 * g11 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * g12 * g12 * g22 * h22 * beta * beta * sth * cth);
 
 	J2 = -beta * cth * (-(2 * a4 * a6 * g12 * h22)
 	- (2 * a4 * a6 * g11 * h21)
-	- 0.2e1 * a5 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g22 * g12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * (g12 * g12) * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g22 * g12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * (g12 * g12) * g11 * h21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * (g12 * g12) * g21 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g22 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h21 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a5 * (g11 * g11) * g21 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g12 * h22 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g11 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * pow(g12, 3) * h22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g22 * g22 * g12 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * intpow(g12, 3) * h22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g22 * g22 * g12 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * pow(g11, 3) * h21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * (g11 * g11) * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * intpow(g11, 3) * h21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * (g11 * g11) * g12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * (g11 * g11) * g22 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g21 * g21 * g11 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g21 * g11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g21 * g21 * g11 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g21 * g11 * g22 * h22 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * (g12 * g12) * g22 * h22 * beta * beta * sth * cth
-	+ 0.4e1 * a5 * (g11 * g11) * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * (g11 * g11) * g12 * h22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * (g11 * g11) * g22 * h22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * g11 * g12 * h22 * alpha * alpha * cth * sth
 	+ 0.8e1 * a5 * (g11 * g11) * g21 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * pow(g12, 3) * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * pow(g11, 3) * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * intpow(g12, 3) * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g11 * h21 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g21 * h21 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * intpow(g11, 3) * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g22 * g12 * g11 * h21 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g11 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g22 * h22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * (g12 * g12) * g21 * h21 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * (g12 * g12) * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * (g12 * g12) * g11 * h21 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g22 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a5 * (g12 * g12) * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * alpha * pow(sth, 0.2e1))
+	+ 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * alpha * intpow(sth, 2))
 	+ 0.2e1 * alpha * sth * (0.4e1 * a5 * (g11 * g11) * g12 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * (g11 * g11) * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * (g11 * g11) * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * (g11 * g11) * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * (g11 * g11) * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * (g11 * g11) * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * (g11 * g11) * g21 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * pow(g12, 3) * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * pow(g11, 3) * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * (g12 * g12) * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * (g12 * g12) * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g22 * h22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * (g12 * g12) * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * (g12 * g12) * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * (g12 * g12) * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g22 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * (g12 * g12) * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * (g12 * g12) * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * (g11 * g11) * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * (g12 * g12) * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * (g12 * g12) * g22 * h22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g11 * h21 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * (g11 * g11) * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cth * beta * sth)
 	+ beta * cth * (-(a4 * a6 * g12 * h22)
 	- (a4 * a6 * g11 * h21)
-	+ a5 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * g12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * (g12 * g12) * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h22 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * g12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * (g12 * g12) * g11 * h21 * beta * beta * intpow(sth, 2)
 	- a5 * (g12 * g12) * g21 * h21 * beta * beta * sth * cth
 	- a5 * g22 * g12 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a5 * (g11 * g11) * g21 * h21 * beta * beta * sth * cth
 	- a5 * g12 * h22 * beta * beta * sth * cth
 	- a5 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * pow(g12, 3) * h22 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * g22 * g12 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * intpow(g12, 3) * h22 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * g22 * g12 * h22 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h21 * beta * beta * sth * cth
-	+ a5 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * pow(g11, 3) * h21 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * (g11 * g11) * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g21 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * intpow(g11, 3) * h21 * beta * beta * intpow(sth, 2)
+	+ a5 * (g11 * g11) * g12 * h22 * beta * beta * intpow(sth, 2)
 	- a5 * (g11 * g11) * g22 * h22 * beta * beta * sth * cth
-	+ a5 * g21 * g21 * g11 * h21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g21 * g11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g21 * g21 * g11 * h21 * beta * beta * intpow(cth, 2)
+	+ a5 * g21 * g11 * g22 * h22 * beta * beta * intpow(cth, 2)
+	+ a5 * g22 * h22 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * (g12 * g12) * g22 * h22 * beta * beta * sth * cth);
 
 	J3 = -beta * cth * (-0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g21 * h21 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g12 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * pow(g11, 0.3e1) * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g11 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.2e1 * a5 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * h22 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g22 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g11 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cth * beta * sth)
 	+ 0.2e1 * alpha * sth * (-0.2e1 * a4 * a6 * g12 * h22
 	- 0.2e1 * a4 * a6 * g11 * h21
-	- 0.2e1 * a5 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g22 * g12 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g12 * g12 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g22 * g12 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g12 * g12 * g11 * h21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g22 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h21 * beta * beta * intpow(sth, 2)
 	+ 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g12 * h22 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g11 * h21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * pow(g12, 0.3e1) * h22 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g22 * g22 * g12 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * intpow(g12, 3) * h22 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g22 * g22 * g12 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * h21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g21 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * pow(g11, 0.3e1) * h21 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g11 * g11 * g12 * h22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g21 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * intpow(g11, 3) * h21 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g11 * g11 * g12 * h22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g21 * g21 * g11 * h21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g21 * g11 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g22 * h22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g21 * g21 * g11 * h21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g21 * g11 * g22 * h22 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g22 * h22 * beta * beta * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * beta * sth * cth
-	+ 0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * g11 * g22 * h22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * g11 * g12 * h22 * alpha * alpha * cth * sth
 	+ 0.8e1 * a5 * g11 * g11 * g21 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * h22 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * pow(g11, 0.3e1) * h21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * intpow(g12, 3) * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g11 * h21 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g21 * h21 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * h22 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * intpow(g11, 3) * h21 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g22 * g12 * g11 * h21 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g11 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g22 * h22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g12 * g12 * g21 * h21 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * h21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * alpha * pow(cth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * h22 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * alpha * intpow(cth, 2)
+	+ 0.4e1 * a5 * g22 * h22 * alpha * alpha * intpow(sth, 2)
 	+ 0.8e1 * a5 * g12 * g12 * g22 * h22 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * alpha * pow(sth, 0.2e1))
+	+ 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * alpha * intpow(sth, 2))
 	+ beta * cth * (0.4e1 * a5 * g11 * g11 * g12 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g11 * g11 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * g11 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * g11 * g12 * h22 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * g11 * g11 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g11 * g11 * g21 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * pow(g12, 0.3e1) * h22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g12 * h22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g12 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * h21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * h22 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * pow(g11, 0.3e1) * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g12 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g12 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * g12 * g21 * h21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * g12 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * g12 * g11 * h21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g11 * h21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g22 * h22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g12 * g12 * g11 * h21 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g12 * g12 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g22 * g22 * g12 * h22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g21 * h21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * h21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g21 * h21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * h21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g11 * g22 * h22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g22 * h22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g11 * h21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * g12 * g12 * g22 * h22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g12 * g12 * g22 * h22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g11 * h21 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g11 * g11 * g22 * h22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g21 * g21 * g11 * h21 * alpha * cth * beta * sth);
 
-	K0 = -beta * sth * (a5 * pow(g21, 0.3e1) * h11 * beta * beta * pow(cth, 0.2e1)
+	K0 = -beta * sth * (a5 * intpow(g21, 3) * h11 * beta * beta * intpow(cth, 2)
 	- a5 * g12 * h12 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g11 * h11 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * beta * beta * intpow(cth, 2)
 	- a5 * g22 * h12 * g11 * g21 * beta * beta * sth * cth
 	- a5 * g11 * h11 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * pow(g22, 0.3e1) * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g11 * g11 * h11 * g21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h12 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a5 * intpow(g22, 3) * h12 * beta * beta * intpow(cth, 2)
+	+ a5 * g11 * g11 * h11 * g21 * beta * beta * intpow(sth, 2)
 	- a5 * g21 * h11 * g12 * g22 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * g21 * beta * beta * intpow(cth, 2)
+	+ a5 * g21 * h11 * g22 * g22 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * g21 * beta * beta * intpow(sth, 2)
 	- a5 * g12 * h12 * g21 * g21 * beta * beta * sth * cth
 	- 0.2e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * g22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * g22 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * g12 * h12 * g22 * beta * beta * intpow(sth, 2)
 	- a5 * g22 * h12 * beta * beta * sth * cth
 	- 0.2e1 * a5 * g12 * h12 * g22 * g22 * beta * beta * sth * cth
 	- a4 * a6 * h11 * g21
 	- a4 * a6 * h12 * g22);
 
-	K1 = -beta * sth * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cth, 0.2e1) * beta
+	K1 = -beta * sth * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cth * beta * sth
@@ -1943,102 +1943,102 @@ pose_from_point_tangents_2(
 	+ 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * h12 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g21 * h11 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * h12 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * intpow(g21, 3) * h11 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g11 * h11 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha)
-	- 0.2e1 * alpha * cth * (a5 * pow(g21, 0.3e1) * h11 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a5 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * intpow(g22, 3) * h12 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g21 * h11 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * intpow(sth, 2) * alpha)
+	- 0.2e1 * alpha * cth * (a5 * intpow(g21, 3) * h11 * beta * beta * intpow(cth, 2)
 	- a5 * g12 * h12 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g11 * h11 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * beta * beta * intpow(cth, 2)
 	- a5 * g22 * h12 * g11 * g21 * beta * beta * sth * cth
 	- a5 * g11 * h11 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * pow(g22, 0.3e1) * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g11 * g11 * h11 * g21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h12 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a5 * intpow(g22, 3) * h12 * beta * beta * intpow(cth, 2)
+	+ a5 * g11 * g11 * h11 * g21 * beta * beta * intpow(sth, 2)
 	- a5 * g21 * h11 * g12 * g22 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * g21 * beta * beta * intpow(cth, 2)
+	+ a5 * g21 * h11 * g22 * g22 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * g21 * beta * beta * intpow(sth, 2)
 	- a5 * g12 * h12 * g21 * g21 * beta * beta * sth * cth
 	- 0.2e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * g22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * g22 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * g12 * h12 * g22 * beta * beta * intpow(sth, 2)
 	- a5 * g22 * h12 * beta * beta * sth * cth
 	- 0.2e1 * a5 * g12 * h12 * g22 * g22 * beta * beta * sth * cth
 	- a4 * a6 * h11 * g21
 	- a4 * a6 * h12 * g22);
 
-	K2 = -beta * sth * (-0.2e1 * a5 * pow(g21, 0.3e1) * h11 * beta * beta * pow(cth, 0.2e1)
+	K2 = -beta * sth * (-0.2e1 * a5 * intpow(g21, 3) * h11 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g12 * h12 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h11 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g21 * h11 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g11 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * pow(g22, 0.3e1) * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g22 * h12 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * intpow(g22, 3) * h12 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * beta * sth * cth
 	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g22 * h12 * beta * beta * sth * cth
 	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * beta * sth * cth
 	- 0.2e1 * a4 * a6 * h11 * g21
 	- 0.2e1 * a4 * a6 * h12 * g22
-	+ 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * intpow(g22, 3) * h12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * intpow(g21, 3) * h11 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g22 * h12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * h12 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g22 * h12 * g11 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * h11 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g21 * h11 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * alpha * intpow(cth, 2)
 	+ 0.8e1 * a5 * g11 * h11 * g21 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * h11 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * h11 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g22 * g22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * h11 * g12 * g22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g22 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g21 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * alpha * intpow(cth, 2)
 	+ 0.8e1 * a5 * g12 * h12 * g22 * g22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * h11 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha * pow(sth, 0.2e1))
-	- 0.2e1 * alpha * cth * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha * intpow(sth, 2))
+	- 0.2e1 * alpha * cth * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cth * beta * sth
@@ -2046,56 +2046,56 @@ pose_from_point_tangents_2(
 	+ 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * h12 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g21 * h11 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * h12 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * intpow(g21, 3) * h11 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g11 * h11 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha)
-	+ beta * sth * (a5 * pow(g21, 0.3e1) * h11 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a5 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * intpow(g22, 3) * h12 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g21 * h11 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * intpow(sth, 2) * alpha)
+	+ beta * sth * (a5 * intpow(g21, 3) * h11 * beta * beta * intpow(cth, 2)
 	- a5 * g12 * h12 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g11 * h11 * beta * beta * intpow(sth, 2)
+	+ a5 * g21 * h11 * beta * beta * intpow(cth, 2)
 	- a5 * g22 * h12 * g11 * g21 * beta * beta * sth * cth
 	- a5 * g11 * h11 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
-	+ a5 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * pow(g22, 0.3e1) * h12 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g11 * g11 * h11 * g21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h12 * beta * beta * intpow(sth, 2)
+	+ a5 * g22 * h12 * beta * beta * intpow(cth, 2)
+	+ a5 * intpow(g22, 3) * h12 * beta * beta * intpow(cth, 2)
+	+ a5 * g11 * g11 * h11 * g21 * beta * beta * intpow(sth, 2)
 	- a5 * g21 * h11 * g12 * g22 * beta * beta * sth * cth
-	+ a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
-	+ a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	+ a5 * g22 * h12 * g21 * g21 * beta * beta * intpow(cth, 2)
+	+ a5 * g21 * h11 * g22 * g22 * beta * beta * intpow(cth, 2)
 	- a5 * g21 * h11 * beta * beta * sth * cth
-	+ a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * h12 * g11 * g21 * beta * beta * intpow(sth, 2)
 	- a5 * g12 * h12 * g21 * g21 * beta * beta * sth * cth
 	- 0.2e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sth * cth
-	+ a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g11 * h11 * g12 * g22 * beta * beta * intpow(sth, 2)
 	- a5 * g11 * h11 * g22 * g22 * beta * beta * sth * cth
-	+ a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sth, 0.2e1)
+	+ a5 * g12 * g12 * h12 * g22 * beta * beta * intpow(sth, 2)
 	- a5 * g22 * h12 * beta * beta * sth * cth
 	- 0.2e1 * a5 * g12 * h12 * g22 * g22 * beta * beta * sth * cth
 	- a4 * a6 * h11 * g21
 	- a4 * a6 * h12 * g22);
 
-	K3 = -beta * sth * (-0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cth, 0.2e1) * beta
+	K3 = -beta * sth * (-0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cth * beta * sth
@@ -2103,77 +2103,77 @@ pose_from_point_tangents_2(
 	- 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g12 * h12 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g21 * h11 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g22 * h12 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
+	- 0.2e1 * a5 * g11 * h11 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * intpow(g21, 3) * h11 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g11 * h11 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cth, 0.2e1) * beta
+	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha)
-	- 0.2e1 * alpha * cth * (-0.2e1 * a5 * pow(g21, 0.3e1) * h11 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * intpow(g22, 3) * h12 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g21 * h11 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * intpow(sth, 2) * alpha)
+	- 0.2e1 * alpha * cth * (-0.2e1 * a5 * intpow(g21, 3) * h11 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g12 * h12 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h11 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g21 * h11 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h11 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g21 * h11 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g11 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * h12 * beta * beta * pow(sth, 0.2e1)
-	- 0.2e1 * a5 * g22 * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * pow(g22, 0.3e1) * h12 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h12 * beta * beta * intpow(sth, 2)
+	- 0.2e1 * a5 * g22 * h12 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * intpow(g22, 3) * h12 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g11 * g11 * h11 * g21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
-	- 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
+	- 0.2e1 * a5 * g22 * h12 * g21 * g21 * beta * beta * intpow(cth, 2)
+	- 0.2e1 * a5 * g21 * h11 * g22 * g22 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * h11 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * h12 * g11 * g21 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * beta * sth * cth
 	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g11 * h11 * g12 * g22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * beta * sth * cth
-	- 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * pow(sth, 0.2e1)
+	- 0.2e1 * a5 * g12 * g12 * h12 * g22 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g22 * h12 * beta * beta * sth * cth
 	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * beta * sth * cth
 	- 0.2e1 * a4 * a6 * h11 * g21
 	- 0.2e1 * a4 * a6 * h12 * g22
-	+ 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g22 * h12 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * h12 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * intpow(g22, 3) * h12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * intpow(g21, 3) * h11 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g22 * h12 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * h12 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g22 * h12 * g11 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * h11 * alpha * alpha * pow(sth, 0.2e1)
-	+ 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g21 * h11 * alpha * alpha * intpow(sth, 2)
+	+ 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g12 * h12 * g11 * g21 * alpha * alpha * intpow(cth, 2)
 	+ 0.8e1 * a5 * g11 * h11 * g21 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * h11 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * h11 * alpha * alpha * intpow(cth, 2)
 	+ 0.4e1 * a5 * g11 * h11 * g22 * g22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * h11 * g12 * g22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g22 * h12 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * alpha * intpow(sth, 2)
 	+ 0.4e1 * a5 * g12 * h12 * g21 * g21 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * alpha * pow(cth, 0.2e1)
+	+ 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * alpha * intpow(cth, 2)
 	+ 0.8e1 * a5 * g12 * h12 * g22 * g22 * alpha * alpha * cth * sth
 	+ 0.4e1 * a5 * g21 * h11 * alpha * alpha * cth * sth
-	+ 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha * pow(sth, 0.2e1))
-	+ beta * sth * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g12 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * alpha * intpow(sth, 2))
+	+ beta * sth * (0.2e1 * a5 * g22 * h12 * g11 * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g12 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * g11 * g21 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * h12 * g21 * g21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * g12 * h12 * g22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g21 * h11 * g22 * g22 * alpha * cth * beta * sth
@@ -2181,163 +2181,163 @@ pose_from_point_tangents_2(
 	+ 0.4e1 * a5 * g11 * g11 * h11 * g21 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g12 * h12 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g21 * h11 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g12 * h12 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.2e1 * a5 * g21 * h11 * g12 * g22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g12 * h12 * alpha * intpow(cth, 2) * beta
 	- 0.4e1 * a5 * g22 * h12 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * h11 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * pow(g21, 0.3e1) * h11 * alpha * cth * beta * sth
-	- 0.2e1 * a5 * g11 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g11 * h11 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * intpow(g21, 3) * h11 * alpha * cth * beta * sth
+	- 0.2e1 * a5 * g11 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g12 * h12 * g21 * g21 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g11 * h11 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a5 * g11 * h11 * g21 * g21 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * g11 * h11 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g11 * h11 * g22 * g22 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g11 * h11 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g21 * h11 * g12 * g22 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g11 * h11 * g12 * g22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g22 * h12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g22 * h12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * pow(g22, 0.3e1) * h12 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * h11 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g21 * h11 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha);
+	+ 0.2e1 * a5 * g22 * h12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g22 * h12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g12 * h12 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g12 * h12 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * intpow(g22, 3) * h12 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g21 * h11 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g21 * h11 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * g12 * h12 * g22 * g22 * beta * intpow(sth, 2) * alpha);
 
 L0 = a4 * a6 * g11 * g21
 	+ a4 * a6 * g12 * g22
 	+ a4 * a6
-	- a5 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
-	- a5 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
+	- a5 * g22 * g22 * beta * beta * intpow(cth, 2)
+	- a5 * g21 * g21 * beta * beta * intpow(cth, 2)
 	+ a5 * g11 * g11 * g22 * g22 * beta * beta * sth * cth
-	- a5 * beta * beta * pow(sth, 0.2e1)
-	- a5 * beta * beta * pow(cth, 0.2e1)
-	- a5 * pow(g12, 0.3e1) * g22 * beta * beta * pow(sth, 0.2e1)
-	- a5 * g12 * g12 * g11 * g21 * beta * beta * pow(sth, 0.2e1)
-	- a5 * pow(g21, 0.3e1) * g11 * beta * beta * pow(cth, 0.2e1)
-	- a5 * g22 * g12 * beta * beta * pow(cth, 0.2e1)
-	- a5 * g21 * g11 * beta * beta * pow(sth, 0.2e1)
-	- a5 * pow(g22, 0.3e1) * g12 * beta * beta * pow(cth, 0.2e1)
+	- a5 * beta * beta * intpow(sth, 2)
+	- a5 * beta * beta * intpow(cth, 2)
+	- a5 * intpow(g12, 3) * g22 * beta * beta * intpow(sth, 2)
+	- a5 * g12 * g12 * g11 * g21 * beta * beta * intpow(sth, 2)
+	- a5 * intpow(g21, 3) * g11 * beta * beta * intpow(cth, 2)
+	- a5 * g22 * g12 * beta * beta * intpow(cth, 2)
+	- a5 * g21 * g11 * beta * beta * intpow(sth, 2)
+	- a5 * intpow(g22, 3) * g12 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g21 * g11 * beta * beta * sth * cth
-	- a5 * g22 * g12 * beta * beta * pow(sth, 0.2e1)
+	- a5 * g22 * g12 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g21 * g11 * g12 * g22 * beta * beta * sth * cth
-	- a5 * g21 * g11 * beta * beta * pow(cth, 0.2e1)
+	- a5 * g21 * g11 * beta * beta * intpow(cth, 2)
 	+ a5 * g12 * g12 * beta * beta * sth * cth
-	- a5 * g12 * g12 * beta * beta * pow(sth, 0.2e1)
+	- a5 * g12 * g12 * beta * beta * intpow(sth, 2)
 	+ 0.2e1 * a5 * g11 * g11 * g21 * g21 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * g22 * g12 * beta * beta * sth * cth
 	+ 0.2e1 * a5 * beta * beta * sth * cth
-	- a5 * g22 * g12 * g21 * g21 * beta * beta * pow(cth, 0.2e1)
+	- a5 * g22 * g12 * g21 * g21 * beta * beta * intpow(cth, 2)
 	+ 0.2e1 * a5 * g12 * g12 * g22 * g22 * beta * beta * sth * cth
 	+ a5 * g12 * g12 * g21 * g21 * beta * beta * sth * cth
 	+ a5 * g11 * g11 * beta * beta * sth * cth
-	- a5 * g11 * g11 * g12 * g22 * beta * beta * pow(sth, 0.2e1)
-	- a5 * pow(g11, 0.3e1) * g21 * beta * beta * pow(sth, 0.2e1)
+	- a5 * g11 * g11 * g12 * g22 * beta * beta * intpow(sth, 2)
+	- a5 * intpow(g11, 3) * g21 * beta * beta * intpow(sth, 2)
 	+ a5 * g21 * g21 * beta * beta * sth * cth
 	+ a5 * g22 * g22 * beta * beta * sth * cth
-	- a5 * g21 * g11 * g22 * g22 * beta * beta * pow(cth, 0.2e1)
-	- a5 * g11 * g11 * beta * beta * pow(sth, 0.2e1);
+	- a5 * g21 * g11 * g22 * g22 * beta * beta * intpow(cth, 2)
+	- a5 * g11 * g11 * beta * beta * intpow(sth, 2);
 
-L1 = 0.4e1 * a5 * pow(g22, 0.3e1) * g12 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * pow(g21, 0.3e1) * g11 * alpha * cth * beta * sth
+L1 = 0.4e1 * a5 * intpow(g22, 3) * g12 * alpha * cth * beta * sth
+	+ 0.4e1 * a5 * intpow(g21, 3) * g11 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g21 * g21 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g21 * g11 * g12 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g21 * g11 * g12 * g22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * g21 * g11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g21 * g11 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.4e1 * a5 * g21 * g11 * g12 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g21 * g11 * g12 * g22 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * g21 * g11 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g21 * g11 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g12 * g12 * g11 * g21 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * pow(g12, 0.3e1) * g22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g11 * g11 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g11 * g11 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * g12 * g12 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.4e1 * a5 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * intpow(g12, 3) * g22 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g11 * g11 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g11 * g11 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * g12 * g12 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	+ 0.4e1 * a5 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g12 * g12 * alpha * cth * beta * sth
 	+ 0.4e1 * a5 * g22 * g12 * g21 * g21 * alpha * cth * beta * sth
-	+ 0.4e1 * a5 * g22 * g12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.4e1 * a5 * g22 * g12 * beta * pow(sth, 0.2e1) * alpha
-	- 0.2e1 * a5 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
-	- 0.4e1 * a5 * g11 * g11 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.4e1 * a5 * g11 * g11 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
+	+ 0.4e1 * a5 * g22 * g12 * alpha * intpow(cth, 2) * beta
+	- 0.4e1 * a5 * g22 * g12 * beta * intpow(sth, 2) * alpha
+	- 0.2e1 * a5 * g21 * g21 * beta * intpow(sth, 2) * alpha
+	- 0.4e1 * a5 * g11 * g11 * g21 * g21 * beta * intpow(sth, 2) * alpha
+	+ 0.4e1 * a5 * g11 * g11 * g21 * g21 * alpha * intpow(cth, 2) * beta
 	+ 0.4e1 * a5 * g22 * g22 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g12 * g12 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g12 * g12 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g11 * g11 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g11 * g11 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha
+	+ 0.2e1 * a5 * g12 * g12 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g12 * g12 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g11 * g11 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g11 * g11 * g22 * g22 * beta * intpow(sth, 2) * alpha
 	+ 0.4e1 * a5 * g21 * g11 * g22 * g22 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * pow(g11, 0.3e1) * g21 * alpha * cth * beta * sth
-	+ 0.2e1 * a5 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	+ 0.2e1 * a5 * g22 * g22 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha
+	- 0.4e1 * a5 * intpow(g11, 3) * g21 * alpha * cth * beta * sth
+	+ 0.2e1 * a5 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	+ 0.2e1 * a5 * g22 * g22 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g22 * g22 * beta * intpow(sth, 2) * alpha
 	- 0.4e1 * a5 * g11 * g11 * g12 * g22 * alpha * cth * beta * sth
 	- 0.4e1 * a5 * g11 * g11 * alpha * cth * beta * sth
-	- 0.4e1 * a5 * g12 * g12 * g22 * g22 * beta * pow(sth, 0.2e1) * alpha
-	+ 0.2e1 * a5 * g12 * g12 * g21 * g21 * alpha * pow(cth, 0.2e1) * beta
-	- 0.2e1 * a5 * g12 * g12 * g21 * g21 * beta * pow(sth, 0.2e1) * alpha;
+	- 0.4e1 * a5 * g12 * g12 * g22 * g22 * beta * intpow(sth, 2) * alpha
+	+ 0.2e1 * a5 * g12 * g12 * g21 * g21 * alpha * intpow(cth, 2) * beta
+	- 0.2e1 * a5 * g12 * g12 * g21 * g21 * beta * intpow(sth, 2) * alpha;
 
 L2 = (2 * a4 * a6 * g11 * g21)
 	+ (2 * a4 * a6 * g12 * g22)
 	+ (2 * a4 * a6)
-	+ 0.2e1 * a5 * (g22 * g22) * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a5 * (g21 * g21) * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a5 * (g22 * g22) * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a5 * (g21 * g21) * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * (g11 * g11) * (g22 * g22) * beta * beta * sth * cth
-	+ 0.2e1 * a5 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a5 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a5 * pow(g12, 3) * g22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a5 * (g12 * g12) * g11 * g21 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a5 * pow(g21, 3) * g11 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a5 * g22 * g12 * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a5 * g21 * g11 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a5 * pow(g22, 3) * g12 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a5 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a5 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a5 * intpow(g12, 3) * g22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a5 * (g12 * g12) * g11 * g21 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a5 * intpow(g21, 3) * g11 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a5 * g22 * g12 * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a5 * g21 * g11 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a5 * intpow(g22, 3) * g12 * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a5 * g21 * g11 * beta * beta * sth * cth
-	+ 0.2e1 * a5 * g22 * g12 * beta * beta * pow(sth, 0.2e1)
+	+ 0.2e1 * a5 * g22 * g12 * beta * beta * intpow(sth, 2)
 	- 0.4e1 * a5 * g21 * g11 * g12 * g22 * beta * beta * sth * cth
-	+ 0.2e1 * a5 * g21 * g11 * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a5 * g21 * g11 * beta * beta * intpow(cth, 2)
 	- 0.2e1 * a5 * (g12 * g12) * beta * beta * sth * cth
-	+ 0.2e1 * a5 * (g12 * g12) * beta * beta * pow(sth, 0.2e1)
+	+ 0.2e1 * a5 * (g12 * g12) * beta * beta * intpow(sth, 2)
 	- 0.4e1 * a5 * (g11 * g11) * (g21 * g21) * beta * beta * sth * cth
 	- 0.4e1 * a5 * g22 * g12 * beta * beta * sth * cth
 	- 0.4e1 * a5 * beta * beta * sth * cth
-	+ 0.2e1 * a5 * g22 * g12 * (g21 * g21) * beta * beta * pow(cth, 0.2e1)
+	+ 0.2e1 * a5 * g22 * g12 * (g21 * g21) * beta * beta * intpow(cth, 2)
 	- 0.4e1 * a5 * (g12 * g12) * (g22 * g22) * beta * beta * sth * cth
 	- 0.2e1 * a5 * (g12 * g12) * (g21 * g21) * beta * beta * sth * cth
 	- 0.2e1 * a5 * (g11 * g11) * beta * beta * sth * cth
-	+ 0.2e1 * a5 * (g11 * g11) * g12 * g22 * beta * beta * pow(sth, 0.2e1)
-	+ 0.2e1 * a5 * pow(g11, 3) * g21 * beta * beta * pow(sth, 0.2e1)
+	+ 0.2e1 * a5 * (g11 * g11) * g12 * g22 * beta * beta * intpow(sth, 2)
+	+ 0.2e1 * a5 * intpow(g11, 3) * g21 * beta * beta * intpow(sth, 2)
 	- 0.2e1 * a5 * (g21 * g21) * beta * beta * sth * cth
 	- 0.2e1 * a5 * (g22 * g22) * beta * beta * sth * cth
-	+ 0.2e1 * a5 * g21 * g11 * (g22 * g22) * beta * beta * pow(cth, 0.2e1)
-	+ 0.2e1 * a5 * (g11 * g11) * beta * beta * pow(sth, 0.2e1)
-	- 0.4e1 * a5 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a5 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a5 * pow(g22, 3) * g12 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a5 * (g21 * g21) * alpha * alpha * pow(sth, 0.2e1)
+	+ 0.2e1 * a5 * g21 * g11 * (g22 * g22) * beta * beta * intpow(cth, 2)
+	+ 0.2e1 * a5 * (g11 * g11) * beta * beta * intpow(sth, 2)
+	- 0.4e1 * a5 * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a5 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a5 * intpow(g22, 3) * g12 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a5 * (g21 * g21) * alpha * alpha * intpow(sth, 2)
 	- 0.8e1 * a5 * (g11 * g11) * (g21 * g21) * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * g22 * g12 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a5 * (g11 * g11) * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a5 * (g22 * g22) * alpha * alpha * pow(sth, 0.2e1)
+	- 0.4e1 * a5 * g22 * g12 * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a5 * (g11 * g11) * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a5 * (g22 * g22) * alpha * alpha * intpow(sth, 2)
 	- 0.8e1 * a5 * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * pow(g21, 3) * g11 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a5 * g22 * g12 * alpha * alpha * pow(sth, 0.2e1)
-	- 0.4e1 * a5 * (g12 * g12) * g11 * g21 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a5 * g21 * g11 * alpha * alpha * pow(cth, 0.2e1)
-	- 0.4e1 * a5 * pow(g12, 3) * g22 * alpha * alpha * pow(cth, 0.2e1)
+	- 0.4e1 * a5 * intpow(g21, 3) * g11 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a5 * g22 * g12 * alpha * alpha * intpow(sth, 2)
+	- 0.4e1 * a5 * (g12 * g12) * g11 * g21 * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a5 * g21 * g11 * alpha * alpha * intpow(cth, 2)
+	- 0.4e1 * a5 * intpow(g12, 3) * g22 * alpha * alpha * intpow(cth, 2)
 	- 0.4e1 * a5 * (g11 * g11) * alpha * alpha * cth * sth
 	- 0.8e1 * a5 * (g12 * g12) * (g22 * g22) * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * (g12 * g12) * alpha * alpha * pow(cth, 0.2e1)
+	- 0.4e1 * a5 * (g12 * g12) * alpha * alpha * intpow(cth, 2)
 	- 0.8e1 * a5 * g21 * g11 * g12 * g22 * alpha * alpha * cth * sth
 	- 0.8e1 * a5 * g22 * g12 * alpha * alpha * cth * sth
 	- 0.4e1 * a5 * (g21 * g21) * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * g21 * g11 * alpha * alpha * pow(sth, 0.2e1)
+	- 0.4e1 * a5 * g21 * g11 * alpha * alpha * intpow(sth, 2)
 	- 0.4e1 * a5 * (g11 * g11) * (g22 * g22) * alpha * alpha * cth * sth
 	- 0.4e1 * a5 * (g12 * g12) * (g21 * g21) * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * pow(g11, 3) * g21 * alpha * alpha * pow(cth, 0.2e1)
+	- 0.4e1 * a5 * intpow(g11, 3) * g21 * alpha * alpha * intpow(cth, 2)
 	- 0.4e1 * a5 * (g22 * g22) * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * (g11 * g11) * g12 * g22 * alpha * alpha * pow(cth, 0.2e1)
+	- 0.4e1 * a5 * (g11 * g11) * g12 * g22 * alpha * alpha * intpow(cth, 2)
 	- 0.8e1 * a5 * g21 * g11 * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * g22 * g12 * (g21 * g21) * alpha * alpha * pow(sth, 0.2e1)
+	- 0.4e1 * a5 * g22 * g12 * (g21 * g21) * alpha * alpha * intpow(sth, 2)
 	- 0.4e1 * a5 * (g12 * g12) * alpha * alpha * cth * sth
-	- 0.4e1 * a5 * g21 * g11 * (g22 * g22) * alpha * alpha * pow(sth, 0.2e1);
+	- 0.4e1 * a5 * g21 * g11 * (g22 * g22) * alpha * alpha * intpow(sth, 2);
 }
 
 }

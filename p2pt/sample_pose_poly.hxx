@@ -7,25 +7,25 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-sample_pose_poly(const T (&t)[T_VECTOR_LEN], T (*output)[T_VECTOR_LEN])
+sample_pose_poly(const T (&__restrict__ t)[T_VECTOR_LEN], T (*__restrict__ output)[T_VECTOR_LEN])
 {
 	//% function of t part:
 	using namespace common;
 
 	T (&fvalue)[T_VECTOR_LEN] = *output;
 
-	static T A[T_VECTOR_LEN];
-	static T B[T_VECTOR_LEN];
-	static T C[T_VECTOR_LEN];
+	static T A[T_VECTOR_LEN] __attribute__((aligned (16)));
+	static T B[T_VECTOR_LEN] __attribute__((aligned (16)));
+	static T C[T_VECTOR_LEN] __attribute__((aligned (16)));
 
-	static T E[T_VECTOR_LEN];
-	static T F[T_VECTOR_LEN];
-	static T G[T_VECTOR_LEN];
-	static T H[T_VECTOR_LEN];
+	static T E[T_VECTOR_LEN] __attribute__((aligned (16)));
+	static T F[T_VECTOR_LEN] __attribute__((aligned (16)));
+	static T G[T_VECTOR_LEN] __attribute__((aligned (16)));
+	static T H[T_VECTOR_LEN] __attribute__((aligned (16)));
 
-	static T J[T_VECTOR_LEN];
-	static T K[T_VECTOR_LEN];
-	static T L[T_VECTOR_LEN];
+	static T J[T_VECTOR_LEN] __attribute__((aligned (16)));
+	static T K[T_VECTOR_LEN] __attribute__((aligned (16)));
+	static T L[T_VECTOR_LEN] __attribute__((aligned (16)));
 
 	// TODO: POSSIBLY OPTIMIZE ALL THESE FUNCION CALLS FOR
 	// `t_powN[]`,
@@ -37,21 +37,21 @@ sample_pose_poly(const T (&t)[T_VECTOR_LEN], T (*output)[T_VECTOR_LEN])
 
 	// Element-wise power t.^2, t.^3, t.^4, ...
 	// TODO: Use integer pow
-	static T t_pow2[T_VECTOR_LEN]; vec_el_wise_pow(t, 2, t_pow2);
-	static T t_pow3[T_VECTOR_LEN]; vec_el_wise_pow(t, 3, t_pow3);
-	static T t_pow4[T_VECTOR_LEN]; vec_el_wise_pow(t, 4, t_pow4);
-	static T t_pow5[T_VECTOR_LEN]; vec_el_wise_pow(t, 5, t_pow5);
-	static T t_pow6[T_VECTOR_LEN]; vec_el_wise_pow(t, 6, t_pow6);
-	static T t_pow7[T_VECTOR_LEN]; vec_el_wise_pow(t, 7, t_pow7);
-	static T t_pow8[T_VECTOR_LEN]; vec_el_wise_pow(t, 8, t_pow8);
+	static T t_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t, 2, t_pow2);
+	static T t_pow3[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t, 3, t_pow3);
+	static T t_pow4[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t, 4, t_pow4);
+	static T t_pow5[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t, 5, t_pow5);
+	static T t_pow6[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t, 6, t_pow6);
+	static T t_pow7[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t, 7, t_pow7);
+	static T t_pow8[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t, 8, t_pow8);
 
 	// Element-wise scalar addition (1 + t.^2)
 	static T t_pow2_plus1[T_VECTOR_LEN]; vec_add_scalar(t_pow2, 1, t_pow2_plus1);
 
 	// Element-wise power (1 + t.^2)^2, (1 + t.^2)^3, (1 + t.^2)^4, ...
-	static T t_pow2_plus1_pow2[T_VECTOR_LEN]; vec_el_wise_pow(t_pow2_plus1, 2, t_pow2_plus1_pow2);
-	static T t_pow2_plus1_pow3[T_VECTOR_LEN]; vec_el_wise_pow(t_pow2_plus1, 3, t_pow2_plus1_pow3);
-	static T t_pow2_plus1_pow4[T_VECTOR_LEN]; vec_el_wise_pow(t_pow2_plus1, 4, t_pow2_plus1_pow4);
+	static T t_pow2_plus1_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t_pow2_plus1, 2, t_pow2_plus1_pow2);
+	static T t_pow2_plus1_pow3[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t_pow2_plus1, 3, t_pow2_plus1_pow3);
+	static T t_pow2_plus1_pow4[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(t_pow2_plus1, 4, t_pow2_plus1_pow4);
 
 	// Denominators
 	static T (&A_den)[T_VECTOR_LEN] = t_pow2_plus1_pow2;
@@ -90,28 +90,28 @@ sample_pose_poly(const T (&t)[T_VECTOR_LEN], T (*output)[T_VECTOR_LEN])
 	vec1vec2_el_wise_right_div(L, L_den, L);
 
 	// Element-wise 2nd power A.^2, B.^2, C.^2, ...
-	static T A_pow2[T_VECTOR_LEN]; vec_el_wise_pow(A, 2, A_pow2);
-	static T B_pow2[T_VECTOR_LEN]; vec_el_wise_pow(B, 2, B_pow2);
-	static T C_pow2[T_VECTOR_LEN]; vec_el_wise_pow(C, 2, C_pow2);
-	static T E_pow2[T_VECTOR_LEN]; vec_el_wise_pow(E, 2, E_pow2);
-	static T F_pow2[T_VECTOR_LEN]; vec_el_wise_pow(F, 2, F_pow2);
-	static T G_pow2[T_VECTOR_LEN]; vec_el_wise_pow(G, 2, G_pow2);
-	static T H_pow2[T_VECTOR_LEN]; vec_el_wise_pow(H, 2, H_pow2);
-	static T J_pow2[T_VECTOR_LEN]; vec_el_wise_pow(J, 2, J_pow2);
-	static T K_pow2[T_VECTOR_LEN]; vec_el_wise_pow(K, 2, K_pow2);
-	static T L_pow2[T_VECTOR_LEN]; vec_el_wise_pow(L, 2, L_pow2);
+	static T A_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(A, 2, A_pow2);
+	static T B_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(B, 2, B_pow2);
+	static T C_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(C, 2, C_pow2);
+	static T E_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(E, 2, E_pow2);
+	static T F_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(F, 2, F_pow2);
+	static T G_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(G, 2, G_pow2);
+	static T H_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(H, 2, H_pow2);
+	static T J_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(J, 2, J_pow2);
+	static T K_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(K, 2, K_pow2);
+	static T L_pow2[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(L, 2, L_pow2);
 
 	// Element-wise 3rd power H.^3, J.^3, K.^3, L.^3
-	static T H_pow3[T_VECTOR_LEN]; vec_el_wise_pow(H, 3, H_pow3);
-	static T J_pow3[T_VECTOR_LEN]; vec_el_wise_pow(J, 3, J_pow3);
-	static T K_pow3[T_VECTOR_LEN]; vec_el_wise_pow(K, 3, K_pow3);
-	static T L_pow3[T_VECTOR_LEN]; vec_el_wise_pow(L, 3, L_pow3);
+	static T H_pow3[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(H, 3, H_pow3);
+	static T J_pow3[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(J, 3, J_pow3);
+	static T K_pow3[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(K, 3, K_pow3);
+	static T L_pow3[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(L, 3, L_pow3);
 
 	// Element-wise 4th power H.^4, J.^4, K.^4, L.^4
-	static T H_pow4[T_VECTOR_LEN]; vec_el_wise_pow(H, 4, H_pow4);
-	static T J_pow4[T_VECTOR_LEN]; vec_el_wise_pow(J, 4, J_pow4);
-	static T K_pow4[T_VECTOR_LEN]; vec_el_wise_pow(K, 4, K_pow4);
-	static T L_pow4[T_VECTOR_LEN]; vec_el_wise_pow(L, 4, L_pow4);
+	static T H_pow4[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(H, 4, H_pow4);
+	static T J_pow4[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(J, 4, J_pow4);
+	static T K_pow4[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(K, 4, K_pow4);
+	static T L_pow4[T_VECTOR_LEN] __attribute__((aligned (16))); vec_el_wise_pow(L, 4, L_pow4);
 
 	// `fvalue` is composed of the sum of these terms
 	// as present in MATLAB

@@ -11,7 +11,7 @@ pose_poly<T>::
 find_bounded_root_intervals(const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN])
 {
 	// fvalue, A, B, C, E, F, G, H, J, K, L
-	static T sampled_poly[T_VECTOR_LEN] = {0};
+	static T sampled_poly[T_VECTOR_LEN] __attribute__((aligned (16))) = {0};
 
 	sample_pose_poly(t_vector, &sampled_poly);
 
