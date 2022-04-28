@@ -6,10 +6,8 @@
 #include "tests/test-p2pt-constants.hxx"
 #include "p2pt/pose_from_point_tangents_root_find_function_any.hxx"
 
-#define NO_STDOUT // Disable stdout for testing speed
-
 void
-test_run(const char *type)
+test_run(const char *type, const char *benchmark = "no")
 {
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
@@ -38,60 +36,80 @@ test_run(const char *type)
 
 	double diff;
 	char indexstr[128];
+	bool is_benchmark = strcmp(benchmark, "benchmark") == 0 ? true : false;
+
+	// RT
 	for (int i = 0; i < sample_RT_len; i++) {
 		// Rots
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
 				double (&test_Rots)[4][3] = test_RT[i];
-				#ifndef NO_STDOUT
-				snprintf(
-					indexstr, 128,
-					"RT[%d]: Rots[%d][%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
-					i, j, k, test_Rots[j][k], sample_Rots[i][j][k],
-					(diff = std::abs(test_Rots[j][k] - sample_Rots[i][j][k])),
-					diff < eps ? "OK" : "FAILED"
-				);
-				std::cout << indexstr << std::endl;
-				#endif
+				if (!is_benchmark) {
+					snprintf(
+						indexstr, 128,
+						"RT[%d]: Rots[%d][%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
+						i, j, k, test_Rots[j][k], sample_Rots[i][j][k],
+						(diff = std::abs(test_Rots[j][k] - sample_Rots[i][j][k])),
+						diff < eps ? "OK" : "FAILED"
+					);
+					std::cout << indexstr << std::endl;
+				}
 			}
 		}
 		// Transls
 		for (int j = 0; j < 3; j++) {
 			double (&test_Transls)[3] = test_RT[i][3];
-			#ifndef NO_STDOUT
-			snprintf(
-				indexstr, 128,
-				"RT[%d]: Transls[%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
-				i, j, test_Transls[j], sample_Transls[i][j],
-				(diff = std::abs(test_Transls[j] - sample_Transls[i][j])),
-				diff < eps ? "OK" : "FAILED"
-			);
-			std::cout << indexstr << std::endl;
-			#endif
+			if (!is_benchmark) {
+				snprintf(
+					indexstr, 128,
+					"RT[%d]: Transls[%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
+					i, j, test_Transls[j], sample_Transls[i][j],
+					(diff = std::abs(test_Transls[j] - sample_Transls[i][j])),
+					diff < eps ? "OK" : "FAILED"
+				);
+				std::cout << indexstr << std::endl;
+			}
 		}
-		#ifndef NO_STDOUT
-		std::cout << std::endl;
-		#endif
+		if (!is_benchmark) std::cout << std::endl;
 	}
 	// Degen
-	#ifndef NO_STDOUT
-	snprintf(
-		indexstr, 128,
-		"degen = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
-		test_degen, sample_degen,
-		(diff = std::abs(test_degen - sample_degen)),
-		diff < eps ? "OK" : "FAILED"
-	);
-	std::cout << indexstr << std::endl;
-	#endif
+	if (!is_benchmark) {
+		snprintf(
+			indexstr, 128,
+			"degen = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
+			test_degen, sample_degen,
+			(diff = std::abs(test_degen - sample_degen)),
+			diff < eps ? "OK" : "FAILED"
+		);
+		std::cout << indexstr << std::endl;
+	}
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
 	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
     std::cout << "Time of solver: " << duration << "us" << std::endl;
 }
 
-int main()
+int main(int argc, const char* argv[])
 {
-	test_run("double");
-    return 0;
+	switch (argc) {
+	case 1:
+		test_run("double");
+		return 0;
+	case 2:
+		if      (strcmp(argv[1], "double")     == 0) test_run("double");
+		else if (strcmp(argv[1], "float")      == 0) test_run("float");
+		else if (strcmp(argv[1], "-benchmark") == 0) test_run("double", "benchmark");
+		else break;
+		return 0;
+	case 3:
+		if      ((strcmp(argv[1], "double") == 0) && (strcmp(argv[2], "-benchmark") == 0))
+			test_run("double", "benchmark");
+		else if ((strcmp(argv[1], "float")  == 0) && (strcmp(argv[2], "-benchmark") == 0))
+			test_run("float", "benchmark");
+		else break;
+		return 0;
+	}
+	std::cout << "usage: ./cmd [-benchmark]\n"
+				 "       ./cmd [double | float] [-benchmark]" << std::endl;
+    return 1;
 }

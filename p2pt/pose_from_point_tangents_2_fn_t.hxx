@@ -4,24 +4,23 @@
 namespace P2Pt {
 
 template<typename T>
-void
+inline T
 pose_poly<T>::
-pose_from_point_tangents_2_fn_t(const T t, T (*output)[11])
+pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 {
+	static T buf[10];
+
 	//%function of t part :
-	T& fvalue = (*output)[0];
-	T& A      = (*output)[1];
-	T& B      = (*output)[2];
-	T& C      = (*output)[3];
-
-	T& E      = (*output)[4];
-	T& F      = (*output)[5];
-	T& G      = (*output)[6];
-	T& H      = (*output)[7];
-
-	T& J      = (*output)[8];
-	T& K      = (*output)[9];
-	T& L      = (*output)[10];
+	T& A = *output ? (*output)[0] : buf[0];
+	T& B = *output ? (*output)[1] : buf[1];
+	T& C = *output ? (*output)[2] : buf[2];
+	T& E = *output ? (*output)[3] : buf[3];
+	T& F = *output ? (*output)[4] : buf[4];
+	T& G = *output ? (*output)[5] : buf[5];
+	T& H = *output ? (*output)[6] : buf[6];
+	T& J = *output ? (*output)[7] : buf[7];
+	T& K = *output ? (*output)[8] : buf[8];
+	T& L = *output ? (*output)[9] : buf[9];
 
 	// `t` integer powers
 	static T t_pow2, t_pow3, t_pow4, t_pow5, t_pow6, t_pow7, t_pow8;
@@ -65,7 +64,6 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[11])
 	K = (K0 + K1 * t + K2 * t_pow2 + K3 * t_pow3 - K2 * t_pow4 + K1 * t_pow5 - K0 * t_pow6) / K_den;
 	L = (L0 + L1 * t + L2 * t_pow2 - L1 * t_pow3 + L0 * t_pow4) / L_den;
 
-	// `output`
 	static T A_pow2, B_pow2, C_pow2, E_pow2, F_pow2, G_pow2, H_pow2, J_pow2, K_pow2, L_pow2;
 	static T H_pow3, J_pow3, K_pow3, L_pow3;
 	static T H_pow4, J_pow4, K_pow4, L_pow4;
@@ -82,64 +80,66 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[11])
 	K_pow2 = K * K;    K_pow3 = K_pow2 * K;    K_pow4 = K_pow3 * K;
 	L_pow2 = L * L;    L_pow3 = L_pow2 * L;    L_pow4 = L_pow3 * L;
 
-	static T fvalue_terms[52];
-
-	fvalue_terms[0]  =      E_pow2 * B_pow2 * H_pow2 * J_pow2;
-	fvalue_terms[1]  =      G_pow2 * C_pow2 * L_pow4;
-	fvalue_terms[2]  =      G_pow2 * A_pow2 * K_pow4;
-	fvalue_terms[3]  =      E_pow2 * A_pow2 * H_pow4;
-	fvalue_terms[4]  =      E_pow2 * C_pow2 * J_pow4;
-	fvalue_terms[5]  = -2 * E      * A      * H_pow2 * G      * C      * L_pow2;
-	fvalue_terms[6]  =  2 * E_pow2 * A      * H_pow2 * C      * J_pow2;
-	fvalue_terms[7]  = -2 * E_pow2 * C      * J_pow3 * B      * H;
-	fvalue_terms[8]  =  2 * E      * C_pow2 * J_pow2 * G      * L_pow2;
-	fvalue_terms[9]  =  2 * E      * A_pow2 * H_pow2 * G      * K_pow2;
-	fvalue_terms[10] = -2 * E_pow2 * A      * H_pow3 * B      * J;
-	fvalue_terms[11] = -2 * E      * A      * H_pow2 * G      * B      * K      * L;
-	fvalue_terms[12] = -2 * E      * C      * J_pow2 * G      * B      * K      * L;
-	fvalue_terms[13] = -2 * E      * C      * J_pow2 * G      * A      * K_pow2;
-	fvalue_terms[14] = -2 * E      * B      * H      * J      * G      * C      * L_pow2;
-	fvalue_terms[15] = -2 * E      * B      * H      * J      * G      * A      * K_pow2;
-	fvalue_terms[16] =      G_pow2 * B_pow2 * K_pow2 * L_pow2;
-	fvalue_terms[17] = -2 * G_pow2 * B      * K      * L_pow3 * C;
-	fvalue_terms[18] = -2 * G_pow2 * B      * K_pow3 * L      * A;
-	fvalue_terms[19] =  2 * G_pow2 * C      * L_pow2 * A      * K_pow2;
-	fvalue_terms[20] = -2 * F      * E      * A_pow2 * H_pow3 * K;
-	fvalue_terms[21] = -2 * F      * E      * A      * H      * K      * C      * J_pow2;
-	fvalue_terms[22] =  3 * F      * E      * A      * H_pow2 * K      * B      * J;
-	fvalue_terms[23] =  3 * F      * A      * H      * K_pow2 * G      * B      * L;
-	fvalue_terms[24] = -2 * F      * A      * H      * K      * G      * C      * L_pow2;
-	fvalue_terms[25] = -2 * F      * A_pow2 * H      * K_pow3 * G;
-	fvalue_terms[26] =      F      * E      * B      * H_pow3 * L      * A;
-	fvalue_terms[27] =  3 * F      * E      * B      * H      * L      * C      * J_pow2;
-	fvalue_terms[28] = -1 * F      * E      * B_pow2 * H_pow2 * L      * J;
-	fvalue_terms[29] = -1 * F      * B_pow2 * H      * L_pow2 * G      * K;
-	fvalue_terms[30] =      F      * B      * H      * L_pow3 * G      * C;
-	fvalue_terms[31] =      F      * E      * B      * K      * J_pow3 * C;
-	fvalue_terms[32] = -1 * F      * E      * B_pow2 * K      * J_pow2 * H;
-	fvalue_terms[33] = -1 * F      * B_pow2 * K_pow2 * J      * G      * L;
-	fvalue_terms[34] =  3 * F      * B      * K      * J      * G      * C      * L_pow2;
-	fvalue_terms[35] =      F      * B      * K_pow3 * J      * G      * A;
-	fvalue_terms[36] = -2 * F      * E      * C      * J      * L      * A      * H_pow2;
-	fvalue_terms[37] = -2 * F      * E      * C_pow2 * J_pow3 * L;
-	fvalue_terms[38] = -2 * F      * C_pow2 * J      * L_pow3 * G;
-	fvalue_terms[39] = -2 * F      * C      * J      * L      * G      * A      * K_pow2;
-	fvalue_terms[40] =      F_pow2 * A_pow2 * K_pow2 * H_pow2;
-	fvalue_terms[41] =      F_pow2 * A      * K_pow2 * C      * J_pow2;
-	fvalue_terms[42] = -1 * F_pow2 * A      * K_pow2 * B      * H      * J;
-	fvalue_terms[43] = -1 * F_pow2 * B      * K      * L      * A      * H_pow2;
-	fvalue_terms[44] = -1 * F_pow2 * B      * K      * L      * C      * J_pow2;
-	fvalue_terms[45] =      F_pow2 * B_pow2 * K      * L      * H      * J;
-	fvalue_terms[46] =      F_pow2 * C      * L_pow2 * A      * H_pow2;
-	fvalue_terms[47] =      F_pow2 * C_pow2 * L_pow2 * J_pow2;
-	fvalue_terms[48] = -1 * F_pow2 * C      * L_pow2 * B      * H      * J;
-	fvalue_terms[49] =      G      * E      * B_pow2 * H_pow2 * L_pow2;
-	fvalue_terms[50] =      G      * E      * B_pow2 * K_pow2 * J_pow2;
-	fvalue_terms[51] =  8 * G      * E      * A      * H      * K      * C      * J      * L;
-
+	static T fvalue;
 	fvalue = 0;
-	for (int i = 0; i < 52; i++)
-		fvalue += fvalue_terms[i];
+
+	// TODO: Analyze the need of extra/lower precison for the calculation of these terms.
+	// Report about it in the thesis
+	// fvalue_terms[X]
+	/*  0 */ fvalue +=      E_pow2 * B_pow2 * H_pow2 * J_pow2;
+	/*  1 */ fvalue +=      G_pow2 * C_pow2 * L_pow4;
+	/*  2 */ fvalue +=      G_pow2 * A_pow2 * K_pow4;
+	/*  3 */ fvalue +=      E_pow2 * A_pow2 * H_pow4;
+	/*  4 */ fvalue +=      E_pow2 * C_pow2 * J_pow4;
+	/*  5 */ fvalue += -2 * E      * A      * H_pow2 * G      * C      * L_pow2;
+	/*  6 */ fvalue +=  2 * E_pow2 * A      * H_pow2 * C      * J_pow2;
+	/*  7 */ fvalue += -2 * E_pow2 * C      * J_pow3 * B      * H;
+	/*  8 */ fvalue +=  2 * E      * C_pow2 * J_pow2 * G      * L_pow2;
+	/*  9 */ fvalue +=  2 * E      * A_pow2 * H_pow2 * G      * K_pow2;
+	/* 10 */ fvalue += -2 * E_pow2 * A      * H_pow3 * B      * J;
+	/* 11 */ fvalue += -2 * E      * A      * H_pow2 * G      * B      * K      * L;
+	/* 12 */ fvalue += -2 * E      * C      * J_pow2 * G      * B      * K      * L;
+	/* 13 */ fvalue += -2 * E      * C      * J_pow2 * G      * A      * K_pow2;
+	/* 14 */ fvalue += -2 * E      * B      * H      * J      * G      * C      * L_pow2;
+	/* 15 */ fvalue += -2 * E      * B      * H      * J      * G      * A      * K_pow2;
+	/* 16 */ fvalue +=      G_pow2 * B_pow2 * K_pow2 * L_pow2;
+	/* 17 */ fvalue += -2 * G_pow2 * B      * K      * L_pow3 * C;
+	/* 18 */ fvalue += -2 * G_pow2 * B      * K_pow3 * L      * A;
+	/* 19 */ fvalue +=  2 * G_pow2 * C      * L_pow2 * A      * K_pow2;
+	/* 20 */ fvalue += -2 * F      * E      * A_pow2 * H_pow3 * K;
+	/* 21 */ fvalue += -2 * F      * E      * A      * H      * K      * C      * J_pow2;
+	/* 22 */ fvalue +=  3 * F      * E      * A      * H_pow2 * K      * B      * J;
+	/* 23 */ fvalue +=  3 * F      * A      * H      * K_pow2 * G      * B      * L;
+	/* 24 */ fvalue += -2 * F      * A      * H      * K      * G      * C      * L_pow2;
+	/* 25 */ fvalue += -2 * F      * A_pow2 * H      * K_pow3 * G;
+	/* 26 */ fvalue +=      F      * E      * B      * H_pow3 * L      * A;
+	/* 27 */ fvalue +=  3 * F      * E      * B      * H      * L      * C      * J_pow2;
+	/* 28 */ fvalue += -1 * F      * E      * B_pow2 * H_pow2 * L      * J;
+	/* 29 */ fvalue += -1 * F      * B_pow2 * H      * L_pow2 * G      * K;
+	/* 30 */ fvalue +=      F      * B      * H      * L_pow3 * G      * C;
+	/* 31 */ fvalue +=      F      * E      * B      * K      * J_pow3 * C;
+	/* 32 */ fvalue += -1 * F      * E      * B_pow2 * K      * J_pow2 * H;
+	/* 33 */ fvalue += -1 * F      * B_pow2 * K_pow2 * J      * G      * L;
+	/* 34 */ fvalue +=  3 * F      * B      * K      * J      * G      * C      * L_pow2;
+	/* 35 */ fvalue +=      F      * B      * K_pow3 * J      * G      * A;
+	/* 36 */ fvalue += -2 * F      * E      * C      * J      * L      * A      * H_pow2;
+	/* 37 */ fvalue += -2 * F      * E      * C_pow2 * J_pow3 * L;
+	/* 38 */ fvalue += -2 * F      * C_pow2 * J      * L_pow3 * G;
+	/* 39 */ fvalue += -2 * F      * C      * J      * L      * G      * A      * K_pow2;
+	/* 40 */ fvalue +=      F_pow2 * A_pow2 * K_pow2 * H_pow2;
+	/* 41 */ fvalue +=      F_pow2 * A      * K_pow2 * C      * J_pow2;
+	/* 42 */ fvalue += -1 * F_pow2 * A      * K_pow2 * B      * H      * J;
+	/* 43 */ fvalue += -1 * F_pow2 * B      * K      * L      * A      * H_pow2;
+	/* 44 */ fvalue += -1 * F_pow2 * B      * K      * L      * C      * J_pow2;
+	/* 45 */ fvalue +=      F_pow2 * B_pow2 * K      * L      * H      * J;
+	/* 46 */ fvalue +=      F_pow2 * C      * L_pow2 * A      * H_pow2;
+	/* 47 */ fvalue +=      F_pow2 * C_pow2 * L_pow2 * J_pow2;
+	/* 48 */ fvalue += -1 * F_pow2 * C      * L_pow2 * B      * H      * J;
+	/* 49 */ fvalue +=      G      * E      * B_pow2 * H_pow2 * L_pow2;
+	/* 50 */ fvalue +=      G      * E      * B_pow2 * K_pow2 * J_pow2;
+	/* 51 */ fvalue +=  8 * G      * E      * A      * H      * K      * C      * J      * L;
+
+	return fvalue;
 }
 
 }
