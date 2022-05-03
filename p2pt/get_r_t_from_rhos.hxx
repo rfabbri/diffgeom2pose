@@ -18,16 +18,12 @@ get_r_t_from_rhos(
 	T (*output)[RT_MAX_LEN][4][3], int *output_len
 )
 {
-	//% Lambdas:
 	T lambdas1[TS_MAX_LEN][TS_MAX_LEN];
 	T lambdas2[TS_MAX_LEN][TS_MAX_LEN];
-
 	T Gama_sub[3];
+  T den1[3], den2[3], den3[3]; // Buffers
 
 	for (int i = 0; i < ts_len; i++) {
-		// Buffers
-		static T den1[3], den2[3], den3[3];
-
 		for (int j = 0; j < sigmas1_len[i]; j++) {
 			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
 
@@ -104,7 +100,6 @@ get_r_t_from_rhos(
 		}
 	}
 }
-
 }
 
 #endif // !get_r_t_from_rhos_hxx_
