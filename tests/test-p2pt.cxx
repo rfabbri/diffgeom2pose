@@ -150,35 +150,6 @@ test_find_bounded_root_intervals()
 	}
 }
 
-#if 0
-static void
-test_sample_pose_poly()
-{
-	pose_poly<double> p = {
-		sample_A0, sample_A1, sample_A2,
-		sample_B0, sample_B1, sample_B2, sample_B3,
-		sample_C0, sample_C1, sample_C2, sample_C3, sample_C4,
-		sample_E0, sample_E1, sample_E2,
-		sample_F0, sample_F1, sample_F2, sample_F3,
-		sample_G0, sample_G1, sample_G2, sample_G3, sample_G4,
-		sample_H0, sample_H1, sample_H2, sample_H3, sample_H4,
-		sample_J0, sample_J1, sample_J2, sample_J3,
-		sample_K0, sample_K1, sample_K2, sample_K3,
-		sample_L0, sample_L1, sample_L2
-	};
-
-	double test_fvalue[T_VECTOR_LEN] = {0};
-
-	p.sample_pose_poly(sample_t_vector, &test_fvalue);
-
-	char indexstr[128];
-	for (int i = 0; i < T_VECTOR_LEN; i++) {
-		snprintf(indexstr, 128, "fvalue[%d]", i);
-		TEST_NEAR_REL(indexstr, test_fvalue[i], sample_fvalue_pose_poly[i], eps);
-	}
-}
-#endif
-
 static void
 test_rhos_from_root_ids()
 {
@@ -220,32 +191,6 @@ test_rhos_from_root_ids()
 	}
 	TEST_EQUAL("ts_len", test_ts_len, sample_ts_len);
 }
-
-#if 0
-static void
-test_pose_from_point_tangents_2_fn_t_for_root()
-{
-	pose_poly<double> p = {
-		sample_A0, sample_A1, sample_A2,
-		sample_B0, sample_B1, sample_B2, sample_B3,
-		sample_C0, sample_C1, sample_C2, sample_C3, sample_C4,
-		sample_E0, sample_E1, sample_E2,
-		sample_F0, sample_F1, sample_F2, sample_F3,
-		sample_G0, sample_G1, sample_G2, sample_G3, sample_G4,
-		sample_H0, sample_H1, sample_H2, sample_H3, sample_H4,
-		sample_J0, sample_J1, sample_J2, sample_J3,
-		sample_K0, sample_K1, sample_K2, sample_K3,
-		sample_L0, sample_L1, sample_L2
-	};
-
-	char indexstr[128];
-	for (int i = 0; i < T_VECTOR_LEN; i++) {
-		double test_fvalue = p.pose_from_point_tangents_2_fn_t_for_root(sample_t_vector[i]);
-		snprintf(indexstr, 128, "fvalue[%d]", i);
-		TEST_NEAR_REL(indexstr, test_fvalue, sample_fvalue_pose_poly[i], eps);
-	}
-}
-#endif
 
 static void
 test_get_sigmas()
