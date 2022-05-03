@@ -41,7 +41,8 @@ void pose_from_point_tangents_root_find_function_any(
 	degen = common::det3x3(degen_matrix);
 
 	if (std::abs(degen) < 1.0e-3) {
-		std::cout << "data point not reliable" << std::endl;
+    //TODO(openmvg) GUARD this print
+		std::cerr << "data point not reliable, please skip this solve within RANSAC" << std::endl;
 		output_RT     = nullptr;
 		output_RT_len = nullptr;
 		output_degen  = nullptr;

@@ -17,8 +17,7 @@ rhos_from_root_ids(
 {
 	T (&ts)[ROOT_IDS_LEN] = (*output)[0];
 
-	static int ts_end;
-	ts_end = 0;
+	int ts_end = 0;
 
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		if (root_ids[i] == 1) {
@@ -36,13 +35,10 @@ rhos_from_root_ids(
 			} catch (const std::exception& err) {
 				std::cerr << err.what() << std::endl;
 			}
-
-			static T t_ref;
-			t_ref = (t_ref_pair.first + t_ref_pair.second)/2.0;
-
+      
 			// TODO: Possibly optimize the size of `ts[]`.
 			// What is the max number of 1s than can appear in `root_ids[]`?
-			ts[ts_end++] = t_ref;
+      ts[ts_end++] = (t_ref_pair.first + t_ref_pair.second)*0.5;
 		}
 	}
 	*output_ts_len = ts_end;
