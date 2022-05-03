@@ -23,6 +23,12 @@ pose_from_point_tangents_2(
 	const T g11 = gama1[0], g12 = gama1[1],
 	        g21 = gama2[0], g22 = gama2[1];
 
+  const T g11_3 = g11*g11*g11;
+  const T g11_4 = g11_3*g11;
+  
+  const T g12_3 = g12*g12*g12;
+  const T g12_4 = g12_3*g12;
+
 	const T h11 = tgt1[0],  h12 = tgt1[1],
 	        h21 = tgt2[0],  h22 = tgt2[1];
 
@@ -43,10 +49,10 @@ pose_from_point_tangents_2(
 	if (theta < 0) theta += PI / 2;
 	sth = sin(theta);
   const T sth2 = sth*sth;
-  const T sth3 = sth*sth*sth;
+  const T sth3 = sth2*sth;
 	cth = cos(theta);
   const T cth2 = cth*cth;
-  const T cth3 = cth*cth*cth;
+  const T cth3 = cth2*cth;
   
 
 	//% 497-798
@@ -83,17 +89,17 @@ pose_from_point_tangents_2(
 	A0 = a4 * a4 * g12 * g12
 	+ a4 * a4 * g11 * g11
 	+ a4 * a4
-	+ 2.0 * a2 * intpow(g11, 3) * g21 * beta * beta * sth * cth
+	+ 2.0 * a2 * g11_3 * g21 * beta * beta * sth * cth
 	+ 2.0 * a2 * g21 * g11 * g12 * g12 * beta * beta * sth * cth
 	- 2.0 * a2 * g11 * g11 * g12 * g12 * beta * beta * sth2
-	- a2 * intpow(g12, 4) * beta * beta * sth2
+	- a2 * g12_4 * beta * beta * sth2
 	- a2 * g21 * g21 * g11 * g11 * beta * beta * cth2
 	+ 2.0 * a2 * g12 * g12 * beta * beta * sth * cth
 	+ 2.0 * a2 * g11 * g11 * beta * beta * sth * cth
 	+ 2.0 * a2 * g11 * g11 * g22 * g12 * beta * beta * sth * cth
 	- a2 * beta * beta * cth2
-	+ 2.0 * a2 * intpow(g12, 3) * g22 * beta * beta * sth * cth
-	- a2 * intpow(g11, 4) * beta * beta * sth2
+	+ 2.0 * a2 * g12_3 * g22 * beta * beta * sth * cth
+	- a2 * g11_4 * beta * beta * sth2
 	- 2.0 * a2 * g11 * g11 * beta * beta * sth2
 	- 2.0 * a2 * g12 * g12 * beta * beta * sth2
 	+ 2.0 * a2 * beta * beta * sth * cth
@@ -121,24 +127,24 @@ pose_from_point_tangents_2(
 	+ 4. * a2 * g21 * g11 * g12 * g12 * alpha * cth2 * beta
 	- 4. * a2 * g21 * g11 * beta * sth2 * alpha
 	- 8. * a2 * g11 * g11 * g12 * g12 * alpha * sth * beta * cth
-	- 4. * a2 * intpow(g11, 4) * alpha * sth * beta * cth
+	- 4. * a2 * g11_4 * alpha * sth * beta * cth
 	- 8. * a2 * g11 * g11 * alpha * sth * beta * cth
 	+ 8. * a2 * g21 * g11 * g22 * g12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g12, 3) * g22 * alpha * cth2 * beta
-	- 4. * a2 * intpow(g12, 3) * g22 * beta * sth2 * alpha
-	- 4. * a2 * intpow(g12, 4) * alpha * sth * beta * cth
+	+ 4. * a2 * g12_3 * g22 * alpha * cth2 * beta
+	- 4. * a2 * g12_3 * g22 * beta * sth2 * alpha
+	- 4. * a2 * g12_4 * alpha * sth * beta * cth
 	- 8. * a2 * g12 * g12 * alpha * sth * beta * cth
 	+ 8. * a2 * g22 * g12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g11, 3) * g21 * alpha * cth2 * beta
-	- 4. * a2 * intpow(g11, 3) * g21 * beta * sth2 * alpha
+	+ 4. * a2 * g11_3 * g21 * alpha * cth2 * beta
+	- 4. * a2 * g11_3 * g21 * beta * sth2 * alpha
 	+ 4. * a2 * g11 * g11 * g22 * g12 * alpha * cth2 * beta
 	- 4. * a2 * g11 * g11 * g22 * g12 * beta * sth2 * alpha;
 
 	A2 = (2 * a4 * a4 * g12 * g12)
 	+ (2 * a4 * a4 * g11 * g11)
 	+ (2 * a4 * a4)
-	+ 2. * a2 * intpow(g12, 4) * beta * beta * sth2
-	+ 2. * a2 * intpow(g11, 4) * beta * beta * sth2
+	+ 2. * a2 * g12_4 * beta * beta * sth2
+	+ 2. * a2 * g11_4 * beta * beta * sth2
 	+ 4. * a2 * (g11 * g11) * beta * beta * sth2
 	+ 4. * a2 * (g12 * g12) * beta * beta * sth2
 	- 4. * a2 * beta * beta * sth * cth
@@ -154,13 +160,13 @@ pose_from_point_tangents_2(
 	- 4. * a2 * g21 * g11 * beta * beta * sth * cth
 	+ 4. * a2 * (g11 * g11) * (g12 * g12) * beta * beta * sth2
 	+ 4. * a2 * g22 * g12 * beta * beta * cth2
-	- 4. * a2 * intpow(g11, 3) * g21 * beta * beta * sth * cth
+	- 4. * a2 * g11_3 * g21 * beta * beta * sth * cth
 	- 4. * a2 * (g11 * g11) * g22 * g12 * beta * beta * sth * cth
 	+ 4. * a2 * g21 * g11 * g22 * g12 * beta * beta * cth2
-	- 4. * a2 * intpow(g12, 3) * g22 * beta * beta * sth * cth
-	- 4. * a2 * intpow(g11, 4) * alpha * alpha * cth2
+	- 4. * a2 * g12_3 * g22 * beta * beta * sth * cth
+	- 4. * a2 * g11_4 * alpha * alpha * cth2
 	- 8. * a2 * (g11 * g11) * alpha * alpha * cth2
-	- 4. * a2 * intpow(g12, 4) * alpha * alpha * cth2
+	- 4. * a2 * g12_4 * alpha * alpha * cth2
 	- 8. * a2 * (g12 * g12) * alpha * alpha * cth2
 	- 8. * a2 * alpha * alpha * cth * sth
 	- 4. * a2 * alpha * alpha * cth2
@@ -175,13 +181,13 @@ pose_from_point_tangents_2(
 	- 8. * a2 * (g11 * g11) * alpha * alpha * cth * sth
 	- 8. * a2 * g21 * g11 * (g12 * g12) * alpha * alpha * cth * sth
 	- 8. * a2 * g21 * g11 * g22 * g12 * alpha * alpha * sth2
-	- 8. * a2 * intpow(g12, 3) * g22 * alpha * alpha * cth * sth
+	- 8. * a2 * g12_3 * g22 * alpha * alpha * cth * sth
 	- 8. * a2 * g22 * g12 * alpha * alpha * sth2
-	- 8. * a2 * intpow(g11, 3) * g21 * alpha * alpha * cth * sth
+	- 8. * a2 * g11_3 * g21 * alpha * alpha * cth * sth
 	- 8. * a2 * (g11 * g11) * g22 * g12 * alpha * alpha * cth * sth;
 
 	B0 = -2. * beta * sth * (a2 * g21 * g11 * g22 * h12 * beta * beta * cth2
-	+ a2 * intpow(g12, 3) * h12 * beta * beta * sth2
+	+ a2 * g12_3 * h12 * beta * beta * sth2
 	+ a2 * g21 * h11 * g22 * g12 * beta * beta * cth2
 	+ a2 * g11 * h11 * g12 * g12 * beta * beta * sth2
 	- a2 * g11 * h11 * beta * beta * sth * cth
@@ -198,7 +204,7 @@ pose_from_point_tangents_2(
 	- 2. * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	- 2. * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- a2 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * intpow(g11, 3) * h11 * beta * beta * sth2
+	+ a2 * g11_3 * h11 * beta * beta * sth2
 	+ a2 * g21 * g21 * h11 * g11 * beta * beta * cth2
 	+ a2 * g21 * h11 * beta * beta * cth2
 	- a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
@@ -226,8 +232,8 @@ pose_from_point_tangents_2(
 	+ 4. * a2 * g11 * g11 * h11 * g21 * beta * sth2 * alpha
 	- 4. * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	+ 4. * a2 * g12 * h12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	+ 4. * a2 * g12_3 * h12 * alpha * sth * beta * cth
+	+ 4. * a2 * g11_3 * h11 * alpha * sth * beta * cth
 	- 2. * a2 * g21 * h11 * alpha * cth2 * beta
 	+ 2. * a2 * g21 * h11 * beta * sth2 * alpha
 	- 4. * a2 * g21 * h11 * alpha * sth * beta * cth
@@ -238,7 +244,7 @@ pose_from_point_tangents_2(
 	+ 2. * a2 * g11 * h11 * beta * sth2 * alpha
 	- 4. * a2 * g21 * g21 * h11 * g11 * alpha * sth * beta * cth)
 	- 4. * alpha * cth * (a2 * g21 * g11 * g22 * h12 * beta * beta * cth2
-	+ a2 * intpow(g12, 3) * h12 * beta * beta * sth2
+	+ a2 * g12_3 * h12 * beta * beta * sth2
 	+ a2 * g21 * h11 * g22 * g12 * beta * beta * cth2
 	+ a2 * g11 * h11 * g12 * g12 * beta * beta * sth2
 	- a2 * g11 * h11 * beta * beta * sth * cth
@@ -255,7 +261,7 @@ pose_from_point_tangents_2(
 	- 2. * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	- 2. * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- a2 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * intpow(g11, 3) * h11 * beta * beta * sth2
+	+ a2 * g11_3 * h11 * beta * beta * sth2
 	+ a2 * g21 * g21 * h11 * g11 * beta * beta * cth2
 	+ a2 * g21 * h11 * beta * beta * cth2
 	- a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
@@ -268,9 +274,9 @@ pose_from_point_tangents_2(
 	+ 4. * a2 * g11 * g11 * g22 * h12 * alpha * alpha * cth * sth
 	+ 4. * a2 * g11 * h11 * alpha * alpha * cth * sth
 	+ 8. * a2 * g11 * g11 * h11 * g21 * alpha * alpha * cth * sth
-	+ 4. * a2 * intpow(g12, 3) * h12 * alpha * alpha * cth2
+	+ 4. * a2 * g12_3 * h12 * alpha * alpha * cth2
 	+ 4. * a2 * g12 * h12 * alpha * alpha * cth2
-	+ 4. * a2 * intpow(g11, 3) * h11 * alpha * alpha * cth2
+	+ 4. * a2 * g11_3 * h11 * alpha * alpha * cth2
 	+ 4. * a2 * g21 * h11 * g22 * g12 * alpha * alpha * sth2
 	+ 4. * a2 * g21 * h11 * alpha * alpha * cth * sth
 	+ 4. * a2 * g11 * h11 * g22 * g12 * alpha * alpha * cth * sth
@@ -302,11 +308,11 @@ pose_from_point_tangents_2(
 	- 2. * a2 * g12 * h12 * beta * beta * sth2
 	+ 2. * a2 * g11 * h11 * beta * beta * sth * cth
 	- 2. * a2 * g11 * h11 * beta * beta * sth2
-	- 2. * a2 * intpow(g11, 3) * h11 * beta * beta * sth2
+	- 2. * a2 * g11_3 * h11 * beta * beta * sth2
 	+ 4. * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- 2. * a2 * g21 * g11 * g22 * h12 * beta * beta * cth2
 	+ 2. * a2 * g21 * h11 * beta * beta * sth * cth
-	- 2. * a2 * intpow(g12, 3) * h12 * beta * beta * sth2
+	- 2. * a2 * g12_3 * h12 * beta * beta * sth2
 	- 2. * a2 * g21 * h11 * g22 * g12 * beta * beta * cth2)
 	- 4. * alpha * cth * (2. * a2 * g11 * g11 * g22 * h12 * beta * sth2 * alpha
 	- 2. * a2 * g11 * g11 * g22 * h12 * alpha * cth2 * beta
@@ -329,8 +335,8 @@ pose_from_point_tangents_2(
 	+ 4. * a2 * g11 * g11 * h11 * g21 * beta * sth2 * alpha
 	- 4. * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	+ 4. * a2 * g12 * h12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	+ 4. * a2 * g12_3 * h12 * alpha * sth * beta * cth
+	+ 4. * a2 * g11_3 * h11 * alpha * sth * beta * cth
 	- 2. * a2 * g21 * h11 * alpha * cth2 * beta
 	+ 2. * a2 * g21 * h11 * beta * sth2 * alpha
 	- 4. * a2 * g21 * h11 * alpha * sth * beta * cth
@@ -341,7 +347,7 @@ pose_from_point_tangents_2(
 	+ 2. * a2 * g11 * h11 * beta * sth2 * alpha
 	- 4. * a2 * g21 * g21 * h11 * g11 * alpha * sth * beta * cth)
 	+ 2. * beta * sth * (a2 * g21 * g11 * g22 * h12 * beta * beta * cth2
-	+ a2 * intpow(g12, 3) * h12 * beta * beta * sth2
+	+ a2 * g12_3 * h12 * beta * beta * sth2
 	+ a2 * g21 * h11 * g22 * g12 * beta * beta * cth2
 	+ a2 * g11 * h11 * g12 * g12 * beta * beta * sth2
 	- a2 * g11 * h11 * beta * beta * sth * cth
@@ -358,7 +364,7 @@ pose_from_point_tangents_2(
 	- 2. * a2 * g12 * g12 * h12 * g22 * beta * beta * sth * cth
 	- 2. * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- a2 * g22 * h12 * beta * beta * sth * cth
-	+ a2 * intpow(g11, 3) * h11 * beta * beta * sth2
+	+ a2 * g11_3 * h11 * beta * beta * sth2
 	+ a2 * g21 * g21 * h11 * g11 * beta * beta * cth2
 	+ a2 * g21 * h11 * beta * beta * cth2
 	- a2 * g21 * g11 * g12 * h12 * beta * beta * sth * cth
@@ -386,8 +392,8 @@ pose_from_point_tangents_2(
 	- 4. * a2 * g11 * g11 * h11 * g21 * beta * sth2 * alpha
 	+ 4. * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	- 4. * a2 * g12 * h12 * alpha * sth * beta * cth
-	- 4. * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
-	- 4. * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	- 4. * a2 * g12_3 * h12 * alpha * sth * beta * cth
+	- 4. * a2 * g11_3 * h11 * alpha * sth * beta * cth
 	+ 2. * a2 * g21 * h11 * alpha * cth2 * beta
 	- 2. * a2 * g21 * h11 * beta * sth2 * alpha
 	+ 4. * a2 * g21 * h11 * alpha * sth * beta * cth
@@ -403,9 +409,9 @@ pose_from_point_tangents_2(
 	+ 4. * a2 * g11 * g11 * g22 * h12 * alpha * alpha * cth * sth
 	+ 4. * a2 * g11 * h11 * alpha * alpha * cth * sth
 	+ 8. * a2 * g11 * g11 * h11 * g21 * alpha * alpha * cth * sth
-	+ 4. * a2 * intpow(g12, 3) * h12 * alpha * alpha * cth2
+	+ 4. * a2 * g12_3 * h12 * alpha * alpha * cth2
 	+ 4. * a2 * g12 * h12 * alpha * alpha * cth2
-	+ 4. * a2 * intpow(g11, 3) * h11 * alpha * alpha * cth2
+	+ 4. * a2 * g11_3 * h11 * alpha * alpha * cth2
 	+ 4. * a2 * g21 * h11 * g22 * g12 * alpha * alpha * sth2
 	+ 4. * a2 * g21 * h11 * alpha * alpha * cth * sth
 	+ 4. * a2 * g11 * h11 * g22 * g12 * alpha * alpha * cth * sth
@@ -437,11 +443,11 @@ pose_from_point_tangents_2(
 	- 2. * a2 * g12 * h12 * beta * beta * sth2
 	+ 2. * a2 * g11 * h11 * beta * beta * sth * cth
 	- 2. * a2 * g11 * h11 * beta * beta * sth2
-	- 2. * a2 * intpow(g11, 3) * h11 * beta * beta * sth2
+	- 2. * a2 * g11_3 * h11 * beta * beta * sth2
 	+ 4. * a2 * g11 * g11 * h11 * g21 * beta * beta * sth * cth
 	- 2. * a2 * g21 * g11 * g22 * h12 * beta * beta * cth2
 	+ 2. * a2 * g21 * h11 * beta * beta * sth * cth
-	- 2. * a2 * intpow(g12, 3) * h12 * beta * beta * sth2
+	- 2. * a2 * g12_3 * h12 * beta * beta * sth2
 	- 2. * a2 * g21 * h11 * g22 * g12 * beta * beta * cth2)
 	+ 2. * beta * sth * (2. * a2 * g11 * g11 * g22 * h12 * beta * sth2 * alpha
 	- 2. * a2 * g11 * g11 * g22 * h12 * alpha * cth2 * beta
@@ -464,8 +470,8 @@ pose_from_point_tangents_2(
 	+ 4. * a2 * g11 * g11 * h11 * g21 * beta * sth2 * alpha
 	- 4. * a2 * g21 * h11 * g22 * g12 * alpha * sth * beta * cth
 	+ 4. * a2 * g12 * h12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g12, 3) * h12 * alpha * sth * beta * cth
-	+ 4. * a2 * intpow(g11, 3) * h11 * alpha * sth * beta * cth
+	+ 4. * a2 * g12_3 * h12 * alpha * sth * beta * cth
+	+ 4. * a2 * g11_3 * h11 * alpha * sth * beta * cth
 	- 2. * a2 * g21 * h11 * alpha * cth2 * beta
 	+ 2. * a2 * g21 * h11 * beta * sth2 * alpha
 	- 4. * a2 * g21 * h11 * alpha * sth * beta * cth
@@ -1625,11 +1631,11 @@ pose_from_point_tangents_2(
 	- a5 * g12 * h22 * beta * beta * sth * cth
 	- a5 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * intpow(g12, 3) * h22 * beta * beta * sth2
+	+ a5 * g12_3 * h22 * beta * beta * sth2
 	+ a5 * g22 * g22 * g12 * h22 * beta * beta * cth2
 	- a5 * g21 * h21 * beta * beta * sth * cth
 	+ a5 * g21 * h21 * beta * beta * cth2
-	+ a5 * intpow(g11, 3) * h21 * beta * beta * sth2
+	+ a5 * g11_3 * h21 * beta * beta * sth2
 	+ a5 * g11 * g11 * g12 * h22 * beta * beta * sth2
 	- a5 * g11 * g11 * g22 * h22 * beta * beta * sth * cth
 	+ a5 * g21 * g21 * g11 * h21 * beta * beta * cth2
@@ -1644,11 +1650,11 @@ pose_from_point_tangents_2(
 	- 4. * a5 * g11 * g11 * g21 * h21 * alpha * cth2 * beta
 	+ 4. * a5 * g11 * g11 * g21 * h21 * beta * sth2 * alpha
 	- 4. * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	+ 4. * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	+ 4. * a5 * g12_3 * h22 * alpha * cth * beta * sth
 	+ 2. * a5 * g12 * h22 * beta * sth2 * alpha
 	- 4. * a5 * g21 * h21 * alpha * cth * beta * sth
 	+ 4. * a5 * g12 * h22 * alpha * cth * beta * sth
-	+ 4. * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	+ 4. * a5 * g11_3 * h21 * alpha * cth * beta * sth
 	- 2. * a5 * g12 * h22 * alpha * cth2 * beta
 	+ 2. * a5 * g12 * g12 * g21 * h21 * beta * sth2 * alpha
 	- 2. * a5 * g22 * g12 * g11 * h21 * alpha * cth2 * beta
@@ -1682,11 +1688,11 @@ pose_from_point_tangents_2(
 	- a5 * g12 * h22 * beta * beta * sth * cth
 	- a5 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * intpow(g12, 3) * h22 * beta * beta * sth2
+	+ a5 * g12_3 * h22 * beta * beta * sth2
 	+ a5 * g22 * g22 * g12 * h22 * beta * beta * cth2
 	- a5 * g21 * h21 * beta * beta * sth * cth
 	+ a5 * g21 * h21 * beta * beta * cth2
-	+ a5 * intpow(g11, 3) * h21 * beta * beta * sth2
+	+ a5 * g11_3 * h21 * beta * beta * sth2
 	+ a5 * g11 * g11 * g12 * h22 * beta * beta * sth2
 	- a5 * g11 * g11 * g22 * h22 * beta * beta * sth * cth
 	+ a5 * g21 * g21 * g11 * h21 * beta * beta * cth2
@@ -1707,11 +1713,11 @@ pose_from_point_tangents_2(
 	+ 2. * a5 * g12 * h22 * beta * beta * sth * cth
 	+ 2. * a5 * g11 * h21 * beta * beta * sth * cth
 	+ 2. * a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	- 2. * a5 * intpow(g12, 3) * h22 * beta * beta * sth2
+	- 2. * a5 * g12_3 * h22 * beta * beta * sth2
 	- 2. * a5 * g22 * g22 * g12 * h22 * beta * beta * cth2
 	+ 2. * a5 * g21 * h21 * beta * beta * sth * cth
 	- 2. * a5 * g21 * h21 * beta * beta * cth2
-	- 2. * a5 * intpow(g11, 3) * h21 * beta * beta * sth2
+	- 2. * a5 * g11_3 * h21 * beta * beta * sth2
 	- 2. * a5 * (g11 * g11) * g12 * h22 * beta * beta * sth2
 	+ 2. * a5 * (g11 * g11) * g22 * h22 * beta * beta * sth * cth
 	- 2. * a5 * g21 * g21 * g11 * h21 * beta * beta * cth2
@@ -1722,12 +1728,12 @@ pose_from_point_tangents_2(
 	+ 4. * a5 * (g11 * g11) * g22 * h22 * alpha * alpha * cth * sth
 	+ 4. * a5 * g21 * g11 * g12 * h22 * alpha * alpha * cth * sth
 	+ 8. * a5 * (g11 * g11) * g21 * h21 * alpha * alpha * cth * sth
-	+ 4. * a5 * intpow(g12, 3) * h22 * alpha * alpha * cth2
+	+ 4. * a5 * g12_3 * h22 * alpha * alpha * cth2
 	+ 4. * a5 * g22 * g22 * g12 * h22 * alpha * alpha * sth2
 	+ 4. * a5 * g11 * h21 * alpha * alpha * cth2
 	+ 4. * a5 * g21 * h21 * alpha * alpha * sth2
 	+ 4. * a5 * g12 * h22 * alpha * alpha * cth2
-	+ 4. * a5 * intpow(g11, 3) * h21 * alpha * alpha * cth2
+	+ 4. * a5 * g11_3 * h21 * alpha * alpha * cth2
 	+ 4. * a5 * g12 * h22 * alpha * alpha * cth * sth
 	+ 4. * a5 * g22 * g12 * g21 * h21 * alpha * alpha * sth2
 	+ 4. * a5 * g22 * g12 * g11 * h21 * alpha * alpha * cth * sth
@@ -1747,11 +1753,11 @@ pose_from_point_tangents_2(
 	- 4. * a5 * (g11 * g11) * g21 * h21 * alpha * cth2 * beta
 	+ 4. * a5 * (g11 * g11) * g21 * h21 * beta * sth2 * alpha
 	- 4. * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	+ 4. * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	+ 4. * a5 * g12_3 * h22 * alpha * cth * beta * sth
 	+ 2. * a5 * g12 * h22 * beta * sth2 * alpha
 	- 4. * a5 * g21 * h21 * alpha * cth * beta * sth
 	+ 4. * a5 * g12 * h22 * alpha * cth * beta * sth
-	+ 4. * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	+ 4. * a5 * g11_3 * h21 * alpha * cth * beta * sth
 	- 2. * a5 * g12 * h22 * alpha * cth2 * beta
 	+ 2. * a5 * (g12 * g12) * g21 * h21 * beta * sth2 * alpha
 	- 2. * a5 * g22 * g12 * g11 * h21 * alpha * cth2 * beta
@@ -1785,11 +1791,11 @@ pose_from_point_tangents_2(
 	- a5 * g12 * h22 * beta * beta * sth * cth
 	- a5 * g11 * h21 * beta * beta * sth * cth
 	- a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	+ a5 * intpow(g12, 3) * h22 * beta * beta * sth2
+	+ a5 * g12_3 * h22 * beta * beta * sth2
 	+ a5 * g22 * g22 * g12 * h22 * beta * beta * cth2
 	- a5 * g21 * h21 * beta * beta * sth * cth
 	+ a5 * g21 * h21 * beta * beta * cth2
-	+ a5 * intpow(g11, 3) * h21 * beta * beta * sth2
+	+ a5 * g11_3 * h21 * beta * beta * sth2
 	+ a5 * (g11 * g11) * g12 * h22 * beta * beta * sth2
 	- a5 * (g11 * g11) * g22 * h22 * beta * beta * sth * cth
 	+ a5 * g21 * g21 * g11 * h21 * beta * beta * cth2
@@ -1804,11 +1810,11 @@ pose_from_point_tangents_2(
 	+ 4. * a5 * g11 * g11 * g21 * h21 * alpha * cth2 * beta
 	- 4. * a5 * g11 * g11 * g21 * h21 * beta * sth2 * alpha
 	+ 4. * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	- 4. * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	- 4. * a5 * g12_3 * h22 * alpha * cth * beta * sth
 	- 2. * a5 * g12 * h22 * beta * sth2 * alpha
 	+ 4. * a5 * g21 * h21 * alpha * cth * beta * sth
 	- 4. * a5 * g12 * h22 * alpha * cth * beta * sth
-	- 4. * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	- 4. * a5 * g11_3 * h21 * alpha * cth * beta * sth
 	+ 2. * a5 * g12 * h22 * alpha * cth2 * beta
 	- 2. * a5 * g12 * g12 * g21 * h21 * beta * sth2 * alpha
 	+ 2. * a5 * g22 * g12 * g11 * h21 * alpha * cth2 * beta
@@ -1842,11 +1848,11 @@ pose_from_point_tangents_2(
 	+ 2. * a5 * g12 * h22 * beta * beta * sth * cth
 	+ 2. * a5 * g11 * h21 * beta * beta * sth * cth
 	+ 2. * a5 * g21 * g11 * g12 * h22 * beta * beta * sth * cth
-	- 2. * a5 * intpow(g12, 3) * h22 * beta * beta * sth2
+	- 2. * a5 * g12_3 * h22 * beta * beta * sth2
 	- 2. * a5 * g22 * g22 * g12 * h22 * beta * beta * cth2
 	+ 2. * a5 * g21 * h21 * beta * beta * sth * cth
 	- 2. * a5 * g21 * h21 * beta * beta * cth2
-	- 2. * a5 * intpow(g11, 3) * h21 * beta * beta * sth2
+	- 2. * a5 * g11_3 * h21 * beta * beta * sth2
 	- 2. * a5 * g11 * g11 * g12 * h22 * beta * beta * sth2
 	+ 2. * a5 * g11 * g11 * g22 * h22 * beta * beta * sth * cth
 	- 2. * a5 * g21 * g21 * g11 * h21 * beta * beta * cth2
@@ -1857,12 +1863,12 @@ pose_from_point_tangents_2(
 	+ 4. * a5 * g11 * g11 * g22 * h22 * alpha * alpha * cth * sth
 	+ 4. * a5 * g21 * g11 * g12 * h22 * alpha * alpha * cth * sth
 	+ 8. * a5 * g11 * g11 * g21 * h21 * alpha * alpha * cth * sth
-	+ 4. * a5 * intpow(g12, 3) * h22 * alpha * alpha * cth2
+	+ 4. * a5 * g12_3 * h22 * alpha * alpha * cth2
 	+ 4. * a5 * g22 * g22 * g12 * h22 * alpha * alpha * sth2
 	+ 4. * a5 * g11 * h21 * alpha * alpha * cth2
 	+ 4. * a5 * g21 * h21 * alpha * alpha * sth2
 	+ 4. * a5 * g12 * h22 * alpha * alpha * cth2
-	+ 4. * a5 * intpow(g11, 3) * h21 * alpha * alpha * cth2
+	+ 4. * a5 * g11_3 * h21 * alpha * alpha * cth2
 	+ 4. * a5 * g12 * h22 * alpha * alpha * cth * sth
 	+ 4. * a5 * g22 * g12 * g21 * h21 * alpha * alpha * sth2
 	+ 4. * a5 * g22 * g12 * g11 * h21 * alpha * alpha * cth * sth
@@ -1882,11 +1888,11 @@ pose_from_point_tangents_2(
 	- 4. * a5 * g11 * g11 * g21 * h21 * alpha * cth2 * beta
 	+ 4. * a5 * g11 * g11 * g21 * h21 * beta * sth2 * alpha
 	- 4. * a5 * g22 * g12 * g21 * h21 * alpha * cth * beta * sth
-	+ 4. * a5 * intpow(g12, 3) * h22 * alpha * cth * beta * sth
+	+ 4. * a5 * g12_3 * h22 * alpha * cth * beta * sth
 	+ 2. * a5 * g12 * h22 * beta * sth2 * alpha
 	- 4. * a5 * g21 * h21 * alpha * cth * beta * sth
 	+ 4. * a5 * g12 * h22 * alpha * cth * beta * sth
-	+ 4. * a5 * intpow(g11, 3) * h21 * alpha * cth * beta * sth
+	+ 4. * a5 * g11_3 * h21 * alpha * cth * beta * sth
 	- 2. * a5 * g12 * h22 * alpha * cth2 * beta
 	+ 2. * a5 * g12 * g12 * g21 * h21 * beta * sth2 * alpha
 	- 2. * a5 * g22 * g12 * g11 * h21 * alpha * cth2 * beta
@@ -2212,7 +2218,7 @@ L0 = a4 * a6 * g11 * g21
 	+ a5 * g11 * g11 * g22 * g22 * beta * beta * sth * cth
 	- a5 * beta * beta * sth2
 	- a5 * beta * beta * cth2
-	- a5 * intpow(g12, 3) * g22 * beta * beta * sth2
+	- a5 * g12_3 * g22 * beta * beta * sth2
 	- a5 * g12 * g12 * g11 * g21 * beta * beta * sth2
 	- a5 * intpow(g21, 3) * g11 * beta * beta * cth2
 	- a5 * g22 * g12 * beta * beta * cth2
@@ -2232,7 +2238,7 @@ L0 = a4 * a6 * g11 * g21
 	+ a5 * g12 * g12 * g21 * g21 * beta * beta * sth * cth
 	+ a5 * g11 * g11 * beta * beta * sth * cth
 	- a5 * g11 * g11 * g12 * g22 * beta * beta * sth2
-	- a5 * intpow(g11, 3) * g21 * beta * beta * sth2
+	- a5 * g11_3 * g21 * beta * beta * sth2
 	+ a5 * g21 * g21 * beta * beta * sth * cth
 	+ a5 * g22 * g22 * beta * beta * sth * cth
 	- a5 * g21 * g11 * g22 * g22 * beta * beta * cth2
@@ -2246,7 +2252,7 @@ L1 = 4. * a5 * intpow(g22, 3) * g12 * alpha * cth * beta * sth
 	+ 4. * a5 * g21 * g11 * alpha * cth2 * beta
 	- 4. * a5 * g21 * g11 * beta * sth2 * alpha
 	- 4. * a5 * g12 * g12 * g11 * g21 * alpha * cth * beta * sth
-	- 4. * a5 * intpow(g12, 3) * g22 * alpha * cth * beta * sth
+	- 4. * a5 * g12_3 * g22 * alpha * cth * beta * sth
 	+ 2. * a5 * g11 * g11 * alpha * cth2 * beta
 	- 2. * a5 * g11 * g11 * beta * sth2 * alpha
 	+ 4. * a5 * g12 * g12 * g22 * g22 * alpha * cth2 * beta
@@ -2265,7 +2271,7 @@ L1 = 4. * a5 * intpow(g22, 3) * g12 * alpha * cth * beta * sth
 	+ 2. * a5 * g11 * g11 * g22 * g22 * alpha * cth2 * beta
 	- 2. * a5 * g11 * g11 * g22 * g22 * beta * sth2 * alpha
 	+ 4. * a5 * g21 * g11 * g22 * g22 * alpha * cth * beta * sth
-	- 4. * a5 * intpow(g11, 3) * g21 * alpha * cth * beta * sth
+	- 4. * a5 * g11_3 * g21 * alpha * cth * beta * sth
 	+ 2. * a5 * g21 * g21 * alpha * cth2 * beta
 	+ 2. * a5 * g22 * g22 * alpha * cth2 * beta
 	- 2. * a5 * g22 * g22 * beta * sth2 * alpha
@@ -2283,7 +2289,7 @@ L2 = (2 * a4 * a6 * g11 * g21)
 	- 2. * a5 * (g11 * g11) * (g22 * g22) * beta * beta * sth * cth
 	+ 2. * a5 * beta * beta * sth2
 	+ 2. * a5 * beta * beta * cth2
-	+ 2. * a5 * intpow(g12, 3) * g22 * beta * beta * sth2
+	+ 2. * a5 * g12_3 * g22 * beta * beta * sth2
 	+ 2. * a5 * (g12 * g12) * g11 * g21 * beta * beta * sth2
 	+ 2. * a5 * intpow(g21, 3) * g11 * beta * beta * cth2
 	+ 2. * a5 * g22 * g12 * beta * beta * cth2
@@ -2303,7 +2309,7 @@ L2 = (2 * a4 * a6 * g11 * g21)
 	- 2. * a5 * (g12 * g12) * (g21 * g21) * beta * beta * sth * cth
 	- 2. * a5 * (g11 * g11) * beta * beta * sth * cth
 	+ 2. * a5 * (g11 * g11) * g12 * g22 * beta * beta * sth2
-	+ 2. * a5 * intpow(g11, 3) * g21 * beta * beta * sth2
+	+ 2. * a5 * g11_3 * g21 * beta * beta * sth2
 	- 2. * a5 * (g21 * g21) * beta * beta * sth * cth
 	- 2. * a5 * (g22 * g22) * beta * beta * sth * cth
 	+ 2. * a5 * g21 * g11 * (g22 * g22) * beta * beta * cth2
@@ -2321,7 +2327,7 @@ L2 = (2 * a4 * a6 * g11 * g21)
 	- 4. * a5 * g22 * g12 * alpha * alpha * sth2
 	- 4. * a5 * (g12 * g12) * g11 * g21 * alpha * alpha * cth2
 	- 4. * a5 * g21 * g11 * alpha * alpha * cth2
-	- 4. * a5 * intpow(g12, 3) * g22 * alpha * alpha * cth2
+	- 4. * a5 * g12_3 * g22 * alpha * alpha * cth2
 	- 4. * a5 * (g11 * g11) * alpha * alpha * cth * sth
 	- 8. * a5 * (g12 * g12) * (g22 * g22) * alpha * alpha * cth * sth
 	- 4. * a5 * (g12 * g12) * alpha * alpha * cth2
@@ -2331,7 +2337,7 @@ L2 = (2 * a4 * a6 * g11 * g21)
 	- 4. * a5 * g21 * g11 * alpha * alpha * sth2
 	- 4. * a5 * (g11 * g11) * (g22 * g22) * alpha * alpha * cth * sth
 	- 4. * a5 * (g12 * g12) * (g21 * g21) * alpha * alpha * cth * sth
-	- 4. * a5 * intpow(g11, 3) * g21 * alpha * alpha * cth2
+	- 4. * a5 * g11_3 * g21 * alpha * alpha * cth2
 	- 4. * a5 * (g22 * g22) * alpha * alpha * cth * sth
 	- 4. * a5 * (g11 * g11) * g12 * g22 * alpha * alpha * cth2
 	- 8. * a5 * g21 * g11 * alpha * alpha * cth * sth
