@@ -12,17 +12,18 @@ namespace P2Pt {
 
 template<typename T>
 struct pose_poly {
-	T A0, A1, A2;
-	T B0, B1, B2, B3;
-	T C0, C1, C2, C3, C4;
-	T E0, E1, E2;
-	T F0, F1, F2, F3;
-	T G0, G1, G2, G3, G4;
-	T H0, H1, H2, H3, H4;
-	T J0, J1, J2, J3;
-	T K0, K1, K2, K3;
-	T L0, L1, L2;
-	T alpha, beta, theta;
+	T A0, A1, A2,
+		B0, B1, B2, B3,
+		C0, C1, C2, C3, C4,
+		E0, E1, E2,
+		F0, F1, F2, F3,
+		G0, G1, G2, G3, G4,
+		H0, H1, H2, H3, H4,
+		J0, J1, J2, J3,
+		K0, K1, K2, K3,
+		L0, L1, L2,
+		alpha, beta, theta,
+    sth,cth;
 
 	void pose_from_point_tangents_2(
 		const T (&gama1)[3], const T (&tgt1)[3],

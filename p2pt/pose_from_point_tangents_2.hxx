@@ -46,8 +46,8 @@ pose_from_point_tangents_2(
 
 	theta = 0.5*atan(t11);
 	if (theta < 0) theta += PI / 2;
-	const T sth = sin(theta);
-	const T cth = cos(theta);
+	sth = sin(theta);
+	cth = cos(theta);
 
 	//% 497-798
 	//%theta = .7865071740;

@@ -18,11 +18,11 @@ rhos_from_root_ids(
 	T (&ts)[ROOT_IDS_LEN] = (*output)[0];
 
 	int ts_end = 0;
+	std::pair<T,T> t_ref_pair;
 
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		if (root_ids[i] == 1) {
-			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
-			std::pair<T,T> t_ref_pair;
+			static unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
 
 			try {
 				t_ref_pair = boost::math::tools::toms748_solve(
@@ -33,6 +33,7 @@ rhos_from_root_ids(
 					max_iter
 				);
 			} catch (const std::exception& err) {
+        // TODO(OpenMVG) take care of this error without cerr
 				std::cerr << err.what() << std::endl;
 			}
       
@@ -49,14 +50,15 @@ rhos_from_root_ids(
 	T (&rhos1)[ROOT_IDS_LEN] = (*output)[1];
 	T (&rhos2)[ROOT_IDS_LEN] = (*output)[2];
 
-	#define ALPHA_TS_COS(x) (2 * alpha * (x) * cos(theta))
-	#define ALPHA_TS_SIN(x) (-2 * alpha * (x) * sin(theta))
-	#define BETA_TS_SIN(x) (beta * (1 - (x) * (x)) * sin(theta))
-	#define BETA_TS_COS(x) (beta * (1 - (x) * (x)) * cos(theta))
-	#define TS_DEN(x) (1 + (x) * (x))
+  #define x2(x) (x) * (x)
+	#define ALPHA_TS_COS(x) (2. * alpha * (x) * cth)
+	#define ALPHA_TS_SIN(x) (-2. * alpha * (x) * sth)
+	#define BETA_TS_SIN(x) (beta * (1. - x2(x)) * sth)
+	#define BETA_TS_COS(x) (beta * (1. - x2(x)) * cth)
+	#define TS_DEN(x) (1. + x2(x))
 
 	for (int i = 0; i < ts_end; i++) {
-		T ts_new = ts[i];
+		const T ts_new = ts[i];
 		rhos1[i] = ALPHA_TS_COS(ts_new) + BETA_TS_SIN(ts_new);
 		rhos1[i] /= TS_DEN(ts_new);
 		rhos2[i] = ALPHA_TS_SIN(ts_new) + BETA_TS_COS(ts_new);
