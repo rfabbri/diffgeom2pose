@@ -36,12 +36,10 @@ pose_from_point_tangents_2(
 	const T h11 = tgt1[0],  h12 = tgt1[1],
 	        h21 = tgt2[0],  h22 = tgt2[1];
 
-  // Gama1[0]-Gama2[0]
-	const T V[3] = {
-    Gama1[0]-Gama2[0],
-    Gama1[1]-Gama2[1],
-    Gama1[2]-Gama2[2]
-  };
+	T *V = &A0;         // reusing memory from poly
+  V[0] = Gama1[0]-Gama2[0];
+  V[1] = Gama1[1]-Gama2[1];
+  V[2] = Gama1[2]-Gama2[2];
   
 	const T 
   a1 = V[0]*V[0] + V[1]*V[1] + V[2]*V[2],
@@ -50,6 +48,8 @@ pose_from_point_tangents_2(
   a4 = V[0]*Tgt1[0] + V[1]*Tgt1[1] + V[2]*Tgt1[2],
   a5 = Tgt1[0]*Tgt2[0] + Tgt1[1]*Tgt2[1] + Tgt1[2]*Tgt2[2],
   a6 = V[0]*Tgt2[0] + V[1]*Tgt2[1] + V[2]*Tgt2[2];
+
+  // V not used anymore
 
 	const T t4 = g11 * g11,
 	        t6 = g21 * g21,
