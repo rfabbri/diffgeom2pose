@@ -15,7 +15,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra -pedantic" CACHE STRING "" FORCE)
 
 # Crucial flags for performance
 # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native" CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -funroll-loops -DNDEBUG -march=native" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -funroll-loops -DNDEBUG -march=native -Wall -Wextra -pedantic" CACHE STRING "" FORCE)
 
 # add_compile_options(
 #     "$<$<CONFIG:RELEASE>:-march=native -ffast-math>"
