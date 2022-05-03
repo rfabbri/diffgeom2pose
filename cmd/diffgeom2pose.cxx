@@ -17,7 +17,7 @@ test_run(const char *type, const char *benchmark = "no")
 
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 	if (strcmp(type, "float") == 0)
-		P2Pt::pose_from_point_tangents_root_find_function_any(
+		P2Pt::pose_from_point_tangents_root_find_function_any<float>(
 			sample_gama1_float, sample_tgt1_float,
 			sample_gama2_float, sample_tgt2_float,
 			sample_Gama1_float, sample_Tgt1_float,
