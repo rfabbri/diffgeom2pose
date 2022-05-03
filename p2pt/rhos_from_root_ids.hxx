@@ -22,7 +22,7 @@ rhos_from_root_ids(
 
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		if (root_ids[i] == 1) {
-			static unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
+			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
 
 			try {
 				t_ref_pair = boost::math::tools::toms748_solve(
@@ -61,31 +61,6 @@ rhos_from_root_ids(
 		rhos1[i] = (( alpha_ts_new2 * cth) + (beta_1_minus_x2 * sth)) / ts_den;
 		rhos2[i] = ((-alpha_ts_new2 * sth) + (beta_1_minus_x2 * cth)) / ts_den;
 	}
-
-	// Not used?
-	#if 0
-	static T t_stddev;
-	t_stddev = t_vector[1] - t_vector[0];
-
-	static T rhos1_minus, rhos1_plus;
-	static T rhos2_minus, rhos2_plus;
-
-	for (int i = 0; i < ts_end; i++) {
-		T ts_new = ts[i] - t_stddev;
-		rhos1_minus[i] = ALPHA_TS_COS(ts_new) + BETA_TS_SIN(ts_new);
-		rhos1_minus[i] /= TS_DEN(ts_new);
-		rhos2_minus[i] = ALPHA_TS_SIN(ts_new) + BETA_TS_COS(ts_new);
-		rhos2_minus[i] /= TS_DEN(ts_new);
-	}
-	for (int i = 0; i < ts_end; i++) {
-		T ts_new = ts[i] + 2 * t_stddev;
-		rhos1_plus[i] = ALPHA_TS_COS(ts_new) + BETA_TS_SIN(ts_new);
-		rhos1_plus[i] /= TS_DEN(ts_new);
-		rhos2_plus[i] = ALPHA_TS_SIN(ts_new) + BETA_TS_COS(ts_new);
-		rhos2_plus[i] /= TS_DEN(ts_new);
-	}
-	#endif
-
 }
 
 }

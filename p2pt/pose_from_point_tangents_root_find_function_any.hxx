@@ -2097,8 +2097,8 @@ void pose_from_point_tangents_root_find_function_any(
 
 	T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[0];
 	T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[1];
-	const int (&sigmas1_len)[TS_MAX_LEN]       = sigmas_len[0];
-	const int (&sigmas2_len)[TS_MAX_LEN]       = sigmas_len[1];
+	const int (&sigmas1_len)[TS_MAX_LEN] = sigmas_len[0];
+	const int (&sigmas2_len)[TS_MAX_LEN] = sigmas_len[1];
 
 
 	T (&RT)[RT_MAX_LEN][4][3] = *output_RT;
