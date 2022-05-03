@@ -11,7 +11,7 @@ endif()
 
 ## TODO: use add_compile_options(-Wall) etc
 # set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall" CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra -pedantic" CACHE STRING "" FORCE)
 
 # Crucial flags for performance
 # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native" CACHE STRING "" FORCE)
