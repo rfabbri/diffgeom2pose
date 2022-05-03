@@ -17,7 +17,6 @@ colon(T start, T step, T end, T output[])
 		output[i] = start + i * step;
 
 }
-*/
 
 template<typename T>
 inline T
@@ -29,6 +28,7 @@ norm(const T *input_vec, int length)
 	}
 	return std::sqrt(output);
 }
+*/
 
 template<typename T>
 inline T
@@ -119,8 +119,9 @@ template<typename T>
 inline void
 vec1vec2_3el_sum(T (&vec1)[3], T (&vec2)[3], T (&output)[3])
 {
-	for (int i = 0; i < 3; i++)
-		output[i] = vec1[i] + vec2[i];
+		output[0] = vec1[0] + vec2[0];
+		output[1] = vec1[1] + vec2[1];
+		output[2] = vec1[2] + vec2[2];
 }
 
 template<typename T>
@@ -128,8 +129,9 @@ inline void
 vec1vec2_3el_sub(const T (&vec1)[3], const T (&vec2)[3], T (&output)[3])
 {
 	// For vectors of 3 elements
-	for (int i = 0; i < 3; i++)
-		output[i] = vec1[i] - vec2[i];
+		output[0] = vec1[0] - vec2[0];
+		output[1] = vec1[1] - vec2[1];
+		output[2] = vec1[2] - vec2[2];
 }
 
 /* not used

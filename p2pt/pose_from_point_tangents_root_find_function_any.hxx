@@ -2039,10 +2039,14 @@ void pose_from_point_tangents_root_find_function_any(
 
   {
 	// % test for geometric degeneracy -------------------------------
-	T DGama[3];
-	common::vec1vec2_3el_sub(Gama1, Gama2, DGama);
-	common::vec_3el_div_by_scalar(common::norm(DGama, 3), DGama, DGama);
-
+	T DGama[3] = {
+    Gama1[0] - Gama2[0],
+    Gama1[1] - Gama2[1],
+    Gama1[2] - Gama2[2]
+  };
+  const T norm = sqrt(DGama[0]*DGama[0] + DGama[1]*DGama[1] + DGama[2]*DGama[2]);
+  DGama[0] /= norm; DGama[1] /= norm; DGama[2] /= norm;
+  
 	// Matrix for degeneracy calculation
 	const T degen_matrix[3][3] = {
 		DGama[0], Tgt1[0], Tgt2[0],
