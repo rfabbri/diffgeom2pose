@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Eval speed
+
+# run this inside bin/ to get an idea for the speed of the algorithm
+
+
+tmpfile=/tmp/es$$
+
+echo outputting raw times in $tmpfile
+
+for i in `seq 1 1000`; do ./cmd 2>/dev/null|egrep -o '[0-9]+us'|egrep -o '[0-9]+'; done | tail -n 500 | tee $tmpfile | st --complete
+
+
+
+
+
