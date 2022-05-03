@@ -23,7 +23,6 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 	T& L = *output ? (*output)[9] : buf[9];
 
 	// `t` integer powers
-  // TODO(check) when removing static, the tests accuse loss of precision
 	const T
 	t_pow2 = t * t,
 	t_pow3 = t_pow2 * t,
@@ -35,23 +34,22 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 
 	// `(t^2 + 1)` integer powers
   // TODO(check) when removing static, the tests accuse loss of precision
-	static T t_pow2_plus1_pow2, t_pow2_plus1_pow3, t_pow2_plus1_pow4;
-
-	t_pow2_plus1_pow2 = (t_pow2 + 1.) * (t_pow2 + 1.);
-	t_pow2_plus1_pow3 = t_pow2_plus1_pow2 * (t_pow2 + 1.);
+	const T 
+	t_pow2_plus1_pow2 = (t_pow2 + 1.) * (t_pow2 + 1.),
+	t_pow2_plus1_pow3 = t_pow2_plus1_pow2 * (t_pow2 + 1.),
 	t_pow2_plus1_pow4 = t_pow2_plus1_pow3 * (t_pow2 + 1.);
 
 	// Denominators
-	T &A_den = t_pow2_plus1_pow2;
-	T &B_den = t_pow2_plus1_pow3;
-	T &C_den = t_pow2_plus1_pow4;
-	T &E_den = t_pow2_plus1_pow2;
-	T &F_den = t_pow2_plus1_pow3;
-	T &G_den = t_pow2_plus1_pow4;
-	T &H_den = t_pow2_plus1_pow4;
-	T &J_den = t_pow2_plus1_pow3;
-	T &K_den = t_pow2_plus1_pow3;
-	T &L_den = t_pow2_plus1_pow2;
+	const T &A_den = t_pow2_plus1_pow2;
+	const T &B_den = t_pow2_plus1_pow3;
+	const T &C_den = t_pow2_plus1_pow4;
+	const T &E_den = t_pow2_plus1_pow2;
+	const T &F_den = t_pow2_plus1_pow3;
+	const T &G_den = t_pow2_plus1_pow4;
+	const T &H_den = t_pow2_plus1_pow4;
+	const T &J_den = t_pow2_plus1_pow3;
+	const T &K_den = t_pow2_plus1_pow3;
+	const T &L_den = t_pow2_plus1_pow2;
 
 	// Calculations
 	A = (A0 + A1 * t + A2 * t_pow2 - A1 * t_pow3 + A0 * t_pow4) / A_den;
