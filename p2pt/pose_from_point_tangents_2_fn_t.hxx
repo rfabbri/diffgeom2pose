@@ -24,23 +24,22 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 
 	// `t` integer powers
   // TODO(check) when removing static, the tests accuse loss of precision
-	static T t_pow2, t_pow3, t_pow4, t_pow5, t_pow6, t_pow7, t_pow8;
-
-	t_pow2 = t * t;
-	t_pow3 = t_pow2 * t;
-	t_pow4 = t_pow3 * t;
-	t_pow5 = t_pow4 * t;
-	t_pow6 = t_pow5 * t;
-	t_pow7 = t_pow6 * t;
+	const T
+	t_pow2 = t * t,
+	t_pow3 = t_pow2 * t,
+	t_pow4 = t_pow3 * t,
+	t_pow5 = t_pow4 * t,
+	t_pow6 = t_pow5 * t,
+	t_pow7 = t_pow6 * t,
 	t_pow8 = t_pow7 * t;
 
 	// `(t^2 + 1)` integer powers
   // TODO(check) when removing static, the tests accuse loss of precision
 	static T t_pow2_plus1_pow2, t_pow2_plus1_pow3, t_pow2_plus1_pow4;
 
-	t_pow2_plus1_pow2 = (t_pow2 + 1) * (t_pow2 + 1);
-	t_pow2_plus1_pow3 = t_pow2_plus1_pow2 * (t_pow2 + 1);
-	t_pow2_plus1_pow4 = t_pow2_plus1_pow3 * (t_pow2 + 1);
+	t_pow2_plus1_pow2 = (t_pow2 + 1.) * (t_pow2 + 1.);
+	t_pow2_plus1_pow3 = t_pow2_plus1_pow2 * (t_pow2 + 1.);
+	t_pow2_plus1_pow4 = t_pow2_plus1_pow3 * (t_pow2 + 1.);
 
 	// Denominators
 	T &A_den = t_pow2_plus1_pow2;
