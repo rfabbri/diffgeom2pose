@@ -15,9 +15,9 @@ pose_from_point_tangents_2(
 	const T (&Gama2)[3], const T (&Tgt2)[3]
 )
 {
-	constexpr T PI = 3.141592653589793;
+	static constexpr T PI = 3.141592653589793;
 
-	static T g11, g12, g21, g22, h11, h12, h21, h22;
+	T g11, g12, g21, g22, h11, h12, h21, h22;
 	static T V[3], buf[3];
 	static T a1, a2, a3, a4, a5, a6;
 	static T t1, t2, t4, t5, t6, t7, t8;
