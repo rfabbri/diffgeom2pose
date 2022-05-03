@@ -19,10 +19,10 @@ get_r_t_from_rhos(
 )
 {
 	//% Lambdas:
-	static T lambdas1[TS_MAX_LEN][TS_MAX_LEN] = {0};
-	static T lambdas2[TS_MAX_LEN][TS_MAX_LEN] = {0};
+	T lambdas1[TS_MAX_LEN][TS_MAX_LEN];
+	T lambdas2[TS_MAX_LEN][TS_MAX_LEN];
 
-	static T Gama_sub[3];
+	T Gama_sub[3];
 
 	for (int i = 0; i < ts_len; i++) {
 		// Buffers

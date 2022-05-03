@@ -107,13 +107,6 @@ intpow(T base, int exponent)
 
 template<typename T>
 inline T
-**expm(T **M)
-{
-	// TODO: implement `expm()` (matrix exponential)
-}
-
-template<typename T>
-inline T
 vec1vec2_3el_dot(const T (&vec1)[3], const T (&vec2)[3])
 {
 	T output = 0;

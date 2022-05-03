@@ -42,7 +42,7 @@ get_sigmas(
 	int (&sigmas1_len)[TS_MAX_LEN]         = (*output_len)[0];
 	int (&sigmas2_len)[TS_MAX_LEN]         = (*output_len)[1];
 
-	static T pose_output[10];
+	T pose_output[10];
 
 	for (int i = 0; i < ts_len; i++) {
 		sigmas1_len[i] = 0;
@@ -51,24 +51,24 @@ get_sigmas(
 		pose_from_point_tangents_2_fn_t(ts[i], &pose_output);
 
 		//T &fvalue = pose_output[0]; // double-checked: not used in matlab
-		T &A = pose_output[0];
-		T &B = pose_output[1];
-		T &C = pose_output[2];
-		T &E = pose_output[3];
-		T &F = pose_output[4];
-		T &G = pose_output[5];
-		T &H = pose_output[6];
-		T &J = pose_output[7];
-		T &K = pose_output[8];
-		T &L = pose_output[9];
+		const T &A = pose_output[0];
+		const T &B = pose_output[1];
+		const T &C = pose_output[2];
+		const T &E = pose_output[3];
+		const T &F = pose_output[4];
+		const T &G = pose_output[5];
+		const T &H = pose_output[6];
+		const T &J = pose_output[7];
+		const T &K = pose_output[8];
+		const T &L = pose_output[9];
 
-		std::complex<T> delta1 = sqrt(B*B - 4*A*C);
-		std::complex<T> sigma1_m = (-B - delta1)/(2*A);
-		std::complex<T> sigma1_p = (-B + delta1)/(2*A);
+		std::complex<T> delta = sqrt(B*B - 4*A*C);
+		std::complex<T> sigma1_m = (-B - delta)/(2*A);
+		std::complex<T> sigma1_p = (-B + delta)/(2*A);
 
-		std::complex<T> delta2 = sqrt(F*F - 4*E*G);
-		std::complex<T> sigma2_m = (-F - delta2)/(2*E);
-		std::complex<T> sigma2_p = (-F + delta2)/(2*E);
+		delta = sqrt(F*F - 4*E*G);
+		std::complex<T> sigma2_m = (-F - delta)/(2*E);
+		std::complex<T> sigma2_p = (-F + delta)/(2*E);
 
 		//% handle case of negative delta
 		if (std::abs(std::imag(sigma1_m)) < 1e-4) {
