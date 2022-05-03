@@ -9,7 +9,6 @@
 void
 test_run(const char *type, const char *benchmark = "no")
 {
-	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
 	double test_RT[RT_MAX_LEN][4][3] = {0};
 	double test_degen;
@@ -17,6 +16,7 @@ test_run(const char *type, const char *benchmark = "no")
 	float  test_degen_float;
 	int    test_RT_len;
 
+	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 	if (strcmp(type, "float") == 0)
 		P2Pt::pose_from_point_tangents_root_find_function_any(
 			sample_gama1_float, sample_tgt1_float,
@@ -33,6 +33,10 @@ test_run(const char *type, const char *benchmark = "no")
 			sample_Gama2, sample_Tgt2,
 			&test_RT, &test_RT_len, &test_degen
 		);
+	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+
+	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
+    std::cout << "Time of solver: " << duration << "us" << std::endl;
 
 	double diff;
 	char indexstr[128];
@@ -83,10 +87,6 @@ test_run(const char *type, const char *benchmark = "no")
 		);
 		std::cout << indexstr << std::endl;
 	}
-	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
-
-	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-    std::cout << "Time of solver: " << duration << "us" << std::endl;
 }
 
 int main(int argc, const char* argv[])
