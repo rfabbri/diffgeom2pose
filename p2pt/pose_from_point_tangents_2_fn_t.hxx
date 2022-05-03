@@ -6,22 +6,20 @@ namespace P2Pt {
 template<typename T>
 inline T
 pose_poly<T>::
-pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
+pose_from_point_tangents_2_fn_t(const T t, T output[10])
 {
-	T buf[10];
+	T &A = output[0];
+	T &B = output[1];
+	T &C = output[2];
+	T &E = output[3];
+	T &F = output[4];
+	T &G = output[5];
+	T &H = output[6];
+	T &J = output[7];
+	T &K = output[8];
+	T &L = output[9];
 
 	//%function of t part :
-	T& A = *output ? (*output)[0] : buf[0];
-	T& B = *output ? (*output)[1] : buf[1];
-	T& C = *output ? (*output)[2] : buf[2];
-	T& E = *output ? (*output)[3] : buf[3];
-	T& F = *output ? (*output)[4] : buf[4];
-	T& G = *output ? (*output)[5] : buf[5];
-	T& H = *output ? (*output)[6] : buf[6];
-	T& J = *output ? (*output)[7] : buf[7];
-	T& K = *output ? (*output)[8] : buf[8];
-	T& L = *output ? (*output)[9] : buf[9];
-
 	const T t2 = t*t, t3 = t2*t, t4 = t3*t, t5 = t4*t, t6 = t5*t, t7 = t6*t, t8 = t7*t;
 
 	// `(t^2 + 1)` integer powers
@@ -109,6 +107,7 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 	/*50*/+G*E*B2*K2*J2
 	/*51*/+8.*G*E*A*H*K*C*J*L;
 }
+
 
 }
 

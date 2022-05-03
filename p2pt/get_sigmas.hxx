@@ -48,7 +48,7 @@ get_sigmas(
 		sigmas1_len[i] = 0;
 		sigmas2_len[i] = 0;
 
-		pose_from_point_tangents_2_fn_t(ts[i], &pose_output);
+		pose_from_point_tangents_2_fn_t(ts[i], pose_output);
 
 		//T &fvalue = pose_output[0]; // double-checked: not used in matlab
 		const T &A = pose_output[0];

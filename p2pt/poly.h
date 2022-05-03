@@ -36,7 +36,8 @@ struct pose_poly {
 		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
 	);
   
-	T pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] = nullptr);
+	T pose_from_point_tangents_2_fn_t(const T t, T output[10]);
+	T pose_from_point_tangents_2_fn_t(const T t) { T buf[10]; return pose_from_point_tangents_2_fn_t(t, buf); }
 	T operator()(T t) { return pose_from_point_tangents_2_fn_t(t); }
   
 	void rhos_from_root_ids(
