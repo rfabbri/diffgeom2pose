@@ -50,19 +50,16 @@ rhos_from_root_ids(
 	T (&rhos1)[ROOT_IDS_LEN] = (*output)[1];
 	T (&rhos2)[ROOT_IDS_LEN] = (*output)[2];
 
-  #define x2(x) (x) * (x)
-	#define ALPHA_TS_COS(x) (2. * alpha * (x) * cth)
-	#define ALPHA_TS_SIN(x) (-2. * alpha * (x) * sth)
-	#define BETA_TS_SIN(x) (beta * (1. - x2(x)) * sth)
-	#define BETA_TS_COS(x) (beta * (1. - x2(x)) * cth)
-	#define TS_DEN(x) (1. + x2(x))
-
+  const T alpha_times_2 = 2.*alpha;
 	for (int i = 0; i < ts_end; i++) {
-		const T ts_new = ts[i];
-		rhos1[i] = ALPHA_TS_COS(ts_new) + BETA_TS_SIN(ts_new);
-		rhos1[i] /= TS_DEN(ts_new);
-		rhos2[i] = ALPHA_TS_SIN(ts_new) + BETA_TS_COS(ts_new);
-		rhos2[i] /= TS_DEN(ts_new);
+		const T ts_new = ts[i],
+    x2 = ts_new * ts_new,
+    ts_den = 1. + x2,
+    alpha_ts_new2 = alpha_times_2 * ts_new,
+    beta_1_minus_x2 = beta * (1. - x2);
+    
+		rhos1[i] = (( alpha_ts_new2 * cth) + (beta_1_minus_x2 * sth)) / ts_den;
+		rhos2[i] = ((-alpha_ts_new2 * sth) + (beta_1_minus_x2 * cth)) / ts_den;
 	}
 
 	// Not used?
