@@ -8,7 +8,7 @@ inline T
 pose_poly<T>::
 pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 {
-	static T buf[10];
+	T buf[10];
 
 	//%function of t part :
 	T& A = *output ? (*output)[0] : buf[0];
@@ -23,119 +23,106 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 	T& L = *output ? (*output)[9] : buf[9];
 
 	// `t` integer powers
-	const T
-	t_pow2 = t * t,
-	t_pow3 = t_pow2 * t,
-	t_pow4 = t_pow3 * t,
-	t_pow5 = t_pow4 * t,
-	t_pow6 = t_pow5 * t,
-	t_pow7 = t_pow6 * t,
-	t_pow8 = t_pow7 * t;
+	const T t2 = t*t, t3 = t2*t, t4 = t3*t, t5 = t4*t, t6 = t5*t, t7 = t6*t, t8 = t7*t;
 
 	// `(t^2 + 1)` integer powers
   // TODO(check) when removing static, the tests accuse loss of precision
 	const T 
-	t_pow2_plus1_pow2 = (t_pow2 + 1.) * (t_pow2 + 1.),
-	t_pow2_plus1_pow3 = t_pow2_plus1_pow2 * (t_pow2 + 1.),
-	t_pow2_plus1_pow4 = t_pow2_plus1_pow3 * (t_pow2 + 1.);
+    t2_plus1_pow2 = (t2 + 1.) * (t2 + 1.),
+    t2_plus1_pow3 = t2_plus1_pow2 * (t2 + 1.),
+    t2_plus1_pow4 = t2_plus1_pow3 * (t2 + 1.);
 
 	// Denominators
-	const T &A_den = t_pow2_plus1_pow2;
-	const T &B_den = t_pow2_plus1_pow3;
-	const T &C_den = t_pow2_plus1_pow4;
-	const T &E_den = t_pow2_plus1_pow2;
-	const T &F_den = t_pow2_plus1_pow3;
-	const T &G_den = t_pow2_plus1_pow4;
-	const T &H_den = t_pow2_plus1_pow4;
-	const T &J_den = t_pow2_plus1_pow3;
-	const T &K_den = t_pow2_plus1_pow3;
-	const T &L_den = t_pow2_plus1_pow2;
+  const T 
+    &A_den = t2_plus1_pow2,
+    &B_den = t2_plus1_pow3, &C_den = t2_plus1_pow4, &E_den = t2_plus1_pow2,
+    &F_den = t2_plus1_pow3, &G_den = t2_plus1_pow4, &H_den = t2_plus1_pow4,
+    &J_den = t2_plus1_pow3, &K_den = t2_plus1_pow3, &L_den = t2_plus1_pow2;
 
 	// Calculations
-	A = (A0 + A1 * t + A2 * t_pow2 - A1 * t_pow3 + A0 * t_pow4) / A_den;
-	B = (B0 + B1 * t + B2 * t_pow2 + B3 * t_pow3 - B2 * t_pow4 + B1 * t_pow5 - B0 * t_pow6) / B_den;
-	C = (C0 + C1 * t + C2 * t_pow2 + C3 * t_pow3 + C4 * t_pow4 - C3 * t_pow5 + C2 * t_pow6 - C1 * t_pow7 + C0 * t_pow8) / C_den;
-	E = (E0 + E1 * t + E2 * t_pow2 - E1 * t_pow3 + E0 * t_pow4) / E_den;
-	F = (F0 + F1 * t + F2 * t_pow2 + F3 * t_pow3 - F2 * t_pow4 + F1 * t_pow5 - F0 * t_pow6) / F_den;
-	G = (G0 + G1 * t + G2 * t_pow2 + G3 * t_pow3 + G4 * t_pow4 - G3 * t_pow5 + G2 * t_pow6 - G1 * t_pow7 + G0 * t_pow8) / G_den;
-	H = (H0 + H1 * t + H2 * t_pow2 + H3 * t_pow3 + H4 * t_pow4 - H3 * t_pow5 + H2 * t_pow6 - H1 * t_pow7 + H0 * t_pow8) / H_den;
-	J = (J0 + J1 * t + J2 * t_pow2 + J3 * t_pow3 - J2 * t_pow4 + J1 * t_pow5 - J0 * t_pow6) / J_den;
-	K = (K0 + K1 * t + K2 * t_pow2 + K3 * t_pow3 - K2 * t_pow4 + K1 * t_pow5 - K0 * t_pow6) / K_den;
-	L = (L0 + L1 * t + L2 * t_pow2 - L1 * t_pow3 + L0 * t_pow4) / L_den;
+	A = (A0+A1*t+A2*t2-A1*t3+A0*t4)/A_den;
+	B = (B0+B1*t+B2*t2+B3*t3-B2*t4+B1*t5-B0*t6)/B_den;
+	C = (C0+C1*t+C2*t2+C3*t3+C4*t4-C3*t5+C2*t6-C1*t7+C0*t8)/C_den;
+	E = (E0+E1*t+E2*t2-E1*t3+E0*t4)/E_den;
+	F = (F0+F1*t+F2*t2+F3*t3-F2*t4+F1*t5-F0*t6)/F_den;
+	G = (G0+G1*t+G2*t2+G3*t3+G4*t4-G3*t5+G2*t6-G1*t7+G0*t8)/G_den;
+	H = (H0+H1*t+H2*t2+H3*t3+H4*t4-H3*t5+H2*t6-H1*t7+H0*t8)/H_den;
+	J = (J0+J1*t+J2*t2+J3*t3-J2*t4+J1*t5-J0*t6)/J_den;
+	K = (K0+K1*t+K2*t2+K3*t3-K2*t4+K1*t5-K0*t6)/K_den;
+	L = (L0+L1*t+L2*t2-L1*t3+L0*t4)/L_den;
 
-	static T A_pow2, B_pow2, C_pow2, E_pow2, F_pow2, G_pow2, H_pow2, J_pow2, K_pow2, L_pow2;
-	static T H_pow3, J_pow3, K_pow3, L_pow3;
-	static T H_pow4, J_pow4, K_pow4, L_pow4;
+	const T L2 = L * L,    L3 = L2 * L;    
 
 	// 2nd power          3rd power               4th power
-	A_pow2 = A * A;
-	B_pow2 = B * B;
-	C_pow2 = C * C;
-	E_pow2 = E * E;
-	F_pow2 = F * F;
-	G_pow2 = G * G;
-	H_pow2 = H * H;    H_pow3 = H_pow2 * H;    H_pow4 = H_pow3 * H;
-	J_pow2 = J * J;    J_pow3 = J_pow2 * J;    J_pow4 = J_pow3 * J;
-	K_pow2 = K * K;    K_pow3 = K_pow2 * K;    K_pow4 = K_pow3 * K;
-	L_pow2 = L * L;    L_pow3 = L_pow2 * L;    L_pow4 = L_pow3 * L;
+	const T
+	A2 = A * A,
+	B2 = B * B,
+	C2 = C * C,
+	E2 = E * E,
+	F2 = F * F,
+	G2 = G * G,
+	H2 = H * H,    H3 = H2 * H,    H4 = H3 * H,
+	J2 = J * J,    J3 = J2 * J,    J4 = J3 * J,
+	K2 = K * K,    K3 = K2 * K,    K4 = K3 * K;
+  
 
 
   return
 	// TODO: Analyze the need of extra/lower precison for the calculation of these terms.
 	// Report about it in the thesis
 	// fvalue_terms[X]
-	/*  0 */       E_pow2 * B_pow2 * H_pow2 * J_pow2
-	/*  1 */ +      G_pow2 * C_pow2 * L_pow4
-	/*  2 */ +      G_pow2 * A_pow2 * K_pow4
-	/*  3 */ +      E_pow2 * A_pow2 * H_pow4
-	/*  4 */ +      E_pow2 * C_pow2 * J_pow4
-	/*  5 */ + -2. * E      * A      * H_pow2 * G      * C      * L_pow2
-	/*  6 */ +  2. * E_pow2 * A      * H_pow2 * C      * J_pow2
-	/*  7 */ + -2. * E_pow2 * C      * J_pow3 * B      * H
-	/*  8 */ +  2. * E      * C_pow2 * J_pow2 * G      * L_pow2
-	/*  9 */ +  2. * E      * A_pow2 * H_pow2 * G      * K_pow2
-	/* 10 */ + -2. * E_pow2 * A      * H_pow3 * B      * J
-	/* 11 */ + -2. * E      * A      * H_pow2 * G      * B      * K      * L
-	/* 12 */ + -2. * E      * C      * J_pow2 * G      * B      * K      * L
-	/* 13 */ + -2. * E      * C      * J_pow2 * G      * A      * K_pow2
-	/* 14 */ + -2. * E      * B      * H      * J      * G      * C      * L_pow2
-	/* 15 */ + -2. * E      * B      * H      * J      * G      * A      * K_pow2
-	/* 16 */ +      G_pow2 * B_pow2 * K_pow2 * L_pow2
-	/* 17 */ + -2. * G_pow2 * B      * K      * L_pow3 * C
-	/* 18 */ + -2. * G_pow2 * B      * K_pow3 * L      * A
-	/* 19 */ +  2. * G_pow2 * C      * L_pow2 * A      * K_pow2
-	/* 20 */ + -2. * F      * E      * A_pow2 * H_pow3 * K
-	/* 21 */ + -2. * F      * E      * A      * H      * K      * C      * J_pow2
-	/* 22 */ +  3. * F      * E      * A      * H_pow2 * K      * B      * J
-	/* 23 */ +  3. * F      * A      * H      * K_pow2 * G      * B      * L
-	/* 24 */ + -2. * F      * A      * H      * K      * G      * C      * L_pow2
-	/* 25 */ + -2. * F      * A_pow2 * H      * K_pow3 * G
-	/* 26 */ +      F      * E      * B      * H_pow3 * L      * A
-	/* 27 */ +  3. * F      * E      * B      * H      * L      * C      * J_pow2
-	/* 28 */ + -1. * F      * E      * B_pow2 * H_pow2 * L      * J
-	/* 29 */ + -1. * F      * B_pow2 * H      * L_pow2 * G      * K
-	/* 30 */ +      F      * B      * H      * L_pow3 * G      * C
-	/* 31 */ +      F      * E      * B      * K      * J_pow3 * C
-	/* 32 */ + -1. * F      * E      * B_pow2 * K      * J_pow2 * H
-	/* 33 */ + -1. * F      * B_pow2 * K_pow2 * J      * G      * L
-	/* 34 */ +  3. * F      * B      * K      * J      * G      * C      * L_pow2
-	/* 35 */ +      F      * B      * K_pow3 * J      * G      * A
-	/* 36 */ + -2. * F      * E      * C      * J      * L      * A      * H_pow2
-	/* 37 */ + -2. * F      * E      * C_pow2 * J_pow3 * L
-	/* 38 */ + -2. * F      * C_pow2 * J      * L_pow3 * G
-	/* 39 */ + -2. * F      * C      * J      * L      * G      * A      * K_pow2
-	/* 40 */ +      F_pow2 * A_pow2 * K_pow2 * H_pow2
-	/* 41 */ +      F_pow2 * A      * K_pow2 * C      * J_pow2
-	/* 42 */ + -1. * F_pow2 * A      * K_pow2 * B      * H      * J
-	/* 43 */ + -1. * F_pow2 * B      * K      * L      * A      * H_pow2
-	/* 44 */ + -1. * F_pow2 * B      * K      * L      * C      * J_pow2
-	/* 45 */ +      F_pow2 * B_pow2 * K      * L      * H      * J
-	/* 46 */ +      F_pow2 * C      * L_pow2 * A      * H_pow2
-	/* 47 */ +      F_pow2 * C_pow2 * L_pow2 * J_pow2
-	/* 48 */ + -1. * F_pow2 * C      * L_pow2 * B      * H      * J
-	/* 49 */ +      G      * E      * B_pow2 * H_pow2 * L_pow2
-	/* 50 */ +      G      * E      * B_pow2 * K_pow2 * J_pow2
-	/* 51 */ +  8. * G      * E      * A      * H      * K      * C      * J      * L;
+	/*0*/E2*B2*H2*J2
+	/*1*/+G2*C2*L*L*L*L
+	/*2*/+G2*A2*K4
+	/*3*/+E2*A2*H4
+	/*4*/+E2*C2*J4
+	/*5*/+-2.*E*A*H2*G*C*L2
+	/*6*/+2.*E2*A*H2*C*J2
+	/*7*/+-2.*E2*C*J3*B*H
+	/*8*/+2.*E*C2*J2*G*L2
+	/*9*/+2.*E*A2*H2*G*K2
+	/*10*/+-2.*E2*A*H3*B*J
+	/*11*/+-2.*E*A*H2*G*B*K*L
+	/*12*/+-2.*E*C*J2*G*B*K*L
+	/*13*/+-2.*E*C*J2*G*A*K2
+	/*14*/+-2.*E*B*H*J*G*C*L2
+	/*15*/+-2.*E*B*H*J*G*A*K2
+	/*16*/+G2*B2*K2*L2
+	/*17*/+-2.*G2*B*K*L3*C
+	/*18*/+-2.*G2*B*K3*L*A
+	/*19*/+2.*G2*C*L2*A*K2
+	/*20*/+-2.*F*E*A2*H3*K
+	/*21*/+-2.*F*E*A*H*K*C*J2
+	/*22*/+3.*F*E*A*H2*K*B*J
+	/*23*/+3.*F*A*H*K2*G*B*L
+	/*24*/+-2.*F*A*H*K*G*C*L2
+	/*25*/+-2.*F*A2*H*K3*G
+	/*26*/+F*E*B*H3*L*A
+	/*27*/+3.*F*E*B*H*L*C*J2
+	/*28*/+-1.*F*E*B2*H2*L*J
+	/*29*/+-1.*F*B2*H*L2*G*K
+	/*30*/+F*B*H*L3*G*C
+	/*31*/+F*E*B*K*J3*C
+	/*32*/+-1.*F*E*B2*K*J2*H
+	/*33*/+-1.*F*B2*K2*J*G*L
+	/*34*/+3.*F*B*K*J*G*C*L2
+	/*35*/+F*B*K3*J*G*A
+	/*36*/+-2.*F*E*C*J*L*A*H2
+	/*37*/+-2.*F*E*C2*J3*L
+	/*38*/+-2.*F*C2*J*L3*G
+	/*39*/+-2.*F*C*J*L*G*A*K2
+	/*40*/+F2*A2*K2*H2
+	/*41*/+F2*A*K2*C*J2
+	/*42*/+-1.*F2*A*K2*B*H*J
+	/*43*/+-1.*F2*B*K*L*A*H2
+	/*44*/+-1.*F2*B*K*L*C*J2
+	/*45*/+F2*B2*K*L*H*J
+	/*46*/+F2*C*L2*A*H2
+	/*47*/+F2*C2*L2*J2
+	/*48*/+-1.*F2*C*L2*B*H*J
+	/*49*/+G*E*B2*H2*L2
+	/*50*/+G*E*B2*K2*J2
+	/*51*/+8.*G*E*A*H*K*C*J*L;
 }
 
 }

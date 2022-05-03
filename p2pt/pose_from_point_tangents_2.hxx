@@ -15,7 +15,6 @@ pose_from_point_tangents_2(
 	const T (&Gama2)[3], const T (&Tgt2)[3]
 )
 {
-	static constexpr T PI = 3.141592653589793;
 	static constexpr T PI_OVER_2 = 3.141592653589793*0.5;
 
 	const T g11 = gama1[0], g12 = gama1[1],
@@ -61,10 +60,8 @@ pose_from_point_tangents_2(
 	if (theta < 0) theta += PI_OVER_2;
 	sth = sin(theta);
   const T sth2 = sth*sth;
-  const T sth3 = sth2*sth;
 	cth = cos(theta);
   const T cth2 = cth*cth;
-  const T cth3 = cth2*cth;
   
 
 	//% 497-798
