@@ -108,7 +108,6 @@ pose_from_point_tangents_2_fn_t(const T t, T output[10])
 	/*51*/+8.*G*E*A*H*K*C*J*L;
 }
 
-
 }
 
 #endif // !pose_from_point_tangents_2_fn_t_hxx_

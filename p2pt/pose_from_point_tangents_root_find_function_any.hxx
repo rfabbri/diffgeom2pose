@@ -5,7 +5,6 @@
 #include "poly.h"
 
 #include "pose_from_point_tangents_2.hxx"
-#include "find_bounded_root_intervals.hxx"
 #include "rhos_from_root_ids.hxx"
 #include "get_sigmas.hxx"
 #include "get_r_t_from_rhos.hxx"

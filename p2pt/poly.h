@@ -32,13 +32,22 @@ struct pose_poly {
 		const T (&Gama2)[3], const T (&Tgt2)[3]
 	);
   
-	void find_bounded_root_intervals(
+	inline void find_bounded_root_intervals(
 		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
-	);
+	)
+  {
+    T curr_val, next_val;
+    curr_val = pose_from_point_tangents_2_fn_t(t_vector[0]);
+    for (int i = 0; i < ROOT_IDS_LEN; i++) {
+      next_val = pose_from_point_tangents_2_fn_t(t_vector[i+1]);
+      (*root_ids_output)[i] = (curr_val * next_val) < 0;
+      curr_val = next_val;
+    }
+  }
   
 	T pose_from_point_tangents_2_fn_t(const T t, T output[10]);
-	T pose_from_point_tangents_2_fn_t(const T t) { T buf[10]; return pose_from_point_tangents_2_fn_t(t, buf); }
-	T operator()(T t) { return pose_from_point_tangents_2_fn_t(t); }
+	inline T pose_from_point_tangents_2_fn_t(const T t) { T buf[10]; return pose_from_point_tangents_2_fn_t(t, buf); }
+	inline T operator()(T t) { return pose_from_point_tangents_2_fn_t(t); }
   
 	void rhos_from_root_ids(
 		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
