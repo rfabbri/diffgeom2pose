@@ -26,8 +26,9 @@ void pose_from_point_tangents_root_find_function_any(
 	// % This is the main routine to find roots. Can be used with any input.
 
 
+  {
 	// % test for geometric degeneracy -------------------------------
-	static T DGama[3];
+	T DGama[3];
 	common::vec1vec2_3el_sub(Gama1, Gama2, DGama);
 	common::vec_3el_div_by_scalar(common::norm(DGama, 3), DGama, DGama);
 
@@ -48,6 +49,7 @@ void pose_from_point_tangents_root_find_function_any(
 		output_degen  = nullptr;
 		return;
 	}
+  }
 
 	// % compute roots -------------------------------
 	pose_poly<T> p;
@@ -59,14 +61,14 @@ void pose_from_point_tangents_root_find_function_any(
 	);
 
 	static T t_vector[T_VECTOR_LEN] __attribute__((aligned (16))); common::colon<T>(-1.0, 0.001, 1.0, t_vector);
-	static T root_ids[ROOT_IDS_LEN] __attribute__((aligned (16))) = {0};
+	T root_ids[ROOT_IDS_LEN] __attribute__((aligned (16))) = {0};
 
 	p.find_bounded_root_intervals(t_vector, &root_ids);
 
 
 	// % compute rhos, r, t --------------------------
-	static T rhos[3][ROOT_IDS_LEN];
-	static int ts_len;
+	T rhos[3][ROOT_IDS_LEN];
+	int ts_len;
 
 	p.rhos_from_root_ids(t_vector, root_ids, &rhos, &ts_len);
 
@@ -75,8 +77,8 @@ void pose_from_point_tangents_root_find_function_any(
 	T (&rhos2)[ROOT_IDS_LEN] = rhos[2];
 
 
-	static T sigmas[2][TS_MAX_LEN][TS_MAX_LEN];
-	static int sigmas_len[2][TS_MAX_LEN];
+	T sigmas[2][TS_MAX_LEN][TS_MAX_LEN];
+	int sigmas_len[2][TS_MAX_LEN];
 
 	p.get_sigmas(ts_len, ts, &sigmas, &sigmas_len);
 
