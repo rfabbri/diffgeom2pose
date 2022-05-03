@@ -22,7 +22,6 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 	T& K = *output ? (*output)[8] : buf[8];
 	T& L = *output ? (*output)[9] : buf[9];
 
-	// `t` integer powers
 	const T t2 = t*t, t3 = t2*t, t4 = t3*t, t5 = t4*t, t6 = t5*t, t7 = t6*t, t8 = t7*t;
 
 	// `(t^2 + 1)` integer powers
@@ -32,28 +31,17 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
     t2_plus1_pow3 = t2_plus1_pow2 * (t2 + 1.),
     t2_plus1_pow4 = t2_plus1_pow3 * (t2 + 1.);
 
-	// Denominators
-  const T 
-    &A_den = t2_plus1_pow2,
-    &B_den = t2_plus1_pow3, &C_den = t2_plus1_pow4, &E_den = t2_plus1_pow2,
-    &F_den = t2_plus1_pow3, &G_den = t2_plus1_pow4, &H_den = t2_plus1_pow4,
-    &J_den = t2_plus1_pow3, &K_den = t2_plus1_pow3, &L_den = t2_plus1_pow2;
+	A = (A0+A1*t+A2*t2-A1*t3+A0*t4)/t2_plus1_pow2;
+	B = (B0+B1*t+B2*t2+B3*t3-B2*t4+B1*t5-B0*t6)/t2_plus1_pow3;
+	C = (C0+C1*t+C2*t2+C3*t3+C4*t4-C3*t5+C2*t6-C1*t7+C0*t8)/t2_plus1_pow4;
+	E = (E0+E1*t+E2*t2-E1*t3+E0*t4)/t2_plus1_pow2;
+	F = (F0+F1*t+F2*t2+F3*t3-F2*t4+F1*t5-F0*t6)/t2_plus1_pow3;
+	G = (G0+G1*t+G2*t2+G3*t3+G4*t4-G3*t5+G2*t6-G1*t7+G0*t8)/t2_plus1_pow4;
+	H = (H0+H1*t+H2*t2+H3*t3+H4*t4-H3*t5+H2*t6-H1*t7+H0*t8)/t2_plus1_pow4;
+	J = (J0+J1*t+J2*t2+J3*t3-J2*t4+J1*t5-J0*t6)/t2_plus1_pow3;
+	K = (K0+K1*t+K2*t2+K3*t3-K2*t4+K1*t5-K0*t6)/t2_plus1_pow3;
+	L = (L0+L1*t+L2*t2-L1*t3+L0*t4)/t2_plus1_pow2;
 
-	// Calculations
-	A = (A0+A1*t+A2*t2-A1*t3+A0*t4)/A_den;
-	B = (B0+B1*t+B2*t2+B3*t3-B2*t4+B1*t5-B0*t6)/B_den;
-	C = (C0+C1*t+C2*t2+C3*t3+C4*t4-C3*t5+C2*t6-C1*t7+C0*t8)/C_den;
-	E = (E0+E1*t+E2*t2-E1*t3+E0*t4)/E_den;
-	F = (F0+F1*t+F2*t2+F3*t3-F2*t4+F1*t5-F0*t6)/F_den;
-	G = (G0+G1*t+G2*t2+G3*t3+G4*t4-G3*t5+G2*t6-G1*t7+G0*t8)/G_den;
-	H = (H0+H1*t+H2*t2+H3*t3+H4*t4-H3*t5+H2*t6-H1*t7+H0*t8)/H_den;
-	J = (J0+J1*t+J2*t2+J3*t3-J2*t4+J1*t5-J0*t6)/J_den;
-	K = (K0+K1*t+K2*t2+K3*t3-K2*t4+K1*t5-K0*t6)/K_den;
-	L = (L0+L1*t+L2*t2-L1*t3+L0*t4)/L_den;
-
-	const T L2 = L * L,    L3 = L2 * L;    
-
-	// 2nd power          3rd power               4th power
 	const T
 	A2 = A * A,
 	B2 = B * B,
@@ -62,20 +50,17 @@ pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] /* = nullptr */)
 	F2 = F * F,
 	G2 = G * G,
 	H2 = H * H,    H3 = H2 * H,    H4 = H3 * H,
-	J2 = J * J,    J3 = J2 * J,    J4 = J3 * J,
-	K2 = K * K,    K3 = K2 * K,    K4 = K3 * K;
-  
+	J2 = J * J,    J3 = J2 * J,   
+	K2 = K * K,    K3 = K2 * K,
+  L2 = L*L,      L3 = L2 * L;
 
-
-  return
+  return // fvalue_terms[X]
 	// TODO: Analyze the need of extra/lower precison for the calculation of these terms.
-	// Report about it in the thesis
-	// fvalue_terms[X]
 	/*0*/E2*B2*H2*J2
 	/*1*/+G2*C2*L*L*L*L
-	/*2*/+G2*A2*K4
+	/*2*/+G2*A2*K3*K
 	/*3*/+E2*A2*H4
-	/*4*/+E2*C2*J4
+	/*4*/+E2*C2*J3*J
 	/*5*/+-2.*E*A*H2*G*C*L2
 	/*6*/+2.*E2*A*H2*C*J2
 	/*7*/+-2.*E2*C*J3*B*H
