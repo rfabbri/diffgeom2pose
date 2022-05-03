@@ -9,7 +9,6 @@
 void
 test_run(const char *type, const char *benchmark = "no")
 {
-
 	double test_RT[RT_MAX_LEN][4][3] = {0};
 	double test_degen;
 	float  test_RT_float[RT_MAX_LEN][4][3] = {0};
@@ -36,7 +35,6 @@ test_run(const char *type, const char *benchmark = "no")
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
 	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-    std::cout << "Time of solver: " << duration << "us" << std::endl;
 
 	double diff;
 	char indexstr[128];
@@ -87,6 +85,7 @@ test_run(const char *type, const char *benchmark = "no")
 		);
 		std::cout << indexstr << std::endl;
 	}
+  std::cout << "Time of solver: " << duration << "us" << std::endl;
 }
 
 int main(int argc, const char* argv[])
