@@ -24,7 +24,8 @@ pose_from_point_tangents_2(
   const T g11_3 = g11*g11*g11;
   const T g11_4 = g11_3*g11;
   
-  const T g12_3 = g12*g12*g12;
+  const T g12_2 = g12*g12;
+  const T g12_3 = g12_2*g12;
   const T g12_4 = g12_3*g12;
   
   const T g21_3 = g21*g21*g21;
@@ -77,23 +78,14 @@ pose_from_point_tangents_2(
 	//
 	//% the above theta has similar sin(2theta), cos(2theta) as the maple spreadsheet.
 
-  const T
-	t1 = sin(2.*theta),
-	t2 = cos(2.*theta),
-	t5 = g22 * g22,
-	t8 = g21 * g21,
-	t14 = g12 * g12,
 	//double t15 = t1 * t1; // double-checked: not used in matlab
-	t21 = g11 * g11;
 
-	const T den1 = 2.*t1*(g11*g21 +g12*g22 + 1.) + t2*(t21 + t14 - t8 - t5),
-	        den2 = t21 + t14 + t8 + t5 + 2.;
+	const T den1 = 2.*sin(2.*theta)*(g11*g21 +g12*g22 + 1.) + cos(2.*theta)*(t4 + g12_2 - t6 - t7),
+	        den2 = t4 + g12_2 + t6 + t7 + 2.;
 
-  const T t25 = -2.*a1 / (den1 - den2);
-	beta = sqrt(t25);
+	beta = sqrt(-2.*a1 / (den1 - den2)); // sqrt(t25)
 
-	const T t24 = 2.*a1 / (den1 + den2);
-	alpha = sqrt(t24);
+	alpha = sqrt(2.*a1 / (den1 + den2)); // sqrt(t24)
 
 	//% Coefficient code adapted from Maple ::: can be further cleaned up but works
 
