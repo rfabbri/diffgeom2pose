@@ -177,8 +177,9 @@ inline T
 	T (&output)[3]
 )
 {
-	for (int i = 0; i < 3; i++)
-		output[i] = vec1[i] * vec2[i];
+	output[0] = vec1[0] * vec2[0];
+	output[1] = vec1[1] * vec2[1];
+	output[2] = vec1[2] * vec2[2];
 	return output;
 }
 

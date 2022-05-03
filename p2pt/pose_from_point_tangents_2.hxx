@@ -18,9 +18,6 @@ pose_from_point_tangents_2(
 	static constexpr T PI = 3.141592653589793;
 	static constexpr T PI_OVER_2 = 3.141592653589793*0.5;
 
-	T V[3], buf[3];
-	T a1, a2, a3, a4, a5, a6;
-
 	const T g11 = gama1[0], g12 = gama1[1],
 	        g21 = gama2[0], g22 = gama2[1];
 
@@ -39,13 +36,20 @@ pose_from_point_tangents_2(
 	const T h11 = tgt1[0],  h12 = tgt1[1],
 	        h21 = tgt2[0],  h22 = tgt2[1];
 
-	vec1vec2_3el_sub(Gama1, Gama2, V);
-	vec_3el_wise_mult2(V, V, buf);       a1 = vec_3el_sum(buf);
-	vec_3el_wise_mult2(Tgt1, Tgt1, buf); a2 = vec_3el_sum(buf);
-	vec_3el_wise_mult2(Tgt2, Tgt2, buf); a3 = vec_3el_sum(buf);
-	vec_3el_wise_mult2(V, Tgt1, buf);    a4 = vec_3el_sum(buf);
-	vec_3el_wise_mult2(Tgt1, Tgt2, buf); a5 = vec_3el_sum(buf);
-	vec_3el_wise_mult2(V, Tgt2, buf);    a6 = vec_3el_sum(buf);
+  // Gama1[0]-Gama2[0]
+	const T V[3] = {
+    Gama1[0]-Gama2[0],
+    Gama1[1]-Gama2[1],
+    Gama1[2]-Gama2[2]
+  };
+  
+	const T 
+  a1 = V[0]*V[0] + V[1]*V[1] + V[2]*V[2],
+  a2 = Tgt1[0]*Tgt1[0] + Tgt1[1]*Tgt1[1] + Tgt1[2]*Tgt1[2],
+  a3 = Tgt2[0]*Tgt2[0] + Tgt2[1]*Tgt2[1] + Tgt2[2]*Tgt2[2],
+  a4 = V[0]*Tgt1[0] + V[1]*Tgt1[1] + V[2]*Tgt1[2],
+  a5 = Tgt1[0]*Tgt2[0] + Tgt1[1]*Tgt2[1] + Tgt1[2]*Tgt2[2],
+  a6 = V[0]*Tgt2[0] + V[1]*Tgt2[1] + V[2]*Tgt2[2];
 
 	const T t4 = g11 * g11,
 	        t6 = g21 * g21,
