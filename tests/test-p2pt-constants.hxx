@@ -6,6 +6,9 @@
 // Sample values taken from MATLAB - for test only
 // The following seed and rng parameters were used: `rng(0, 'twister')`
 
+// `T_VECTOR_LEN`, `ROOT_IDS_LEN`, `TS_MAX_LEN`, and `RT_MAX_LEN` are defined
+// in `poly.h`
+
 // Floating-point comparison precision
 constexpr double eps = 1e-4;
 
@@ -6115,20 +6118,20 @@ constexpr double sample_rhos2_plus[4]       = {6.439673320473, 6.57494124271865,
 constexpr double sample_ts[ROOT_IDS_LEN]    = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};
 constexpr int    sample_ts_len              = 4;
 
-constexpr double sample_sigmas1[4][4] = {
+constexpr double sample_sigmas1[TS_MAX_LEN][TS_MAX_LEN] = {
 	{8.68336207388739},
 	{-26.3455295768106},
 	{-4.00694910370343},
 	{-0.874981027791992, -1.68358524488143, -1.68358524488143, -0.874981027791992}
 };
-constexpr double sample_sigmas2[4][4] = {
+constexpr double sample_sigmas2[TS_MAX_LEN][TS_MAX_LEN] = {
 	{2.51342681185737},
 	{2.50734069151249},
 	{-2.23388593591439},
 	{-0.114058798509118, -0.114058798509118, -0.066817663927889, -0.066817663927889}
 };
-constexpr int sample_sigmas1_end[4] = {1, 1, 1, 4};
-constexpr int sample_sigmas2_end[4] = {1, 1, 1, 4};
+constexpr int sample_sigmas1_end[TS_MAX_LEN] = {1, 1, 1, 4};
+constexpr int sample_sigmas2_end[TS_MAX_LEN] = {1, 1, 1, 4};
 
 constexpr double sample_Rots[7][3][3] = {
 	{

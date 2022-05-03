@@ -4,8 +4,8 @@
 constexpr int T_VECTOR_LEN = 2001;
 constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 
-// TODO: Assume a reasonable length for `ts`. Check if it can be longer than 4.
-constexpr int TS_MAX_LEN = 4;
+// TODO: Assume a reasonable length for `ts`. Check if it can be longer than 8.
+constexpr int TS_MAX_LEN = 8;
 constexpr int RT_MAX_LEN = (TS_MAX_LEN * TS_MAX_LEN);
 
 namespace P2Pt {
