@@ -6,6 +6,7 @@
 
 namespace common {
 
+/* unused
 template<typename T>
 inline void
 colon(T start, T step, T end, T output[])
@@ -16,6 +17,7 @@ colon(T start, T step, T end, T output[])
 		output[i] = start + i * step;
 
 }
+*/
 
 template<typename T>
 inline T
@@ -50,18 +52,17 @@ invm3x3(const T (&input_m)[3][3], T (&output_m)[3][3])
 	// B = -(di - fg), E =  (ai - cg), H = -(af - cd),
 	// C =  (dh - eg), F = -(ah - bg), I =  (ae - bd).
 
-	T a, b, c, d, e, f, g, h, i;
+	const T 
 	a = input_m[0][0], b = input_m[0][1], c = input_m[0][2],
 	d = input_m[1][0], e = input_m[1][1], f = input_m[1][2],
 	g = input_m[2][0], h = input_m[2][1], i = input_m[2][2];
 
-	T A, B, C, D, E, F, G, H, I;
+	const T 
 	A =  (e*i - f*h), B = -(d*i - f*g), C =  (d*h - e*g),
 	D = -(b*i - c*h), E =  (a*i - c*g), F = -(a*h - b*g),
 	G =  (b*f - c*e), H = -(a*f - c*d), I =  (a*e - b*d);
 
-	T invdet_M;
-	invdet_M = 1 / (a*A + b*B + c*C);
+	const T invdet_M = 1. / (a*A + b*B + c*C);
 
 	output_m[0][0] = invdet_M * A; output_m[0][1] = invdet_M * D; output_m[0][2] = invdet_M * G;
 	output_m[1][0] = invdet_M * B; output_m[1][1] = invdet_M * E; output_m[1][2] = invdet_M * H;
@@ -96,17 +97,6 @@ multm_3x3_3x1(const T m1[][3], const T (&m2)[3], T (&output_m)[3])
 
 template<typename T>
 inline T
-intpow(T base, int exponent)
-{
-	T output = 1.0;
-	while (exponent-- > 0) {
-		output *= base;
-	}
-	return output;
-}
-
-template<typename T>
-inline T
 vec1vec2_3el_dot(const T (&vec1)[3], const T (&vec2)[3])
 {
 	T output = 0;
@@ -115,6 +105,7 @@ vec1vec2_3el_dot(const T (&vec1)[3], const T (&vec2)[3])
 	return output;
 }
 
+/* not used
 template<typename T>
 inline void
 vec1vec2_sum(T (&vec1)[T_VECTOR_LEN], T (&vec2)[T_VECTOR_LEN], T (&output)[T_VECTOR_LEN])
@@ -122,6 +113,7 @@ vec1vec2_sum(T (&vec1)[T_VECTOR_LEN], T (&vec2)[T_VECTOR_LEN], T (&output)[T_VEC
 	for (int i = 0; i < T_VECTOR_LEN; i++)
 		output[i] = vec1[i] + vec2[i];
 }
+*/
 
 template<typename T>
 inline void
@@ -140,6 +132,7 @@ vec1vec2_3el_sub(const T (&vec1)[3], const T (&vec2)[3], T (&output)[3])
 		output[i] = vec1[i] - vec2[i];
 }
 
+/* not used
 template<typename T>
 inline void
 vec_add_scalar(T (&vec1)[T_VECTOR_LEN], int scalar, T (&output)[T_VECTOR_LEN])
@@ -163,6 +156,7 @@ vec1vec2_el_wise_right_div(T (&vec1)[T_VECTOR_LEN], T (&vec2)[T_VECTOR_LEN], T (
 	for (int i = 0; i < T_VECTOR_LEN; i++)
 		output[i] = vec1[i] / vec2[i];
 }
+*/
 
 template<typename T>
 inline void
@@ -187,6 +181,7 @@ inline T
 }
 
 // For 3 vectors and add
+/* not used 
 template<typename T>
 inline void
 vec_el_wise_mult3_and_add(
@@ -297,6 +292,7 @@ vec_el_wise_mult8_scalar_and_add(
 		output[i] += vec1[i] * vec2[i] * vec3[i] * vec4[i]
 		           * vec5[i] * vec6[i] * vec7[i] * vec8[i] * scalar;
 }
+*/
 
 template<typename T>
 inline void
