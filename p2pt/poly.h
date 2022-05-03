@@ -30,20 +30,24 @@ struct pose_poly {
 		const T (&Gama1)[3], const T (&Tgt1)[3],
 		const T (&Gama2)[3], const T (&Tgt2)[3]
 	);
+  
 	void find_bounded_root_intervals(
 		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
 	);
-	T pose_from_point_tangents_2_fn_t(
-		const T t, T (*output)[10] = nullptr
-	);
+  
+	T pose_from_point_tangents_2_fn_t(const T t, T (*output)[10] = nullptr);
+	T operator()(T t) { return pose_from_point_tangents_2_fn_t(t); }
+  
 	void rhos_from_root_ids(
 		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
 		T (*output)[3][ROOT_IDS_LEN], int *output_ts_len
 	);
+  
 	void get_sigmas(
 		const int ts_len, const T (&ts)[ROOT_IDS_LEN],
 		T (*output)[2][TS_MAX_LEN][TS_MAX_LEN], int (*output_len)[2][TS_MAX_LEN]
 	);
+  
 	void get_r_t_from_rhos(
 		const int ts_len,
 		const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas1_len)[TS_MAX_LEN],
@@ -55,9 +59,6 @@ struct pose_poly {
 		const T (&Gama2)[3], const T (&Tgt2)[3],
 		T (*output)[RT_MAX_LEN][4][3], int *output_len
 	);
-	T operator()(T t) {
-		return pose_poly<T>::pose_from_point_tangents_2_fn_t(t);
-	}
 };
 
 }

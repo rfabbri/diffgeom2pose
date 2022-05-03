@@ -1,5 +1,5 @@
 #ifndef find_bounded_root_intervals_hxx_
-#define find_bounded_root_invervals_hxx_
+#define find_bounded_root_intervals_hxx_
 
 //#include "sample_pose_poly.hxx"
 #include "pose_from_point_tangents_2_fn_t.hxx"

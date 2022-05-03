@@ -47,11 +47,12 @@ test_run(const char *type, const char *benchmark = "no")
 			for (int k = 0; k < 3; k++) {
 				double (&test_Rots)[4][3] = test_RT[i];
 				if (!is_benchmark) {
+          diff = std::abs(test_Rots[j][k] - sample_Rots[i][j][k]);
 					snprintf(
 						indexstr, 128,
 						"RT[%d]: Rots[%d][%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
 						i, j, k, test_Rots[j][k], sample_Rots[i][j][k],
-						(diff = std::abs(test_Rots[j][k] - sample_Rots[i][j][k])),
+						diff,
 						diff < eps ? "OK" : "FAILED"
 					);
 					std::cout << indexstr << std::endl;
@@ -62,11 +63,12 @@ test_run(const char *type, const char *benchmark = "no")
 		for (int j = 0; j < 3; j++) {
 			double (&test_Transls)[3] = test_RT[i][3];
 			if (!is_benchmark) {
+			  diff = std::abs(test_Transls[j] - sample_Transls[i][j]);
 				snprintf(
 					indexstr, 128,
 					"RT[%d]: Transls[%d] = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
 					i, j, test_Transls[j], sample_Transls[i][j],
-					(diff = std::abs(test_Transls[j] - sample_Transls[i][j])),
+					diff,
 					diff < eps ? "OK" : "FAILED"
 				);
 				std::cout << indexstr << std::endl;
@@ -76,11 +78,12 @@ test_run(const char *type, const char *benchmark = "no")
 	}
 	// Degen
 	if (!is_benchmark) {
+	  diff = std::abs(test_degen - sample_degen);
 		snprintf(
 			indexstr, 128,
 			"degen = %.15g,   \tSample = %.15g,\tdiff = %e\t| %s",
 			test_degen, sample_degen,
-			(diff = std::abs(test_degen - sample_degen)),
+			diff,
 			diff < eps ? "OK" : "FAILED"
 		);
 		std::cout << indexstr << std::endl;
