@@ -36,18 +36,17 @@ struct pose_poly {
 		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
 	)
   {
-    T curr_val, next_val;
-    curr_val = pose_from_point_tangents_2_fn_t(t_vector[0]);
+    T curr_val = fn_t(t_vector[0]), next_val;
     for (int i = 0; i < ROOT_IDS_LEN; i++) {
-      next_val = pose_from_point_tangents_2_fn_t(t_vector[i+1]);
+      next_val = fn_t(t_vector[i+1]);
       (*root_ids_output)[i] = (curr_val * next_val) < 0;
       curr_val = next_val;
     }
   }
   
-	inline T pose_from_point_tangents_2_fn_t(const T t, T output[10]);
-	inline T pose_from_point_tangents_2_fn_t(const T t) { T b[10]; return pose_from_point_tangents_2_fn_t(t, b); }
-	inline T operator()(T t) { return pose_from_point_tangents_2_fn_t(t); }
+	inline T fn_t(const T t, T output[10]);
+	inline T fn_t(const T t) { T b[10]; return fn_t(t, b); }
+	inline T operator()(T t) { return fn_t(t); }
   
 	void rhos_from_root_ids(
 		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],

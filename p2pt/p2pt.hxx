@@ -3,12 +3,11 @@
 
 #include <iostream>
 #include "p2pt.h"
-#include "pose_poly.h"
+#include "pose_poly.hxx"
 // thesse are pose_poly.hxx actually
 #include "get_r_t_from_rhos.hxx"
 #include "get_sigmas.hxx"
 #include "pose_from_point_tangents_2.hxx"
-#include "pose_from_point_tangents_2_fn_t.hxx"
 #include "rhos_from_root_ids.hxx"
 
 
