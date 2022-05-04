@@ -80,13 +80,9 @@ get_r_t_from_rhos(
 
 			common::multm3x3(B, inv_A, Rots);
 
-			T buff2[3];
-
-			// Transls{end+1} = rhos1(i)*gama1 - Rots{end}*Gama1;
-			common::multm_3x3_3x1(Rots, Gama1, buff2);
-      Transls[0] = rhos1[i]*gama1[0] - buff2[0];
-      Transls[1] = rhos1[i]*gama1[1] - buff2[1];
-      Transls[2] = rhos1[i]*gama1[2] - buff2[2];
+      Transls[0] = rhos1[i]*gama1[0] - Rots[0][0] * Gama1[0] - Rots[0][1] * Gama1[1] - Rots[0][2] * Gama1[2];
+      Transls[1] = rhos1[i]*gama1[1] - Rots[1][0] * Gama1[0] - Rots[1][1] * Gama1[1] - Rots[1][2] * Gama1[2];
+      Transls[2] = rhos1[i]*gama1[2] - Rots[2][0] * Gama1[0] - Rots[2][1] * Gama1[1] - Rots[2][2] * Gama1[2];
 		}
 	}
 }
