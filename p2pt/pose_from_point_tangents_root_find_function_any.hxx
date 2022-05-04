@@ -1,6 +1,0 @@
-#ifndef pose_from_point_tangents_root_find_function_any_hxx_
-#define pose_from_point_tangents_root_find_function_any_hxx_
-
-
-#endif // !pose_from_point_tangents_root_find_function_any_hxx_
-

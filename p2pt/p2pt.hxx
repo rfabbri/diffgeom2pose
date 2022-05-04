@@ -10,7 +10,6 @@
 #include "get_sigmas.hxx"
 #include "pose_from_point_tangents_2.hxx"
 #include "pose_from_point_tangents_2_fn_t.hxx"
-#include "pose_from_point_tangents_root_find_function_any.hxx"
 #include "rhos_from_root_ids.hxx"
 
 
