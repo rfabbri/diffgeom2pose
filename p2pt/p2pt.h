@@ -9,7 +9,6 @@ namespace P2Pt {
 template <typename T=double>
 class p2pt { // fully static, not to be instantiated - just used for templating
 	public:
-	static void hello();
   static void pose_from_point_tangents(
     const T (&gama1)[3], const T (&tgt1)[3],
     const T (&gama2)[3], const T (&tgt2)[3],

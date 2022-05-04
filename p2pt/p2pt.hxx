@@ -16,13 +16,6 @@
 
 namespace P2Pt {
   
-template <typename F>
-void p2pt<F>::
-hello()
-{
-  std::cout << "hello\n";
-}
-
 template <typename T>
 struct internal_data {
   
