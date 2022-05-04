@@ -8,7 +8,6 @@
 #include "get_r_t_from_rhos.hxx"
 #include "get_sigmas.hxx"
 #include "pose_from_point_tangents_2.hxx"
-#include "rhos_from_root_ids.hxx"
 
 
 namespace P2Pt {

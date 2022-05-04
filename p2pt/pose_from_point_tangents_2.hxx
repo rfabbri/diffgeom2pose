@@ -1,6 +1,8 @@
 #ifndef pose_from_point_tangents_2_hxx_
 #define pose_from_point_tangents_2_hxx_
 
+#include "pose_poly.h"
+
 namespace P2Pt {
 
 template<typename T>
