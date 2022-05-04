@@ -41,16 +41,16 @@ pose_from_point_tangents_2_fn_t(const T t, T output[10])
 	L = (L0+L1*t+L2*t2-L1*t3+L0*t4)/t2_plus1_pow2;
 
 	const T
-	A2 = A * A,
-	B2 = B * B,
-	C2 = C * C,
-	E2 = E * E,
-	F2 = F * F,
-	G2 = G * G,
-	H2 = H * H,    H3 = H2 * H,    H4 = H3 * H,
-	J2 = J * J,    J3 = J2 * J,   
-	K2 = K * K,    K3 = K2 * K,
-  L2 = L*L,      L3 = L2 * L;
+	A2 = A*A,
+	B2 = B*B,
+	C2 = C*C,
+	E2 = E*E,
+	F2 = F*F,
+	G2 = G*G,
+	H2 = H*H,  H3 = H2*H,  H4 = H3*H,
+	J2 = J*J,  J3 = J2*J,
+	K2 = K*K,  K3 = K2*K,
+  L2 = L*L,  L3 = L2*L;
 
   return // fvalue_terms[X]
 	// TODO: Analyze the need of extra/lower precison for the calculation of these terms.

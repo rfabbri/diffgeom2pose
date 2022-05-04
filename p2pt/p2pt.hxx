@@ -2039,16 +2039,15 @@ pose_from_point_tangents(
 	T *output_degen
 )
 {
-  { // % test for geometric degeneracy -------------------------------
 	T DGama[3] = { Gama1[0] - Gama2[0], Gama1[1] - Gama2[1], Gama1[2] - Gama2[2] };
+  { // % test for geometric degeneracy -------------------------------
   const T norm = sqrt(DGama[0]*DGama[0] + DGama[1]*DGama[1] + DGama[2]*DGama[2]);
-  DGama[0] /= norm; DGama[1] /= norm; DGama[2] /= norm;
   
 	// Matrix for degeneracy calculation
 	const T d[3][3] = {
-		DGama[0], Tgt1[0], Tgt2[0],
-		DGama[1], Tgt1[1], Tgt2[1],
-		DGama[2], Tgt1[2], Tgt2[2]
+		DGama[0]/norm, Tgt1[0], Tgt2[0],
+		DGama[1]/norm, Tgt1[1], Tgt2[1],
+		DGama[2]/norm, Tgt1[2], Tgt2[2]
 	};
 	T &degen = *output_degen;
 	degen = (d[0][0]*d[1][1]*d[2][2]+d[0][1]*d[1][2]*d[2][0]+d[0][2]*d[1][0]*d[2][1]) // det(d)

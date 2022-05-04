@@ -3,8 +3,6 @@
 
 namespace P2Pt {
 
-using namespace common;
-
 template<typename T>
 void
 pose_poly<T>::
