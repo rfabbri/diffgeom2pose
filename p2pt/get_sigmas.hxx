@@ -1,7 +1,7 @@
 #ifndef get_sigmas_hxx_
 #define get_sigmas_hxx_
 
-#include "pose_from_point_tangents_2_fn_t.hxx"
+#include <complex>
 
 namespace P2Pt {
 

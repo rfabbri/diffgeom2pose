@@ -1,7 +1,6 @@
 #ifndef rhos_from_root_ids_hxx_
 #define rhos_from_root_ids_hxx_
 
-#include "pose_from_point_tangents_2_fn_t.hxx"
 #include <boost/math/tools/roots.hpp>
 
 namespace P2Pt {

@@ -1,5 +1,7 @@
-#ifndef poly_h_
-#define poly_h_
+#ifndef pose_poly_h_
+#define pose_poly_h_
+
+namespace P2Pt {
 
 constexpr int T_VECTOR_LEN = 2001;
 constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
@@ -7,8 +9,6 @@ constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
 // TODO: Assume a reasonable length for `ts`. Check if it can be longer than 8.
 constexpr int TS_MAX_LEN = 8;
 constexpr int RT_MAX_LEN = (TS_MAX_LEN * TS_MAX_LEN);
-
-namespace P2Pt {
 
 template<typename T>
 struct pose_poly {
@@ -45,8 +45,8 @@ struct pose_poly {
     }
   }
   
-	T pose_from_point_tangents_2_fn_t(const T t, T output[10]);
-	inline T pose_from_point_tangents_2_fn_t(const T t) { T buf[10]; return pose_from_point_tangents_2_fn_t(t, buf); }
+	inline T pose_from_point_tangents_2_fn_t(const T t, T output[10]);
+	inline T pose_from_point_tangents_2_fn_t(const T t) { T b[10]; return pose_from_point_tangents_2_fn_t(t, b); }
 	inline T operator()(T t) { return pose_from_point_tangents_2_fn_t(t); }
   
 	void rhos_from_root_ids(

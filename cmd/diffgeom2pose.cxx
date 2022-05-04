@@ -1,10 +1,10 @@
 #include <iostream>
 #include <chrono>
 
-#include "p2pt/p2pt.h"
-#include "p2pt/poly.h"
+#include "p2pt/p2pt.hxx"
 #include "tests/test-p2pt-constants.hxx"
-#include "p2pt/pose_from_point_tangents_root_find_function_any.hxx"
+
+using namespace P2Pt;
 
 void
 test_run(const char *type, const char *benchmark = "no")
@@ -17,7 +17,7 @@ test_run(const char *type, const char *benchmark = "no")
 
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 	if (strcmp(type, "float") == 0)
-		P2Pt::pose_from_point_tangents_root_find_function_any<float>(
+		p2pt<float>::pose_from_point_tangents(
 			sample_gama1_float, sample_tgt1_float,
 			sample_gama2_float, sample_tgt2_float,
 			sample_Gama1_float, sample_Tgt1_float,
@@ -25,7 +25,7 @@ test_run(const char *type, const char *benchmark = "no")
 			&test_RT_float, &test_RT_len, &test_degen_float
 		);
 	else
-		P2Pt::pose_from_point_tangents_root_find_function_any(
+		p2pt<double>::pose_from_point_tangents(
 			sample_gama1, sample_tgt1,
 			sample_gama2, sample_tgt2,
 			sample_Gama1, sample_Tgt1,

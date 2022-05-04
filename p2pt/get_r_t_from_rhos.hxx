@@ -38,7 +38,7 @@ get_r_t_from_rhos(
 			// lambdas1{i}(j) = Gama_sub' * Tgt1 / den1' * den2
 			lambdas1[i][j] = common::vec1vec2_3el_dot(Gama_sub, Tgt1) / common::vec1vec2_3el_dot(den1, den2);
 		}
-		for (int j = 0; j < sigmas1_len[i]; j++) {
+		for (int j = 0; j < sigmas1_len[i]; j++) { // XXX sigmas2_len ?? bug ??
 			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
 
 			common::vec_3el_mult_by_scalar(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1

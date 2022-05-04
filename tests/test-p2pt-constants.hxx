@@ -10,6 +10,9 @@
 // in `poly.h`
 
 // Floating-point comparison precision
+#include <p2pt/pose_poly.h>
+
+namespace P2Pt {
 constexpr double eps = 1e-4;
 
 constexpr double sample_A0 = -2.3095904952377593;
@@ -6182,6 +6185,7 @@ constexpr double sample_Transls[7][3] = {
 };
 constexpr double sample_degen  = -0.174617421223572;
 constexpr int    sample_RT_len = 7;
+}
 
 #endif // !test-p2pt-constants_hxx_
 
