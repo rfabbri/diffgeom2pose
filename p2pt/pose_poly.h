@@ -23,7 +23,7 @@ struct pose_poly {
 		K0, K1, K2, K3,
 		L0, L1, L2,
 		alpha, beta, theta,
-    sth,cth;
+    sth, cth;
 
 	void pose_from_point_tangents_2(
 		const T (&gama1)[3], const T (&tgt1)[3],

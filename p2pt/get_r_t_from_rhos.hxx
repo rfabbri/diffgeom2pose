@@ -20,37 +20,31 @@ get_r_t_from_rhos(
 {
 	T lambdas1[TS_MAX_LEN][TS_MAX_LEN];
 	T lambdas2[TS_MAX_LEN][TS_MAX_LEN];
-	T Gama_sub[3];
-  T den1[3], den2[3], den3[3]; // Buffers
-
+	const T DGama[3] = {
+    Gama1[0] - Gama2[0],
+    Gama1[1] - Gama2[1],
+    Gama1[2] - Gama2[2]
+  };
+  
 	for (int i = 0; i < ts_len; i++) {
+    assert(sigmas1_len[i] == sigmas2_len[i]);
+    const T dgamas_rhos[3] = {
+     rhos1[i]*gama1[0] - rhos2[i]*gama2[0],
+     rhos1[i]*gama1[1] - rhos2[i]*gama2[1],
+     rhos1[i]*gama1[2] - rhos2[i]*gama2[2]
+    };
 		for (int j = 0; j < sigmas1_len[i]; j++) {
-			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
-
-			common::vec_3el_mult_by_scalar(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
-			common::vec_3el_mult_by_scalar(rhos2[i], gama2, den2);       // den2 = rhos2(i) * gama2
-			common::vec1vec2_3el_sub(den1, den2, den1);                  // den1 = den1 - den2
-
-			common::vec_3el_mult_by_scalar(rhos1[i], tgt1, den2);        // den2 = rhos1(i) * tgt1
-			common::vec_3el_mult_by_scalar(sigmas1[i][j], gama1, den3);  // den3 = sigmas1{i}(j) * gama1
-			common::vec1vec2_3el_sum(den2, den3, den2);                  // den2 = den2 + den3
-
-			// lambdas1{i}(j) = Gama_sub' * Tgt1 / den1' * den2
-			lambdas1[i][j] = common::vec1vec2_3el_dot(Gama_sub, Tgt1) / common::vec1vec2_3el_dot(den1, den2);
-		}
-		for (int j = 0; j < sigmas1_len[i]; j++) { // XXX sigmas2_len ?? bug ??
-			common::vec1vec2_3el_sub(Gama1, Gama2, Gama_sub);            // Gama_sub = Gama1 - Gama2
-
-			common::vec_3el_mult_by_scalar(rhos1[i], gama1, den1);       // den1 = rhos1(i) * gama1
-			common::vec_3el_mult_by_scalar(rhos2[i], gama2, den2);       // den2 = rhos2(i) * gama2
-			common::vec1vec2_3el_sub(den1, den2, den1);                  // den1 = den1 - den2
-
-			common::vec_3el_mult_by_scalar(rhos2[i], tgt2, den2);        // den2 = rhos2(i) * tgt2
-			common::vec_3el_mult_by_scalar(sigmas2[i][j], gama2, den3);  // den3 = sigmas2{i}(j) * gama2
-			common::vec1vec2_3el_sum(den2, den3, den2);                  // den2 = den2 + den3
-
-			// lambdas2{i}(j) = Gama_sub' * Tgt2 / den1' * den2
-			lambdas2[i][j] = common::vec1vec2_3el_dot(Gama_sub, Tgt2) / common::vec1vec2_3el_dot(den1, den2);
+			lambdas1[i][j] = 
+        (DGama[0]*Tgt1[0]+DGama[1]*Tgt1[1] + DGama[2]*Tgt1[2]) / 
+        (dgamas_rhos[0]*(rhos1[i]*tgt1[0] + sigmas1[i][j]*gama1[0]) + 
+        dgamas_rhos[1]*(rhos1[i]*tgt1[1] + sigmas1[i][j]*gama1[1]) +
+        dgamas_rhos[2]*(rhos1[i]*tgt1[2] + sigmas1[i][j]*gama1[2]));
+      
+			lambdas2[i][j] = 
+        (DGama[0]*Tgt2[0]+DGama[1]*Tgt2[1] + DGama[2]*Tgt2[2]) /
+        (dgamas_rhos[0]*(rhos2[i]*tgt2[0] + sigmas2[i][j]*gama2[0]) + 
+        dgamas_rhos[1]*(rhos2[i]*tgt2[1] + sigmas2[i][j]*gama2[1]) +
+        dgamas_rhos[2]*(rhos2[i]*tgt2[2] + sigmas2[i][j]*gama2[2]));
 		}
 	}
 
@@ -61,9 +55,9 @@ get_r_t_from_rhos(
 	//% right now just testing det(R) = 1
 
 	const T A[3][3] = {
-		Gama_sub[0], Tgt1[0], Tgt2[0],
-		Gama_sub[1], Tgt1[1], Tgt2[1],
-		Gama_sub[2], Tgt1[2], Tgt2[2],
+		DGama[0], Tgt1[0], Tgt2[0],
+		DGama[1], Tgt1[1], Tgt2[1],
+		DGama[2], Tgt1[2], Tgt2[2],
 	};
 
 	T inv_A[3][3]; common::invm3x3(A, inv_A);
