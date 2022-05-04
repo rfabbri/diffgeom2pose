@@ -2029,6 +2029,7 @@ constexpr T __attribute__((aligned (16))) internal_data<T>::
 t_vector[T_VECTOR_LEN];
 
 
+// This is the main routine
 template <typename T>
 void p2pt<T>::
 pose_from_point_tangents(
@@ -2041,15 +2042,8 @@ pose_from_point_tangents(
 	T *output_degen
 )
 {
-	// % This is the main routine to find roots. Can be used with any input.
-
-  {
-	// % test for geometric degeneracy -------------------------------
-	T DGama[3] = {
-    Gama1[0] - Gama2[0],
-    Gama1[1] - Gama2[1],
-    Gama1[2] - Gama2[2]
-  };
+  { // % test for geometric degeneracy -------------------------------
+	T DGama[3] = { Gama1[0] - Gama2[0], Gama1[1] - Gama2[1], Gama1[2] - Gama2[2] };
   const T norm = sqrt(DGama[0]*DGama[0] + DGama[1]*DGama[1] + DGama[2]*DGama[2]);
   DGama[0] /= norm; DGama[1] /= norm; DGama[2] /= norm;
   
@@ -2074,16 +2068,10 @@ pose_from_point_tangents(
 
 	// % compute roots -------------------------------
 	pose_poly<T> p;
-	p.pose_from_point_tangents_2(
-		gama1, tgt1,
-		gama2, tgt2,
-		Gama1, Tgt1,
-		Gama2, Tgt2
-	);
+	p.pose_from_point_tangents_2( gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
 	T root_ids[ROOT_IDS_LEN] __attribute__((aligned (16)));
 	p.find_bounded_root_intervals(internal_data<T>::t_vector, &root_ids);
-
 
 	// % compute rhos, r, t --------------------------
 	T rhos[3][ROOT_IDS_LEN];
@@ -2095,7 +2083,6 @@ pose_from_point_tangents(
 	const T (&rhos1)[ROOT_IDS_LEN] = rhos[1];
 	const T (&rhos2)[ROOT_IDS_LEN] = rhos[2];
 
-
 	T sigmas[2][TS_MAX_LEN][TS_MAX_LEN];
 	int sigmas_len[2][TS_MAX_LEN];
 
@@ -2106,21 +2093,16 @@ pose_from_point_tangents(
 	const int (&sigmas1_len)[TS_MAX_LEN] = sigmas_len[0];
 	const int (&sigmas2_len)[TS_MAX_LEN] = sigmas_len[1];
 
-
 	T (&RT)[RT_MAX_LEN][4][3] = *output_RT;
 	int &RT_len               = *output_RT_len;
 
 	p.get_r_t_from_rhos(
 		ts_len,
-		sigmas1, sigmas1_len,
-		sigmas2, sigmas2_len,
+		sigmas1, sigmas1_len, sigmas2, sigmas2_len,
 		rhos1, rhos2,
-		gama1, tgt1,
-		gama2, tgt2,
-		Gama1, Tgt1,
-		Gama2, Tgt2,
-		&RT, &RT_len
-	);
+		gama1, tgt1, gama2, tgt2,
+		Gama1, Tgt1, Gama2, Tgt2,
+		&RT, &RT_len);
 }
 
 } // namespace p2pt
