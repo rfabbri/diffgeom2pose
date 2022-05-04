@@ -2031,7 +2031,10 @@ static constexpr T __attribute__((aligned (16))) t_vector[T_VECTOR_LEN] = {
 };
 };
 
-static constexpr T __attribute__((aligned (16))) t_vector[T_VECTOR_LEN];
+template <typename T>
+constexpr T __attribute__((aligned (16))) internal_data<T>::
+t_vector[T_VECTOR_LEN];
+
 
 template <typename T>
 void p2pt<T>::
