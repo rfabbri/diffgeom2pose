@@ -49,11 +49,6 @@ get_r_t_from_rhos(
 	}
 
 	//% Rotation:
-
-	//% RA = B = > R = B / A
-	//% TODO: use svd or some other way to be sure R is unique and orthogonal.
-	//% right now just testing det(R) = 1
-
 	const T A[3][3] = {
 		DGama[0], Tgt1[0], Tgt2[0],
 		DGama[1], Tgt1[1], Tgt2[1],
@@ -85,12 +80,13 @@ get_r_t_from_rhos(
 
 			common::multm3x3(B, inv_A, Rots);
 
-			T buff1[3], buff2[3];
+			T buff2[3];
 
 			// Transls{end+1} = rhos1(i)*gama1 - Rots{end}*Gama1;
-			common::vec_3el_mult_by_scalar(rhos1[i], gama1, buff1);
 			common::multm_3x3_3x1(Rots, Gama1, buff2);
-			common::vec1vec2_3el_sub(buff1, buff2, Transls);
+      Transls[0] = rhos1[i]*gama1[0] - buff2[0];
+      Transls[1] = rhos1[i]*gama1[1] - buff2[1];
+      Transls[2] = rhos1[i]*gama1[2] - buff2[2];
 		}
 	}
 }
