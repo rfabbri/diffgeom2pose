@@ -2037,8 +2037,7 @@ pose_from_point_tangents(
 	const T (&gama2)[3], const T (&tgt2)[3],
 	const T (&Gama1)[3], const T (&Tgt1)[3],
 	const T (&Gama2)[3], const T (&Tgt2)[3],
-	T (*output_RT)[RT_MAX_LEN][4][3],
-	int *output_RT_len,
+	T (*output_RT)[RT_MAX_LEN][4][3], int *output_RT_len,
 	T *output_degen
 )
 {
