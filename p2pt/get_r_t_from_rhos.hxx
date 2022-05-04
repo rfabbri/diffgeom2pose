@@ -4,6 +4,51 @@
 namespace P2Pt {
 
 template<typename T>
+inline void
+invm3x3(const T (&input_m)[3][3], T (&output_m)[3][3])
+{
+	// 3x3 MATRIX INVERSION ALGORITHM
+	//             -1               T
+	//  -1  [a b c]      1   [A B C]      1   [A D G]
+	// M  = [d e f] = ------ [D E F] = ------ [B E H]
+	//      [g h i]   det(M) [G H I]   det(M) [C F I]
+	//
+	// A =  (ei - fh), D = -(bi - ch), G =  (bf - ce),
+	// B = -(di - fg), E =  (ai - cg), H = -(af - cd),
+	// C =  (dh - eg), F = -(ah - bg), I =  (ae - bd).
+
+	const T 
+	a = input_m[0][0], b = input_m[0][1], c = input_m[0][2],
+	d = input_m[1][0], e = input_m[1][1], f = input_m[1][2],
+	g = input_m[2][0], h = input_m[2][1], i = input_m[2][2];
+
+	const T 
+	A =  (e*i - f*h), B = -(d*i - f*g), C =  (d*h - e*g),
+	D = -(b*i - c*h), E =  (a*i - c*g), F = -(a*h - b*g),
+	G =  (b*f - c*e), H = -(a*f - c*d), I =  (a*e - b*d);
+
+	const T invdet_M = 1. / (a*A + b*B + c*C);
+
+	output_m[0][0] = invdet_M * A; output_m[0][1] = invdet_M * D; output_m[0][2] = invdet_M * G;
+	output_m[1][0] = invdet_M * B; output_m[1][1] = invdet_M * E; output_m[1][2] = invdet_M * H;
+	output_m[2][0] = invdet_M * C; output_m[2][1] = invdet_M * F; output_m[2][2] = invdet_M * I;
+}
+
+template<typename T>
+inline void
+multm3x3(const T (&m1)[3][3], const T (&m2)[3][3], T output_m[][3])
+{
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			output_m[i][j] = 0;
+			for (int k = 0; k < 3; k++) {
+				output_m[i][j] += m1[i][k] * m2[k][j];
+			}
+		}
+	}
+}
+
+template<typename T>
 void
 pose_poly<T>::
 get_r_t_from_rhos(
@@ -55,7 +100,7 @@ get_r_t_from_rhos(
 		DGama[2], Tgt1[2], Tgt2[2],
 	};
 
-	T inv_A[3][3]; common::invm3x3(A, inv_A);
+	T inv_A[3][3]; invm3x3(A, inv_A);
 
 	// Matrix containing Rotations and Translations
 	T (&RT)[RT_MAX_LEN][4][3] = *output;
@@ -78,7 +123,7 @@ get_r_t_from_rhos(
 				B_row(2)
 			};
 
-			common::multm3x3(B, inv_A, Rots);
+			multm3x3(B, inv_A, Rots);
 
       Transls[0] = rhos1[i]*gama1[0] - Rots[0][0] * Gama1[0] - Rots[0][1] * Gama1[1] - Rots[0][2] * Gama1[2];
       Transls[1] = rhos1[i]*gama1[1] - Rots[1][0] * Gama1[0] - Rots[1][1] * Gama1[1] - Rots[1][2] * Gama1[2];

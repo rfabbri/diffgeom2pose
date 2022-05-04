@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "p2pt.h"
-#include "common.hxx"
 #include "pose_poly.h"
 // thesse are pose_poly.hxx actually
 #include "get_r_t_from_rhos.hxx"
@@ -2046,13 +2045,14 @@ pose_from_point_tangents(
   DGama[0] /= norm; DGama[1] /= norm; DGama[2] /= norm;
   
 	// Matrix for degeneracy calculation
-	const T degen_matrix[3][3] = {
+	const T d[3][3] = {
 		DGama[0], Tgt1[0], Tgt2[0],
 		DGama[1], Tgt1[1], Tgt2[1],
 		DGama[2], Tgt1[2], Tgt2[2]
 	};
 	T &degen = *output_degen;
-	degen = common::det3x3(degen_matrix);
+	degen = (d[0][0]*d[1][1]*d[2][2]+d[0][1]*d[1][2]*d[2][0]+d[0][2]*d[1][0]*d[2][1]) // det(d)
+		     -(d[2][0]*d[1][1]*d[0][2]+d[2][1]*d[1][2]*d[0][0]+d[2][2]*d[1][0]*d[0][1]);
 
 	if (std::abs(degen) < 1.0e-3) {
     //TODO(openmvg) GUARD this print
