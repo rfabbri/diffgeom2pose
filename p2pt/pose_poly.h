@@ -25,6 +25,8 @@ struct pose_poly {
 		alpha, beta, theta,
     sth, cth;
 
+  // unsigned cnt_ = 0; // DEBUG iteration count
+
 	void pose_from_point_tangents_2(
 		const T (&gama1)[3], const T (&tgt1)[3],
 		const T (&gama2)[3], const T (&tgt2)[3],
@@ -73,7 +75,7 @@ struct pose_poly {
     A2=A*A, B2=B*B, C2=C*C, E2=E*E, F2=F*F, G2=G*G, H2=H*H, 
     H3=H2*H, H4=H3*H, J2=J*J, J3=J2*J, K2=K*K, K3=K2*K, L2=L*L, L3=L2*L;
 
-    return // fvalue_terms[X]
+    return
     // TODO: Analyze the need of extra/lower precison for the calculation of these terms.
     E2*B2*H2*J2 +G2*C2*L*L*L*L +G2*A2*K3*K +E2*A2*H4 +E2*C2*J3*J
     +-2.*E*A*H2*G*C*L2 +2.*E2*A*H2*C*J2 +-2.*E2*C*J3*B*H +2.*E*C2*J2*G*L2
@@ -90,7 +92,7 @@ struct pose_poly {
     +-1.*F2*C*L2*B*H*J +G*E*B2*H2*L2 +G*E*B2*K2*J2 +8.*G*E*A*H*K*C*J*L;
   }
   
-	inline T fn_t(const T t) { T b[10]; return fn_t(t, b); }
+	inline T fn_t(const T t) { T b[10]; /*std::cerr << "eval count: " << ++cnt_ << std::endl;*/ return fn_t(t, b);  }
 	inline T operator()(T t) { return fn_t(t); }
   
 	void rhos_from_root_ids(

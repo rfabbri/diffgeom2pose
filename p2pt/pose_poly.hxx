@@ -25,6 +25,24 @@ rhos_from_root_ids(
 		if (root_ids[i] == 1) {
 			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
 
+      std::cout << "started iterative method --------------------------------------\n";
+      std::cerr << "current eval count " << std::endl;
+      // secant max_iter = 3: 16 evals total. slower than boost,
+      // I geuss since boost uses quadratic interpolation after 1st iteration
+      /*
+      double t0 = t_vector[i], t1 = t_vector[i+1], t2;
+      double f0 = fn_t(t_vector[i]), f1 = fn_t(t_vector[i+1]);
+      std::cerr << "XXXXXXXX  f0, f1 " << f0 << " " << f1 << std::endl;
+      for (unsigned k=0; k < max_iter; ++k) {
+        t2 = t1 - f1 * (t1 - t0) / (f1 - f0);
+        t0 = t1; t1 = t2;
+        f0 = f1; if (k + 1 < max_iter) f1 = fn_t(t2);
+        std::cerr << "XXXXXXXX  f(x2)" << f1 << std::endl;
+      }
+
+      ts[ts_end++] = t2;
+      */
+      
 			try {
 				t_ref_pair = boost::math::tools::toms748_solve(
 					*this,
