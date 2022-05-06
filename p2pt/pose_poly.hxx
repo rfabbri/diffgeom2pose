@@ -23,7 +23,6 @@ rhos_from_root_ids(
 
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
 		if (root_ids[i] == 1) {
-			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
 
       /*
       std::cout << "started iterative method --------------------------------------\n";
@@ -31,20 +30,21 @@ rhos_from_root_ids(
       */
       // secant max_iter = 3: 16 evals total. slower than boost,
       // I geuss since boost uses quadratic interpolation after 1st iteration
-      /*
+			unsigned constexpr max_iter = 3; // INFO: 7 seems to be the ideal # of iters
       double t0 = t_vector[i], t1 = t_vector[i+1], t2;
       double f0 = fn_t(t_vector[i]), f1 = fn_t(t_vector[i+1]);
-      std::cerr << "XXXXXXXX  f0, f1 " << f0 << " " << f1 << std::endl;
+      // std::cerr << "XXXXXXXX  f0, f1 " << f0 << " " << f1 << std::endl;
       for (unsigned k=0; k < max_iter; ++k) {
         t2 = t1 - f1 * (t1 - t0) / (f1 - f0);
         t0 = t1; t1 = t2;
         f0 = f1; if (k + 1 < max_iter) f1 = fn_t(t2);
-        std::cerr << "XXXXXXXX  f(x2)" << f1 << std::endl;
+        // std::cerr << "XXXXXXXX  f(x2)" << f1 << std::endl;
       }
 
       ts[ts_end++] = t2;
-      */
       
+      /*
+			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
 			try {
 				t_ref_pair = boost::math::tools::toms748_solve(
 					*this,
@@ -61,6 +61,7 @@ rhos_from_root_ids(
 			// TODO: Possibly optimize the size of `ts[]`.
 			// What is the max number of 1s than can appear in `root_ids[]`?
       ts[ts_end++] = (t_ref_pair.first + t_ref_pair.second)*0.5;
+      */
 		}
 	}
 	*output_ts_len = ts_end;
