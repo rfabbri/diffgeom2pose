@@ -25,8 +25,10 @@ rhos_from_root_ids(
 		if (root_ids[i] == 1) {
 			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
 
+      /*
       std::cout << "started iterative method --------------------------------------\n";
       std::cerr << "current eval count " << std::endl;
+      */
       // secant max_iter = 3: 16 evals total. slower than boost,
       // I geuss since boost uses quadratic interpolation after 1st iteration
       /*
