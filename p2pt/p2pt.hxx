@@ -5,7 +5,6 @@
 #include "p2pt.h"
 #include "pose_poly.hxx"
 // thesse are pose_poly.hxx actually
-#include "get_r_t_from_rhos.hxx"
 #include "pose_from_point_tangents_2.hxx"
 
 namespace P2Pt {
