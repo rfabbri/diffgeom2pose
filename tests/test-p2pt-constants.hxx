@@ -100,6 +100,7 @@ constexpr double sample_alpha = 2.99316452421144;
 constexpr double sample_beta  = 8.77711253699776;
 constexpr double sample_theta = 0.779767013089326;
 
+/*
 constexpr double sample_root_ids[pose_poly<double>::ROOT_IDS_LEN] = {
 	0,
 	0,
@@ -2102,6 +2103,8 @@ constexpr double sample_root_ids[pose_poly<double>::ROOT_IDS_LEN] = {
 	0,
 	0
 };
+*/
+/*
 constexpr double sample_t_vector[pose_poly<double>::T_LEN] = {
 	-1,
 	-0.999000000000000,
@@ -6109,6 +6112,7 @@ constexpr double sample_fvalue_pose_poly[pose_poly<double>::T_LEN] = {
 	1594088.93631408,
 	1599787.71374685
 };
+*/
 constexpr double sample_fvalue_tan_2_fn_t_for_root = 5949387.61663628;
 constexpr double sample_fvalue_tan_2_fn_t          = 8.392333984375e-05;
 
