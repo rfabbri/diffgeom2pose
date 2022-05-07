@@ -17,23 +17,12 @@ pose_from_point_tangents_2(
 {
 	static constexpr T PI_OVER_2 = 3.141592653589793*0.5;
 
-	const T g11 = gama1[0], g12 = gama1[1],
-	        g21 = gama2[0], g22 = gama2[1],
-          g11_2 = g11*g11,
-          g11_3 = g11_2*g11,
-          g11_4 = g11_3*g11,
-          g12_2 = g12*g12,
-          g12_3 = g12_2*g12,
-          g12_4 = g12_3*g12,
-          g21_2 = g21*g21,
-          g21_3 = g21_2*g21,
-          g21_4 = g21_3*g21,
-          g22_2 = g22*g22,
-          g22_3 = g22_2*g22,
-          g22_4 = g22_3*g22,
-	        
-          h11 = tgt1[0],  h12 = tgt1[1],
-	        h21 = tgt2[0],  h22 = tgt2[1];
+	const T g11 = gama1[0], g12 = gama1[1], g21 = gama2[0], g22 = gama2[1],
+          g11_2 = g11*g11, g11_3 = g11_2*g11, g11_4 = g11_3*g11,
+          g12_2 = g12*g12, g12_3 = g12_2*g12, g12_4 = g12_3*g12,
+          g21_2 = g21*g21, g21_3 = g21_2*g21, g21_4 = g21_3*g21,
+          g22_2 = g22*g22, g22_3 = g22_2*g22, g22_4 = g22_3*g22,
+          h11 = tgt1[0],  h12 = tgt1[1], h21 = tgt2[0],  h22 = tgt2[1];
 
 	T *V = &A0;         // reusing memory from poly
   V[0] = Gama1[0] - Gama2[0];
@@ -55,7 +44,7 @@ pose_from_point_tangents_2(
 	cth = cos(theta);
   const T c2 = cth*cth, c2th = 2.*c2-1., s2th = 2.*sth*cth;
   
-	const T den1 = 2.*s2th*(g11*g21 +g12*g22 + 1.) + c2th*(g11_2 + g12_2 - g21_2 - g22_2),
+	const T den1 = 2.*s2th*(g11*g21+g12*g22+1.)+c2th*(g11_2+g12_2-g21_2-g22_2),
 	        den2 = g11_2 + g12_2 + g21_2 + g22_2 + 2.;
 	beta  = sqrt(-2.*a1 / (den1 - den2)); // sqrt(t25)
 	alpha = sqrt(2.*a1 / (den1 + den2));  // sqrt(t24)
