@@ -2542,26 +2542,26 @@ get_sigmas(const int ts_len, const T (&ts)[ROOT_IDS_LEN],
 		static constexpr T my_eps = 1.0;
 
 		if (std::abs(H + J*sigma1_m + K*sigma2_m + L*sigma1_m*sigma2_m) < my_eps) {
-			sigmas1[i][sigmas1_len[i]++] = sigma1_m.real();
-			sigmas2[i][sigmas1_len[i]] = sigma2_m.real();
+			sigmas1[i][sigmas1_len[i]] = sigma1_m.real();
+			sigmas2[i][sigmas1_len[i]++] = sigma2_m.real();
 		}
 		if (std::abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
 			if (sigmas1_len[i] != 0) // !isempty(sigmas1[i])
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][sigmas1_len[i]++] = sigma1_p.real();
-			sigmas2[i][sigmas1_len[i]] = sigma2_m.real();
+			sigmas1[i][sigmas1_len[i]] = sigma1_p.real();
+			sigmas2[i][sigmas1_len[i]++] = sigma2_m.real();
 		}
 		if (std::abs(H + J*sigma1_p + K*sigma2_p + L*sigma1_p*sigma2_p) < my_eps) {
 			if (sigmas1_len[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][sigmas1_len[i]++] = sigma1_p.real();
-			sigmas2[i][sigmas1_len[i]] = sigma2_p.real();
+			sigmas1[i][sigmas1_len[i]] = sigma1_p.real();
+			sigmas2[i][sigmas1_len[i]++] = sigma2_p.real();
 		}
 		if (std::abs(H + J*sigma1_m + K*sigma2_p + L*sigma1_m*sigma2_p) < my_eps) {
 			if (sigmas1_len[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
-			sigmas1[i][sigmas1_len[i]++] = sigma1_m.real();
-			sigmas2[i][sigmas1_len[i]] = sigma2_p.real();
+			sigmas1[i][sigmas1_len[i]] = sigma1_m.real();
+			sigmas2[i][sigmas1_len[i]++] = sigma2_p.real();
 		}
 		if (sigmas1_len[i] == 0) // isempty(sigmas1[i])
 			std::cerr << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
