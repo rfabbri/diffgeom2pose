@@ -3,8 +3,6 @@
 
 #include "pose_poly.h"
 
-#include <boost/math/tools/roots.hpp>
-
 namespace P2Pt {
   
 template <typename T>
@@ -18,59 +16,21 @@ rhos_from_root_ids(
 {
 	T (&ts)[ROOT_IDS_LEN] = (*output)[0];
 
-	int ts_end = 0;
-	std::pair<T,T> t_ref_pair;
-
+	int &ts_end = *output_ts_len; ts_end = 0;
 	for (int i = 0; i < ROOT_IDS_LEN; i++) {
-		if (root_ids[i] == 1) {
-
-      /*
-      std::cout << "started iterative method --------------------------------------\n";
-      std::cerr << "current eval count " << std::endl;
-      */
-      // secant max_iter = 3: 16 evals total. slower than boost,
-      // I geuss since boost uses quadratic interpolation after 1st iteration
-			unsigned constexpr max_iter = 3; // INFO: 7 seems to be the ideal # of iters
-      double t0 = t_vector[i], t1 = t_vector[i+1], t2;
-      double f0 = fn_t(t_vector[i]), f1 = fn_t(t_vector[i+1]);
-      // std::cerr << "XXXXXXXX  f0, f1 " << f0 << " " << f1 << std::endl;
-      for (unsigned k=0; k < max_iter; ++k) {
-        t2 = t1 - f1 * (t1 - t0) / (f1 - f0);
-        t0 = t1; t1 = t2;
-        f0 = f1; if (k + 1 < max_iter) f1 = fn_t(t2);
-        // std::cerr << "XXXXXXXX  f(x2)" << f1 << std::endl;
-      }
-
-      ts[ts_end++] = t2;
-      
-      /*
-			unsigned long max_iter = 7; // INFO: 7 seems to be the ideal # of iters
-			try {
-				t_ref_pair = boost::math::tools::toms748_solve(
-					*this,
-					t_vector[i],
-					t_vector[i+1],
-					boost::math::tools::eps_tolerance<T>(),
-					max_iter
-				);
-			} catch (const std::exception& err) {
-        // TODO(OpenMVG) take care of this error without cerr
-				std::cerr << err.what() << std::endl;
-			}
-      
-			// TODO: Possibly optimize the size of `ts[]`.
-			// What is the max number of 1s than can appear in `root_ids[]`?
-      ts[ts_end++] = (t_ref_pair.first + t_ref_pair.second)*0.5;
-      */
-		}
+		if (!root_ids[i]) continue;
+    T t0 = t_vector[i], t1 = t_vector[i+1], &t2 = ts[ts_end++];
+    T f0 = fn_t(t_vector[i]), f1 = fn_t(t_vector[i+1]);
+    for (unsigned k = 0; k < 3; ++k) {
+      t2 = t1 - f1*(t1-t0)/(f1-f0); t0 = t1; t1 = t2;
+      f0 = f1; if (k + 1 < 3) f1 = fn_t(t2);
+    }
 	}
-	*output_ts_len = ts_end;
 
 	//% Each root is now ts(i), plus minus t_stddev.
 	//% Now get rho1(t):
 
-	T (&rhos1)[ROOT_IDS_LEN] = (*output)[1];
-	T (&rhos2)[ROOT_IDS_LEN] = (*output)[2];
+	T (&rhos1)[ROOT_IDS_LEN] = (*output)[1]; T (&rhos2)[ROOT_IDS_LEN] = (*output)[2];
 
   const T alpha_times_2 = 2.*alpha;
 	for (int i = 0; i < ts_end; i++) {

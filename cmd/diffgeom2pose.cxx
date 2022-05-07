@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 
-#include "p2pt/p2pt.hxx"
+#include "p2pt/p2pt.h"
 #include "tests/test-p2pt-constants.hxx"
 
 using namespace P2Pt;

@@ -3,6 +3,11 @@
 # to avoid having to include p2pt many times and slowdown the compiler
 set(p2pt_sources
   p2pt.hxx p2pt.h 
+  get_r_t_from_rhos.hxx
+  get_sigmas.hxx
+  pose_from_point_tangents_2.hxx
+  pose_poly.h
+  pose_poly.hxx
 )
 aux_source_directory(Templates p2pt_sources)
 
@@ -10,5 +15,8 @@ aux_source_directory(Templates p2pt_sources)
 # but header-only will also work, see README.md
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+add_library( p2pt ${p2pt_sources} )
+set_target_properties(p2pt PROPERTIES LINKER_LANGUAGE CXX)
+
 #add_library( p2pt ${p2pt_sources}  "poly.h")
 #set_target_properties(p2pt PROPERTIES LINKER_LANGUAGE CXX)
