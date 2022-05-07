@@ -14,7 +14,7 @@ struct pose_poly {
 		H0, H1, H2, H3, H4, J0, J1, J2, J3, K0, K1, K2, K3,
 		L0, L1, L2, alpha, beta, theta, sth, cth;
 
-  static constexpr unsigned T_LEN = 2001, ROOT_IDS_LEN = T_LEN - 1;
+  static constexpr unsigned T_LEN = 1900, ROOT_IDS_LEN = T_LEN - 1;
   static constexpr double T_LEN_2 = 2./T_LEN;
   inline T t_vec(unsigned i) { return T_LEN_2*i -1.; }
 
