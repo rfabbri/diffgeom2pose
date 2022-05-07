@@ -10,7 +10,7 @@
 // in `poly.h`
 
 // Floating-point comparison precision
-#include <p2pt/pose_poly.h>
+#include <p2pt/p2pt.hxx>
 
 namespace P2Pt {
 constexpr double eps = 1e-4;

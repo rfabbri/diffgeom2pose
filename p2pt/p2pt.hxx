@@ -2,8 +2,8 @@
 #define p2pt_hxx_
 
 #include <iostream>
+#include <complex>
 #include "p2pt.h"
-#include "pose_poly.hxx"
 
 namespace P2Pt {
   
@@ -70,7 +70,7 @@ struct pose_poly {
     +-1.*F2*C*L2*B*H*J +G*E*B2*H2*L2 +G*E*B2*K2*J2 +8.*G*E*A*H*K*C*J*L;
   }
   
-	inline T fn_t(const T t) { T b[10]; return fn_t(t, b);  }
+	inline T fn_t(const T t) { T b[10]; return fn_t(t, b); }
 	inline T operator()(T t) { return fn_t(t); }
   
 	inline void rhos_from_root_ids(
