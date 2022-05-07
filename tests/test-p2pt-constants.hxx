@@ -2102,7 +2102,7 @@ constexpr double sample_root_ids[ROOT_IDS_LEN] = {
 	0,
 	0
 };
-constexpr double sample_t_vector[T_VECTOR_LEN] = {
+constexpr double sample_t_vector[T_LEN] = {
 	-1,
 	-0.999000000000000,
 	-0.998000000000000,
@@ -4106,7 +4106,7 @@ constexpr double sample_t_vector[T_VECTOR_LEN] = {
 	1
 };
 
-constexpr double sample_fvalue_pose_poly[T_VECTOR_LEN] = {
+constexpr double sample_fvalue_pose_poly[T_LEN] = {
 	1599787.71374669,
 	1605360.45517041,
 	1610811.19942987,

@@ -3,8 +3,8 @@
 
 namespace P2Pt {
 
-constexpr int T_VECTOR_LEN = 2001;
-constexpr int ROOT_IDS_LEN = T_VECTOR_LEN - 1;
+constexpr unsigned T_LEN = 2001;
+constexpr unsigned ROOT_IDS_LEN = T_LEN - 1;
 
 // TODO: Assume a reasonable length for `ts`. Check if it can be longer than 8.
 constexpr int TS_MAX_LEN = 8;
@@ -27,6 +27,9 @@ struct pose_poly {
 
   // unsigned cnt_ = 0; // DEBUG iteration count
 
+  static constexpr double T_LEN_2 = 2./T_LEN;
+  T t_vec(unsigned i) { return T_LEN_2*i -1; }
+
 	void pose_from_point_tangents_2(
 		const T (&gama1)[3], const T (&tgt1)[3],
 		const T (&gama2)[3], const T (&tgt2)[3],
@@ -35,12 +38,12 @@ struct pose_poly {
 	);
   
 	inline void find_bounded_root_intervals(
-		const T (&t_vector)[T_VECTOR_LEN], T (*root_ids_output)[ROOT_IDS_LEN]
+		T (*root_ids_output)[ROOT_IDS_LEN]
 	)
   {
-    T curr_val = fn_t(t_vector[0]), next_val;
-    for (int i = 0; i < ROOT_IDS_LEN; i++) {
-      next_val = fn_t(t_vector[i+1]);
+    T curr_val = fn_t(t_vec(0)), next_val;
+    for (unsigned i = 0; i < ROOT_IDS_LEN; i++) {
+      next_val = fn_t(t_vec(i+1));
       (*root_ids_output)[i] = (curr_val * next_val) < 0;
       curr_val = next_val;
     }
@@ -96,7 +99,7 @@ struct pose_poly {
 	inline T operator()(T t) { return fn_t(t); }
   
 	void rhos_from_root_ids(
-		const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
+		const T (&root_ids)[ROOT_IDS_LEN],
 		T (*output)[3][ROOT_IDS_LEN], int *output_ts_len
 	);
   

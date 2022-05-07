@@ -9,7 +9,7 @@ template <typename T>
 void
 pose_poly<T>::
 rhos_from_root_ids(
-	const T (&t_vector)[T_VECTOR_LEN], const T (&root_ids)[ROOT_IDS_LEN],
+	const T (&root_ids)[ROOT_IDS_LEN],
 	T (*output)[3][ROOT_IDS_LEN],
 	int *output_ts_len
 )
@@ -17,10 +17,10 @@ rhos_from_root_ids(
 	T (&ts)[ROOT_IDS_LEN] = (*output)[0];
 
 	int &ts_end = *output_ts_len; ts_end = 0;
-	for (int i = 0; i < ROOT_IDS_LEN; i++) {
+	for (unsigned i = 0; i < ROOT_IDS_LEN; i++) {
 		if (!root_ids[i]) continue;
-    T t0 = t_vector[i], t1 = t_vector[i+1], &t2 = ts[ts_end++];
-    T f0 = fn_t(t_vector[i]), f1 = fn_t(t_vector[i+1]);
+    T t0 = t_vec(i), t1 = t_vec(i+1), &t2 = ts[ts_end++];
+    T f0 = fn_t(t_vec(i)), f1 = fn_t(t_vec(i+1));
     for (unsigned k = 0; k < 3; ++k) {
       t2 = t1 - f1*(t1-t0)/(f1-f0); t0 = t1; t1 = t2;
       f0 = f1; if (k + 1 < 3) f1 = fn_t(t2);
