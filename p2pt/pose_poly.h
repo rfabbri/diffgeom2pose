@@ -74,8 +74,33 @@ struct pose_poly {
 	inline T fn_t(const T t) { T b[10]; return fn_t(t, b);  }
 	inline T operator()(T t) { return fn_t(t); }
   
-	void rhos_from_root_ids(const T (&root_ids)[ROOT_IDS_LEN], T (*out)[3][ROOT_IDS_LEN], 
-      int *out_ts_len);
+	inline void rhos_from_root_ids(
+      const T (&root_ids)[ROOT_IDS_LEN], T (*out)[3][ROOT_IDS_LEN], int *out_ts_len) { 
+    T (&ts)[ROOT_IDS_LEN] = (*out)[0];
+    int &ts_end = *out_ts_len; ts_end = 0;
+    for (unsigned i = 0; i < ROOT_IDS_LEN; i++) {
+      if (!root_ids[i]) continue;
+      T t0 = t_vec(i), t1 = t_vec(i+1), &t2 = ts[ts_end++];
+      T f0 = fn_t(t_vec(i)), f1 = fn_t(t_vec(i+1));
+      for (unsigned k = 0; k < 3; ++k) {
+        t2 = t1 - f1*(t1-t0)/(f1-f0); t0 = t1; t1 = t2;
+        f0 = f1; if (k + 1 < 3) f1 = fn_t(t2);
+      }
+    }
+
+    //% Each root is now ts(i), plus minus t_stddev. Now get rho1(t):
+    T (&rhos1)[ROOT_IDS_LEN] = (*out)[1]; T (&rhos2)[ROOT_IDS_LEN] = (*out)[2];
+    const T alpha_times_2 = 2.*alpha;
+    for (int i = 0; i < ts_end; i++) {
+      const T ts_new = ts[i],
+      x2 = ts_new * ts_new,
+      ts_den = 1. + x2,
+      alpha_ts_new2 = alpha_times_2 * ts_new,
+      beta_1_minus_x2 = beta * (1. - x2);
+      rhos1[i] = ( alpha_ts_new2 * cth + beta_1_minus_x2 * sth) / ts_den;
+      rhos2[i] = (-alpha_ts_new2 * sth + beta_1_minus_x2 * cth) / ts_den;
+    }
+  }
   
 	void get_sigmas(const int ts_len, const T (&ts)[ROOT_IDS_LEN], 
       T (*out)[2][TS_MAX_LEN][TS_MAX_LEN], int (*out_len)[2][TS_MAX_LEN]);
