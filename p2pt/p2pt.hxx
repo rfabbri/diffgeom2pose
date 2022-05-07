@@ -206,7 +206,7 @@ pose_from_point_tangents_2(
   a5 = Tgt1[0]*Tgt2[0]+Tgt1[1]*Tgt2[1]+Tgt1[2]*Tgt2[2],
   a6 = V[0]*Tgt2[0]+V[1]*Tgt2[1]+V[2]*Tgt2[2];
 
-	theta = 0.5 * atan( 2.*(1.+g11*g21+g12*g22)/(g11_2+g12*g12-g21_2-g22_2) );
+	theta = 0.5 * atan( 2.*(1.+g11*g21+g12*g22)/(g11_2+g12_2-g21_2-g22_2) );
 	if (theta < 0) theta += PI_OVER_2;
 	sth = sin(theta); const T s2 = sth*sth; cth = cos(theta);
   const T c2 = cth*cth, c2th = 2.*c2-1., s2th = 2.*sth*cth;
@@ -224,7 +224,7 @@ pose_from_point_tangents_2(
 	+2.0*a2*g21*g11*g12_2*beta*beta*sth*cth
 	-2.0*a2*g11_2*g12_2*beta*beta*s2
 	-a2*g12_4*beta*beta*s2
-	-a2*g21*g21*g11_2*beta*beta*c2
+	-a2*g21_2*g11_2*beta*beta*c2
 	+2.0*a2*g12_2*beta*beta*sth*cth
 	+2.0*a2*g11_2*beta*beta*sth*cth
 	+2.0*a2*g11_2*g22*g12*beta*beta*sth*cth
@@ -244,7 +244,7 @@ pose_from_point_tangents_2(
 
 	A1 = 4.*a2*alpha*c2*beta
 	-4.*a2*beta*s2*alpha
-	+4.*a2*g21*g21*g11_2*alpha*sth*beta*cth
+	+4.*a2*g21_2*g11_2*alpha*sth*beta*cth
 	+4.*a2*g12_2*alpha*c2*beta
 	+8.*a2*g21*g11*alpha*sth*beta*cth
 	-4.*a2*g12_2*beta*s2*alpha
@@ -282,7 +282,7 @@ pose_from_point_tangents_2(
 	+2.*a2*beta*beta*s2
 	+2.*a2*beta*beta*c2
 	-4.*a2*g21*g11*(g12_2)*beta*beta*sth*cth
-	+2.*a2*g21*g21*(g11_2)*beta*beta*c2
+	+2.*a2*g21_2*(g11_2)*beta*beta*c2
 	-4.*a2*(g12_2)*beta*beta*sth*cth
 	+4.*a2*g21*g11*beta*beta*c2
 	+2.*a2*g22_2*(g12_2)*beta*beta*c2
@@ -303,7 +303,7 @@ pose_from_point_tangents_2(
 	-4.*a2*alpha*alpha*c2
 	-4.*a2*alpha*alpha*s2
 	-8.*a2*g22*g12*alpha*alpha*cth*sth
-	-4.*a2*g21*g21*(g11_2)*alpha*alpha*s2
+	-4.*a2*g21_2*(g11_2)*alpha*alpha*s2
 	-8.*a2*(g12_2)*alpha*alpha*cth*sth
 	-8.*a2*g21*g11*alpha*alpha*s2
 	-4.*a2*g22_2*(g12_2)*alpha*alpha*s2
@@ -336,7 +336,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g11_2*h11*g21*beta*beta*sth*cth
 	-a2*g22*h12*beta*beta*sth*cth
 	+a2*g11_3*h11*beta*beta*s2
-	+a2*g21*g21*h11*g11*beta*beta*c2
+	+a2*g21_2*h11*g11*beta*beta*c2
 	+a2*g21*h11*beta*beta*c2
 	-a2*g21*g11*g12*h12*beta*beta*sth*cth
 	+a2*g11_2*g12*h12*beta*beta*s2
@@ -373,7 +373,7 @@ pose_from_point_tangents_2(
 	+4.*a2*g11*h11*alpha*sth*beta*cth
 	-4.*a2*g21*g11*g22*h12*alpha*sth*beta*cth
 	+2.*a2*g11*h11*beta*s2*alpha
-	-4.*a2*g21*g21*h11*g11*alpha*sth*beta*cth)
+	-4.*a2*g21_2*h11*g11*alpha*sth*beta*cth)
 	-4.*alpha*cth*(a2*g21*g11*g22*h12*beta*beta*c2
 	+a2*g12_3*h12*beta*beta*s2
 	+a2*g21*h11*g22*g12*beta*beta*c2
@@ -393,13 +393,13 @@ pose_from_point_tangents_2(
 	-2.*a2*g11_2*h11*g21*beta*beta*sth*cth
 	-a2*g22*h12*beta*beta*sth*cth
 	+a2*g11_3*h11*beta*beta*s2
-	+a2*g21*g21*h11*g11*beta*beta*c2
+	+a2*g21_2*h11*g11*beta*beta*c2
 	+a2*g21*h11*beta*beta*c2
 	-a2*g21*g11*g12*h12*beta*beta*sth*cth
 	+a2*g11_2*g12*h12*beta*beta*s2
 	-a4*a4*h12*g12);
 
-	B2 = -2.*beta*sth*(4.*a2*g21*g21*h11*g11*alpha*alpha*s2
+	B2 = -2.*beta*sth*(4.*a2*g21_2*h11*g11*alpha*alpha*s2
 	+4.*a2*g11_2*g12*h12*alpha*alpha*c2
 	+4.*a2*g11*h11*alpha*alpha*c2
 	+4.*a2*g11_2*g22*h12*alpha*alpha*cth*sth
@@ -426,7 +426,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g22_2*h12*g12*beta*beta*c2
 	+2.*a2*g12*h12*beta*beta*sth*cth
 	+2.*a2*g22*h12*beta*beta*sth*cth
-	-2.*a2*g21*g21*h11*g11*beta*beta*c2
+	-2.*a2*g21_2*h11*g11*beta*beta*c2
 	+4.*a2*g12_2*h12*g22*beta*beta*sth*cth
 	+2.*a2*g21*g11*g12*h12*beta*beta*sth*cth
 	+2.*a2*g21*h11*g12_2*beta*beta*sth*cth
@@ -476,7 +476,7 @@ pose_from_point_tangents_2(
 	+4.*a2*g11*h11*alpha*sth*beta*cth
 	-4.*a2*g21*g11*g22*h12*alpha*sth*beta*cth
 	+2.*a2*g11*h11*beta*s2*alpha
-	-4.*a2*g21*g21*h11*g11*alpha*sth*beta*cth)
+	-4.*a2*g21_2*h11*g11*alpha*sth*beta*cth)
 	+2.*beta*sth*(a2*g21*g11*g22*h12*beta*beta*c2
 	+a2*g12_3*h12*beta*beta*s2
 	+a2*g21*h11*g22*g12*beta*beta*c2
@@ -496,7 +496,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g11_2*h11*g21*beta*beta*sth*cth
 	-a2*g22*h12*beta*beta*sth*cth
 	+a2*g11_3*h11*beta*beta*s2
-	+a2*g21*g21*h11*g11*beta*beta*c2
+	+a2*g21_2*h11*g11*beta*beta*c2
 	+a2*g21*h11*beta*beta*c2
 	-a2*g21*g11*g12*h12*beta*beta*sth*cth
 	+a2*g11_2*g12*h12*beta*beta*s2
@@ -533,8 +533,8 @@ pose_from_point_tangents_2(
 	-4.*a2*g11*h11*alpha*sth*beta*cth
 	+4.*a2*g21*g11*g22*h12*alpha*sth*beta*cth
 	-2.*a2*g11*h11*beta*s2*alpha
-	+4.*a2*g21*g21*h11*g11*alpha*sth*beta*cth)
-	-4.*alpha*cth*(4.*a2*g21*g21*h11*g11*alpha*alpha*s2
+	+4.*a2*g21_2*h11*g11*alpha*sth*beta*cth)
+	-4.*alpha*cth*(4.*a2*g21_2*h11*g11*alpha*alpha*s2
 	+4.*a2*g11_2*g12*h12*alpha*alpha*c2
 	+4.*a2*g11*h11*alpha*alpha*c2
 	+4.*a2*g11_2*g22*h12*alpha*alpha*cth*sth
@@ -561,7 +561,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g22_2*h12*g12*beta*beta*c2
 	+2.*a2*g12*h12*beta*beta*sth*cth
 	+2.*a2*g22*h12*beta*beta*sth*cth
-	-2.*a2*g21*g21*h11*g11*beta*beta*c2
+	-2.*a2*g21_2*h11*g11*beta*beta*c2
 	+4.*a2*g12_2*h12*g22*beta*beta*sth*cth
 	+2.*a2*g21*g11*g12*h12*beta*beta*sth*cth
 	+2.*a2*g21*h11*g12_2*beta*beta*sth*cth
@@ -611,14 +611,14 @@ pose_from_point_tangents_2(
 	+4.*a2*g11*h11*alpha*sth*beta*cth
 	-4.*a2*g21*g11*g22*h12*alpha*sth*beta*cth
 	+2.*a2*g11*h11*beta*s2*alpha
-	-4.*a2*g21*g21*h11*g11*alpha*sth*beta*cth);
+	-4.*a2*g21_2*h11*g11*alpha*sth*beta*cth);
 
 	C0 = -beta*beta*s2*(-a4*a4*h12*h12
 	+2.*a2*g21*h11*g22*h12*beta*beta*c2
 	-2.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-a4*a4*h11*h11
 	-2.*a2*g12*h12*h12*g22*beta*beta*sth*cth
-	+a2*g21*g21*h11*h11*beta*beta*c2
+	+a2*g21_2*h11*h11*beta*beta*c2
 	-2.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	+a2*g12_2*h12*h12*beta*beta*s2
 	+a2*g22_2*h12*h12*beta*beta*c2
@@ -628,7 +628,7 @@ pose_from_point_tangents_2(
 
 	C1 = -beta*beta*s2*(8.*a2*g11*h11*g12*h12*alpha*sth*beta*cth
 	-4.*a2*g22_2*h12*h12*alpha*sth*beta*cth
-	-4.*a2*g21*g21*h11*h11*alpha*sth*beta*cth
+	-4.*a2*g21_2*h11*h11*alpha*sth*beta*cth
 	-4.*a2*g21*h11*g12*h12*alpha*c2*beta
 	-4.*a2*g12*h12*h12*g22*alpha*c2*beta
 	+4.*a2*g21*h11*g12*h12*beta*s2*alpha
@@ -645,7 +645,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-a4*a4*h11*h11
 	-2.*a2*g12*h12*h12*g22*beta*beta*sth*cth
-	+a2*g21*g21*h11*h11*beta*beta*c2
+	+a2*g21_2*h11*h11*beta*beta*c2
 	-2.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	+a2*g12_2*h12*h12*beta*beta*s2
 	+a2*g22_2*h12*h12*beta*beta*c2
@@ -657,7 +657,7 @@ pose_from_point_tangents_2(
 	+4.*a2*g12*h12*h12*g22*beta*beta*sth*cth
 	+4.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-2.*a4*a4*h12*h12
-	+4.*a2*g21*g21*h11*h11*alpha*alpha*s2
+	+4.*a2*g21_2*h11*h11*alpha*alpha*s2
 	+8.*a2*g21*h11*g12*h12*alpha*alpha*cth*sth
 	+4.*a2*g12_2*h12*h12*alpha*alpha*c2
 	-2.*a2*g22_2*h12*h12*beta*beta*c2
@@ -674,10 +674,10 @@ pose_from_point_tangents_2(
 	+8.*a2*g11*h11*h11*g21*alpha*alpha*cth*sth
 	+4.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	-2.*a2*g12_2*h12*h12*beta*beta*s2
-	-2.*a2*g21*g21*h11*h11*beta*beta*c2)
+	-2.*a2*g21_2*h11*h11*beta*beta*c2)
 	-4.*beta*sth*alpha*cth*(8.*a2*g11*h11*g12*h12*alpha*sth*beta*cth
 	-4.*a2*g22_2*h12*h12*alpha*sth*beta*cth
-	-4.*a2*g21*g21*h11*h11*alpha*sth*beta*cth
+	-4.*a2*g21_2*h11*h11*alpha*sth*beta*cth
 	-4.*a2*g21*h11*g12*h12*alpha*c2*beta
 	-4.*a2*g12*h12*h12*g22*alpha*c2*beta
 	+4.*a2*g21*h11*g12*h12*beta*s2*alpha
@@ -695,7 +695,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-a4*a4*h11*h11
 	-2.*a2*g12*h12*h12*g22*beta*beta*sth*cth
-	+a2*g21*g21*h11*h11*beta*beta*c2
+	+a2*g21_2*h11*h11*beta*beta*c2
 	-2.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	+a2*g12_2*h12*h12*beta*beta*s2
 	+a2*g22_2*h12*h12*beta*beta*c2
@@ -709,7 +709,7 @@ pose_from_point_tangents_2(
 	-4.*a2*g12*h12*h12*g22*beta*s2*alpha
 	-4.*a2*g12_2*h12*h12*alpha*sth*beta*cth
 	+4.*a2*g12*h12*h12*g22*alpha*c2*beta
-	+4.*a2*g21*g21*h11*h11*alpha*sth*beta*cth
+	+4.*a2*g21_2*h11*h11*alpha*sth*beta*cth
 	-4.*a2*g11*h11*h11*g21*beta*s2*alpha
 	+4.*a2*g11*h11*g22*h12*alpha*c2*beta
 	-4.*a2*g21*h11*g12*h12*beta*s2*alpha
@@ -721,7 +721,7 @@ pose_from_point_tangents_2(
 	+4.*a2*g12*h12*h12*g22*beta*beta*sth*cth
 	+4.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-2.*a4*a4*h12*h12
-	+4.*a2*g21*g21*h11*h11*alpha*alpha*s2
+	+4.*a2*g21_2*h11*h11*alpha*alpha*s2
 	+8.*a2*g21*h11*g12*h12*alpha*alpha*cth*sth
 	+4.*a2*g12_2*h12*h12*alpha*alpha*c2
 	-2.*a2*g22_2*h12*h12*beta*beta*c2
@@ -738,11 +738,11 @@ pose_from_point_tangents_2(
 	+8.*a2*g11*h11*h11*g21*alpha*alpha*cth*sth
 	+4.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	-2.*a2*g12_2*h12*h12*beta*beta*s2
-	-2.*a2*g21*g21*h11*h11*beta*beta*c2)
+	-2.*a2*g21_2*h11*h11*beta*beta*c2)
 	-(-2.*beta*beta*s2
 	+4.*alpha*alpha*c2)*(8.*a2*g11*h11*g12*h12*alpha*sth*beta*cth
 	-4.*a2*g22_2*h12*h12*alpha*sth*beta*cth
-	-4.*a2*g21*g21*h11*h11*alpha*sth*beta*cth
+	-4.*a2*g21_2*h11*h11*alpha*sth*beta*cth
 	-4.*a2*g21*h11*g12*h12*alpha*c2*beta
 	-4.*a2*g12*h12*h12*g22*alpha*c2*beta
 	+4.*a2*g21*h11*g12*h12*beta*s2*alpha
@@ -759,7 +759,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-a4*a4*h11*h11
 	-2.*a2*g12*h12*h12*g22*beta*beta*sth*cth
-	+a2*g21*g21*h11*h11*beta*beta*c2
+	+a2*g21_2*h11*h11*beta*beta*c2
 	-2.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	+a2*g12_2*h12*h12*beta*beta*s2
 	+a2*g22_2*h12*h12*beta*beta*c2
@@ -772,7 +772,7 @@ pose_from_point_tangents_2(
 	-2.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-a4*a4*h11*h11
 	-2.*a2*g12*h12*h12*g22*beta*beta*sth*cth
-	+a2*g21*g21*h11*h11*beta*beta*c2
+	+a2*g21_2*h11*h11*beta*beta*c2
 	-2.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	+a2*g12_2*h12*h12*beta*beta*s2
 	+a2*g22_2*h12*h12*beta*beta*c2
@@ -785,7 +785,7 @@ pose_from_point_tangents_2(
 	-4.*a2*g12*h12*h12*g22*beta*s2*alpha
 	-4.*a2*g12_2*h12*h12*alpha*sth*beta*cth
 	+4.*a2*g12*h12*h12*g22*alpha*c2*beta
-	+4.*a2*g21*g21*h11*h11*alpha*sth*beta*cth
+	+4.*a2*g21_2*h11*h11*alpha*sth*beta*cth
 	-4.*a2*g11*h11*h11*g21*beta*s2*alpha
 	+4.*a2*g11*h11*g22*h12*alpha*c2*beta
 	-4.*a2*g21*h11*g12*h12*beta*s2*alpha
@@ -798,7 +798,7 @@ pose_from_point_tangents_2(
 	+4.*a2*g12*h12*h12*g22*beta*beta*sth*cth
 	+4.*a2*g11*h11*h11*g21*beta*beta*sth*cth
 	-2.*a4*a4*h12*h12
-	+4.*a2*g21*g21*h11*h11*alpha*alpha*s2
+	+4.*a2*g21_2*h11*h11*alpha*alpha*s2
 	+8.*a2*g21*h11*g12*h12*alpha*alpha*cth*sth
 	+4.*a2*g12_2*h12*h12*alpha*alpha*c2
 	-2.*a2*g22_2*h12*h12*beta*beta*c2
@@ -815,10 +815,10 @@ pose_from_point_tangents_2(
 	+8.*a2*g11*h11*h11*g21*alpha*alpha*cth*sth
 	+4.*a2*g21*h11*g12*h12*beta*beta*sth*cth
 	-2.*a2*g12_2*h12*h12*beta*beta*s2
-	-2.*a2*g21*g21*h11*h11*beta*beta*c2)
+	-2.*a2*g21_2*h11*h11*beta*beta*c2)
 	+4.*beta*sth*alpha*cth*(8.*a2*g11*h11*g12*h12*alpha*sth*beta*cth
 	-4.*a2*g22_2*h12*h12*alpha*sth*beta*cth
-	-4.*a2*g21*g21*h11*h11*alpha*sth*beta*cth
+	-4.*a2*g21_2*h11*h11*alpha*sth*beta*cth
 	-4.*a2*g21*h11*g12*h12*alpha*c2*beta
 	-4.*a2*g12*h12*h12*g22*alpha*c2*beta
 	+4.*a2*g21*h11*g12*h12*beta*s2*alpha
@@ -831,7 +831,7 @@ pose_from_point_tangents_2(
 	+4.*a2*g11*h11*h11*g21*beta*s2*alpha
 	+4.*a2*g12_2*h12*h12*alpha*sth*beta*cth);
 
-	E0 = 2.*a3*g21*g21*g12*g22*beta*beta*cth*sth
+	E0 = 2.*a3*g21_2*g12*g22*beta*beta*cth*sth
 	+2.*a3*g12*g22*beta*beta*cth*sth
 	+2.*a3*g12*g22_3*beta*beta*cth*sth
 	-a3*beta*beta*s2
@@ -841,51 +841,51 @@ pose_from_point_tangents_2(
 	+2.*a3*g11*g21*beta*beta*cth*sth
 	+2.*a3*g22_2*beta*beta*cth*sth
 	-a3*g21_4*beta*beta*c2
-	+2.*a3*g21*g21*beta*beta*cth*sth
+	+2.*a3*g21_2*beta*beta*cth*sth
 	-a3*g12_2*g22_2*beta*beta*s2
-	-a3*g11_2*g21*g21*beta*beta*s2
-	-2.*a3*g21*g21*g22_2*beta*beta*c2
-	+a6*a6*g21*g21
+	-a3*g11_2*g21_2*beta*beta*s2
+	-2.*a3*g21_2*g22_2*beta*beta*c2
+	+a6*a6*g21_2
 	+a6*a6*g22_2
 	+2.*a3*g11*g21_3*beta*beta*cth*sth
 	+2.*a3*g11*g21*g22_2*beta*beta*cth*sth
 	-2.*a3*g11*g21*g12*g22*beta*beta*s2
 	+a6*a6
-	-2.*a3*g21*g21*beta*beta*c2
+	-2.*a3*g21_2*beta*beta*c2
 	-2.*a3*g22_2*beta*beta*c2
 	-a3*g22_4*beta*beta*c2
 	+2.*a3*beta*beta*cth*sth;
 
-	E1 = -4.*a3*g11_2*g21*g21*alpha*sth*beta*cth
-	+8.*a3*g21*g21*g22_2*alpha*sth*beta*cth
+	E1 = -4.*a3*g11_2*g21_2*alpha*sth*beta*cth
+	+8.*a3*g21_2*g22_2*alpha*sth*beta*cth
 	-4.*a3*g12_2*g22_2*alpha*sth*beta*cth
 	+4.*a3*g22_2*beta*c2*alpha
 	-4.*a3*g22_2*alpha*s2*beta
 	-8.*a3*g11*g21*alpha*sth*beta*cth
 	-4.*a3*g12*g22*alpha*s2*beta
 	+4.*a3*g12*g22*beta*c2*alpha
-	+4.*a3*g21*g21*g12*g22*beta*c2*alpha
+	+4.*a3*g21_2*g12*g22*beta*c2*alpha
 	-4.*a3*g12*g22_3*alpha*s2*beta
 	+4.*a3*g12*g22_3*beta*c2*alpha
-	+8.*a3*g21*g21*alpha*sth*beta*cth
+	+8.*a3*g21_2*alpha*sth*beta*cth
 	+4.*a3*g21_4*alpha*sth*beta*cth
 	-4.*a3*g11*g21*alpha*s2*beta
 	+4.*a3*g11*g21*beta*c2*alpha
 	-8.*a3*g12*g22*alpha*sth*beta*cth
-	-4.*a3*g21*g21*g12*g22*alpha*s2*beta
+	-4.*a3*g21_2*g12*g22*alpha*s2*beta
 	+4.*a3*g11*g21*g22_2*beta*c2*alpha
 	-8.*a3*g11*g21*g12*g22*alpha*sth*beta*cth
 	-4.*a3*g11*g21_3*alpha*s2*beta
 	+4.*a3*g11*g21_3*beta*c2*alpha
-	+4.*a3*g21*g21*beta*c2*alpha
+	+4.*a3*g21_2*beta*c2*alpha
 	+8.*a3*g22_2*alpha*sth*beta*cth
 	-4.*a3*alpha*s2*beta
-	-4.*a3*g21*g21*alpha*s2*beta
+	-4.*a3*g21_2*alpha*s2*beta
 	+4.*a3*g22_4*alpha*sth*beta*cth
 	-4.*a3*g11*g21*g22_2*alpha*s2*beta
 	+4.*a3*beta*c2*alpha;
 
-	E2 = -4.*a3*g21*g21*g12*g22*beta*beta*cth*sth
+	E2 = -4.*a3*g21_2*g12*g22*beta*beta*cth*sth
 	-4.*a3*g12*g22*beta*beta*cth*sth
 	-4.*a3*g12*g22_3*beta*beta*cth*sth
 	+2.*a3*beta*beta*s2
@@ -895,38 +895,38 @@ pose_from_point_tangents_2(
 	-4.*a3*g11*g21*beta*beta*cth*sth
 	-4.*a3*g22_2*beta*beta*cth*sth
 	+2.*a3*g21_4*beta*beta*c2
-	-4.*a3*g21*g21*beta*beta*cth*sth
+	-4.*a3*g21_2*beta*beta*cth*sth
 	+2.*a3*g12_2*g22_2*beta*beta*s2
-	+2.*a3*g11_2*g21*g21*beta*beta*s2
-	+4.*a3*g21*g21*g22_2*beta*beta*c2
-	+2.*a6*a6*g21*g21
+	+2.*a3*g11_2*g21_2*beta*beta*s2
+	+4.*a3*g21_2*g22_2*beta*beta*c2
+	+2.*a6*a6*g21_2
 	+2.*a6*a6*g22_2
 	-4.*a3*g11*g21_3*beta*beta*cth*sth
 	-4.*a3*g11*g21*g22_2*beta*beta*cth*sth
 	+4.*a3*g11*g21*g12*g22*beta*beta*s2
 	+2.*a6*a6
-	-4.*a3*g11_2*g21*g21*alpha*alpha*c2
+	-4.*a3*g11_2*g21_2*alpha*alpha*c2
 	-8.*a3*g12*g22*alpha*alpha*c2
 	-8.*a3*g11*g21*alpha*alpha*c2
 	-8.*a3*g12*g22*alpha*alpha*sth*cth
 	-8.*a3*g12*g22_3*alpha*alpha*sth*cth
-	-8.*a3*g21*g21*g22_2*alpha*alpha*s2
+	-8.*a3*g21_2*g22_2*alpha*alpha*s2
 	-8.*a3*g22_2*alpha*alpha*sth*cth
-	-8.*a3*g21*g21*g12*g22*alpha*alpha*sth*cth
+	-8.*a3*g21_2*g12*g22*alpha*alpha*sth*cth
 	-8.*a3*g11*g21_3*alpha*alpha*sth*cth
 	-4.*a3*alpha*alpha*s2
 	-8.*a3*g11*g21*g12*g22*alpha*alpha*c2
 	-4.*a3*g12_2*g22_2*alpha*alpha*c2
-	-8.*a3*g21*g21*alpha*alpha*sth*cth
+	-8.*a3*g21_2*alpha*alpha*sth*cth
 	-8.*a3*g11*g21*alpha*alpha*sth*cth
 	-4.*a3*alpha*alpha*c2
 	-8.*a3*g11*g21*g22_2*alpha*alpha*sth*cth
-	+4.*a3*g21*g21*beta*beta*c2
+	+4.*a3*g21_2*beta*beta*c2
 	+4.*a3*g22_2*beta*beta*c2
 	+2.*a3*g22_4*beta*beta*c2
 	-4.*a3*beta*beta*cth*sth
 	-4.*a3*g21_4*alpha*alpha*s2
-	-8.*a3*g21*g21*alpha*alpha*s2
+	-8.*a3*g21_2*alpha*alpha*s2
 	-8.*a3*alpha*alpha*sth*cth
 	-4.*a3*g22_4*alpha*alpha*s2
 	-8.*a3*g22_2*alpha*alpha*s2;
@@ -935,21 +935,21 @@ pose_from_point_tangents_2(
 	-a6*a6*h21*g21
 	-a3*g11*h21*g22_2*beta*beta*cth*sth
 	+a3*g11*h21*g12*g22*beta*beta*s2
-	-2.*a3*g11*h21*g21*g21*beta*beta*cth*sth
+	-2.*a3*g11*h21*g21_2*beta*beta*cth*sth
 	+a3*g22_3*h22*beta*beta*c2
 	+a3*g22*h22*beta*beta*c2
 	-a3*g21*h21*g12*g22*beta*beta*cth*sth
 	+a3*g12*h22*beta*beta*s2
 	+a3*g12_2*h22*g22*beta*beta*s2
 	+a3*g21*h21*g22_2*beta*beta*c2
-	-a3*g21*g21*g12*h22*beta*beta*cth*sth
+	-a3*g21_2*g12*h22*beta*beta*cth*sth
 	-a3*g11*h21*beta*beta*cth*sth
 	+a3*g11*h21*beta*beta*s2
 	-a3*g11*g21*g22*h22*beta*beta*cth*sth
 	-a3*g22*h22*beta*beta*cth*sth
 	-2.*a3*g12*h22*g22_2*beta*beta*cth*sth
 	+a3*g21*h21*beta*beta*c2
-	+a3*g21*g21*g22*h22*beta*beta*c2
+	+a3*g21_2*g22*h22*beta*beta*c2
 	-a3*g21*h21*beta*beta*cth*sth
 	-a3*g12*h22*beta*beta*cth*sth
 	+a3*g11_2*h21*g21*beta*beta*s2
@@ -957,7 +957,7 @@ pose_from_point_tangents_2(
 	+a3*g11*g21*g12*h22*beta*beta*s2);
 
 	F1 = -2.*beta*cth*(-4.*a3*g21*h21*alpha*sth*beta*cth
-	-4.*a3*g21*g21*g22*h22*alpha*sth*beta*cth
+	-4.*a3*g21_2*g22*h22*alpha*sth*beta*cth
 	-4.*a3*g21_3*h21*alpha*sth*beta*cth
 	+2.*a3*g21*h21*alpha*s2*beta
 	-2.*a3*g21*h21*beta*c2*alpha
@@ -966,8 +966,8 @@ pose_from_point_tangents_2(
 	+4.*a3*g12*h22*g22_2*alpha*s2*beta
 	-4.*a3*g12*h22*g22_2*beta*c2*alpha
 	-4.*a3*g21*h21*g22_2*alpha*sth*beta*cth
-	+2.*a3*g21*g21*g12*h22*alpha*s2*beta
-	-2.*a3*g21*g21*g12*h22*beta*c2*alpha
+	+2.*a3*g21_2*g12*h22*alpha*s2*beta
+	-2.*a3*g21_2*g12*h22*beta*c2*alpha
 	-2.*a3*g11*h21*beta*c2*alpha
 	+4.*a3*g11*h21*alpha*sth*beta*cth
 	-4.*a3*g22*h22*alpha*sth*beta*cth
@@ -978,12 +978,12 @@ pose_from_point_tangents_2(
 	-2.*a3*g11*g21*g22*h22*beta*c2*alpha
 	+4.*a3*g12*h22*alpha*sth*beta*cth
 	+4.*a3*g11*h21*g12*g22*alpha*sth*beta*cth
-	-4.*a3*g11*h21*g21*g21*beta*c2*alpha
+	-4.*a3*g11*h21*g21_2*beta*c2*alpha
 	-4.*a3*g22_3*h22*alpha*sth*beta*cth
 	-2.*a3*g11*h21*g22_2*beta*c2*alpha
 	+2.*a3*g11*h21*alpha*s2*beta
 	-2.*a3*g12*h22*beta*c2*alpha
-	+4.*a3*g11*h21*g21*g21*alpha*s2*beta
+	+4.*a3*g11*h21*g21_2*alpha*s2*beta
 	+2.*a3*g11*h21*g22_2*alpha*s2*beta
 	+4.*a3*g11_2*h21*g21*alpha*sth*beta*cth
 	+2.*a3*g22*h22*alpha*s2*beta
@@ -992,21 +992,21 @@ pose_from_point_tangents_2(
 	-a6*a6*h21*g21
 	-a3*g11*h21*g22_2*beta*beta*cth*sth
 	+a3*g11*h21*g12*g22*beta*beta*s2
-	-2.*a3*g11*h21*g21*g21*beta*beta*cth*sth
+	-2.*a3*g11*h21*g21_2*beta*beta*cth*sth
 	+a3*g22_3*h22*beta*beta*c2
 	+a3*g22*h22*beta*beta*c2
 	-a3*g21*h21*g12*g22*beta*beta*cth*sth
 	+a3*g12*h22*beta*beta*s2
 	+a3*g12_2*h22*g22*beta*beta*s2
 	+a3*g21*h21*g22_2*beta*beta*c2
-	-a3*g21*g21*g12*h22*beta*beta*cth*sth
+	-a3*g21_2*g12*h22*beta*beta*cth*sth
 	-a3*g11*h21*beta*beta*cth*sth
 	+a3*g11*h21*beta*beta*s2
 	-a3*g11*g21*g22*h22*beta*beta*cth*sth
 	-a3*g22*h22*beta*beta*cth*sth
 	-2.*a3*g12*h22*g22_2*beta*beta*cth*sth
 	+a3*g21*h21*beta*beta*c2
-	+a3*g21*g21*g22*h22*beta*beta*c2
+	+a3*g21_2*g22*h22*beta*beta*c2
 	-a3*g21*h21*beta*beta*cth*sth
 	-a3*g12*h22*beta*beta*cth*sth
 	+a3*g11_2*h21*g21*beta*beta*s2
@@ -1017,40 +1017,40 @@ pose_from_point_tangents_2(
 	-(2*a6*a6*h21*g21)
 	+2.*a3*g11*h21*(g22_2)*beta*beta*cth*sth
 	-2.*a3*g11*h21*g12*g22*beta*beta*s2
-	+4.*a3*g11*h21*(g21*g21)*beta*beta*cth*sth
+	+4.*a3*g11*h21*(g21_2)*beta*beta*cth*sth
 	-2.*a3*g22_3*h22*beta*beta*c2
 	-2.*a3*g22*h22*beta*beta*c2
 	+2.*a3*g21*h21*g12*g22*beta*beta*cth*sth
 	-2.*a3*g12*h22*beta*beta*s2
 	-2.*a3*g12_2*h22*g22*beta*beta*s2
 	-2.*a3*g21*h21*(g22_2)*beta*beta*c2
-	+2.*a3*(g21*g21)*g12*h22*beta*beta*cth*sth
+	+2.*a3*(g21_2)*g12*h22*beta*beta*cth*sth
 	+2.*a3*g11*h21*beta*beta*cth*sth
 	-2.*a3*g11*h21*beta*beta*s2
 	+2.*a3*g11*g21*g22*h22*beta*beta*cth*sth
 	+2.*a3*g22*h22*beta*beta*cth*sth
 	+4.*a3*g12*h22*(g22_2)*beta*beta*cth*sth
 	-2.*a3*g21*h21*beta*beta*c2
-	-2.*a3*(g21*g21)*g22*h22*beta*beta*c2
+	-2.*a3*(g21_2)*g22*h22*beta*beta*c2
 	+2.*a3*g21*h21*beta*beta*cth*sth
 	+2.*a3*g12*h22*beta*beta*cth*sth
 	-2.*a3*g11_2*h21*g21*beta*beta*s2
 	-2.*a3*g21_3*h21*beta*beta*c2
 	-2.*a3*g11*g21*g12*h22*beta*beta*s2
 	+4.*a3*g21*h21*alpha*alpha*s2
-	+4.*a3*(g21*g21)*g22*h22*alpha*alpha*s2
+	+4.*a3*(g21_2)*g22*h22*alpha*alpha*s2
 	+4.*a3*g21_3*h21*alpha*alpha*s2
 	+4.*a3*g21*h21*alpha*alpha*sth*cth
 	+4.*a3*g12*h22*alpha*alpha*sth*cth
 	+4.*a3*g12_2*h22*g22*alpha*alpha*c2
-	+4.*a3*(g21*g21)*g12*h22*alpha*alpha*sth*cth
+	+4.*a3*(g21_2)*g12*h22*alpha*alpha*sth*cth
 	+4.*a3*g11*h21*alpha*alpha*c2
 	+4.*a3*g11*h21*alpha*alpha*sth*cth
 	+4.*a3*g21*h21*g12*g22*alpha*alpha*sth*cth
 	+4.*a3*g11*g21*g12*h22*alpha*alpha*c2
 	+4.*a3*g11*h21*g12*g22*alpha*alpha*c2
 	+4.*a3*g11*h21*(g22_2)*alpha*alpha*sth*cth
-	+8.*a3*g11*h21*(g21*g21)*alpha*alpha*sth*cth
+	+8.*a3*g11*h21*(g21_2)*alpha*alpha*sth*cth
 	+4.*a3*g22*h22*alpha*alpha*s2
 	+4.*a3*g21*h21*(g22_2)*alpha*alpha*s2
 	+4.*a3*g22_3*h22*alpha*alpha*s2
@@ -1060,7 +1060,7 @@ pose_from_point_tangents_2(
 	+4.*a3*g22*h22*alpha*alpha*sth*cth
 	+8.*a3*g12*h22*(g22_2)*alpha*alpha*sth*cth)
 	+4.*alpha*sth*(-4.*a3*g21*h21*alpha*sth*beta*cth
-	-4.*a3*(g21*g21)*g22*h22*alpha*sth*beta*cth
+	-4.*a3*(g21_2)*g22*h22*alpha*sth*beta*cth
 	-4.*a3*g21_3*h21*alpha*sth*beta*cth
 	+2.*a3*g21*h21*alpha*s2*beta
 	-2.*a3*g21*h21*beta*c2*alpha
@@ -1069,8 +1069,8 @@ pose_from_point_tangents_2(
 	+4.*a3*g12*h22*(g22_2)*alpha*s2*beta
 	-4.*a3*g12*h22*(g22_2)*beta*c2*alpha
 	-4.*a3*g21*h21*(g22_2)*alpha*sth*beta*cth
-	+2.*a3*(g21*g21)*g12*h22*alpha*s2*beta
-	-2.*a3*(g21*g21)*g12*h22*beta*c2*alpha
+	+2.*a3*(g21_2)*g12*h22*alpha*s2*beta
+	-2.*a3*(g21_2)*g12*h22*beta*c2*alpha
 	-2.*a3*g11*h21*beta*c2*alpha
 	+4.*a3*g11*h21*alpha*sth*beta*cth
 	-4.*a3*g22*h22*alpha*sth*beta*cth
@@ -1081,12 +1081,12 @@ pose_from_point_tangents_2(
 	-2.*a3*g11*g21*g22*h22*beta*c2*alpha
 	+4.*a3*g12*h22*alpha*sth*beta*cth
 	+4.*a3*g11*h21*g12*g22*alpha*sth*beta*cth
-	-4.*a3*g11*h21*(g21*g21)*beta*c2*alpha
+	-4.*a3*g11*h21*(g21_2)*beta*c2*alpha
 	-4.*a3*g22_3*h22*alpha*sth*beta*cth
 	-2.*a3*g11*h21*(g22_2)*beta*c2*alpha
 	+2.*a3*g11*h21*alpha*s2*beta
 	-2.*a3*g12*h22*beta*c2*alpha
-	+4.*a3*g11*h21*(g21*g21)*alpha*s2*beta
+	+4.*a3*g11*h21*(g21_2)*alpha*s2*beta
 	+2.*a3*g11*h21*(g22_2)*alpha*s2*beta
 	+4.*a3*g11_2*h21*g21*alpha*sth*beta*cth
 	+2.*a3*g22*h22*alpha*s2*beta
@@ -1095,21 +1095,21 @@ pose_from_point_tangents_2(
 	-(a6*a6*h21*g21)
 	-a3*g11*h21*(g22_2)*beta*beta*cth*sth
 	+a3*g11*h21*g12*g22*beta*beta*s2
-	-2.*a3*g11*h21*(g21*g21)*beta*beta*cth*sth
+	-2.*a3*g11*h21*(g21_2)*beta*beta*cth*sth
 	+a3*g22_3*h22*beta*beta*c2
 	+a3*g22*h22*beta*beta*c2
 	-a3*g21*h21*g12*g22*beta*beta*cth*sth
 	+a3*g12*h22*beta*beta*s2
 	+a3*g12_2*h22*g22*beta*beta*s2
 	+a3*g21*h21*(g22_2)*beta*beta*c2
-	-a3*(g21*g21)*g12*h22*beta*beta*cth*sth
+	-a3*(g21_2)*g12*h22*beta*beta*cth*sth
 	-a3*g11*h21*beta*beta*cth*sth
 	+a3*g11*h21*beta*beta*s2
 	-a3*g11*g21*g22*h22*beta*beta*cth*sth
 	-a3*g22*h22*beta*beta*cth*sth
 	-2.*a3*g12*h22*(g22_2)*beta*beta*cth*sth
 	+a3*g21*h21*beta*beta*c2
-	+a3*(g21*g21)*g22*h22*beta*beta*c2
+	+a3*(g21_2)*g22*h22*beta*beta*c2
 	-a3*g21*h21*beta*beta*cth*sth
 	-a3*g12*h22*beta*beta*cth*sth
 	+a3*g11_2*h21*g21*beta*beta*s2
@@ -1117,7 +1117,7 @@ pose_from_point_tangents_2(
 	+a3*g11*g21*g12*h22*beta*beta*s2);
 
 	F3 = -2.*beta*cth*(4.*a3*g21*h21*alpha*sth*beta*cth
-	+4.*a3*g21*g21*g22*h22*alpha*sth*beta*cth
+	+4.*a3*g21_2*g22*h22*alpha*sth*beta*cth
 	+4.*a3*g21_3*h21*alpha*sth*beta*cth
 	-2.*a3*g21*h21*alpha*s2*beta
 	+2.*a3*g21*h21*beta*c2*alpha
@@ -1126,8 +1126,8 @@ pose_from_point_tangents_2(
 	-4.*a3*g12*h22*g22_2*alpha*s2*beta
 	+4.*a3*g12*h22*g22_2*beta*c2*alpha
 	+4.*a3*g21*h21*g22_2*alpha*sth*beta*cth
-	-2.*a3*g21*g21*g12*h22*alpha*s2*beta
-	+2.*a3*g21*g21*g12*h22*beta*c2*alpha
+	-2.*a3*g21_2*g12*h22*alpha*s2*beta
+	+2.*a3*g21_2*g12*h22*beta*c2*alpha
 	+2.*a3*g11*h21*beta*c2*alpha
 	-4.*a3*g11*h21*alpha*sth*beta*cth
 	+4.*a3*g22*h22*alpha*sth*beta*cth
@@ -1138,12 +1138,12 @@ pose_from_point_tangents_2(
 	+2.*a3*g11*g21*g22*h22*beta*c2*alpha
 	-4.*a3*g12*h22*alpha*sth*beta*cth
 	-4.*a3*g11*h21*g12*g22*alpha*sth*beta*cth
-	+4.*a3*g11*h21*g21*g21*beta*c2*alpha
+	+4.*a3*g11*h21*g21_2*beta*c2*alpha
 	+4.*a3*g22_3*h22*alpha*sth*beta*cth
 	+2.*a3*g11*h21*g22_2*beta*c2*alpha
 	-2.*a3*g11*h21*alpha*s2*beta
 	+2.*a3*g12*h22*beta*c2*alpha
-	-4.*a3*g11*h21*g21*g21*alpha*s2*beta
+	-4.*a3*g11*h21*g21_2*alpha*s2*beta
 	-2.*a3*g11*h21*g22_2*alpha*s2*beta
 	-4.*a3*g11_2*h21*g21*alpha*sth*beta*cth
 	-2.*a3*g22*h22*alpha*s2*beta
@@ -1152,40 +1152,40 @@ pose_from_point_tangents_2(
 	-2.*a6*a6*h21*g21
 	+2.*a3*g11*h21*g22_2*beta*beta*cth*sth
 	-2.*a3*g11*h21*g12*g22*beta*beta*s2
-	+4.*a3*g11*h21*g21*g21*beta*beta*cth*sth
+	+4.*a3*g11*h21*g21_2*beta*beta*cth*sth
 	-2.*a3*g22_3*h22*beta*beta*c2
 	-2.*a3*g22*h22*beta*beta*c2
 	+2.*a3*g21*h21*g12*g22*beta*beta*cth*sth
 	-2.*a3*g12*h22*beta*beta*s2
 	-2.*a3*g12_2*h22*g22*beta*beta*s2
 	-2.*a3*g21*h21*g22_2*beta*beta*c2
-	+2.*a3*g21*g21*g12*h22*beta*beta*cth*sth
+	+2.*a3*g21_2*g12*h22*beta*beta*cth*sth
 	+2.*a3*g11*h21*beta*beta*cth*sth
 	-2.*a3*g11*h21*beta*beta*s2
 	+2.*a3*g11*g21*g22*h22*beta*beta*cth*sth
 	+2.*a3*g22*h22*beta*beta*cth*sth
 	+4.*a3*g12*h22*g22_2*beta*beta*cth*sth
 	-2.*a3*g21*h21*beta*beta*c2
-	-2.*a3*g21*g21*g22*h22*beta*beta*c2
+	-2.*a3*g21_2*g22*h22*beta*beta*c2
 	+2.*a3*g21*h21*beta*beta*cth*sth
 	+2.*a3*g12*h22*beta*beta*cth*sth
 	-2.*a3*g11_2*h21*g21*beta*beta*s2
 	-2.*a3*g21_3*h21*beta*beta*c2
 	-2.*a3*g11*g21*g12*h22*beta*beta*s2
 	+4.*a3*g21*h21*alpha*alpha*s2
-	+4.*a3*g21*g21*g22*h22*alpha*alpha*s2
+	+4.*a3*g21_2*g22*h22*alpha*alpha*s2
 	+4.*a3*g21_3*h21*alpha*alpha*s2
 	+4.*a3*g21*h21*alpha*alpha*sth*cth
 	+4.*a3*g12*h22*alpha*alpha*sth*cth
 	+4.*a3*g12_2*h22*g22*alpha*alpha*c2
-	+4.*a3*g21*g21*g12*h22*alpha*alpha*sth*cth
+	+4.*a3*g21_2*g12*h22*alpha*alpha*sth*cth
 	+4.*a3*g11*h21*alpha*alpha*c2
 	+4.*a3*g11*h21*alpha*alpha*sth*cth
 	+4.*a3*g21*h21*g12*g22*alpha*alpha*sth*cth
 	+4.*a3*g11*g21*g12*h22*alpha*alpha*c2
 	+4.*a3*g11*h21*g12*g22*alpha*alpha*c2
 	+4.*a3*g11*h21*g22_2*alpha*alpha*sth*cth
-	+8.*a3*g11*h21*g21*g21*alpha*alpha*sth*cth
+	+8.*a3*g11*h21*g21_2*alpha*alpha*sth*cth
 	+4.*a3*g22*h22*alpha*alpha*s2
 	+4.*a3*g21*h21*g22_2*alpha*alpha*s2
 	+4.*a3*g22_3*h22*alpha*alpha*s2
@@ -1195,7 +1195,7 @@ pose_from_point_tangents_2(
 	+4.*a3*g22*h22*alpha*alpha*sth*cth
 	+8.*a3*g12*h22*g22_2*alpha*alpha*sth*cth)
 	+2.*beta*cth*(-4.*a3*g21*h21*alpha*sth*beta*cth
-	-4.*a3*g21*g21*g22*h22*alpha*sth*beta*cth
+	-4.*a3*g21_2*g22*h22*alpha*sth*beta*cth
 	-4.*a3*g21_3*h21*alpha*sth*beta*cth
 	+2.*a3*g21*h21*alpha*s2*beta
 	-2.*a3*g21*h21*beta*c2*alpha
@@ -1204,8 +1204,8 @@ pose_from_point_tangents_2(
 	+4.*a3*g12*h22*g22_2*alpha*s2*beta
 	-4.*a3*g12*h22*g22_2*beta*c2*alpha
 	-4.*a3*g21*h21*g22_2*alpha*sth*beta*cth
-	+2.*a3*g21*g21*g12*h22*alpha*s2*beta
-	-2.*a3*g21*g21*g12*h22*beta*c2*alpha
+	+2.*a3*g21_2*g12*h22*alpha*s2*beta
+	-2.*a3*g21_2*g12*h22*beta*c2*alpha
 	-2.*a3*g11*h21*beta*c2*alpha
 	+4.*a3*g11*h21*alpha*sth*beta*cth
 	-4.*a3*g22*h22*alpha*sth*beta*cth
@@ -1216,12 +1216,12 @@ pose_from_point_tangents_2(
 	-2.*a3*g11*g21*g22*h22*beta*c2*alpha
 	+4.*a3*g12*h22*alpha*sth*beta*cth
 	+4.*a3*g11*h21*g12*g22*alpha*sth*beta*cth
-	-4.*a3*g11*h21*g21*g21*beta*c2*alpha
+	-4.*a3*g11*h21*g21_2*beta*c2*alpha
 	-4.*a3*g22_3*h22*alpha*sth*beta*cth
 	-2.*a3*g11*h21*g22_2*beta*c2*alpha
 	+2.*a3*g11*h21*alpha*s2*beta
 	-2.*a3*g12*h22*beta*c2*alpha
-	+4.*a3*g11*h21*g21*g21*alpha*s2*beta
+	+4.*a3*g11*h21*g21_2*alpha*s2*beta
 	+2.*a3*g11*h21*g22_2*alpha*s2*beta
 	+4.*a3*g11_2*h21*g21*alpha*sth*beta*cth
 	+2.*a3*g22*h22*alpha*s2*beta
@@ -1233,7 +1233,7 @@ pose_from_point_tangents_2(
 	+2.*a3*g11*h21*g12*h22*beta*beta*s2
 	+a3*g11_2*h21*h21*beta*beta*s2
 	-2.*a3*g11*h21*h21*g21*beta*beta*cth*sth
-	+a3*g21*g21*h21*h21*beta*beta*c2
+	+a3*g21_2*h21*h21*beta*beta*c2
 	-2.*a3*g12*h22*h22*g22*beta*beta*cth*sth
 	-2.*a3*g21*h21*g12*h22*beta*beta*cth*sth
 	+2.*a3*g21*h21*g22*h22*beta*beta*c2
@@ -1243,7 +1243,7 @@ pose_from_point_tangents_2(
 	G1 = -beta*beta*c2*(-4.*a3*g21*h21*g12*h22*beta*c2*alpha
 	-4.*a3*g11*h21*h21*g21*beta*c2*alpha
 	+4.*a3*g11_2*h21*h21*alpha*sth*beta*cth
-	-4.*a3*g21*g21*h21*h21*alpha*sth*beta*cth
+	-4.*a3*g21_2*h21*h21*alpha*sth*beta*cth
 	+4.*a3*g12_2*h22*h22*alpha*sth*beta*cth
 	+4.*a3*g11*h21*g22*h22*alpha*s2*beta
 	-4.*a3*g12*h22*h22*g22*beta*c2*alpha
@@ -1260,7 +1260,7 @@ pose_from_point_tangents_2(
 	+2.*a3*g11*h21*g12*h22*beta*beta*s2
 	+a3*g11_2*h21*h21*beta*beta*s2
 	-2.*a3*g11*h21*h21*g21*beta*beta*cth*sth
-	+a3*g21*g21*h21*h21*beta*beta*c2
+	+a3*g21_2*h21*h21*beta*beta*c2
 	-2.*a3*g12*h22*h22*g22*beta*beta*cth*sth
 	-2.*a3*g21*h21*g12*h22*beta*beta*cth*sth
 	+2.*a3*g21*h21*g22*h22*beta*beta*c2
@@ -1279,11 +1279,11 @@ pose_from_point_tangents_2(
 	+4.*a3*g11*h21*h21*g21*beta*beta*cth*sth
 	+4.*a3*g22_2*h22*h22*alpha*alpha*s2
 	+4.*a3*g12_2*h22*h22*alpha*alpha*c2
-	+4.*a3*g21*g21*h21*h21*alpha*alpha*s2
+	+4.*a3*g21_2*h21*h21*alpha*alpha*s2
 	-4.*a3*g21*h21*g22*h22*beta*beta*c2
 	-2.*a3*g12_2*h22*h22*beta*beta*s2
 	+8.*a3*g12*h22*h22*g22*alpha*alpha*sth*cth
-	-2.*a3*g21*g21*h21*h21*beta*beta*c2
+	-2.*a3*g21_2*h21*h21*beta*beta*c2
 	+4.*a3*g11*h21*g22*h22*beta*beta*cth*sth
 	+8.*a3*g21*h21*g22*h22*alpha*alpha*s2
 	+4.*a3*g21*h21*g12*h22*beta*beta*cth*sth
@@ -1292,7 +1292,7 @@ pose_from_point_tangents_2(
 	+4.*beta*cth*alpha*sth*(-4.*a3*g21*h21*g12*h22*beta*c2*alpha
 	-4.*a3*g11*h21*h21*g21*beta*c2*alpha
 	+4.*a3*g11_2*h21*h21*alpha*sth*beta*cth
-	-4.*a3*g21*g21*h21*h21*alpha*sth*beta*cth
+	-4.*a3*g21_2*h21*h21*alpha*sth*beta*cth
 	+4.*a3*g12_2*h22*h22*alpha*sth*beta*cth
 	+4.*a3*g11*h21*g22*h22*alpha*s2*beta
 	-4.*a3*g12*h22*h22*g22*beta*c2*alpha
@@ -1310,7 +1310,7 @@ pose_from_point_tangents_2(
 	+2.*a3*g11*h21*g12*h22*beta*beta*s2
 	+a3*g11_2*h21*h21*beta*beta*s2
 	-2.*a3*g11*h21*h21*g21*beta*beta*cth*sth
-	+a3*g21*g21*h21*h21*beta*beta*c2
+	+a3*g21_2*h21*h21*beta*beta*c2
 	-2.*a3*g12*h22*h22*g22*beta*beta*cth*sth
 	-2.*a3*g21*h21*g12*h22*beta*beta*cth*sth
 	+2.*a3*g21*h21*g22*h22*beta*beta*c2
@@ -1318,7 +1318,7 @@ pose_from_point_tangents_2(
 	-2.*a3*g11*h21*g22*h22*beta*beta*cth*sth);
 
 	G3 = -beta*beta*c2*(4.*a3*g22_2*h22*h22*alpha*sth*beta*cth
-	+4.*a3*g21*g21*h21*h21*alpha*sth*beta*cth
+	+4.*a3*g21_2*h21*h21*alpha*sth*beta*cth
 	+4.*a3*g11*h21*h21*g21*beta*c2*alpha
 	-4.*a3*g12*h22*h22*g22*alpha*s2*beta
 	+4.*a3*g11*h21*g22*h22*beta*c2*alpha
@@ -1343,11 +1343,11 @@ pose_from_point_tangents_2(
 	+4.*a3*g11*h21*h21*g21*beta*beta*cth*sth
 	+4.*a3*g22_2*h22*h22*alpha*alpha*s2
 	+4.*a3*g12_2*h22*h22*alpha*alpha*c2
-	+4.*a3*g21*g21*h21*h21*alpha*alpha*s2
+	+4.*a3*g21_2*h21*h21*alpha*alpha*s2
 	-4.*a3*g21*h21*g22*h22*beta*beta*c2
 	-2.*a3*g12_2*h22*h22*beta*beta*s2
 	+8.*a3*g12*h22*h22*g22*alpha*alpha*sth*cth
-	-2.*a3*g21*g21*h21*h21*beta*beta*c2
+	-2.*a3*g21_2*h21*h21*beta*beta*c2
 	+4.*a3*g11*h21*g22*h22*beta*beta*cth*sth
 	+8.*a3*g21*h21*g22*h22*alpha*alpha*s2
 	+4.*a3*g21*h21*g12*h22*beta*beta*cth*sth
@@ -1357,7 +1357,7 @@ pose_from_point_tangents_2(
 	+4.*alpha*alpha*s2)*(-4.*a3*g21*h21*g12*h22*beta*c2*alpha
 	-4.*a3*g11*h21*h21*g21*beta*c2*alpha
 	+4.*a3*g11_2*h21*h21*alpha*sth*beta*cth
-	-4.*a3*g21*g21*h21*h21*alpha*sth*beta*cth
+	-4.*a3*g21_2*h21*h21*alpha*sth*beta*cth
 	+4.*a3*g12_2*h22*h22*alpha*sth*beta*cth
 	+4.*a3*g11*h21*g22*h22*alpha*s2*beta
 	-4.*a3*g12*h22*h22*g22*beta*c2*alpha
@@ -1374,7 +1374,7 @@ pose_from_point_tangents_2(
 	+2.*a3*g11*h21*g12*h22*beta*beta*s2
 	+a3*g11_2*h21*h21*beta*beta*s2
 	-2.*a3*g11*h21*h21*g21*beta*beta*cth*sth
-	+a3*g21*g21*h21*h21*beta*beta*c2
+	+a3*g21_2*h21*h21*beta*beta*c2
 	-2.*a3*g12*h22*h22*g22*beta*beta*cth*sth
 	-2.*a3*g21*h21*g12*h22*beta*beta*cth*sth
 	+2.*a3*g21*h21*g22*h22*beta*beta*c2
@@ -1387,14 +1387,14 @@ pose_from_point_tangents_2(
 	+2.*a3*g11*h21*g12*h22*beta*beta*s2
 	+a3*g11_2*h21*h21*beta*beta*s2
 	-2.*a3*g11*h21*h21*g21*beta*beta*cth*sth
-	+a3*g21*g21*h21*h21*beta*beta*c2
+	+a3*g21_2*h21*h21*beta*beta*c2
 	-2.*a3*g12*h22*h22*g22*beta*beta*cth*sth
 	-2.*a3*g21*h21*g12*h22*beta*beta*cth*sth
 	+2.*a3*g21*h21*g22*h22*beta*beta*c2
 	+a3*g22_2*h22*h22*beta*beta*c2
 	-2.*a3*g11*h21*g22*h22*beta*beta*cth*sth)
 	+4.*beta*cth*alpha*sth*(4.*a3*g22_2*h22*h22*alpha*sth*beta*cth
-	+4.*a3*g21*g21*h21*h21*alpha*sth*beta*cth
+	+4.*a3*g21_2*h21*h21*alpha*sth*beta*cth
 	+4.*a3*g11*h21*h21*g21*beta*c2*alpha
 	-4.*a3*g12*h22*h22*g22*alpha*s2*beta
 	+4.*a3*g11*h21*g22*h22*beta*c2*alpha
@@ -1420,11 +1420,11 @@ pose_from_point_tangents_2(
 	+4.*a3*g11*h21*h21*g21*beta*beta*cth*sth
 	+4.*a3*g22_2*h22*h22*alpha*alpha*s2
 	+4.*a3*g12_2*h22*h22*alpha*alpha*c2
-	+4.*a3*g21*g21*h21*h21*alpha*alpha*s2
+	+4.*a3*g21_2*h21*h21*alpha*alpha*s2
 	-4.*a3*g21*h21*g22*h22*beta*beta*c2
 	-2.*a3*g12_2*h22*h22*beta*beta*s2
 	+8.*a3*g12*h22*h22*g22*alpha*alpha*sth*cth
-	-2.*a3*g21*g21*h21*h21*beta*beta*c2
+	-2.*a3*g21_2*h21*h21*beta*beta*c2
 	+4.*a3*g11*h21*g22*h22*beta*beta*cth*sth
 	+8.*a3*g21*h21*g22*h22*alpha*alpha*s2
 	+4.*a3*g21*h21*g12*h22*beta*beta*cth*sth
@@ -1433,7 +1433,7 @@ pose_from_point_tangents_2(
 	-4.*beta*cth*alpha*sth*(-4.*a3*g21*h21*g12*h22*beta*c2*alpha
 	-4.*a3*g11*h21*h21*g21*beta*c2*alpha
 	+4.*a3*g11_2*h21*h21*alpha*sth*beta*cth
-	-4.*a3*g21*g21*h21*h21*alpha*sth*beta*cth
+	-4.*a3*g21_2*h21*h21*alpha*sth*beta*cth
 	+4.*a3*g12_2*h22*h22*alpha*sth*beta*cth
 	+4.*a3*g11*h21*g22*h22*alpha*s2*beta
 	-4.*a3*g12*h22*h22*g22*beta*c2*alpha
@@ -1454,7 +1454,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	+a5*g11*h11*g12*h22*beta*beta*s2
 	-a5*g11*h11*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*h11*h21*beta*beta*c2
+	+a5*g21_2*h11*h21*beta*beta*c2
 	-a5*g21*h11*g12*h22*beta*beta*sth*cth
 	+a5*g12*h12*g11*h21*beta*beta*s2
 	+a5*g21*h11*g22*h22*beta*beta*c2
@@ -1470,7 +1470,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g12*h12*g22*h22*beta*s2*alpha
 	-4.*a5*g22*h12*g21*h21*alpha*cth*beta*sth
 	+2.*a5*g11*h11*g22*h22*beta*s2*alpha
-	-4.*a5*g21*g21*h11*h21*alpha*cth*beta*sth
+	-4.*a5*g21_2*h11*h21*alpha*cth*beta*sth
 	+2.*a5*g22*h12*g11*h21*beta*s2*alpha
 	-4.*a5*g21*h11*g22*h22*alpha*cth*beta*sth
 	-2.*a5*g11*h11*g22*h22*alpha*c2*beta
@@ -1492,7 +1492,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	+a5*g11*h11*g12*h22*beta*beta*s2
 	-a5*g11*h11*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*h11*h21*beta*beta*c2
+	+a5*g21_2*h11*h21*beta*beta*c2
 	-a5*g21*h11*g12*h22*beta*beta*sth*cth
 	+a5*g12*h12*g11*h21*beta*beta*s2
 	+a5*g21*h11*g22*h22*beta*beta*c2
@@ -1509,7 +1509,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	-2.*a5*g11*h11*g12*h22*beta*beta*s2
 	+2.*a5*g11*h11*g22*h22*beta*beta*sth*cth
-	-2.*a5*g21*g21*h11*h21*beta*beta*c2
+	-2.*a5*g21_2*h11*h21*beta*beta*c2
 	+2.*a5*g21*h11*g12*h22*beta*beta*sth*cth
 	-2.*a5*g12*h12*g11*h21*beta*beta*s2
 	-2.*a5*g21*h11*g22*h22*beta*beta*c2
@@ -1518,7 +1518,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g12_2*h12*h22*beta*beta*s2
 	+4.*a5*g11*h11*g22*h22*alpha*alpha*cth*sth
 	+4.*a5*g11*h11*g12*h22*alpha*alpha*c2
-	+4.*a5*g21*g21*h11*h21*alpha*alpha*s2
+	+4.*a5*g21_2*h11*h21*alpha*alpha*s2
 	+8.*a5*g11*h11*g21*h21*alpha*alpha*cth*sth
 	+8.*a5*g12*h12*g22*h22*alpha*alpha*cth*sth
 	+4.*a5*g22*h12*g21*h21*alpha*alpha*s2
@@ -1539,7 +1539,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g12*h12*g22*h22*beta*s2*alpha
 	-4.*a5*g22*h12*g21*h21*alpha*cth*beta*sth
 	+2.*a5*g11*h11*g22*h22*beta*s2*alpha
-	-4.*a5*g21*g21*h11*h21*alpha*cth*beta*sth
+	-4.*a5*g21_2*h11*h21*alpha*cth*beta*sth
 	+2.*a5*g22*h12*g11*h21*beta*s2*alpha
 	-4.*a5*g21*h11*g22*h22*alpha*cth*beta*sth
 	-2.*a5*g11*h11*g22*h22*alpha*c2*beta
@@ -1561,7 +1561,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	+a5*g11*h11*g12*h22*beta*beta*s2
 	-a5*g11*h11*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*h11*h21*beta*beta*c2
+	+a5*g21_2*h11*h21*beta*beta*c2
 	-a5*g21*h11*g12*h22*beta*beta*sth*cth
 	+a5*g12*h12*g11*h21*beta*beta*s2
 	+a5*g21*h11*g22*h22*beta*beta*c2
@@ -1569,7 +1569,7 @@ pose_from_point_tangents_2(
 	-a5*g12*h12*g21*h21*beta*beta*sth*cth
 	+a5*g12_2*h12*h22*beta*beta*s2);
 
-	H3 = -beta*beta*sth*cth*(4.*a5*g21*g21*h11*h21*alpha*cth*beta*sth
+	H3 = -beta*beta*sth*cth*(4.*a5*g21_2*h11*h21*alpha*cth*beta*sth
 	-4.*a5*g11*h11*g12*h22*alpha*cth*beta*sth
 	-4.*a5*g12*h12*g22*h22*beta*s2*alpha
 	-4.*a5*g12*h12*g11*h21*alpha*cth*beta*sth
@@ -1599,7 +1599,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	-2.*a5*g11*h11*g12*h22*beta*beta*s2
 	+2.*a5*g11*h11*g22*h22*beta*beta*sth*cth
-	-2.*a5*g21*g21*h11*h21*beta*beta*c2
+	-2.*a5*g21_2*h11*h21*beta*beta*c2
 	+2.*a5*g21*h11*g12*h22*beta*beta*sth*cth
 	-2.*a5*g12*h12*g11*h21*beta*beta*s2
 	-2.*a5*g21*h11*g22*h22*beta*beta*c2
@@ -1608,7 +1608,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g12_2*h12*h22*beta*beta*s2
 	+4.*a5*g11*h11*g22*h22*alpha*alpha*cth*sth
 	+4.*a5*g11*h11*g12*h22*alpha*alpha*c2
-	+4.*a5*g21*g21*h11*h21*alpha*alpha*s2
+	+4.*a5*g21_2*h11*h21*alpha*alpha*s2
 	+8.*a5*g11*h11*g21*h21*alpha*alpha*cth*sth
 	+8.*a5*g12*h12*g22*h22*alpha*alpha*cth*sth
 	+4.*a5*g22*h12*g21*h21*alpha*alpha*s2
@@ -1629,7 +1629,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g12*h12*g22*h22*beta*s2*alpha
 	-4.*a5*g22*h12*g21*h21*alpha*cth*beta*sth
 	+2.*a5*g11*h11*g22*h22*beta*s2*alpha
-	-4.*a5*g21*g21*h11*h21*alpha*cth*beta*sth
+	-4.*a5*g21_2*h11*h21*alpha*cth*beta*sth
 	+2.*a5*g22*h12*g11*h21*beta*s2*alpha
 	-4.*a5*g21*h11*g22*h22*alpha*cth*beta*sth
 	-2.*a5*g11*h11*g22*h22*alpha*c2*beta
@@ -1651,7 +1651,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	+a5*g11*h11*g12*h22*beta*beta*s2
 	-a5*g11*h11*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*h11*h21*beta*beta*c2
+	+a5*g21_2*h11*h21*beta*beta*c2
 	-a5*g21*h11*g12*h22*beta*beta*sth*cth
 	+a5*g12*h12*g11*h21*beta*beta*s2
 	+a5*g21*h11*g22*h22*beta*beta*c2
@@ -1668,7 +1668,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	+a5*g11*h11*g12*h22*beta*beta*s2
 	-a5*g11*h11*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*h11*h21*beta*beta*c2
+	+a5*g21_2*h11*h21*beta*beta*c2
 	-a5*g21*h11*g12*h22*beta*beta*sth*cth
 	+a5*g12*h12*g11*h21*beta*beta*s2
 	+a5*g21*h11*g22*h22*beta*beta*c2
@@ -1676,7 +1676,7 @@ pose_from_point_tangents_2(
 	-a5*g12*h12*g21*h21*beta*beta*sth*cth
 	+a5*g12_2*h12*h22*beta*beta*s2)
 	-(-2.*beta*s2*alpha
-	+2.*alpha*c2*beta)*(4.*a5*g21*g21*h11*h21*alpha*cth*beta*sth
+	+2.*alpha*c2*beta)*(4.*a5*g21_2*h11*h21*alpha*cth*beta*sth
 	-4.*a5*g11*h11*g12*h22*alpha*cth*beta*sth
 	-4.*a5*g12*h12*g22*h22*beta*s2*alpha
 	-4.*a5*g12*h12*g11*h21*alpha*cth*beta*sth
@@ -1706,7 +1706,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g11*h11*g21*h21*beta*beta*sth*cth
 	-2.*a5*g11*h11*g12*h22*beta*beta*s2
 	+2.*a5*g11*h11*g22*h22*beta*beta*sth*cth
-	-2.*a5*g21*g21*h11*h21*beta*beta*c2
+	-2.*a5*g21_2*h11*h21*beta*beta*c2
 	+2.*a5*g21*h11*g12*h22*beta*beta*sth*cth
 	-2.*a5*g12*h12*g11*h21*beta*beta*s2
 	-2.*a5*g21*h11*g22*h22*beta*beta*c2
@@ -1715,7 +1715,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g12_2*h12*h22*beta*beta*s2
 	+4.*a5*g11*h11*g22*h22*alpha*alpha*cth*sth
 	+4.*a5*g11*h11*g12*h22*alpha*alpha*c2
-	+4.*a5*g21*g21*h11*h21*alpha*alpha*s2
+	+4.*a5*g21_2*h11*h21*alpha*alpha*s2
 	+8.*a5*g11*h11*g21*h21*alpha*alpha*cth*sth
 	+8.*a5*g12*h12*g22*h22*alpha*alpha*cth*sth
 	+4.*a5*g22*h12*g21*h21*alpha*alpha*s2
@@ -1736,7 +1736,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g12*h12*g22*h22*beta*s2*alpha
 	-4.*a5*g22*h12*g21*h21*alpha*cth*beta*sth
 	+2.*a5*g11*h11*g22*h22*beta*s2*alpha
-	-4.*a5*g21*g21*h11*h21*alpha*cth*beta*sth
+	-4.*a5*g21_2*h11*h21*alpha*cth*beta*sth
 	+2.*a5*g22*h12*g11*h21*beta*s2*alpha
 	-4.*a5*g21*h11*g22*h22*alpha*cth*beta*sth
 	-2.*a5*g11*h11*g22*h22*alpha*c2*beta
@@ -1769,7 +1769,7 @@ pose_from_point_tangents_2(
 	+a5*g11_3*h21*beta*beta*s2
 	+a5*g11_2*g12*h22*beta*beta*s2
 	-a5*g11_2*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*g11*h21*beta*beta*c2
+	+a5*g21_2*g11*h21*beta*beta*c2
 	+a5*g21*g11*g22*h22*beta*beta*c2
 	+a5*g22*h22*beta*beta*c2
 	-2.*a5*g12_2*g22*h22*beta*beta*sth*cth);
@@ -1805,7 +1805,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g12_2*g22*h22*beta*s2*alpha
 	+2.*a5*g11*h21*beta*s2*alpha
 	+2.*a5*g11_2*g22*h22*beta*s2*alpha
-	-4.*a5*g21*g21*g11*h21*alpha*cth*beta*sth)
+	-4.*a5*g21_2*g11*h21*alpha*cth*beta*sth)
 	+2.*alpha*sth*(-a4*a6*g12*h22
 	-a4*a6*g11*h21
 	+a5*g12*h22*beta*beta*s2
@@ -1826,7 +1826,7 @@ pose_from_point_tangents_2(
 	+a5*g11_3*h21*beta*beta*s2
 	+a5*g11_2*g12*h22*beta*beta*s2
 	-a5*g11_2*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*g11*h21*beta*beta*c2
+	+a5*g21_2*g11*h21*beta*beta*c2
 	+a5*g21*g11*g22*h22*beta*beta*c2
 	+a5*g22*h22*beta*beta*c2
 	-2.*a5*g12_2*g22*h22*beta*beta*sth*cth);
@@ -1851,7 +1851,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g11_3*h21*beta*beta*s2
 	-2.*a5*(g11_2)*g12*h22*beta*beta*s2
 	+2.*a5*(g11_2)*g22*h22*beta*beta*sth*cth
-	-2.*a5*g21*g21*g11*h21*beta*beta*c2
+	-2.*a5*g21_2*g11*h21*beta*beta*c2
 	-2.*a5*g21*g11*g22*h22*beta*beta*c2
 	-2.*a5*g22*h22*beta*beta*c2
 	+4.*a5*(g12_2)*g22*h22*beta*beta*sth*cth
@@ -1876,7 +1876,7 @@ pose_from_point_tangents_2(
 	+4.*a5*(g12_2)*g11*h21*alpha*alpha*c2
 	+4.*a5*g22*h22*alpha*alpha*s2
 	+8.*a5*(g12_2)*g22*h22*alpha*alpha*cth*sth
-	+4.*a5*g21*g21*g11*h21*alpha*alpha*s2)
+	+4.*a5*g21_2*g11*h21*alpha*alpha*s2)
 	+2.*alpha*sth*(4.*a5*(g11_2)*g12*h22*alpha*cth*beta*sth
 	-2.*a5*(g11_2)*g22*h22*alpha*c2*beta
 	-2.*a5*g21*g11*g12*h22*alpha*c2*beta
@@ -1908,7 +1908,7 @@ pose_from_point_tangents_2(
 	+4.*a5*(g12_2)*g22*h22*beta*s2*alpha
 	+2.*a5*g11*h21*beta*s2*alpha
 	+2.*a5*(g11_2)*g22*h22*beta*s2*alpha
-	-4.*a5*g21*g21*g11*h21*alpha*cth*beta*sth)
+	-4.*a5*g21_2*g11*h21*alpha*cth*beta*sth)
 	+beta*cth*(-(a4*a6*g12*h22)
 	-(a4*a6*g11*h21)
 	+a5*g12*h22*beta*beta*s2
@@ -1929,7 +1929,7 @@ pose_from_point_tangents_2(
 	+a5*g11_3*h21*beta*beta*s2
 	+a5*(g11_2)*g12*h22*beta*beta*s2
 	-a5*(g11_2)*g22*h22*beta*beta*sth*cth
-	+a5*g21*g21*g11*h21*beta*beta*c2
+	+a5*g21_2*g11*h21*beta*beta*c2
 	+a5*g21*g11*g22*h22*beta*beta*c2
 	+a5*g22*h22*beta*beta*c2
 	-2.*a5*(g12_2)*g22*h22*beta*beta*sth*cth);
@@ -1965,7 +1965,7 @@ pose_from_point_tangents_2(
 	-4.*a5*g12_2*g22*h22*beta*s2*alpha
 	-2.*a5*g11*h21*beta*s2*alpha
 	-2.*a5*g11_2*g22*h22*beta*s2*alpha
-	+4.*a5*g21*g21*g11*h21*alpha*cth*beta*sth)
+	+4.*a5*g21_2*g11*h21*alpha*cth*beta*sth)
 	+2.*alpha*sth*(-2.*a4*a6*g12*h22
 	-2.*a4*a6*g11*h21
 	-2.*a5*g12*h22*beta*beta*s2
@@ -1986,7 +1986,7 @@ pose_from_point_tangents_2(
 	-2.*a5*g11_3*h21*beta*beta*s2
 	-2.*a5*g11_2*g12*h22*beta*beta*s2
 	+2.*a5*g11_2*g22*h22*beta*beta*sth*cth
-	-2.*a5*g21*g21*g11*h21*beta*beta*c2
+	-2.*a5*g21_2*g11*h21*beta*beta*c2
 	-2.*a5*g21*g11*g22*h22*beta*beta*c2
 	-2.*a5*g22*h22*beta*beta*c2
 	+4.*a5*g12_2*g22*h22*beta*beta*sth*cth
@@ -2011,7 +2011,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g12_2*g11*h21*alpha*alpha*c2
 	+4.*a5*g22*h22*alpha*alpha*s2
 	+8.*a5*g12_2*g22*h22*alpha*alpha*cth*sth
-	+4.*a5*g21*g21*g11*h21*alpha*alpha*s2)
+	+4.*a5*g21_2*g11*h21*alpha*alpha*s2)
 	+beta*cth*(4.*a5*g11_2*g12*h22*alpha*cth*beta*sth
 	-2.*a5*g11_2*g22*h22*alpha*c2*beta
 	-2.*a5*g21*g11*g12*h22*alpha*c2*beta
@@ -2043,7 +2043,7 @@ pose_from_point_tangents_2(
 	+4.*a5*g12_2*g22*h22*beta*s2*alpha
 	+2.*a5*g11*h21*beta*s2*alpha
 	+2.*a5*g11_2*g22*h22*beta*s2*alpha
-	-4.*a5*g21*g21*g11*h21*alpha*cth*beta*sth);
+	-4.*a5*g21_2*g11*h21*alpha*cth*beta*sth);
 
 	K0 = -beta*sth*(a5*g21_3*h11*beta*beta*c2
 	-a5*g12*h12*beta*beta*sth*cth
@@ -2056,12 +2056,12 @@ pose_from_point_tangents_2(
 	+a5*g22_3*h12*beta*beta*c2
 	+a5*g11_2*h11*g21*beta*beta*s2
 	-a5*g21*h11*g12*g22*beta*beta*sth*cth
-	+a5*g22*h12*g21*g21*beta*beta*c2
+	+a5*g22*h12*g21_2*beta*beta*c2
 	+a5*g21*h11*g22_2*beta*beta*c2
 	-a5*g21*h11*beta*beta*sth*cth
 	+a5*g12*h12*g11*g21*beta*beta*s2
-	-a5*g12*h12*g21*g21*beta*beta*sth*cth
-	-2.*a5*g11*h11*g21*g21*beta*beta*sth*cth
+	-a5*g12*h12*g21_2*beta*beta*sth*cth
+	-2.*a5*g11*h11*g21_2*beta*beta*sth*cth
 	+a5*g11*h11*g12*g22*beta*beta*s2
 	-a5*g11*h11*g22_2*beta*beta*sth*cth
 	+a5*g12_2*h12*g22*beta*beta*s2
@@ -2073,7 +2073,7 @@ pose_from_point_tangents_2(
 	K1 = -beta*sth*(2.*a5*g22*h12*g11*g21*beta*s2*alpha
 	+2.*a5*g12*h12*beta*s2*alpha
 	-2.*a5*g22*h12*g11*g21*alpha*c2*beta
-	-4.*a5*g22*h12*g21*g21*alpha*cth*beta*sth
+	-4.*a5*g22*h12*g21_2*alpha*cth*beta*sth
 	+4.*a5*g12_2*h12*g22*alpha*cth*beta*sth
 	-4.*a5*g21*h11*g22_2*alpha*cth*beta*sth
 	+4.*a5*g12*h12*g11*g21*alpha*cth*beta*sth
@@ -2086,17 +2086,17 @@ pose_from_point_tangents_2(
 	+2.*a5*g11*h11*beta*s2*alpha
 	-4.*a5*g21_3*h11*alpha*cth*beta*sth
 	-2.*a5*g11*h11*alpha*c2*beta
-	+2.*a5*g12*h12*g21*g21*beta*s2*alpha
+	+2.*a5*g12*h12*g21_2*beta*s2*alpha
 	+4.*a5*g11*h11*alpha*cth*beta*sth
-	+4.*a5*g11*h11*g21*g21*beta*s2*alpha
-	-4.*a5*g11*h11*g21*g21*alpha*c2*beta
+	+4.*a5*g11*h11*g21_2*beta*s2*alpha
+	-4.*a5*g11*h11*g21_2*alpha*c2*beta
 	+2.*a5*g11*h11*g22_2*beta*s2*alpha
 	-2.*a5*g11*h11*g22_2*alpha*c2*beta
 	-2.*a5*g21*h11*g12*g22*alpha*c2*beta
 	+4.*a5*g11*h11*g12*g22*alpha*cth*beta*sth
 	+2.*a5*g22*h12*beta*s2*alpha
 	-2.*a5*g22*h12*alpha*c2*beta
-	-2.*a5*g12*h12*g21*g21*alpha*c2*beta
+	-2.*a5*g12*h12*g21_2*alpha*c2*beta
 	-4.*a5*g12*h12*g22_2*alpha*c2*beta
 	-4.*a5*g22_3*h12*alpha*cth*beta*sth
 	+2.*a5*g21*h11*beta*s2*alpha
@@ -2113,12 +2113,12 @@ pose_from_point_tangents_2(
 	+a5*g22_3*h12*beta*beta*c2
 	+a5*g11_2*h11*g21*beta*beta*s2
 	-a5*g21*h11*g12*g22*beta*beta*sth*cth
-	+a5*g22*h12*g21*g21*beta*beta*c2
+	+a5*g22*h12*g21_2*beta*beta*c2
 	+a5*g21*h11*g22_2*beta*beta*c2
 	-a5*g21*h11*beta*beta*sth*cth
 	+a5*g12*h12*g11*g21*beta*beta*s2
-	-a5*g12*h12*g21*g21*beta*beta*sth*cth
-	-2.*a5*g11*h11*g21*g21*beta*beta*sth*cth
+	-a5*g12*h12*g21_2*beta*beta*sth*cth
+	-2.*a5*g11*h11*g21_2*beta*beta*sth*cth
 	+a5*g11*h11*g12*g22*beta*beta*s2
 	-a5*g11*h11*g22_2*beta*beta*sth*cth
 	+a5*g12_2*h12*g22*beta*beta*s2
@@ -2138,12 +2138,12 @@ pose_from_point_tangents_2(
 	-2.*a5*g22_3*h12*beta*beta*c2
 	-2.*a5*g11_2*h11*g21*beta*beta*s2
 	+2.*a5*g21*h11*g12*g22*beta*beta*sth*cth
-	-2.*a5*g22*h12*g21*g21*beta*beta*c2
+	-2.*a5*g22*h12*g21_2*beta*beta*c2
 	-2.*a5*g21*h11*g22_2*beta*beta*c2
 	+2.*a5*g21*h11*beta*beta*sth*cth
 	-2.*a5*g12*h12*g11*g21*beta*beta*s2
-	+2.*a5*g12*h12*g21*g21*beta*beta*sth*cth
-	+4.*a5*g11*h11*g21*g21*beta*beta*sth*cth
+	+2.*a5*g12*h12*g21_2*beta*beta*sth*cth
+	+4.*a5*g11*h11*g21_2*beta*beta*sth*cth
 	-2.*a5*g11*h11*g12*g22*beta*beta*s2
 	+2.*a5*g11*h11*g22_2*beta*beta*sth*cth
 	-2.*a5*g12_2*h12*g22*beta*beta*s2
@@ -2162,13 +2162,13 @@ pose_from_point_tangents_2(
 	+4.*a5*g12_2*h12*g22*alpha*alpha*c2
 	+4.*a5*g11*h11*alpha*alpha*cth*sth
 	+4.*a5*g12*h12*g11*g21*alpha*alpha*c2
-	+8.*a5*g11*h11*g21*g21*alpha*alpha*cth*sth
+	+8.*a5*g11*h11*g21_2*alpha*alpha*cth*sth
 	+4.*a5*g11*h11*alpha*alpha*c2
 	+4.*a5*g11*h11*g22_2*alpha*alpha*cth*sth
 	+4.*a5*g21*h11*g12*g22*alpha*alpha*cth*sth
 	+4.*a5*g22*h12*alpha*alpha*cth*sth
-	+4.*a5*g22*h12*g21*g21*alpha*alpha*s2
-	+4.*a5*g12*h12*g21*g21*alpha*alpha*cth*sth
+	+4.*a5*g22*h12*g21_2*alpha*alpha*s2
+	+4.*a5*g12*h12*g21_2*alpha*alpha*cth*sth
 	+4.*a5*g11_2*h11*g21*alpha*alpha*c2
 	+8.*a5*g12*h12*g22_2*alpha*alpha*cth*sth
 	+4.*a5*g21*h11*alpha*alpha*cth*sth
@@ -2176,7 +2176,7 @@ pose_from_point_tangents_2(
 	-2.*alpha*cth*(2.*a5*g22*h12*g11*g21*beta*s2*alpha
 	+2.*a5*g12*h12*beta*s2*alpha
 	-2.*a5*g22*h12*g11*g21*alpha*c2*beta
-	-4.*a5*g22*h12*g21*g21*alpha*cth*beta*sth
+	-4.*a5*g22*h12*g21_2*alpha*cth*beta*sth
 	+4.*a5*g12_2*h12*g22*alpha*cth*beta*sth
 	-4.*a5*g21*h11*g22_2*alpha*cth*beta*sth
 	+4.*a5*g12*h12*g11*g21*alpha*cth*beta*sth
@@ -2189,17 +2189,17 @@ pose_from_point_tangents_2(
 	+2.*a5*g11*h11*beta*s2*alpha
 	-4.*a5*g21_3*h11*alpha*cth*beta*sth
 	-2.*a5*g11*h11*alpha*c2*beta
-	+2.*a5*g12*h12*g21*g21*beta*s2*alpha
+	+2.*a5*g12*h12*g21_2*beta*s2*alpha
 	+4.*a5*g11*h11*alpha*cth*beta*sth
-	+4.*a5*g11*h11*g21*g21*beta*s2*alpha
-	-4.*a5*g11*h11*g21*g21*alpha*c2*beta
+	+4.*a5*g11*h11*g21_2*beta*s2*alpha
+	-4.*a5*g11*h11*g21_2*alpha*c2*beta
 	+2.*a5*g11*h11*g22_2*beta*s2*alpha
 	-2.*a5*g11*h11*g22_2*alpha*c2*beta
 	-2.*a5*g21*h11*g12*g22*alpha*c2*beta
 	+4.*a5*g11*h11*g12*g22*alpha*cth*beta*sth
 	+2.*a5*g22*h12*beta*s2*alpha
 	-2.*a5*g22*h12*alpha*c2*beta
-	-2.*a5*g12*h12*g21*g21*alpha*c2*beta
+	-2.*a5*g12*h12*g21_2*alpha*c2*beta
 	-4.*a5*g12*h12*g22_2*alpha*c2*beta
 	-4.*a5*g22_3*h12*alpha*cth*beta*sth
 	+2.*a5*g21*h11*beta*s2*alpha
@@ -2216,12 +2216,12 @@ pose_from_point_tangents_2(
 	+a5*g22_3*h12*beta*beta*c2
 	+a5*g11_2*h11*g21*beta*beta*s2
 	-a5*g21*h11*g12*g22*beta*beta*sth*cth
-	+a5*g22*h12*g21*g21*beta*beta*c2
+	+a5*g22*h12*g21_2*beta*beta*c2
 	+a5*g21*h11*g22_2*beta*beta*c2
 	-a5*g21*h11*beta*beta*sth*cth
 	+a5*g12*h12*g11*g21*beta*beta*s2
-	-a5*g12*h12*g21*g21*beta*beta*sth*cth
-	-2.*a5*g11*h11*g21*g21*beta*beta*sth*cth
+	-a5*g12*h12*g21_2*beta*beta*sth*cth
+	-2.*a5*g11*h11*g21_2*beta*beta*sth*cth
 	+a5*g11*h11*g12*g22*beta*beta*s2
 	-a5*g11*h11*g22_2*beta*beta*sth*cth
 	+a5*g12_2*h12*g22*beta*beta*s2
@@ -2233,7 +2233,7 @@ pose_from_point_tangents_2(
 	K3 = -beta*sth*(-2.*a5*g22*h12*g11*g21*beta*s2*alpha
 	-2.*a5*g12*h12*beta*s2*alpha
 	+2.*a5*g22*h12*g11*g21*alpha*c2*beta
-	+4.*a5*g22*h12*g21*g21*alpha*cth*beta*sth
+	+4.*a5*g22*h12*g21_2*alpha*cth*beta*sth
 	-4.*a5*g12_2*h12*g22*alpha*cth*beta*sth
 	+4.*a5*g21*h11*g22_2*alpha*cth*beta*sth
 	-4.*a5*g12*h12*g11*g21*alpha*cth*beta*sth
@@ -2246,17 +2246,17 @@ pose_from_point_tangents_2(
 	-2.*a5*g11*h11*beta*s2*alpha
 	+4.*a5*g21_3*h11*alpha*cth*beta*sth
 	+2.*a5*g11*h11*alpha*c2*beta
-	-2.*a5*g12*h12*g21*g21*beta*s2*alpha
+	-2.*a5*g12*h12*g21_2*beta*s2*alpha
 	-4.*a5*g11*h11*alpha*cth*beta*sth
-	-4.*a5*g11*h11*g21*g21*beta*s2*alpha
-	+4.*a5*g11*h11*g21*g21*alpha*c2*beta
+	-4.*a5*g11*h11*g21_2*beta*s2*alpha
+	+4.*a5*g11*h11*g21_2*alpha*c2*beta
 	-2.*a5*g11*h11*g22_2*beta*s2*alpha
 	+2.*a5*g11*h11*g22_2*alpha*c2*beta
 	+2.*a5*g21*h11*g12*g22*alpha*c2*beta
 	-4.*a5*g11*h11*g12*g22*alpha*cth*beta*sth
 	-2.*a5*g22*h12*beta*s2*alpha
 	+2.*a5*g22*h12*alpha*c2*beta
-	+2.*a5*g12*h12*g21*g21*alpha*c2*beta
+	+2.*a5*g12*h12*g21_2*alpha*c2*beta
 	+4.*a5*g12*h12*g22_2*alpha*c2*beta
 	+4.*a5*g22_3*h12*alpha*cth*beta*sth
 	-2.*a5*g21*h11*beta*s2*alpha
@@ -2273,12 +2273,12 @@ pose_from_point_tangents_2(
 	-2.*a5*g22_3*h12*beta*beta*c2
 	-2.*a5*g11_2*h11*g21*beta*beta*s2
 	+2.*a5*g21*h11*g12*g22*beta*beta*sth*cth
-	-2.*a5*g22*h12*g21*g21*beta*beta*c2
+	-2.*a5*g22*h12*g21_2*beta*beta*c2
 	-2.*a5*g21*h11*g22_2*beta*beta*c2
 	+2.*a5*g21*h11*beta*beta*sth*cth
 	-2.*a5*g12*h12*g11*g21*beta*beta*s2
-	+2.*a5*g12*h12*g21*g21*beta*beta*sth*cth
-	+4.*a5*g11*h11*g21*g21*beta*beta*sth*cth
+	+2.*a5*g12*h12*g21_2*beta*beta*sth*cth
+	+4.*a5*g11*h11*g21_2*beta*beta*sth*cth
 	-2.*a5*g11*h11*g12*g22*beta*beta*s2
 	+2.*a5*g11*h11*g22_2*beta*beta*sth*cth
 	-2.*a5*g12_2*h12*g22*beta*beta*s2
@@ -2297,13 +2297,13 @@ pose_from_point_tangents_2(
 	+4.*a5*g12_2*h12*g22*alpha*alpha*c2
 	+4.*a5*g11*h11*alpha*alpha*cth*sth
 	+4.*a5*g12*h12*g11*g21*alpha*alpha*c2
-	+8.*a5*g11*h11*g21*g21*alpha*alpha*cth*sth
+	+8.*a5*g11*h11*g21_2*alpha*alpha*cth*sth
 	+4.*a5*g11*h11*alpha*alpha*c2
 	+4.*a5*g11*h11*g22_2*alpha*alpha*cth*sth
 	+4.*a5*g21*h11*g12*g22*alpha*alpha*cth*sth
 	+4.*a5*g22*h12*alpha*alpha*cth*sth
-	+4.*a5*g22*h12*g21*g21*alpha*alpha*s2
-	+4.*a5*g12*h12*g21*g21*alpha*alpha*cth*sth
+	+4.*a5*g22*h12*g21_2*alpha*alpha*s2
+	+4.*a5*g12*h12*g21_2*alpha*alpha*cth*sth
 	+4.*a5*g11_2*h11*g21*alpha*alpha*c2
 	+8.*a5*g12*h12*g22_2*alpha*alpha*cth*sth
 	+4.*a5*g21*h11*alpha*alpha*cth*sth
@@ -2311,7 +2311,7 @@ pose_from_point_tangents_2(
 	+beta*sth*(2.*a5*g22*h12*g11*g21*beta*s2*alpha
 	+2.*a5*g12*h12*beta*s2*alpha
 	-2.*a5*g22*h12*g11*g21*alpha*c2*beta
-	-4.*a5*g22*h12*g21*g21*alpha*cth*beta*sth
+	-4.*a5*g22*h12*g21_2*alpha*cth*beta*sth
 	+4.*a5*g12_2*h12*g22*alpha*cth*beta*sth
 	-4.*a5*g21*h11*g22_2*alpha*cth*beta*sth
 	+4.*a5*g12*h12*g11*g21*alpha*cth*beta*sth
@@ -2324,17 +2324,17 @@ pose_from_point_tangents_2(
 	+2.*a5*g11*h11*beta*s2*alpha
 	-4.*a5*g21_3*h11*alpha*cth*beta*sth
 	-2.*a5*g11*h11*alpha*c2*beta
-	+2.*a5*g12*h12*g21*g21*beta*s2*alpha
+	+2.*a5*g12*h12*g21_2*beta*s2*alpha
 	+4.*a5*g11*h11*alpha*cth*beta*sth
-	+4.*a5*g11*h11*g21*g21*beta*s2*alpha
-	-4.*a5*g11*h11*g21*g21*alpha*c2*beta
+	+4.*a5*g11*h11*g21_2*beta*s2*alpha
+	-4.*a5*g11*h11*g21_2*alpha*c2*beta
 	+2.*a5*g11*h11*g22_2*beta*s2*alpha
 	-2.*a5*g11*h11*g22_2*alpha*c2*beta
 	-2.*a5*g21*h11*g12*g22*alpha*c2*beta
 	+4.*a5*g11*h11*g12*g22*alpha*cth*beta*sth
 	+2.*a5*g22*h12*beta*s2*alpha
 	-2.*a5*g22*h12*alpha*c2*beta
-	-2.*a5*g12*h12*g21*g21*alpha*c2*beta
+	-2.*a5*g12*h12*g21_2*alpha*c2*beta
 	-4.*a5*g12*h12*g22_2*alpha*c2*beta
 	-4.*a5*g22_3*h12*alpha*cth*beta*sth
 	+2.*a5*g21*h11*beta*s2*alpha
@@ -2345,7 +2345,7 @@ pose_from_point_tangents_2(
 	+a4*a6*g12*g22
 	+a4*a6
 	-a5*g22_2*beta*beta*c2
-	-a5*g21*g21*beta*beta*c2
+	-a5*g21_2*beta*beta*c2
 	+a5*g11_2*g22_2*beta*beta*sth*cth
 	-a5*beta*beta*s2
 	-a5*beta*beta*c2
@@ -2361,23 +2361,23 @@ pose_from_point_tangents_2(
 	-a5*g21*g11*beta*beta*c2
 	+a5*g12_2*beta*beta*sth*cth
 	-a5*g12_2*beta*beta*s2
-	+2.*a5*g11_2*g21*g21*beta*beta*sth*cth
+	+2.*a5*g11_2*g21_2*beta*beta*sth*cth
 	+2.*a5*g22*g12*beta*beta*sth*cth
 	+2.*a5*beta*beta*sth*cth
-	-a5*g22*g12*g21*g21*beta*beta*c2
+	-a5*g22*g12*g21_2*beta*beta*c2
 	+2.*a5*g12_2*g22_2*beta*beta*sth*cth
-	+a5*g12_2*g21*g21*beta*beta*sth*cth
+	+a5*g12_2*g21_2*beta*beta*sth*cth
 	+a5*g11_2*beta*beta*sth*cth
 	-a5*g11_2*g12*g22*beta*beta*s2
 	-a5*g11_3*g21*beta*beta*s2
-	+a5*g21*g21*beta*beta*sth*cth
+	+a5*g21_2*beta*beta*sth*cth
 	+a5*g22_2*beta*beta*sth*cth
 	-a5*g21*g11*g22_2*beta*beta*c2
 	-a5*g11_2*beta*beta*s2;
 
   L1 = 4.*a5*g22_3*g12*alpha*cth*beta*sth
 	+4.*a5*g21_3*g11*alpha*cth*beta*sth
-	+4.*a5*g21*g21*alpha*cth*beta*sth
+	+4.*a5*g21_2*alpha*cth*beta*sth
 	+4.*a5*g21*g11*g12*g22*alpha*c2*beta
 	-4.*a5*g21*g11*g12*g22*beta*s2*alpha
 	+4.*a5*g21*g11*alpha*c2*beta
@@ -2390,12 +2390,12 @@ pose_from_point_tangents_2(
 	+4.*a5*alpha*c2*beta
 	-4.*a5*beta*s2*alpha
 	-4.*a5*g12_2*alpha*cth*beta*sth
-	+4.*a5*g22*g12*g21*g21*alpha*cth*beta*sth
+	+4.*a5*g22*g12*g21_2*alpha*cth*beta*sth
 	+4.*a5*g22*g12*alpha*c2*beta
 	-4.*a5*g22*g12*beta*s2*alpha
-	-2.*a5*g21*g21*beta*s2*alpha
-	-4.*a5*g11_2*g21*g21*beta*s2*alpha
-	+4.*a5*g11_2*g21*g21*alpha*c2*beta
+	-2.*a5*g21_2*beta*s2*alpha
+	-4.*a5*g11_2*g21_2*beta*s2*alpha
+	+4.*a5*g11_2*g21_2*alpha*c2*beta
 	+4.*a5*g22_2*alpha*cth*beta*sth
 	+2.*a5*g12_2*alpha*c2*beta
 	-2.*a5*g12_2*beta*s2*alpha
@@ -2403,20 +2403,20 @@ pose_from_point_tangents_2(
 	-2.*a5*g11_2*g22_2*beta*s2*alpha
 	+4.*a5*g21*g11*g22_2*alpha*cth*beta*sth
 	-4.*a5*g11_3*g21*alpha*cth*beta*sth
-	+2.*a5*g21*g21*alpha*c2*beta
+	+2.*a5*g21_2*alpha*c2*beta
 	+2.*a5*g22_2*alpha*c2*beta
 	-2.*a5*g22_2*beta*s2*alpha
 	-4.*a5*g11_2*g12*g22*alpha*cth*beta*sth
 	-4.*a5*g11_2*alpha*cth*beta*sth
 	-4.*a5*g12_2*g22_2*beta*s2*alpha
-	+2.*a5*g12_2*g21*g21*alpha*c2*beta
-	-2.*a5*g12_2*g21*g21*beta*s2*alpha;
+	+2.*a5*g12_2*g21_2*alpha*c2*beta
+	-2.*a5*g12_2*g21_2*beta*s2*alpha;
 
   L2 = (2*a4*a6*g11*g21)
 	+(2*a4*a6*g12*g22)
 	+(2*a4*a6)
 	+2.*a5*(g22_2)*beta*beta*c2
-	+2.*a5*(g21*g21)*beta*beta*c2
+	+2.*a5*(g21_2)*beta*beta*c2
 	-2.*a5*(g11_2)*(g22_2)*beta*beta*sth*cth
 	+2.*a5*beta*beta*s2
 	+2.*a5*beta*beta*c2
@@ -2432,24 +2432,24 @@ pose_from_point_tangents_2(
 	+2.*a5*g21*g11*beta*beta*c2
 	-2.*a5*(g12_2)*beta*beta*sth*cth
 	+2.*a5*(g12_2)*beta*beta*s2
-	-4.*a5*(g11_2)*(g21*g21)*beta*beta*sth*cth
+	-4.*a5*(g11_2)*(g21_2)*beta*beta*sth*cth
 	-4.*a5*g22*g12*beta*beta*sth*cth
 	-4.*a5*beta*beta*sth*cth
-	+2.*a5*g22*g12*(g21*g21)*beta*beta*c2
+	+2.*a5*g22*g12*(g21_2)*beta*beta*c2
 	-4.*a5*(g12_2)*(g22_2)*beta*beta*sth*cth
-	-2.*a5*(g12_2)*(g21*g21)*beta*beta*sth*cth
+	-2.*a5*(g12_2)*(g21_2)*beta*beta*sth*cth
 	-2.*a5*(g11_2)*beta*beta*sth*cth
 	+2.*a5*(g11_2)*g12*g22*beta*beta*s2
 	+2.*a5*g11_3*g21*beta*beta*s2
-	-2.*a5*(g21*g21)*beta*beta*sth*cth
+	-2.*a5*(g21_2)*beta*beta*sth*cth
 	-2.*a5*(g22_2)*beta*beta*sth*cth
 	+2.*a5*g21*g11*(g22_2)*beta*beta*c2
 	+2.*a5*(g11_2)*beta*beta*s2
 	-4.*a5*alpha*alpha*c2
 	-4.*a5*alpha*alpha*s2
 	-4.*a5*g22_3*g12*alpha*alpha*s2
-	-4.*a5*(g21*g21)*alpha*alpha*s2
-	-8.*a5*(g11_2)*(g21*g21)*alpha*alpha*cth*sth
+	-4.*a5*(g21_2)*alpha*alpha*s2
+	-8.*a5*(g11_2)*(g21_2)*alpha*alpha*cth*sth
 	-4.*a5*g22*g12*alpha*alpha*c2
 	-4.*a5*(g11_2)*alpha*alpha*c2
 	-4.*a5*(g22_2)*alpha*alpha*s2
@@ -2464,15 +2464,15 @@ pose_from_point_tangents_2(
 	-4.*a5*(g12_2)*alpha*alpha*c2
 	-8.*a5*g21*g11*g12*g22*alpha*alpha*cth*sth
 	-8.*a5*g22*g12*alpha*alpha*cth*sth
-	-4.*a5*(g21*g21)*alpha*alpha*cth*sth
+	-4.*a5*(g21_2)*alpha*alpha*cth*sth
 	-4.*a5*g21*g11*alpha*alpha*s2
 	-4.*a5*(g11_2)*(g22_2)*alpha*alpha*cth*sth
-	-4.*a5*(g12_2)*(g21*g21)*alpha*alpha*cth*sth
+	-4.*a5*(g12_2)*(g21_2)*alpha*alpha*cth*sth
 	-4.*a5*g11_3*g21*alpha*alpha*c2
 	-4.*a5*(g22_2)*alpha*alpha*cth*sth
 	-4.*a5*(g11_2)*g12*g22*alpha*alpha*c2
 	-8.*a5*g21*g11*alpha*alpha*cth*sth
-	-4.*a5*g22*g12*(g21*g21)*alpha*alpha*s2
+	-4.*a5*g22*g12*(g21_2)*alpha*alpha*s2
 	-4.*a5*(g12_2)*alpha*alpha*cth*sth
 	-4.*a5*g21*g11*(g22_2)*alpha*alpha*s2;
 }
