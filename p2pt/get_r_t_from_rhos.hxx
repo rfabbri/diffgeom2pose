@@ -38,14 +38,12 @@ template<typename T>
 inline void
 multm3x3(const T (&m1)[3][3], const T (&m2)[3][3], T output_m[][3])
 {
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++) {
 			output_m[i][j] = 0;
-			for (int k = 0; k < 3; k++) {
+			for (int k = 0; k < 3; k++)
 				output_m[i][j] += m1[i][k] * m2[k][j];
-			}
 		}
-	}
 }
 
 template<typename T>
@@ -54,7 +52,7 @@ pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
 	const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas1_len)[TS_MAX_LEN],
-	const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas2_len)[TS_MAX_LEN],
+	const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN],
 	const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN],
 	const T (&gama1)[3], const T (&tgt1)[3],
 	const T (&gama2)[3], const T (&tgt2)[3],

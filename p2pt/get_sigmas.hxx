@@ -8,15 +8,11 @@ namespace P2Pt {
 template<typename T>
 void
 pose_poly<T>::
-get_sigmas(
-	const int ts_len, const T (&ts)[ROOT_IDS_LEN],
-	T (*output)[2][TS_MAX_LEN][TS_MAX_LEN],
-	int (*output_len)[2][TS_MAX_LEN]
-)
+get_sigmas(const int ts_len, const T (&ts)[ROOT_IDS_LEN],
+	T (*out)[2][TS_MAX_LEN][TS_MAX_LEN], int (*out_len)[2][TS_MAX_LEN])
 {
-
-	/**************************************************************************
-	 `output`
+	/*
+	 `out`
 	       [0] -> sigmas1[TS_MAX_LEN][TS_MAX_LEN]
 	       [1] -> sigmas2[TS_MAX_LEN][TS_MAX_LEN]
 
@@ -29,38 +25,26 @@ get_sigmas(
 	               .
 	               .
 
-	 `output_len`
+	 `out_len`
 	       [0] -> sigmas1_len[TS_MAX_LEN]
 	       [1] -> sigmas2_len[TS_MAX_LEN]
 
 	       `sigmasX_len` (single values)
-	             [0] = int, [1] = int, [2] = int, ...
-	 **************************************************************************/
+	             [0] = int, [1] = int, [2] = int, ...  */
 
-	T   (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = (*output)[0];
-	T   (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = (*output)[1];
-	int (&sigmas1_len)[TS_MAX_LEN]         = (*output_len)[0];
-	int (&sigmas2_len)[TS_MAX_LEN]         = (*output_len)[1];
-
-	T pose_output[10];
-
+	T   (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = (*out)[0];
+	T   (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = (*out)[1];
+	int (&sigmas1_len)[TS_MAX_LEN]         = (*out_len)[0];
+	T pose_out[10];
 	for (int i = 0; i < ts_len; i++) {
-		sigmas1_len[i] = 0;
-		sigmas2_len[i] = 0;
+		sigmas1_len[i] = 0; 
 
-		fn_t(ts[i], pose_output);
+		fn_t(ts[i], pose_out);
 
-		//T &fvalue = pose_output[0]; // double-checked: not used in matlab
-		const T &A = pose_output[0];
-		const T &B = pose_output[1];
-		const T &C = pose_output[2];
-		const T &E = pose_output[3];
-		const T &F = pose_output[4];
-		const T &G = pose_output[5];
-		const T &H = pose_output[6];
-		const T &J = pose_output[7];
-		const T &K = pose_output[8];
-		const T &L = pose_output[9];
+		//T &fvalue = pose_out[0]; // double-checked: not used in matlab
+		const T &A = pose_out[0], &B = pose_out[1], &C = pose_out[2], 
+            &E = pose_out[3], &F = pose_out[4], &G = pose_out[5], &H = pose_out[6],
+            &J = pose_out[7], &K = pose_out[8], &L = pose_out[9];
 
 		std::complex<T> delta = sqrt(B*B - 4*A*C);
 		std::complex<T> sigma1_m = (-B - delta)/(2*A);
@@ -89,25 +73,25 @@ get_sigmas(
 
 		if (std::abs(H + J*sigma1_m + K*sigma2_m + L*sigma1_m*sigma2_m) < my_eps) {
 			sigmas1[i][sigmas1_len[i]++] = sigma1_m.real();
-			sigmas2[i][sigmas2_len[i]++] = sigma2_m.real();
+			sigmas2[i][sigmas1_len[i]] = sigma2_m.real();
 		}
 		if (std::abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
 			if (sigmas1_len[i] != 0) // !isempty(sigmas1[i])
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][sigmas1_len[i]++] = sigma1_p.real();
-			sigmas2[i][sigmas2_len[i]++] = sigma2_m.real();
+			sigmas2[i][sigmas1_len[i]] = sigma2_m.real();
 		}
 		if (std::abs(H + J*sigma1_p + K*sigma2_p + L*sigma1_p*sigma2_p) < my_eps) {
 			if (sigmas1_len[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][sigmas1_len[i]++] = sigma1_p.real();
-			sigmas2[i][sigmas2_len[i]++] = sigma2_p.real();
+			sigmas2[i][sigmas1_len[i]] = sigma2_p.real();
 		}
 		if (std::abs(H + J*sigma1_m + K*sigma2_p + L*sigma1_m*sigma2_p) < my_eps) {
 			if (sigmas1_len[i] != 0)
 				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][sigmas1_len[i]++] = sigma1_m.real();
-			sigmas2[i][sigmas2_len[i]++] = sigma2_p.real();
+			sigmas2[i][sigmas1_len[i]] = sigma2_p.real();
 		}
 		if (sigmas1_len[i] == 0) // isempty(sigmas1[i])
 			std::cerr << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;

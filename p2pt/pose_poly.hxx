@@ -9,14 +9,12 @@ template <typename T>
 void
 pose_poly<T>::
 rhos_from_root_ids(
-	const T (&root_ids)[ROOT_IDS_LEN],
-	T (*output)[3][ROOT_IDS_LEN],
-	int *output_ts_len
+	const T (&root_ids)[ROOT_IDS_LEN], T (*out)[3][ROOT_IDS_LEN], int *out_ts_len
 )
 {
-	T (&ts)[ROOT_IDS_LEN] = (*output)[0];
+	T (&ts)[ROOT_IDS_LEN] = (*out)[0];
 
-	int &ts_end = *output_ts_len; ts_end = 0;
+	int &ts_end = *out_ts_len; ts_end = 0;
 	for (unsigned i = 0; i < ROOT_IDS_LEN; i++) {
 		if (!root_ids[i]) continue;
     T t0 = t_vec(i), t1 = t_vec(i+1), &t2 = ts[ts_end++];
@@ -30,7 +28,7 @@ rhos_from_root_ids(
 	//% Each root is now ts(i), plus minus t_stddev.
 	//% Now get rho1(t):
 
-	T (&rhos1)[ROOT_IDS_LEN] = (*output)[1]; T (&rhos2)[ROOT_IDS_LEN] = (*output)[2];
+	T (&rhos1)[ROOT_IDS_LEN] = (*out)[1]; T (&rhos2)[ROOT_IDS_LEN] = (*out)[2];
 
   const T alpha_times_2 = 2.*alpha;
 	for (int i = 0; i < ts_end; i++) {

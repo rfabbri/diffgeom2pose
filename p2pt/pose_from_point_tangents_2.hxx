@@ -24,10 +24,8 @@ pose_from_point_tangents_2(
           g22_2 = g22*g22, g22_3 = g22_2*g22, g22_4 = g22_3*g22,
           h11 = tgt1[0],  h12 = tgt1[1], h21 = tgt2[0],  h22 = tgt2[1];
 
-	T *V = &A0;         // reusing memory from poly
-  V[0] = Gama1[0] - Gama2[0];
-  V[1] = Gama1[1] - Gama2[1];
-  V[2] = Gama1[2] - Gama2[2];
+	T *V = &A0; // reusing memory from poly
+  V[0] = Gama1[0] - Gama2[0]; V[1] = Gama1[1] - Gama2[1]; V[2] = Gama1[2] - Gama2[2];
   
 	const T 
   a1 = V[0]*V[0]+V[1]*V[1]+V[2]*V[2],
@@ -40,8 +38,7 @@ pose_from_point_tangents_2(
 	theta = 0.5 * atan( 2.*(1.+g11*g21+g12*g22)/(g11_2+g12*g12-g21_2-g22_2) );
 	if (theta < 0) theta += PI_OVER_2;
 	sth = sin(theta);
-  const T s2 = sth*sth;
-	cth = cos(theta);
+  const T s2 = sth*sth; cth = cos(theta);
   const T c2 = cth*cth, c2th = 2.*c2-1., s2th = 2.*sth*cth;
   
 	const T den1 = 2.*s2th*(g11*g21+g12*g22+1.)+c2th*(g11_2+g12_2-g21_2-g22_2),
@@ -50,7 +47,6 @@ pose_from_point_tangents_2(
 	alpha = sqrt(2.*a1 / (den1 + den2));  // sqrt(t24)
 
 	//% Coefficient code adapted from Maple ::: can be further cleaned up but works
-
 	A0 = a4*a4*g12*g12
 	+a4*a4*g11*g11
 	+a4*a4

@@ -53,24 +53,20 @@ pose_from_point_tangents(
 	int ts_len;
 	p.rhos_from_root_ids(root_ids, &rhos, &ts_len);
 
-	const T (&ts)[ROOT_IDS_LEN]    = rhos[0];
-	const T (&rhos1)[ROOT_IDS_LEN] = rhos[1];
-	const T (&rhos2)[ROOT_IDS_LEN] = rhos[2];
-
-	T sigmas[2][TS_MAX_LEN][TS_MAX_LEN];
-	int sigmas_len[2][TS_MAX_LEN];
+	const T (&ts)[ROOT_IDS_LEN]    = rhos[0]; 
+  const T (&rhos1)[ROOT_IDS_LEN] = rhos[1]; const T (&rhos2)[ROOT_IDS_LEN] = rhos[2];
+	T sigmas[2][TS_MAX_LEN][TS_MAX_LEN]; int sigmas_len[2][TS_MAX_LEN];
 
 	p.get_sigmas(ts_len, ts, &sigmas, &sigmas_len);
 
 	T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[0];
 	T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN] = sigmas[1];
 	const int (&sigmas1_len)[TS_MAX_LEN] = sigmas_len[0];
-	const int (&sigmas2_len)[TS_MAX_LEN] = sigmas_len[1];
 
 	T (&RT)[RT_MAX_LEN][4][3] = *output_RT;
 	int &RT_len               = *output_RT_len;
 
-	p.get_r_t_from_rhos( ts_len, sigmas1, sigmas1_len, sigmas2, sigmas2_len,
+	p.get_r_t_from_rhos( ts_len, sigmas1, sigmas1_len, sigmas2,
 		rhos1, rhos2, gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2, 
     &RT, &RT_len);
 }

@@ -12,18 +12,10 @@ constexpr int RT_MAX_LEN = (TS_MAX_LEN * TS_MAX_LEN);
 
 template<typename T>
 struct pose_poly {
-	T A0, A1, A2,
-		B0, B1, B2, B3,
-		C0, C1, C2, C3, C4,
-		E0, E1, E2,
-		F0, F1, F2, F3,
-		G0, G1, G2, G3, G4,
-		H0, H1, H2, H3, H4,
-		J0, J1, J2, J3,
-		K0, K1, K2, K3,
-		L0, L1, L2,
-		alpha, beta, theta,
-    sth, cth;
+	T A0, A1, A2, B0, B1, B2, B3, C0, C1, C2, C3, C4,
+		E0, E1, E2, F0, F1, F2, F3, G0, G1, G2, G3, G4,
+		H0, H1, H2, H3, H4, J0, J1, J2, J3, K0, K1, K2, K3,
+		L0, L1, L2, alpha, beta, theta, sth, cth;
 
   // unsigned cnt_ = 0; // DEBUG iteration count
 
@@ -34,17 +26,17 @@ struct pose_poly {
 		const T (&gama1)[3], const T (&tgt1)[3], const T (&gama2)[3], const T (&tgt2)[3],
 		const T (&Gama1)[3], const T (&Tgt1)[3], const T (&Gama2)[3], const T (&Tgt2)[3]);
   
-	inline void find_bounded_root_intervals(T (*root_ids_output)[ROOT_IDS_LEN])
+	inline void find_bounded_root_intervals(T (*root_ids_out)[ROOT_IDS_LEN])
   {
     T curr_val = fn_t(t_vec(0)), next_val;
     for (unsigned i = 0; i < ROOT_IDS_LEN; i++) {
       next_val = fn_t(t_vec(i+1));
-      (*root_ids_output)[i] = (curr_val * next_val) < 0;
+      (*root_ids_out)[i] = (curr_val * next_val) < 0;
       curr_val = next_val;
     }
   }
   
-  // o: output
+  // o: out
 	inline T fn_t(const T t, T o[10]) 
   {
     T &A = o[0]; T &B = o[1]; T &C = o[2]; T &E = o[3]; T &F = o[4]; 
@@ -90,20 +82,20 @@ struct pose_poly {
 	inline T fn_t(const T t) { T b[10]; /*std::cerr << "eval count: " << ++cnt_ << std::endl;*/ return fn_t(t, b);  }
 	inline T operator()(T t) { return fn_t(t); }
   
-	void rhos_from_root_ids(const T (&root_ids)[ROOT_IDS_LEN], T (*output)[3][ROOT_IDS_LEN], 
-      int *output_ts_len);
+	void rhos_from_root_ids(const T (&root_ids)[ROOT_IDS_LEN], T (*out)[3][ROOT_IDS_LEN], 
+      int *out_ts_len);
   
 	void get_sigmas(const int ts_len, const T (&ts)[ROOT_IDS_LEN], 
-      T (*output)[2][TS_MAX_LEN][TS_MAX_LEN], int (*output_len)[2][TS_MAX_LEN]);
+      T (*out)[2][TS_MAX_LEN][TS_MAX_LEN], int (*out_len)[2][TS_MAX_LEN]);
   
 	void get_r_t_from_rhos(
 		const int ts_len,
 		const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas1_len)[TS_MAX_LEN],
-		const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas2_len)[TS_MAX_LEN],
+		const T (&sigmas2)[TS_MAX_LEN][TS_MAX_LEN],
 		const T (&rhos1)[ROOT_IDS_LEN], const T (&rhos2)[ROOT_IDS_LEN],
 		const T (&gama1)[3], const T (&tgt1)[3], const T (&gama2)[3], const T (&tgt2)[3],
 		const T (&Gama1)[3], const T (&Tgt1)[3], const T (&Gama2)[3], const T (&Tgt2)[3],
-		T (*output)[RT_MAX_LEN][4][3], int *output_len
+		T (*out)[RT_MAX_LEN][4][3], int *out_len
 	);
 };
 
