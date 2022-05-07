@@ -6,7 +6,7 @@
 // Sample values taken from MATLAB - for test only
 // The following seed and rng parameters were used: `rng(0, 'twister')`
 
-// `T_VECTOR_LEN`, `ROOT_IDS_LEN`, `TS_MAX_LEN`, and `RT_MAX_LEN` are defined
+// `T_VECTOR_LEN`, `pose_poly<double>::ROOT_IDS_LEN`, `TS_MAX_LEN`, and `RT_MAX_LEN` are defined
 // in `poly.h`
 
 // Floating-point comparison precision
@@ -100,7 +100,7 @@ constexpr double sample_alpha = 2.99316452421144;
 constexpr double sample_beta  = 8.77711253699776;
 constexpr double sample_theta = 0.779767013089326;
 
-constexpr double sample_root_ids[ROOT_IDS_LEN] = {
+constexpr double sample_root_ids[pose_poly<double>::ROOT_IDS_LEN] = {
 	0,
 	0,
 	0,
@@ -2102,7 +2102,7 @@ constexpr double sample_root_ids[ROOT_IDS_LEN] = {
 	0,
 	0
 };
-constexpr double sample_t_vector[T_LEN] = {
+constexpr double sample_t_vector[pose_poly<double>::T_LEN] = {
 	-1,
 	-0.999000000000000,
 	-0.998000000000000,
@@ -4106,7 +4106,7 @@ constexpr double sample_t_vector[T_LEN] = {
 	1
 };
 
-constexpr double sample_fvalue_pose_poly[T_LEN] = {
+constexpr double sample_fvalue_pose_poly[pose_poly<double>::T_LEN] = {
 	1599787.71374669,
 	1605360.45517041,
 	1610811.19942987,
@@ -6112,13 +6112,13 @@ constexpr double sample_fvalue_pose_poly[T_LEN] = {
 constexpr double sample_fvalue_tan_2_fn_t_for_root = 5949387.61663628;
 constexpr double sample_fvalue_tan_2_fn_t          = 8.392333984375e-05;
 
-constexpr double sample_rhos1[ROOT_IDS_LEN] = {4.20582991999997, 5.38744796313994, 5.51209006581205, 4.03587398491222};
+constexpr double sample_rhos1[pose_poly<double>::ROOT_IDS_LEN] = {4.20582991999997, 5.38744796313994, 5.51209006581205, 4.03587398491222};
 constexpr double sample_rhos1_minus[4]      = {4.19654670944222, 5.38019708944851, 5.51776326765562, 4.04268855289702};
 constexpr double sample_rhos1_plus[4]       = {4.21510336408264, 5.3946799668862, 5.50640677350622, 4.02905873466068};
-constexpr double sample_rhos2[ROOT_IDS_LEN] = {6.43709158403864, 6.57569415482449, 2.24649263802363, 0.060368043942569};
+constexpr double sample_rhos2[pose_poly<double>::ROOT_IDS_LEN] = {6.43709158403864, 6.57569415482449, 2.24649263802363, 0.060368043942569};
 constexpr double sample_rhos2_minus[4]      = {6.43448894533826, 6.57642149868896, 2.25654591307366, 0.0691198833952585};
 constexpr double sample_rhos2_plus[4]       = {6.439673320473, 6.57494124271865, 2.23644129997713, 0.0516243612096208};
-constexpr double sample_ts[ROOT_IDS_LEN]    = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};
+constexpr double sample_ts[pose_poly<double>::ROOT_IDS_LEN]    = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};
 constexpr int    sample_ts_len              = 4;
 
 constexpr double sample_sigmas1[TS_MAX_LEN][TS_MAX_LEN] = {

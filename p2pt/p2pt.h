@@ -1,10 +1,11 @@
 #ifndef p2pt_h_
 #define p2pt_h_
 
-#include "pose_poly.h"
-
 namespace P2Pt {
 
+// At most 8 solutions with positive depth, TODO: assert if longer
+static constexpr int TS_MAX_LEN = 8;
+static constexpr int RT_MAX_LEN = (TS_MAX_LEN * TS_MAX_LEN);
 
 template <typename T=double>
 class p2pt { // fully static, not to be instantiated - just used for templating

@@ -7,7 +7,6 @@
 
 namespace P2Pt {
   
-  
 // This is the main routine
 template <typename T>
 void p2pt<T>::
@@ -42,16 +41,17 @@ pose_from_point_tangents(
 	pose_poly<T> p;
 	p.pose_from_point_tangents_2( gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2);
 
-	T root_ids[ROOT_IDS_LEN] __attribute__((aligned (16)));
+	T root_ids[pose_poly<T>::ROOT_IDS_LEN] __attribute__((aligned (16)));
 	p.find_bounded_root_intervals(&root_ids);
 
 	// % compute rhos, r, t --------------------------
-	T rhos[3][ROOT_IDS_LEN];
+	T rhos[3][pose_poly<T>::ROOT_IDS_LEN];
 	int ts_len;
 	p.rhos_from_root_ids(root_ids, &rhos, &ts_len);
 
-	const T (&ts)[ROOT_IDS_LEN]    = rhos[0]; 
-  const T (&rhos1)[ROOT_IDS_LEN] = rhos[1]; const T (&rhos2)[ROOT_IDS_LEN] = rhos[2];
+	const T (&ts)[pose_poly<T>::ROOT_IDS_LEN]    = rhos[0]; 
+  const T (&rhos1)[pose_poly<T>::ROOT_IDS_LEN] = rhos[1]; 
+  const T (&rhos2)[pose_poly<T>::ROOT_IDS_LEN] = rhos[2];
 	T sigmas[2][TS_MAX_LEN][TS_MAX_LEN]; int sigmas_len[2][TS_MAX_LEN];
 
 	p.get_sigmas(ts_len, ts, &sigmas, &sigmas_len);
