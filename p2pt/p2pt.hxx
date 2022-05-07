@@ -73,7 +73,6 @@ pose_from_point_tangents(
 	p.get_r_t_from_rhos( ts_len, sigmas1, sigmas1_len, sigmas2, sigmas2_len,
 		rhos1, rhos2, gama1, tgt1, gama2, tgt2, Gama1, Tgt1, Gama2, Tgt2, 
     &RT, &RT_len);
-  return true;
 }
 
 } // namespace p2pt
