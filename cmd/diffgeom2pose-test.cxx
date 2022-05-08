@@ -3,6 +3,7 @@
 
 #include "p2pt/p2pt.h"
 #include "tests/test-p2pt-constants.hxx"
+#include <cstring>
 
 using namespace P2Pt;
 
