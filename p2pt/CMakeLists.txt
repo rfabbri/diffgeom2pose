@@ -3,11 +3,6 @@
 # to avoid having to include p2pt many times and slowdown the compiler
 set(p2pt_sources
   p2pt.hxx p2pt.h 
-  get_r_t_from_rhos.hxx
-  get_sigmas.hxx
-  pose_from_point_tangents_2.hxx
-  pose_poly.h
-  pose_poly.hxx
 )
 aux_source_directory(Templates p2pt_sources)
 

@@ -177,8 +177,7 @@ pose_from_point_tangents(
 }
 
 template<typename T>
-void
-pose_poly<T>::
+void pose_poly<T>::
 pose_from_point_tangents_2(
 	const T (&gama1)[3], const T (&tgt1)[3],
 	const T (&gama2)[3], const T (&tgt2)[3],
@@ -2477,9 +2476,10 @@ pose_from_point_tangents_2(
 	-4.*a5*g21*g11*(g22_2)*alpha*alpha*s2;
 }
   
+// sigmas are basically depth derivatives which are intermediate variables
+// needed to build R
 template<typename T>
-void
-pose_poly<T>::
+void pose_poly<T>::
 get_sigmas(const int ts_len, const T (&ts)[ROOT_IDS_LEN],
 	T (*out)[2][TS_MAX_LEN][TS_MAX_LEN], int (*out_len)[2][TS_MAX_LEN])
 {
@@ -2611,8 +2611,7 @@ multm3x3(const T (&m1)[3][3], const T (&m2)[3][3], T output_m[][3])
 }
 
 template<typename T>
-void
-pose_poly<T>::
+void pose_poly<T>::
 get_r_t_from_rhos(
 	const int ts_len,
 	const T (&sigmas1)[TS_MAX_LEN][TS_MAX_LEN], const int (&sigmas1_len)[TS_MAX_LEN],
@@ -2679,4 +2678,3 @@ get_r_t_from_rhos(
 } // namespace p2pt
 
 #endif // !p2pt_hxx_
-
