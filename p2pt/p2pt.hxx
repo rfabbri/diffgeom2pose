@@ -1,7 +1,6 @@
 #ifndef p2pt_hxx_
 #define p2pt_hxx_
 
-#include <iostream>
 #include <complex>
 #include "p2pt.h"
 
@@ -135,9 +134,7 @@ pose_from_point_tangents(
 		     -(d[2][0]*d[1][1]*d[0][2]+d[2][1]*d[1][2]*d[0][0]+d[2][2]*d[1][0]*d[0][1]);
 
 	if (std::abs(degen) < 1.0e-3) {
-    //TODO(openmvg) GUARD this print
-		std::cerr << "data point not reliable, please skip this solve within RANSAC" << std::endl;
-		output_RT     = nullptr; output_RT_len = nullptr; output_degen  = nullptr;
+		*output_RT_len = 0;
 		return;
 	}
   }
@@ -2525,14 +2522,14 @@ get_sigmas(const int ts_len, const T (&ts)[ROOT_IDS_LEN],
 		if (std::abs(std::imag(sigma1_m)) < 1e-4) {
 			sigma1_m = std::real(sigma1_m);
 			sigma1_p = std::real(sigma1_p);
-		} else
-			std::cerr << "Ignoring t = " << ts[i] << std::endl;
+		} // else
+			// std::cerr << "Ignoring t = " << ts[i] << std::endl;
 
 		if (std::abs(std::imag(sigma2_m)) < 1e-4) {
 			sigma2_m = std::real(sigma2_m);
 			sigma2_p = std::real(sigma2_p);
-		} else
-			std::cerr << "Ignoring t = " << ts[i] << std::endl;
+		} // else
+			// std::cerr << "Ignoring t = " << ts[i] << std::endl;
 
 		//% Now check to see which pair pass. Only a single pair should pass, in theory.
 		//% If not, issue a warning.
@@ -2543,25 +2540,25 @@ get_sigmas(const int ts_len, const T (&ts)[ROOT_IDS_LEN],
 			sigmas2[i][sigmas1_len[i]++] = sigma2_m.real();
 		}
 		if (std::abs(H + J*sigma1_p + K*sigma2_m + L*sigma1_p*sigma2_m) < my_eps) {
-			if (sigmas1_len[i] != 0) // !isempty(sigmas1[i])
-				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
+			// if (sigmas1_len[i] != 0) // !isempty(sigmas1[i])
+		  //		std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][sigmas1_len[i]] = sigma1_p.real();
 			sigmas2[i][sigmas1_len[i]++] = sigma2_m.real();
 		}
 		if (std::abs(H + J*sigma1_p + K*sigma2_p + L*sigma1_p*sigma2_p) < my_eps) {
-			if (sigmas1_len[i] != 0)
-				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
+			// if (sigmas1_len[i] != 0)
+      //	std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][sigmas1_len[i]] = sigma1_p.real();
 			sigmas2[i][sigmas1_len[i]++] = sigma2_p.real();
 		}
 		if (std::abs(H + J*sigma1_m + K*sigma2_p + L*sigma1_m*sigma2_p) < my_eps) {
-			if (sigmas1_len[i] != 0)
-				std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
+			// if (sigmas1_len[i] != 0)
+			// std::cerr << "more than one sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 			sigmas1[i][sigmas1_len[i]] = sigma1_m.real();
 			sigmas2[i][sigmas1_len[i]++] = sigma2_p.real();
 		}
-		if (sigmas1_len[i] == 0) // isempty(sigmas1[i])
-			std::cerr << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
+		// if (sigmas1_len[i] == 0) // isempty(sigmas1[i])
+		// std::cerr << "no sigma1, sigma2 pair satisfies the 3rd constraint" << std::endl;
 	}
 }
 
