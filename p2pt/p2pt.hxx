@@ -2625,7 +2625,6 @@ get_r_t_from_rhos(
 	const T DGama[3] = {Gama1[0]-Gama2[0], Gama1[1]-Gama2[1], Gama1[2]-Gama2[2]};
   
 	for (int i = 0; i < ts_len; i++) {
-    assert(sigmas1_len[i] == sigmas2_len[i]);
     const T dgamas_rhos[3] = {
      rhos1[i]*gama1[0] - rhos2[i]*gama2[0],
      rhos1[i]*gama1[1] - rhos2[i]*gama2[1],
