@@ -6123,7 +6123,7 @@ constexpr double sample_rhos2[pose_poly<double>::ROOT_IDS_LEN] = {6.437091584038
 constexpr double sample_rhos2_minus[4]      = {6.43448894533826, 6.57642149868896, 2.25654591307366, 0.0691198833952585};
 constexpr double sample_rhos2_plus[4]       = {6.439673320473, 6.57494124271865, 2.23644129997713, 0.0516243612096208};
 constexpr double sample_ts[pose_poly<double>::ROOT_IDS_LEN]    = {-0.275012891405233, -0.1338023177142, 0.482519295339129, 0.712198234568026};
-constexpr int    sample_ts_len              = 4;
+constexpr unsigned    sample_ts_len              = 4;
 
 constexpr double sample_sigmas1[TS_MAX_LEN][TS_MAX_LEN] = {
 	{8.68336207388739},
@@ -6137,8 +6137,8 @@ constexpr double sample_sigmas2[TS_MAX_LEN][TS_MAX_LEN] = {
 	{-2.23388593591439},
 	{-0.114058798509118, -0.114058798509118, -0.066817663927889, -0.066817663927889}
 };
-constexpr int sample_sigmas1_end[TS_MAX_LEN] = {1, 1, 1, 4};
-constexpr int sample_sigmas2_end[TS_MAX_LEN] = {1, 1, 1, 4};
+constexpr unsigned sample_sigmas1_end[TS_MAX_LEN] = {1, 1, 1, 4};
+constexpr unsigned sample_sigmas2_end[TS_MAX_LEN] = {1, 1, 1, 4};
 
 constexpr double sample_Rots[7][3][3] = {
 	{
@@ -6188,7 +6188,7 @@ constexpr double sample_Transls[7][3] = {
 	{-1.66663219754732,  -0.25893886116481,  3.82004579353875}
 };
 constexpr double sample_degen  = -0.174617421223572;
-constexpr int    sample_RT_len = 7;
+constexpr unsigned    sample_RT_len = 7;
 }
 
 #endif // !test-p2pt-constants_hxx_

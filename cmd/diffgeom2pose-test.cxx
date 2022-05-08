@@ -14,7 +14,7 @@ test_run(const char *type, const char *benchmark = "no")
 	double test_degen;
 	float  test_RT_float[RT_MAX_LEN][4][3] = {0};
 	float  test_degen_float;
-	int    test_RT_len;
+	unsigned    test_RT_len;
 
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 	if (strcmp(type, "float") == 0)
@@ -42,10 +42,10 @@ test_run(const char *type, const char *benchmark = "no")
 	bool is_benchmark = strcmp(benchmark, "benchmark") == 0 ? true : false;
 
 	// RT
-	for (int i = 0; i < sample_RT_len; i++) {
+	for (unsigned i = 0; i < sample_RT_len; i++) {
 		// Rots
-		for (int j = 0; j < 3; j++) {
-			for (int k = 0; k < 3; k++) {
+		for (unsigned j = 0; j < 3; j++) {
+			for (unsigned k = 0; k < 3; k++) {
 				double (&test_Rots)[4][3] = test_RT[i];
 				if (!is_benchmark) {
           diff = std::abs(test_Rots[j][k] - sample_Rots[i][j][k]);
@@ -61,7 +61,7 @@ test_run(const char *type, const char *benchmark = "no")
 			}
 		}
 		// Transls
-		for (int j = 0; j < 3; j++) {
+		for (unsigned j = 0; j < 3; j++) {
 			double (&test_Transls)[3] = test_RT[i][3];
 			if (!is_benchmark) {
 			  diff = std::abs(test_Transls[j] - sample_Transls[i][j]);
