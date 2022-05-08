@@ -22,8 +22,7 @@ struct pose_poly {
 		const T (&gama1)[3], const T (&tgt1)[3], const T (&gama2)[3], const T (&tgt2)[3],
 		const T (&Gama1)[3], const T (&Tgt1)[3], const T (&Gama2)[3], const T (&Tgt2)[3]);
   
-	inline void find_bounded_root_intervals(T (*root_ids_out)[ROOT_IDS_LEN])
-  {
+	inline void find_bounded_root_intervals(T (*root_ids_out)[ROOT_IDS_LEN]) {
     T curr_val = fn_t(t_vec(0)), next_val;
     for (unsigned i = 0; i < ROOT_IDS_LEN; i++) {
       next_val = fn_t(t_vec(i+1));
@@ -32,8 +31,7 @@ struct pose_poly {
     }
   }
   
-	inline T fn_t(const T t, T o[10])  //o: output
-  {
+	inline T fn_t(const T t, T o[10]) {  //o: output
     T &A = o[0]; T &B = o[1]; T &C = o[2]; T &E = o[3]; T &F = o[4]; 
     T &G = o[5]; T &H = o[6]; T &J = o[7]; T &K = o[8]; T &L = o[9];
 
@@ -86,7 +84,6 @@ struct pose_poly {
         f0 = f1; if (k + 1 < 3) f1 = fn_t(t2);
       }
     }
-
     //% Each root is now ts(i), plus minus t_stddev. Now get rho1(t):
     T (&rhos1)[ROOT_IDS_LEN] = (*out)[1]; T (&rhos2)[ROOT_IDS_LEN] = (*out)[2];
     const T alpha_times_2 = 2.*alpha;
