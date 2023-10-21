@@ -33,7 +33,7 @@ Rio de Janeiro State University.
 
 ## Main Function
 
-### Matlab
+### Matlab and GNU Octave
 
 ```
 matlab/rf_pose_from_point_tangents_root_find_function_any.m
@@ -50,13 +50,18 @@ matlab/demo.m
 
 ### C++
 
-See `cmd/diffgeom2pose.cxx`
+See `cmd/diffgeom2pose-test.cxx`
+
+See also OpenMVG branch `develop_keypoint_orientation_sfm`
+file OpenMVG/src/OpenMVG/multiview/solver_resection_p2pt_fabbri.hpp
 
 ## Disclaimer
 
 ### C++ version
 This code is meant for production and is currently being incorporated to
 mainstream SfM pipelines such as OpenMVG and Colmap.
+
+See OpenMVG branch `develop_keypoint_orientation_sfm`
 
 ### Matlab version
 The matlab code is reseach code writen in a "lab" language (Matlab) and, despite
